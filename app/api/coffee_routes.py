@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, session, request
 from flask_login import login_required, current_user
 from app.models import Coffee, Note, Day, Brand, db
 from app.forms.add_coffee_form import AddCoffeeForm
+from app.forms.delete_form import DeleteForm
 
 coffee_routes = Blueprint('coffees', __name__)
 
@@ -32,7 +33,13 @@ def get_all_coffee():
 # GET one coffee
 @coffee_routes.route('/<int:coffee_id>')
 def get_one_coffee_details(coffee_id):
-    coffee = Coffee.query.get(coffee_id).to_dict()
+    current_coffee = Coffee.query.get(coffee_id)
+    if not current_coffee:
+        return jsonify({
+            "message": "Business couldn't be found",
+            "status_code": 404
+        })
+    coffee = current_coffee.to_dict()
     brand = Brand.query.get(coffee['brand_id']).to_dict()
     # coffee = coffee.to_dict()
     coffee['Brand'] = brand
@@ -193,8 +200,6 @@ def edit_one_coffee(coffee_id):
             if len(post_val_error["errors"]) > 0:
                 return jsonify(post_val_error), 400
 
-            # print(">>>>CHECK_BRAND", check_brand)
-
             brand = check_brand.first().to_dict()
 
             current_coffee.curator_id = user_id
@@ -215,4 +220,34 @@ def edit_one_coffee(coffee_id):
             coffee_res = current_coffee.to_dict()
             coffee_res['Brand'] = brand
             return coffee_res
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+# DELETE one coffee
+@coffee_routes.route('/<int:coffee_id>', methods=["DELETE"])
+@login_required
+def delete_one_coffee(coffee_id):
+    user = current_user.to_dict()
+    user_id = user['id']
+
+    form = DeleteForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    current_coffee = Coffee.query.get(coffee_id)
+     # checking if coffee exists
+    if not current_coffee:
+        return jsonify({
+            "message": "Business couldn't be found",
+            "status_code": 404
+        })
+    # checking if user curated this coffee
+    if current_coffee.to_dict()['curator_id'] != user_id:
+        return {"message": "Forbidden", "status_code": 403}, 403
+
+    elif current_coffee.to_dict()['curator_id'] == user_id:
+        if form.validate_on_submit():
+           
+            db.session.delete(current_coffee)
+            db.session.commit()
+
+            return {"message": "Successfully deleted", "status_code": 200}
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
