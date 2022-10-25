@@ -17,5 +17,6 @@ class Review(db.Model):
             "id": self.id,
             "user_id": self.user_id,
             "coffee_id": self.coffee_id,
-            "quantity": self.quantity
+            "rating": self.rating,
+            "review_body": self.review_body
         }

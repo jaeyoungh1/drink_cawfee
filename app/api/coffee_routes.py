@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import login_required, current_user
-from app.models import Coffee, Note, Day, Brand, db
+from app.models import Coffee, Note, Day, Brand, Review, User, db
 from app.forms.add_coffee_form import AddCoffeeForm
 from app.forms.delete_form import DeleteForm
 
@@ -18,8 +18,6 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 # GET all coffees
-
-
 @coffee_routes.route('/')
 def get_all_coffee():
     coffees = Coffee.query.all()
@@ -36,7 +34,7 @@ def get_one_coffee_details(coffee_id):
     current_coffee = Coffee.query.get(coffee_id)
     if not current_coffee:
         return jsonify({
-            "message": "Business couldn't be found",
+            "message": "Coffee couldn't be found",
             "status_code": 404
         })
     coffee = current_coffee.to_dict()
@@ -154,7 +152,7 @@ def edit_one_coffee(coffee_id):
     # checking if coffee exist
     if not current_coffee:
         return jsonify({
-            "message": "Business couldn't be found",
+            "message": "Coffee couldn't be found",
             "status_code": 404
         })
     # checking if user curated this coffee
@@ -236,7 +234,7 @@ def delete_one_coffee(coffee_id):
      # checking if coffee exists
     if not current_coffee:
         return jsonify({
-            "message": "Business couldn't be found",
+            "message": "Coffee couldn't be found",
             "status_code": 404
         })
     # checking if user curated this coffee
@@ -251,3 +249,29 @@ def delete_one_coffee(coffee_id):
 
             return {"message": "Successfully deleted", "status_code": 200}
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+# <--------------------------- REVIEWS -------------------------->
+
+# GET all reviews for one coffee
+@coffee_routes.route('/<int:coffee_id>/reviews')
+def get_one_coffee_reviews(coffee_id):
+
+    current_coffee = Coffee.query.get(coffee_id)
+    # checking if coffee exist
+    if not current_coffee:
+        return jsonify({
+            "message": "Coffee couldn't be found",
+            "status_code": 404
+        })
+
+    _reviews = Review.query.filter_by(coffee_id=current_coffee.to_dict()['id'])
+    if not _reviews:
+        return "No reviews exist for this coffee"
+    reviews = [review.to_dict() for review in _reviews]
+    for review in reviews:
+        user = User.query.get(review['user_id']).to_dict()
+        review['User'] = user
+
+    return {"Reviews": reviews}
+

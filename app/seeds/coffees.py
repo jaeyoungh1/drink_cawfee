@@ -27,18 +27,18 @@ def seed_coffee_day_note():
     #     {"alias":"tropical_fruit" , "display": "Tropical Fruit"}
     # ]
     notes = [
-        {"Berry Fruit"},
-        {"Stone Fruit"},
-        {"Citrus"},
-        {"Florals"},
-        {"Vanilla"},
-        {"Earthy"},
-        {"Brown Sugar"},
-        {"Milk Chocolate"},
-        {"Nutty"},
-        {"Spices"},
-        {"Roastiness"},
-        {"Tropical Fruit"}
+        "Berry Fruit",
+        "Stone Fruit",
+        "Citrus",
+        "Florals",
+        "Vanilla",
+        "Earthy",
+        "Brown Sugar",
+        "Milk Chocolate",
+        "Nutty",
+        "Spices",
+        "Roastiness",
+        "Tropical Fruit"
     ]
     for note in notes:
         noteRow = Note(note=note)
@@ -59,7 +59,7 @@ def seed_coffee_day_note():
             "price": 17,
             "description": " This Fully Washed coffee was grown in the Ocotepeque region of Western Honduras between 1,100 and 1,650 meters above sea level. Robust chocolate aromas lead to notes of roasted nuts and dark chocolate in this heavy bodied coffee.",
             "img_url": "https://www.mistobox.com/media/catalog/product/cac…f78eab33525d08d6e5fb8d27136e95/B/F/BFC-1040_3.jpg",
-            "notes": [notes_dict['milk_chocolate'], notes_dict["nutty"], notes_dict["roastiness"]],
+            "notes": [notes_dict['Milk Chocolate'], notes_dict["Nutty"], notes_dict["Roastiness"]],
             "days": [days_dict['Monday']]
         }
     ]
