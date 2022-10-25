@@ -1,12 +1,12 @@
 from .db import db
 
-coffee_roasting_days = db.Table(
+coffee_days = db.Table(
     'coffee_days',
     db.Model.metadata,
     db.Column('coffee_id', db.Integer, db.ForeignKey(
-        'coffee.id'), primary_key=True),
+        'coffees.id'), primary_key=True),
     db.Column('day_id', db.Integer, db.ForeignKey(
-        'day.id'), primary_key=True)
+        'days.id'), primary_key=True)
 )
 
 coffee_notes = db.Table(
@@ -15,7 +15,7 @@ coffee_notes = db.Table(
     db.Column('note_id', db.Integer, db.ForeignKey(
         'notes.id'), primary_key=True),
     db.Column('coffee_id', db.Integer, db.ForeignKey(
-        'coffee.id'), primary_key=True),
+        'coffees.id'), primary_key=True),
 )
 
 class Coffee(db.Model):
@@ -26,22 +26,20 @@ class Coffee(db.Model):
     brand_id = db.Column(db.Integer, db.ForeignKey('brands.id'))
     name = db.Column(db.String(225), nullable=False)
     origin = db.Column(db.String(100), nullable=False)
-    wash = db.Column(db.String(100), nullable=False)
     roast = db.Column(db.String(100), nullable=False)
     process = db.Column(db.String(100), nullable=False)
     inventory = db.Column(db.Integer, nullable=False)
     price = db.Column(db.Float, nullable=False)
-    whole_bean = db.Column(db.Boolean)
     description = db.Column(db.String(5000), nullable=False)
     img_url = db.Column(db.String(500))
 
     curator = db.relationship('User', back_populates='coffee')
     brand = db.relationship('Brand', back_populates='coffee')
-    cart = db.relationship('CartItem', back_populates='coffee')
+    review = db.relationship('Review', back_populates='coffee')
 
     days = db.relationship(
         'Day',
-        secondary=coffee_roasting_days,
+        secondary=coffee_days,
         back_populates="coffees"
     )
 
@@ -76,8 +74,8 @@ class Day(db.Model):
     day = db.Column(db.String(50))
 
     coffees = db.relationship(
-        'coffee',
-        secondary=coffee_roasting_days,
+        'Coffee',
+        secondary=coffee_days,
         back_populates='days'
     )
 
@@ -95,7 +93,7 @@ class Note(db.Model):
     note = db.Column(db.String(500))
 
     coffees = db.relationship(
-        'coffee',
+        'Coffee',
         secondary=coffee_notes,
         back_populates='notes'
     )
