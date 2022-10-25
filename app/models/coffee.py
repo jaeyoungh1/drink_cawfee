@@ -18,8 +18,7 @@ coffee_notes = db.Table(
         'coffee.id'), primary_key=True),
 )
 
-
-class coffee(db.Model):
+class Coffee(db.Model):
     __tablename__ = "coffees"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -38,6 +37,7 @@ class coffee(db.Model):
 
     curator = db.relationship('User', back_populates='coffee')
     brand = db.relationship('Brand', back_populates='coffee')
+    cart = db.relationship('CartItem', back_populates='coffee')
 
     days = db.relationship(
         'Day',

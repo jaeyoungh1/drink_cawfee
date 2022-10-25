@@ -16,6 +16,8 @@ class User(db.Model, UserMixin):
     state = db.Column(db.String(100), nullable=False)
     curator = db.Column(db.Boolean, nullable=False)
 
+    cart = db.relationship('CartItem', back_populates='user')
+
     @property
     def password(self):
         return self.hashed_password
