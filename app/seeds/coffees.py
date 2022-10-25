@@ -12,11 +12,33 @@ def seed_coffee_day_note():
         db.session.add(dayRow)
 
     notes_dict = {}
+    # notes = [
+    #     {"alias":"berry_fruit" , "display": "Berry Fruit"},
+    #     {"alias":"stone_fruit" , "display": "Stone Fruit"},
+    #     {"alias":"citrus" , "display": "Citrus"},
+    #     {"alias":"florals" , "display": "Florals"},
+    #     {"alias":"vanilla" , "display": "Vanilla"},
+    #     {"alias":"earthy", "display": "Earthy"},
+    #     {"alias":"brown_sugar" , "display": "Brown Sugar"},
+    #     {"alias":"milk_chocolate", "display": "Milk Chocolate"},
+    #     {"alias":"nutty" , "display": "Nutty"},
+    #     {"alias":"spices", "display": "Spices"},
+    #     {"alias": "roastiness", "display": "Roastiness"},
+    #     {"alias":"tropical_fruit" , "display": "Tropical Fruit"}
+    # ]
     notes = [
-        "Berry Fruit", "Stone Fruit", "Citrus",
-        "Florals", "Vanilla", "Earthy",
-        "Brown Sugar", "Milk Chocolate", "Nutty",
-        "Spices", "Roastiness", "Tropical Fruit"
+        {"Berry Fruit"},
+        {"Stone Fruit"},
+        {"Citrus"},
+        {"Florals"},
+        {"Vanilla"},
+        {"Earthy"},
+        {"Brown Sugar"},
+        {"Milk Chocolate"},
+        {"Nutty"},
+        {"Spices"},
+        {"Roastiness"},
+        {"Tropical Fruit"}
     ]
     for note in notes:
         noteRow = Note(note=note)
@@ -37,7 +59,7 @@ def seed_coffee_day_note():
             "price": 17,
             "description": " This Fully Washed coffee was grown in the Ocotepeque region of Western Honduras between 1,100 and 1,650 meters above sea level. Robust chocolate aromas lead to notes of roasted nuts and dark chocolate in this heavy bodied coffee.",
             "img_url": "https://www.mistobox.com/media/catalog/product/cac…f78eab33525d08d6e5fb8d27136e95/B/F/BFC-1040_3.jpg",
-            "notes": [notes_dict["Milk Chocolate"], notes_dict["Nutty"], notes_dict["Roastiness"]],
+            "notes": [notes_dict['milk_chocolate'], notes_dict["nutty"], notes_dict["roastiness"]],
             "days": [days_dict['Monday']]
         }
     ]
