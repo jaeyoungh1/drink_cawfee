@@ -1,4 +1,5 @@
 # CREDITS TO MICHAEL JUNG THE GOAT
+# https://github.com/michaelhjung
 
 # DELETE OLD DATABASE AND VERSIONS FOLDER:
 rm -rf app/dev.db
