@@ -23,7 +23,7 @@ def seed_coffee_day_note():
         notes_dict[note] = noteRow
         db.session.add(noteRow)
 
-    print("NOTES DICT>>>>", notes_dict)
+    # print("NOTES DICT>>>>", notes_dict)
 
     brand1Coffee = [
         {
@@ -37,7 +37,7 @@ def seed_coffee_day_note():
             "price": 17,
             "description": " This Fully Washed coffee was grown in the Ocotepeque region of Western Honduras between 1,100 and 1,650 meters above sea level. Robust chocolate aromas lead to notes of roasted nuts and dark chocolate in this heavy bodied coffee.",
             "img_url": "https://www.mistobox.com/media/catalog/product/cac…f78eab33525d08d6e5fb8d27136e95/B/F/BFC-1040_3.jpg",
-            "types": [notes_dict["Milk Chocolate"], notes_dict["Nutty"], notes_dict["Roastiness"]],
+            "notes": [notes_dict["Milk Chocolate"], notes_dict["Nutty"], notes_dict["Roastiness"]],
             "days": [days_dict['Monday']]
         }
     ]
@@ -54,13 +54,13 @@ def seed_coffee_day_note():
             price=coffee['price'],
             description=coffee['description'],
             img_url=coffee['img_url'],
-            types=coffee['types'],
+            notes=coffee['notes'],
             days=coffee['days'],
         )
         db.session.add(coffeeRow)
 
 
-db.session.commit()
+    db.session.commit()
 
 
 # Uses a raw SQL query to TRUNCATE the Coffees table.
