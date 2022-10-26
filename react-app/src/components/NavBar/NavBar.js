@@ -82,7 +82,7 @@ const NavBar = () => {
           onMouseLeave={() => setVisible(false)}
         >
           <NavLink className='navbar-link' style={{ textDecoration: 'none', color: 'black' }}
-            to='/'>Shop</NavLink>
+            to='/cawfee'>Shop</NavLink>
         </div>
         <div>
           <NavLink className='navbar-link' style={{ textDecoration: 'none', color: 'black' }}
