@@ -1,0 +1,22 @@
+
+.homepage-splash > img {
+    width: 100%;
+    margin-left: -10px;
+    height: 700px;
+    object-fit: cover;
+    position: absolute;
+    z-index: 0;
+}
+
+.homepage-text {
+    position: absolute;
+    z-index: 2;
+    top: 300px;
+    /* display: flex;
+    align-items: center; */
+}
+
+.homepage-text-upgrade {
+    font-size: 72px;
+    margin-left: 15px;
+}

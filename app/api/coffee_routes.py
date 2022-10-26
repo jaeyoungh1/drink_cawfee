@@ -78,6 +78,8 @@ notes = [
 @login_required
 def add_one_coffee():
     user = current_user.to_dict()
+    if user['curator'] != True:
+        return {"message": "User does not have permission to curate", "status_code": 403}, 403
     user_id = user['id']
 
     form = AddCoffeeForm()
@@ -148,6 +150,8 @@ def add_one_coffee():
 @login_required
 def edit_one_coffee(coffee_id):
     user = current_user.to_dict()
+    if user['curator'] != True:
+        return {"message": "User does not have permission to edit curations", "status_code": 403}, 403
     user_id = user['id']
     current_coffee = Coffee.query.get(coffee_id)
     # checking if coffee exist
@@ -226,6 +230,8 @@ def edit_one_coffee(coffee_id):
 @login_required
 def delete_one_coffee(coffee_id):
     user = current_user.to_dict()
+    if user['curator'] != True:
+        return {"message": "User does not have permission to delete curations", "status_code": 403}, 403
     user_id = user['id']
 
     form = DeleteForm()
@@ -281,6 +287,7 @@ def get_one_coffee_reviews(coffee_id):
 @login_required
 def create_one_coffee_review(coffee_id):
     user = current_user.to_dict()
+
     user_id = user['id']
 
     current_coffee = Coffee.query.get(coffee_id)
