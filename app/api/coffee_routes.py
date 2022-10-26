@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, session, request
 from flask_login import login_required, current_user
 from app.models import Coffee, Note, Day, Brand, Review, User, db
 from app.forms.add_coffee_form import AddCoffeeForm
+from app.forms.add_review_form import AddReviewForm
 from app.forms.delete_form import DeleteForm
 
 coffee_routes = Blueprint('coffees', __name__)
@@ -274,4 +275,59 @@ def get_one_coffee_reviews(coffee_id):
         review['User'] = user
 
     return {"Reviews": reviews}
+
+# POST review for one coffee
+@coffee_routes.route('/<int:coffee_id>/reviews', methods=["POST"])
+@login_required
+def create_one_coffee_review(coffee_id):
+    user = current_user.to_dict()
+    user_id = user['id']
+
+    current_coffee = Coffee.query.get(coffee_id)
+    # checking if coffee exist
+    if not current_coffee:
+        return jsonify({
+            "message": "Coffee couldn't be found",
+            "status_code": 404
+        })
+    
+    # checking if user already has reviewed
+    _reviews = Review.query.filter_by(coffee_id=current_coffee.to_dict()['id'])
+    for review in _reviews:
+        if review and review.to_dict()['user_id'] == user_id:
+            return {"message": "User already has a review for this coffee", "status_code": 403}, 403
+    
+    form = AddReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    post_val_error = {
+        "message": "Validation error",
+        "status_code": 400,
+        "errors": {}
+    }
+
+    if form.validate_on_submit():
+        if not form.data['rating']:
+            post_val_error['errors']['rating'] = "Rating is required."
+        if not form.data['review_body']:
+            post_val_error['errors']['review_body'] = "Review is required."
+
+        if len(post_val_error["errors"]) > 0:
+            return jsonify(post_val_error), 400
+
+        review = Review(
+            user_id=user_id,
+            coffee_id=coffee_id,
+            rating=form.data['rating'],
+            review_body=form.data['review_body']
+        )
+
+        db.session.add(review)
+        db.session.commit()
+
+        review_res = review.to_dict()
+        user = User.query.get(user_id).to_dict()
+        review_res['User'] = user
+        return review_res
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
