@@ -56,14 +56,14 @@ class Coffee(db.Model):
             "brand_id": self.brand_id,
             "name": self.name,
             "origin": self.origin,
-            "wash": self.wash,
             "roast": self.roast,
             "process": self.process,
             "inventory": self.inventory,
             "price": self.price,
-            "whole_bean": self.whole_bean,
             "description": self.description,
             "img_url": self.img_url,
+            "days": [day.to_dict() for day in self.days],
+            "notes": [note.to_dict() for note in self.notes]
         }
 
 

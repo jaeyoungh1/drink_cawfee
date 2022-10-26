@@ -1,0 +1,12 @@
+.homepage-navbar {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3px;
+    position: absolute;
+    width: 100%;
+    z-index: 3
+}
+
+.navbar-logo {
+    display: flex;
+}
