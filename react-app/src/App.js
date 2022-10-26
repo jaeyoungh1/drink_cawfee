@@ -31,7 +31,7 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route path='/kawfee'>
+        <Route path='/cawfee'>
           <AllCoffee />
         </Route>
         <Route path='/sign-up' exact={true}>
