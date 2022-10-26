@@ -56,10 +56,10 @@ export const loadAllCoffee = (searchParams) => async dispatch => {
     }
     else {
         const response = await fetch('/api/coffee/');
-        // console.log("hitting res", response)
+        console.log("hitting res", response)
         if (response.ok) {
             const data = await response.json();
-            // console.log("hitting list", data)
+            console.log("hitting list", data)
             dispatch(_loadAllCoffee(data));
             return data
         }
@@ -168,10 +168,10 @@ const coffeeReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case LOAD_ALL_COFFEE:
-            newState = { ...state, allCoffee: { ...state.allCoffee }, singlecoffee: { ...state.singleCoffee } };
+            newState = { ...state, allCoffee: { ...state.allCoffee }, singleCoffee: { ...state.singleCoffee } };
             // console.log("LOAD_ALL ACTION.PAYLOAD IS:", action.payload);
             const newAllCoffee = {};
-            action.payload.Coffee.forEach(coffee => newAllCoffee[coffee.id] = coffee);
+            action.payload.Coffees.forEach(coffee => newAllCoffee[coffee.id] = coffee);
             newState.allCoffee = newAllCoffee;
             // console.log("NEWSTATE AFTER LOAD_ALL ACTION:", newState);
             return newState;
