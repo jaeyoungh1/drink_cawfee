@@ -1,18 +1,28 @@
+nav {
+    z-index: 10;
+    position: fixed;
+    top: 10px;
+    width: 99%;
+}
+
 .homepage-navbar {
     display: flex;
     justify-content: space-between;
-    padding-top: 3px;
-    /* position: absolute; */
+    padding-top: 30px;
+    margin: auto;
     width: 100%;
+    max-width: 1248px;
     align-items: center;
-    /* z-index: 3; */
+    z-index: 3;
     padding: 12px 22px;
     pointer-events: none;
+    background: white;
+    margin-top: -10px;
 }
 
-.homepage-navbar:hover {
+/* .homepage-navbar:hover {
     background: white;
-}
+} */
 
 .navbar-logo {
     display: flex;
@@ -44,6 +54,7 @@
     justify-content: space-between;
     align-items: center;
     gap: 20px;
+    pointer-events: auto;
 }
 
 .navbar-trynow {
@@ -58,7 +69,7 @@
     pointer-events: auto;
 }
 
-.navbar-right > button:hover {
+.navbar-right>button:hover {
     transition-duration: 200ms;
     cursor: pointer;
     color: rgb(48, 64, 181);
@@ -67,10 +78,13 @@
 
 .navbar-underline {
     height: 2px;
-    background-color: rgb(244, 244, 244);
+    background-color: rgb(195, 195, 195);
 }
+
 .navbar-dropdown {
-    background: white;
+    background: rgba(255, 255, 255, 0.737);
+    width: 102%;
+    margin-left:-10px;
 }
 
 .navbar-dropdown-coffee {
@@ -78,14 +92,29 @@
     justify-content: space-around;
     padding-top: 30px;
     padding-bottom: 30px;
-    margin-top: -1px;   
+    margin-top: -1px;
 }
+
 .navbar-dropdown-coffee-selection {
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     font-weight: 500;
 }
+
 .navbar-dropdown-coffee-selection:hover {
     border-bottom: 2px solid black;
     cursor: pointer;
+}
+
+.login-button:hover {
+    cursor: pointer;
+}
+.login-button {
+    pointer-events: auto;
+}
+
+.login-button {
+    z-index: 99;
+    /* position: absolute; */
+    border: 3px solid red;
 }

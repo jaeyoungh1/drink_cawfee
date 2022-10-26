@@ -9,6 +9,8 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import HomePage from './components/HomePage/homePage';
+import AllCoffee from './components/allCoffee/allCoffee';
+import LModal from './components/auth';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -29,8 +31,8 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route path='/login' exact={true}>
-          <LoginForm />
+        <Route path='/kawfee'>
+          <AllCoffee />
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />

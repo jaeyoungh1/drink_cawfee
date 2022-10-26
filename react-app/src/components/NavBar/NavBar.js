@@ -1,18 +1,67 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-// import { useHistory } from 'react-router-dom';
-import { useState } from 'react';
-import LogoutButton from '../auth/LogoutButton';
-import menu from '../../icons/menu.svg'
-import cawfeeCrow from '../../icons/cawfee_crow.png'
+import { Modal } from '../../context/Modal';
+import { useState} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { login } from '../../store/session';
+// import LogoutButton from '../auth/LogoutButton';
+// import menu from '../../icons/menu.svg'
+// import cawfeeCrow from '../../icons/cawfee_crow.png'
 import profile from '../../icons/profile.svg'
+// import LoginForm from '../auth/LoginForm';
+import LoginFormModal from '../auth';
 import './NavBar.css'
 
 const NavBar = () => {
   const [visibility, setVisible] = useState(false)
   const [coffeeVisible, setCoffeeVisible] = useState(false)
+  // const [showModal, setShowModal] = useState(false);
+ 
+  const [errors, setErrors] = useState([]);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
+  const user = useSelector(state => state.session.user);
+
+  let sessionLinks;
+  if (user) {
+    sessionLinks = (
+      <>
+        <LoginFormModal />
+        <NavLink to="/signup">Sign Up</NavLink>
+      </>
+      // <ProfileButton user={sessionUser} />
+    );
+  } else {
+    sessionLinks = (
+      <>
+        <LoginFormModal />
+        <NavLink to="/signup">Sign Up</NavLink>
+      </>
+    );
+  }
+
+  const onLogin = async (e) => {
+    e.preventDefault();
+    // const data = await dispatch(login(email, password));
+    // if (data) {
+    //   setErrors(data);
+    // }
+  };
+
+  const updateEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const updatePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  // if (user) {
+  //   return <Redirect to='/' />;
+  // }
   // let history = useHistory()
   return (
     <nav>
@@ -35,12 +84,7 @@ const NavBar = () => {
           <NavLink className='navbar-link' style={{ textDecoration: 'none', color: 'black' }}
             to='/'>Shop</NavLink>
         </div>
-        <div
-          onMouseEnter={() => {
-            setVisible(true)
-            setCoffeeVisible(false)
-          }}
-          onMouseLeave={() => setVisible(false)}>
+        <div>
           <NavLink className='navbar-link' style={{ textDecoration: 'none', color: 'black' }}
             to='/'>Roasters</NavLink></div>
         <div
@@ -51,9 +95,11 @@ const NavBar = () => {
 
         <div className='navbar-right'>
           <button className='navbar-trynow'>TRY NOW</button>
-          <div><img height='30' width='30' src={profile} /></div>
+          {/* <div className='login-button'><img className='login-button' onClick={() => setShowModal(true)} height='30' width='30' src={profile} /></div> */}
         </div>
       </div>
+        
+      {/* {sessionLinks} */}
 
       {visibility &&
         <div>
