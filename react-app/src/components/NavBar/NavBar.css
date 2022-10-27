@@ -71,8 +71,8 @@ nav {
 .navbar-right>button:hover {
     transition-duration: 200ms;
     cursor: pointer;
-    color: rgb(48, 64, 181);
-    border: 2px solid rgb(48, 64, 181);
+    color: rgb(195, 56, 10);
+    border: 2px solid rgb(195, 56, 10);
 }
 
 .navbar-underline {

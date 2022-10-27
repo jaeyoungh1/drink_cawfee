@@ -21,16 +21,15 @@ function LoginFormModal() {
     const [showLogin, setShowLogin] = useState(true)
     const [showSignup, setShowSignup] = useState(false)
 
-
-
-    const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
 
     const onLogin = async (e) => {
         e.preventDefault();
+        setHasSubmitLog(true)
         const data = await dispatch(login(email, password));
         if (data) {
-            setErrors(data);
+            console.log(data)
+            setErrors(['The email address or password you entered is incorrect.']);
         }
     };
 
@@ -50,24 +49,11 @@ function LoginFormModal() {
             setHasSubmitSign(true);
             const data = await dispatch(signUp(first_name, last_name, email, password));
             if (data) {
-                // console.log('SIGNUP ERRORS', data)
                 setErrors([data.message ?? data.username])
             }
         }
     };
 
-
-    const updateEmail = (e) => {
-        setEmail(e.target.value);
-    };
-
-    const updatePassword = (e) => {
-        setPassword(e.target.value);
-    };
-
-    // if (user) {
-    //   return <Redirect to='/' />;
-    // }
 
     return (
         <>
@@ -113,15 +99,15 @@ function LoginFormModal() {
 
                                 <div id='modal-lines'><span className='or'>Or Sign In with Your Email</span></div>
 
-                                {showModal && hasSubmitLog && errors.length > 0 && (
-                                    <div id='modal-errors-box'>
+                                {showModal && hasSubmitLog && errors && (
+                                    <div className='modal-errors-box'>
                                         {errors.map((error, ind) => (
-                                            <div id='modal-errors' key={ind}>{error}</div>
+                                            <div className='modal-errors' key={ind}>{error}</div>
                                         ))}
                                     </div>
                                 )}
                                 <div className='login-input-wrapper'>
-                                    <label className='login-input-label wrapper-first' for='login-input'>
+                                    <label className='login-input-label wrapper-first' htmlFor='login-input'>
                                         EMAIL
                                     </label>
                                     <input
@@ -136,7 +122,7 @@ function LoginFormModal() {
                                     />
                                 </div>
                                 <div className='login-input-wrapper'>
-                                    <label className='login-input-label' for='login-input'>
+                                    <label className='login-input-label' htmlFor='login-input'>
                                         PASSWORD
                                     </label>
                                     <input
@@ -154,7 +140,7 @@ function LoginFormModal() {
                         </div>}
                         {showSignup && <div className='login-signup-body'>
                             <form onSubmit={onSignUp}>
-                                {hasSubmitSign && showModal && errors.length > 0 && (
+                                {hasSubmitSign && showModal && errors && (
                                     <ul id='sign-up-errors-div-container'>
                                         {errors.map((error, ind) => (
                                             <li id='sign-up-errors' key={ind}>{error}</li>
@@ -162,7 +148,7 @@ function LoginFormModal() {
                                     </ul>
                                 )}
                                 <div className='login-input-wrapper'>
-                                    <label className='login-input-label' for='login-input'>
+                                    <label className='login-input-label' htmlFor='login-input'>
                                         FIRST NAME*
                                     </label>
                                     <input
@@ -176,7 +162,7 @@ function LoginFormModal() {
                                     ></input>
                                 </div>
                                 <div className='login-input-wrapper'>
-                                    <label className='login-input-label' for='login-input'>
+                                    <label className='login-input-label' htmlFor='login-input'>
                                         LAST NAME*
                                     </label>
                                     <input
@@ -190,7 +176,7 @@ function LoginFormModal() {
                                     ></input>
                                 </div>
                                 <div className='login-input-wrapper'>
-                                    <label className='login-input-label' for='login-input'>
+                                    <label className='login-input-label' htmlFor='login-input'>
                                         EMAIL*
                                     </label>
                                     <input
@@ -204,7 +190,7 @@ function LoginFormModal() {
                                     ></input>
                                 </div>
                                 <div className='login-input-wrapper'>
-                                    <label className='login-input-label' for='login-input'>
+                                    <label className='login-input-label' htmlFor='login-input'>
                                         PASSWORD*
                                     </label>
                                     <input

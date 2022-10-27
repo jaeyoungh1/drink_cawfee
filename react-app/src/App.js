@@ -39,9 +39,9 @@ function App() {
         <Route exact path='/cawfee'>
           <AllCoffee />
         </Route>
-        <Route path='/signup' exact={true}>
-          <SignUpForm />
-        </Route>
+        {/* <Route path='/signup' exact={true}>
+          <SignUpForm /> */}
+        {/* </Route> */}
         {/* <Route path='/login' exact={true}>
           <LoginForm />
         </Route> */}

@@ -32,10 +32,7 @@ const NavBar = () => {
     sessionLinks = (
       <>
         <LogoutButton />
-        {/* <LoginFormModal /> */}
-        {/* <NavLink to="/signup">Sign Up</NavLink> */}
       </>
-      // <ProfileButton user={sessionUser} />
     );
   } else {
     sessionLinks = (
@@ -61,9 +58,6 @@ const NavBar = () => {
     setPassword(e.target.value);
   };
 
-  if (user) {
-    return <Redirect to='/' />;
-  }
   return (
     <nav>
       <div className='homepage-navbar'>
