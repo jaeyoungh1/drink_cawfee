@@ -1,0 +1,190 @@
+.gradient {
+    background: linear-gradient(180deg, #000000ec, #0000004d 42.92%, #0000);
+    width: 43.95%;
+    z-index: 2;
+    position: absolute;
+    height: 200px;
+}
+
+.bottom-gradient {
+    background: linear-gradient(rgba(34, 34, 34, 0) 58%, #222222 85%);
+    width: 43.95%;
+    bottom: -173px;
+    z-index: 2;
+    position: absolute;
+    height: 200px;
+}
+
+.single-coffee-page-wrapper {
+    margin-top: 70px;
+}
+
+.single-coffee-header-link {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    align-items: center;
+    color: whitesmoke;
+    position: absolute;
+    z-index: 4;
+    margin: 10px;
+    display: flex;
+}
+
+.single-coffee-header-link-nav {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: whitesmoke;
+}
+
+
+.single-coffee-single-img {
+    background: url(https://images.ctfassets.net/o88ugk6hewlf/7j8fz2gBeperXhNAUxodex/a87ef2b8cccbc19a235ac7b7c69ddbb7/Cuvee_Coffee.jpeg?q=75&fm=webp&w=1000);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.single-coffee-img {
+    height: 400px;
+    width: 400px;
+    object-fit: cover;
+}
+
+.single-coffee-wrapper {
+    display: grid;
+    grid-template-columns: 4fr 5fr;
+    background-color: #222;
+    height: 565px;
+}
+
+.single-coffee-single-details {
+    color: whitesmoke;
+    font-family: 'Open Sans', sans-serif;
+    margin: 20px;
+    margin-left: 30px;
+    margin-right: 100px;
+}
+
+.single-coffee-details-brand {
+    font-size: 36px;
+}
+
+.single-coffee-details-brand>span {
+    font-size: 14px;
+    margin-left: 10px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.single-coffee-details-name {
+    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
+    margin: 10px 0px
+}
+
+.single-coffee-details-notes {
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.single-coffee-details-description {
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+    margin: 15px 0px
+}
+
+.single-coffee-details-purchase-container {
+    background-color: #30302e;
+    padding: 20px 20px;
+    border-radius: 4px;
+}
+
+.single-coffee-details-purchase {
+    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+}
+
+.single-coffee-details-price {
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    margin: 5px 5px;
+}
+
+.single-coffee-more-details-padding {
+    height: 10px;
+    background-color: #222;
+}
+
+.filled-day {
+    color: black;
+}
+
+.not-filled-day {
+    color: rgb(213, 213, 213)
+}
+
+.single-coffee-more-details-roast {
+    display: flex;
+    gap: 30px;
+    width: 90%;
+    margin: auto;
+    margin-top: 40px;
+}
+
+.single-coffee-more-details-roast-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgb(213, 213, 213);
+    border-radius: 4px;
+    width: 80%;
+    padding-bottom: 30px;
+}
+
+.single-coffee-more-details-roast-card>div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.single-coffee-more-details-title {
+    font-size: 32px;
+}
+
+.single-coffee-more-details-body {
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    color: rgb(213, 213, 213);
+}
+
+.single-coffee-brand-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 60px;
+}
+
+.single-coffee-brand-details-image-wrapper {
+    background: #222222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.single-coffee-brand-details-body-wrapper {
+    margin-top: 60px;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-bottom: 100px;
+}
+
+.single-coffee-brand-details-title {
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    margin-top: 50px;
+}
