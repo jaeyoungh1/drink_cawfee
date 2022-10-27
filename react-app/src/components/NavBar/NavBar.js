@@ -2,7 +2,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Modal } from '../../context/Modal';
-import { useState} from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
@@ -10,15 +10,17 @@ import { login } from '../../store/session';
 // import menu from '../../icons/menu.svg'
 // import cawfeeCrow from '../../icons/cawfee_crow.png'
 import profile from '../../icons/profile.svg'
+import account from '../../icons/account.svg'
 // import LoginForm from '../auth/LoginForm';
 import LoginFormModal from '../auth';
 import './NavBar.css'
+import LogoutButton from '../auth/LogoutButton';
 
 const NavBar = () => {
   const [visibility, setVisible] = useState(false)
   const [coffeeVisible, setCoffeeVisible] = useState(false)
-  // const [showModal, setShowModal] = useState(false);
- 
+  const [showModal, setShowModal] = useState(false);
+
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -29,16 +31,13 @@ const NavBar = () => {
   if (user) {
     sessionLinks = (
       <>
-        <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
+        <LogoutButton />
       </>
-      // <ProfileButton user={sessionUser} />
     );
   } else {
     sessionLinks = (
       <>
         <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
       </>
     );
   }
@@ -59,10 +58,6 @@ const NavBar = () => {
     setPassword(e.target.value);
   };
 
-  // if (user) {
-  //   return <Redirect to='/' />;
-  // }
-  // let history = useHistory()
   return (
     <nav>
       <div className='homepage-navbar'>
@@ -95,11 +90,11 @@ const NavBar = () => {
 
         <div className='navbar-right'>
           <button className='navbar-trynow'>TRY NOW</button>
-          {/* <div className='login-button'><img className='login-button' onClick={() => setShowModal(true)} height='30' width='30' src={profile} /></div> */}
+          {/* <LoginFormModal /> */}
+          {sessionLinks}
         </div>
       </div>
-        
-      {/* {sessionLinks} */}
+
 
       {visibility &&
         <div>

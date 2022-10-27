@@ -3,6 +3,7 @@ nav {
     position: fixed;
     top: 10px;
     width: 100%;
+    left: 0;
     margin-top: -10px;
     background: white;
 }
@@ -21,10 +22,6 @@ nav {
     background: white;
     
 }
-
-/* .homepage-navbar:hover {
-    background: white;
-} */
 
 .navbar-logo {
     display: flex;
@@ -74,8 +71,8 @@ nav {
 .navbar-right>button:hover {
     transition-duration: 200ms;
     cursor: pointer;
-    color: rgb(48, 64, 181);
-    border: 2px solid rgb(48, 64, 181);
+    color: rgb(195, 56, 10);
+    border: 2px solid rgb(195, 56, 10);
 }
 
 .navbar-underline {
@@ -113,10 +110,4 @@ nav {
 }
 .login-button {
     pointer-events: auto;
-}
-
-.login-button {
-    z-index: 99;
-    /* position: absolute; */
-    border: 3px solid red;
 }

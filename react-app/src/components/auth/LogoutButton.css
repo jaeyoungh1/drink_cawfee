@@ -1,0 +1,43 @@
+.profile-modal {
+    position: absolute;
+    top: 75px;
+    right: 110px;
+    background: white;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    padding: 0 20px;
+    padding-top: 20px;
+    border-radius: 2px;
+}
+
+.profile-modal>div {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+#close-logout-modal {
+    display: flex;
+    justify-content: flex-end;
+}
+#logout-x {
+    margin-top: -10px;
+}
+
+.profile-modal-curator {
+    background: -webkit-linear-gradient(45deg, #d9ab15, #8f2040);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.profile-modal-interact:hover {
+    cursor: pointer;
+    color: #9a9a9a;
+}
+
+.profile-modal-line {
+    height: 1px;
+    background-color: #d8d8d8;
+}
