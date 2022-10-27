@@ -82,7 +82,7 @@ const NavBar = () => {
           onMouseLeave={() => setVisible(false)}
         >
           <NavLink className='navbar-link' style={{ textDecoration: 'none', color: 'black' }}
-            to='/'>Shop</NavLink>
+            to='/cawfee'>Shop</NavLink>
         </div>
         <div>
           <NavLink className='navbar-link' style={{ textDecoration: 'none', color: 'black' }}
@@ -112,7 +112,7 @@ const NavBar = () => {
             }}
           >
             {coffeeVisible && <div className='navbar-dropdown-coffee'>
-              <span><NavLink className='navbar-dropdown-coffee-selection' style={{ textDecoration: 'none', color: 'black' }} to='/'>All Coffee</NavLink></span>
+              <span><NavLink className='navbar-dropdown-coffee-selection' style={{ textDecoration: 'none', color: 'black' }} to='/cawfee'>All Coffee</NavLink></span>
               <span><NavLink className='navbar-dropdown-coffee-selection' style={{ textDecoration: 'none', color: 'black' }} to='/'>Single Origin</NavLink></span>
               <span><NavLink className='navbar-dropdown-coffee-selection' style={{ textDecoration: 'none', color: 'black' }} to='/'>Blends</NavLink></span>
               <span><NavLink className='navbar-dropdown-coffee-selection' style={{ textDecoration: 'none', color: 'black' }} to='/'>Light Roast</NavLink></span>

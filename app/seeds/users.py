@@ -6,7 +6,7 @@ def seed_users():
     demo = User(
         first_name='Chelsea',
         last_name='The Curating Coffee Cat',
-        email='demo@user.io',
+        email='chelseacat@user.io',
         password='password',
         shipping_address='123 Cat St',
         city="Riverside",

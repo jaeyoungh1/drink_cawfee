@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { loadAllCoffee } from "../../store/coffee";
+import arrow from '../../icons/arrow.svg'
 import './allCoffee.css'
 
 export default function AllCoffee() {
@@ -43,6 +45,18 @@ export default function AllCoffee() {
 
     return (
         <div className='get-all-coffee-page-wrapper'>
+            <div className='get-all-coffee-header'>
+                <div className='get-all-coffee-header-link'>
+                    <span><NavLink className='get-all-coffee-header-link-nav' style={{ textDecoration: 'none', color:'black' }} to='/cawfee'>Coffee</NavLink></span> <img width='10' height='10' src={arrow}/> All Coffee
+                </div>
+                <div className='get-all-coffee-all-coffee'>
+                    All Coffee
+                </div>
+                <div className='get-all-coffee-subheader'>
+                    Choose from a wide variety of coffee from the top roasters in California. All coffee is 
+                    roasted to order and shipped fresh to your door.
+                </div>
+            </div>
             <div className='all-coffee-container'>
                 {allCoffee}
             </div>
