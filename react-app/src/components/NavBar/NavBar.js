@@ -13,11 +13,12 @@ import profile from '../../icons/profile.svg'
 // import LoginForm from '../auth/LoginForm';
 import LoginFormModal from '../auth';
 import './NavBar.css'
+import LogoutButton from '../auth/LogoutButton';
 
 const NavBar = () => {
   const [visibility, setVisible] = useState(false)
   const [coffeeVisible, setCoffeeVisible] = useState(false)
-  // const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
  
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
@@ -29,8 +30,9 @@ const NavBar = () => {
   if (user) {
     sessionLinks = (
       <>
-        <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
+      <LogoutButton />
+        {/* <LoginFormModal /> */}
+        {/* <NavLink to="/signup">Sign Up</NavLink> */}
       </>
       // <ProfileButton user={sessionUser} />
     );
@@ -95,11 +97,13 @@ const NavBar = () => {
 
         <div className='navbar-right'>
           <button className='navbar-trynow'>TRY NOW</button>
-          {/* <div className='login-button'><img className='login-button' onClick={() => setShowModal(true)} height='30' width='30' src={profile} /></div> */}
+          {/* <LoginFormModal /> */}
+          <div className='login-button'><img className='login-button' height='30' width='30' src={profile} />
+          </div>
         </div>
       </div>
         
-      {/* {sessionLinks} */}
+      {sessionLinks}
 
       {visibility &&
         <div>

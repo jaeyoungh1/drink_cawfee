@@ -1,7 +1,7 @@
 .gradient {
     background: linear-gradient(180deg, #000000ec, #0000004d 42.92%, #0000);
     width: 43.95%;
-    z-index: 2;
+    z-index: 3;
     position: absolute;
     height: 200px;
 }
@@ -10,7 +10,7 @@
     background: linear-gradient(rgba(34, 34, 34, 0) 58%, #222222 85%);
     width: 43.95%;
     bottom: -173px;
-    z-index: 2;
+    z-index: 3;
     position: absolute;
     height: 200px;
 }

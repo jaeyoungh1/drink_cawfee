@@ -11,6 +11,7 @@ import { authenticate } from './store/session';
 import HomePage from './components/HomePage/homePage';
 import AllCoffee from './components/allCoffee/allCoffee';
 import SingleCoffee from './components/singleCoffee/singleCoffee';
+import Footer from './components/Footer/footer';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -33,13 +34,17 @@ function App() {
       <Switch>
         <Route exact path='/cawfee/:coffeeId'>
           <SingleCoffee/>
+          <Footer />
         </Route>
         <Route exact path='/cawfee'>
           <AllCoffee />
         </Route>
-        <Route path='/sign-up' exact={true}>
+        <Route path='/signup' exact={true}>
           <SignUpForm />
         </Route>
+        {/* <Route path='/login' exact={true}>
+          <LoginForm />
+        </Route> */}
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
@@ -48,6 +53,7 @@ function App() {
         </ProtectedRoute>
         <Route path='/' exact={true} >
           <HomePage />
+          <Footer />
         </Route>
       </Switch>
     </BrowserRouter>

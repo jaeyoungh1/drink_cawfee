@@ -114,9 +114,3 @@ nav {
 .login-button {
     pointer-events: auto;
 }
-
-.login-button {
-    z-index: 99;
-    /* position: absolute; */
-    border: 3px solid red;
-}

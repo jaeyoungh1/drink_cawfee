@@ -1,0 +1,135 @@
+.login-header {
+    display: flex;
+    font-size: 24px;
+}
+
+
+.header-line {
+    height: 3px;
+    background-color: black;
+    width: 100%;
+}
+
+.login-signup-body {
+    margin-top: 40px;
+}
+
+.demo-button {
+    background-color: rgb(184, 76, 41);
+    color: white;
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+}
+
+.demo-button:hover {
+    transition-duration: 400ms;
+    background-color: rgb(195, 56, 10);
+}
+
+#modal-lines {
+    height: 1px;
+    background-color: rgb(235, 235, 235);
+    margin: 20px 0;
+    text-align: center;
+}
+
+
+span.or {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    background-color: white;
+    margin: auto;
+    width: 100%;
+    align-items: center;
+    margin: 5px;
+    color: rgb(102, 102, 102);
+    display: flex;
+    justify-content: center;
+}
+
+span.or:before,
+span.or:after {
+    background-color: #ccc;
+    content: "";
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 27%;
+}
+
+span.or:before {
+    right: 1em;
+}
+
+span.or:after {
+    left: 1em;
+    margin-right: 12px;
+}
+
+.login-input {
+    width: 100%;
+    background-color: none;
+}
+
+#login-button {
+    background-color: rgb(184, 76, 41);
+    color: white;
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-top: 20px;
+}
+
+#login-button:hover {
+    transition-duration: 400ms;
+    background-color: rgb(195, 56, 10);
+}
+
+.wrapper-first {
+    margin-top: 30px;
+}
+
+.login-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.login-input-label {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    color: rgb(102, 102, 102);
+}
+
+#login-input {
+    background: none;
+    border: none;
+    padding: 4px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+input:focus {
+    outline: none;
+}
+
+/* .password-min {
+    font-family: 'Open Sans', sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        color: rgb(102, 102, 102);
+} */

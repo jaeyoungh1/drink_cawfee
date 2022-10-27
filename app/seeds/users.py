@@ -3,16 +3,16 @@ from app.models import db, User
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    # demo = User(
-    #     first_name='Chelsea',
-    #     last_name='The Curating Coffee Cat',
-    #     email='chelseacat@user.io',
-    #     password='password',
-    #     shipping_address='123 Cat St',
-    #     city="Riverside",
-    #     state="CA",
-    #     curator=True
-    # )
+    demo = User(
+        first_name='Chelsea',
+        last_name='The Curating Coffee Cat',
+        email='chelseacat@user.io',
+        password='password',
+        shipping_address='123 Cat St',
+        city="Riverside",
+        state="CA",
+        curator=True
+    )
 
     owner1 = User(
         email="davidrogers@user.io",
