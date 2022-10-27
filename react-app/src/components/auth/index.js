@@ -5,6 +5,7 @@ import { login } from '../../store/session';
 import { signUp } from '../../store/session';
 import { Modal } from '../../context/Modal';
 import x from '../../icons/x.svg'
+import account from '../../icons/account.svg'
 import './loginForm.css'
 
 function LoginFormModal() {
@@ -70,9 +71,14 @@ function LoginFormModal() {
 
     return (
         <>
-            <button onClick={() => setShowModal(true)}>Log In</button>
+            <div className='login-button' onClick={()=> setShowModal(true)}>
+                <img className='login-button' src={account} />
+            </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
+                    <div id='close-modal'>
+                        <img id='x' alt='close' src={x} onClick={() => setShowModal(false)} />
+                    </div>
                     <div id="login-modal">
                         <div className='login-header'>
                             <div className='signup-header-side header-top'
@@ -81,14 +87,15 @@ function LoginFormModal() {
                                     setShowSignup(true)
                                 }}>
                                 <h2 className='signup-title'>Sign Up</h2>
-                                <div className='signup-header  header-line'></div>
+                                <div className='login-header-line' id={showLogin && 'header-gray'}></div>
                             </div>
                             <div className="login-header-side header-top"
-                            onClick={() => {
-                                setShowLogin(true)
-                                setShowSignup(false)}}>
+                                onClick={() => {
+                                    setShowLogin(true)
+                                    setShowSignup(false)
+                                }}>
                                 <h2 className="login-title">Log In</h2>
-                                <div className='login-header header-line'></div>
+                                <div className='signup-header-line' id={showSignup && 'header-gray'}></div>
                             </div>
                         </div>
                         {showLogin && <div className='login-signup-body'>

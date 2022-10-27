@@ -1,13 +1,30 @@
 .login-header {
     display: flex;
-    font-size: 24px;
+    justify-content: center;
+    font-size: 18px;
+    width: 100%;
+}
+.header-top {
+    width: 100%;
+    text-align: center;
 }
 
-
-.header-line {
+.login-header-line {
     height: 3px;
     background-color: black;
-    width: 100%;
+    width: 50%;
+    position: absolute;
+    left: 0px;
+}
+.signup-header-line {
+    height: 3px;
+    background-color: black;
+    width: 50%;
+    position: absolute;
+    left: 50%;
+}
+#header-gray {
+    background-color: grey;
 }
 
 .login-signup-body {
@@ -121,15 +138,20 @@ span.or:after {
     border: none;
     padding: 4px 0;
     border-bottom: 1px solid #ccc;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
 }
 
 input:focus {
     outline: none;
 }
 
-/* .password-min {
-    font-family: 'Open Sans', sans-serif;
-        font-size: 10px;
-        font-weight: 400;
-        color: rgb(102, 102, 102);
-} */
+#close-modal {
+    display: flex;
+    justify-content: flex-end;
+}
+#x {
+    margin-top: -20px;
+    margin-right: -10px;
+}

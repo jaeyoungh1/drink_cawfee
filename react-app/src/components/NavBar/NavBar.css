@@ -3,6 +3,7 @@ nav {
     position: fixed;
     top: 10px;
     width: 100%;
+    left: 0;
     margin-top: -10px;
     background: white;
 }
@@ -21,10 +22,6 @@ nav {
     background: white;
     
 }
-
-/* .homepage-navbar:hover {
-    background: white;
-} */
 
 .navbar-logo {
     display: flex;
