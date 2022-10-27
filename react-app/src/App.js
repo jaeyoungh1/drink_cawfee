@@ -10,7 +10,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import HomePage from './components/HomePage/homePage';
 import AllCoffee from './components/allCoffee/allCoffee';
-import LModal from './components/auth';
+import SingleCoffee from './components/singleCoffee/singleCoffee';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -31,7 +31,10 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route path='/cawfee'>
+        <Route exact path='/cawfee/:coffeeId'>
+          <SingleCoffee/>
+        </Route>
+        <Route exact path='/cawfee'>
           <AllCoffee />
         </Route>
         <Route path='/sign-up' exact={true}>

@@ -3,6 +3,8 @@ nav {
     position: fixed;
     top: 10px;
     width: 100%;
+    margin-top: -10px;
+    background: white;
 }
 
 .homepage-navbar {
@@ -17,7 +19,7 @@ nav {
     padding: 12px 22px;
     pointer-events: none;
     background: white;
-    margin-top: -10px;
+    
 }
 
 /* .homepage-navbar:hover {

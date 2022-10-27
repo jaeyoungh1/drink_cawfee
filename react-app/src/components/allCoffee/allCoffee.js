@@ -21,9 +21,11 @@ export default function AllCoffee() {
         allCoffee = coffeeArr.map(obj => {
             return (
                 <div className='all-coffee-single-container' key={obj.id}>
+                        <NavLink to={`/cawfee/${obj.id}`}>
                     <div className="single-coffee-image-wrapper">
-                        <img src={"https://www.mistobox.com/media/catalog/product/cache/0/image/450x450/9df78eab33525d08d6e5fb8d27136e95/B/F/BFC-1040_3.jpg"} />
+                            <img className="single-coffee-image-wrapper-img" src={"https://www.mistobox.com/media/catalog/product/cache/0/image/450x450/9df78eab33525d08d6e5fb8d27136e95/B/F/BFC-1040_3.jpg"} />
                     </div>
+                        </NavLink>
   
                     <div className='all-coffee-line-break'></div>
                     <div className='all-coffee-details'>
@@ -31,7 +33,9 @@ export default function AllCoffee() {
                             {obj.Brand.name.toUpperCase()}
                         </div>
                         <div className='all-coffee-details-name'>
+                            <NavLink style={{textDecoration:'none', color:'black'}} className='all-coffee-details-name' to={`/cawfee/${obj.id}`}>
                             {obj.name}
+                            </NavLink>
                         </div>
                         <div className='all-coffee-details-price'>
                             ${obj.price}
