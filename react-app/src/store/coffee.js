@@ -1,4 +1,4 @@
-
+import {csrfFetch} from './csrf'
 const LOAD_ALL_COFFEE = 'coffee/load_all_coffee';
 const GET_ONE_COFFEE = 'coffee/get_one_coffee';
 const ADD_ONE_COFFEE = 'coffee/add_one_coffee';
@@ -14,15 +14,15 @@ const _addOneCoffee = (coffee) => ({
 });
 
 export const addOneCoffee = (coffee) => async dispatch => {
-    // console.log(JSON.stringify(coffee))
-    const response = await fetch('/api/coffee/', {
+    console.log(">>>>>>>>>INTHEBACKEND", JSON.stringify(coffee))
+    const response = await csrfFetch('/api/coffee/', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
-        },
+            'Content-Type': 'application/json'
+                },
         body: JSON.stringify(coffee)
     });
-    // console.log("RESPONSE AFTER CREATE BIZ THUNK", response)
+    console.log("RESPONSE AFTER CREATE BIZ THUNK", response)
     if (response.ok) {
         const data = await response.json()
 
@@ -106,7 +106,7 @@ const _editOneCoffee = payload => ({
 });
 
 export const editOneCoffee = (id, coffee) => async dispatch => {
-    const response = await fetch(`/api/coffee/${id}`, {
+    const response = await csrfFetch(`/api/coffee/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -128,9 +128,9 @@ export const editOneCoffee = (id, coffee) => async dispatch => {
 
 // Delete a coffee
 
-const _deleteOneCoffee = bizId => ({
+const _deleteOneCoffee = id => ({
     type: DELETE_ONE_COFFEE,
-    bizId
+    id
 });
 
 export const deleteOneCoffee = id => async dispatch => {
@@ -140,9 +140,7 @@ export const deleteOneCoffee = id => async dispatch => {
 
     if (response.ok) {
         const id = await response.json();
-
         dispatch(_deleteOneCoffee(id));
-
         return id;
     }
 };
@@ -204,9 +202,10 @@ const coffeeReducer = (state = initialState, action) => {
             return newState;
         case DELETE_ONE_COFFEE:
             newState = { ...state, allCoffee: { ...state.allCoffee }, singleCoffee: { ...state.singleCoffee } };
-            delete newState.allCoffee[action.bizId];
+            delete newState.allCoffee[action.id];
+            delete newState.singleCoffee[action.id];
             newState = { ...newState };
-            // console.log("NEWSTATE AFTER REMOVE_coffee ACTION:", newState);
+            console.log("NEWSTATE AFTER REMOVE_coffee ACTION:", newState);
             return newState;
         // case CLEAR_DATA:
         //     return initialState;

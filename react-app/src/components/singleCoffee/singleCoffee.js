@@ -11,6 +11,7 @@ export default function SingleCoffee() {
 
     const coffee = useSelector(state => state.coffee.singleCoffee)
 
+    
     useEffect(() => {
         dispatch(getOneCoffee(coffeeId))
     }, [dispatch])
@@ -18,7 +19,14 @@ export default function SingleCoffee() {
     if (coffee.Brand) {
         brand = coffee.Brand
     }
-    console.log("BRAND >>>>", brand)
+
+    if (!coffee) {
+        return (
+            <div>
+                No Such Coffee!
+            </div>
+        )
+    }
 
     let notes
     if (coffee.notes) {

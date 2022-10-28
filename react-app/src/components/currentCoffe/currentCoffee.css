@@ -1,0 +1,43 @@
+.user-coffee-container {
+    max-width: 20%;
+    margin-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-coffee-single-container {
+
+    border: 1px solid rgb(239, 239, 239);
+    border-radius: 4px;
+    width: 100%;
+    height: fit-content;
+    /* margin-bottom: 80px; */
+}
+
+.user-coffee-image-wrapper {
+    display: flex;
+    height: 220px;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.user-coffee-details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.user-coffee-details {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}
+.user-coffee-navlink {
+    color: grey;
+}
+.user-coffee-navlink:hover {
+    color: black
+}

@@ -1,7 +1,10 @@
 .profile-modal {
     position: absolute;
+    z-index: 99;
     top: 75px;
-    right: 110px;
+    right: 8%;
+    /* left: max(1999px); */
+    width: fit-content;
     background: white;
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
@@ -9,6 +12,7 @@
     padding: 0 20px;
     padding-top: 20px;
     border-radius: 2px;
+    box-shadow: 0px 0px 3px  #6d6d6d70;;
 }
 
 .profile-modal>div {
@@ -22,6 +26,7 @@
     display: flex;
     justify-content: flex-end;
 }
+
 #logout-x {
     margin-top: -10px;
 }
@@ -30,6 +35,13 @@
     background: -webkit-linear-gradient(45deg, #d9ab15, #8f2040);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.profile-modal-interact {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: black;
 }
 
 .profile-modal-interact:hover {
