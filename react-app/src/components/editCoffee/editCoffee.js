@@ -62,7 +62,6 @@ export default function EditCoffee() {
 
     
     useEffect(() => {
-        
         const errors = [];
 
         if (name && name.length < 2) {
@@ -92,9 +91,8 @@ export default function EditCoffee() {
         if (notes && notes.length !== 3) {
             errors.push("Please include 3 tasting notes");
         }
-
         setErrors(errors);
-    }, [name, inventory, price, description, img_url, days, notes]);
+    }, [name, inventory, price, description, img_url, days, notes, notes.length]);
 
     useEffect(() => {
         if (singleCoffee) {
@@ -145,7 +143,8 @@ export default function EditCoffee() {
         brandVar = singleCoffee.Brand.name
     }
 
-    console.log("BRAND", brand)
+    console.log("NOTES", notes)
+    console.log(errors)
 
     const submitCoffee = async (e) => {
         e.preventDefault();
@@ -178,33 +177,34 @@ export default function EditCoffee() {
 
     return (
         <div className='new-coffee-page-wrapper'>
-            <div>
-                Curate a New Coffee
+            <div className='new-coffee-page-title'>
+                Edit {singleCoffee.name && singleCoffee.name} Details
             </div>
-            <div>
+            <div className='new-coffee-form-wrapper'>
                 <form onSubmit={submitCoffee}>
-                    <div>
+                    <div className='new-coffee-form-errors'>
                         {errors && errors.map((error, ind) => (
                             <div key={ind}>{error}</div>
                         ))}
                     </div>
 
-                    <div>
-                        <label htmlFor='name'>Coffee Name</label>
+                    <div className='coffee-input-wrapper'>
+                        <label className='coffee-input-label' htmlFor='name'>Coffee Name</label>
                         <input
                             name='name'
+                            className='new-coffee-input'
                             type='text'
-                            placeholder='Name'
                             value={name}
                             onChange={e => setName(e.target.value)}
                         />
                     </div>
 
-                    <div>
-                        <label htmlFor='brand'>Brand</label>
+                    <div className='coffee-input-wrapper'>
+                        <label className='coffee-input-label' htmlFor='brand'>Brand</label>
                         <select
                             name='brand'
                             required
+                            className='new-coffee-select'
                             value={brand}
                             onChange={e => setBrand(e.target.value)}
                         >
@@ -214,11 +214,12 @@ export default function EditCoffee() {
                         </select>
                     </div>
 
-                    <div>
-                        <label htmlFor='orgin'>Origin</label>
+                    <div className='coffee-input-wrapper'>
+                        <label className='coffee-input-label' htmlFor='orgin'>Origin</label>
                         <select
                             name='origin'
                             required
+                            className='new-coffee-select'
                             value={origin}
                             onChange={e => setOrigin(e.target.value)}
                         >
@@ -227,11 +228,12 @@ export default function EditCoffee() {
                             ))}
                         </select>
                     </div>
-                    <div>
-                        <label htmlFor='roast'>Roast</label>
+                    <div className='coffee-input-wrapper'>
+                        <label className='coffee-input-label' htmlFor='roast'>Roast</label>
                         <select
                             name='roast'
                             required
+                            className='new-coffee-select'
                             value={roast}
                             onChange={e => setRoast(e.target.value)}
                         >
@@ -241,116 +243,125 @@ export default function EditCoffee() {
                         </select>
                     </div>
 
-                    <div>Tasting Notes</div>
+                    <div className='coffee-input-label lonely-div'>With Notes Of</div>
+                    <div className='coffee-input-checkboxes-wrapper'>
 
-                    {NOTES_OPT.map(note => (
-                        <div id='single-note' key={note}>
-                            <input
-                                type="checkbox"
-                                className='add-coffee-form-note'
-                                id='edit-coffee-note'
-                                onChange={
-                                    (e) => {
-                                        const notesList = notes;
-                                        if (e.target.checked) {
-                                            notesList.push(e.target.value);
+                        {NOTES_OPT.map(note => (
+                            <div id='single-note' key={note}>
+                                <input
+                                    type="checkbox"
+                                    id='edit-coffee-note'
+                                    className='add-coffee-form-note'
+                                    onChange={
+                                        (e) => {
+                                            setErrors([])
+                                            const notesList = notes;
+                                            if (e.target.checked) {
+                                                notesList.push(e.target.value);
+                                            }
+                                            else {
+                                                const i = notesList.indexOf(e.target.value);
+                                                notesList.splice(i, 1);
+                                            }
+                                            setNotes(notesList);
                                         }
-                                        else {
-                                            const i = notesList.indexOf(e.target.value);
-                                            notesList.splice(i, 1);
-                                        }
-                                        setNotes(notesList);
                                     }
-                                }
-                                value={note}
-                                name={note}
-                            />
-                            <label
-                                htmlFor={note}
-                                className='add-coffee-form-label'
-                            >
-                                {note}
-                            </label>
-                        </div>
-                    ))}
+                                    value={note}
+                                    name={note}
+                                />
+                                <label className='coffee-input-label'
+                                    htmlFor={note}
+                                // className='add-coffee-form-label'
+                                >
+                                    {note}
+                                </label>
+                            </div>
+                        ))}
+                    </div>
 
-                    <div>Roasting Schedule</div>
-
-                    {DAYS_OPT.map(day => (
-                        <div id='single-day' key={day}>
-                            <input
-                                type="checkbox"
-                                id='edit-coffee-day'
-                                className='add-coffee-form-day'
-                                onChange={
-                                    (e) => {
-                                        const daysList = days;
-                                        if (e.target.checked) {
-                                            daysList.push(e.target.value);
+                    <div className='coffee-input-label lonely-div' >Roasting Schedule</div>
+                    <div className='coffee-input-checkboxes-wrapper'>
+                        {DAYS_OPT.map(day => (
+                            <div id='single-day' key={day}>
+                                <input
+                                    type="checkbox"
+                                    id='edit-coffee-day'
+                                    className='add-coffee-form-day'
+                                    onChange={
+                                        (e) => {
+                                            const daysList = days;
+                                            if (e.target.checked) {
+                                                daysList.push(e.target.value);
+                                            }
+                                            else {
+                                                const i = daysList.indexOf(e.target.value);
+                                                daysList.splice(i, 1);
+                                            }
+                                            setDays(daysList);
                                         }
-                                        else {
-                                            const i = daysList.indexOf(e.target.value);
-                                            daysList.splice(i, 1);
-                                        }
-                                        setDays(daysList);
                                     }
-                                }
-                                value={day}
-                                name={day}
-                            />
-                            <label
-                                htmlFor={day}
-                                className='add-coffee-form-label'
-                            >
-                                {day}
-                            </label>
-                        </div>
-                    ))}
+                                    value={day}
+                                    name={day}
+                                />
+                                <label className='coffee-input-label'
+                                    htmlFor={day}
+                                // className='add-coffee-form-label'
+                                >
+                                    {day}
+                                </label>
+                            </div>
+                        ))}
+                    </div>
 
-                    <div>
-                        <label htmlFor='price'>Price</label>
+                    <div className='coffee-input-wrapper'>
+                        <label className='coffee-input-label' htmlFor='price'>Price</label>
                         <input
                             name='price'
                             type='number'
+                            className='new-coffee-input'
                             min='2'
                             value={price}
                             onChange={e => setPrice(e.target.value)}
                         />
                     </div>
-                    <div>
-                        <label htmlFor='inventory'>Inventory</label>
+                    <div className='coffee-input-wrapper'>
+                        <label className='coffee-input-label' htmlFor='inventory'>Inventory</label>
                         <input
                             name='inventory'
                             type='number'
+                            className='new-coffee-input'
                             min='12'
                             value={inventory}
                             onChange={e => setInventory(e.target.value)}
                         />
                     </div>
-                    <div>
-                        <label htmlFor='description'>Coffee Description</label>
+                    <div className='coffee-input-wrapper'>
+                        <label className='coffee-input-label' htmlFor='description'>Coffee Description</label>
                         <textarea
                             name='description'
                             value={description}
                             onChange={e => setDescription(e.target.value)}
                         />
                     </div>
-                    <div>
-                        <label htmlFor='img_url'>Preview Image</label>
+                    <div className='coffee-input-wrapper'>
+                        <label className='coffee-input-label' htmlFor='img_url'>Preview Image</label>
                         <input
                             name='img_url'
                             type='text'
+                            className='new-coffee-input'
                             value={img_url}
                             onChange={e => setImg_Url(e.target.value)}
                         />
                     </div>
-                    {img_url && <img className='add-coffee-preview_img_url' src={img_url} alt='img' onError={e => e.target.src = brokenImg} />}
+                    <div className='coffee-input-prev-img'>
+                        {img_url && <img className='add-coffee-preview_img_url' src={img_url} alt='img' onError={e => e.target.src = brokenImg} />}
+                    </div>
                     <button
                         type="submit"
-                        disabled={errors.length}
+                        disabled={errors.length > 0}
                         id='login-button'
                     >
-                        Submit
+                        SUBMIT
                     </button>
                 </form>
 
