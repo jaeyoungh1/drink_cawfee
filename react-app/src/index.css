@@ -19,3 +19,10 @@ NavLink {
 NavLink, a {
     text-decoration: none;
 }
+
+.empty-page {
+    margin-top: 150px;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    width: 100%;
+}

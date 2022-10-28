@@ -5,6 +5,7 @@ import { getOneCoffee } from "../../store/coffee";
 import arrow from '../../icons/whitearrow.svg'
 import './singleCoffee.css'
 import { loadAllReview } from "../../store/review";
+import CoffeeReviews from "../coffeeReviews/CoffeeReviews";
 
 export default function SingleCoffee() {
     const dispatch = useDispatch()
@@ -167,6 +168,8 @@ return (
             </div>
 
         </div>
+
+        <CoffeeReviews coffeeId={coffeeId}/>
 
         <div className='single-coffee-brand-details'>
             <div className='single-coffee-brand-details-image-wrapper'>
