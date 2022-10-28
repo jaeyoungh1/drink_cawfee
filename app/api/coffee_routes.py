@@ -19,6 +19,8 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 # GET all coffees
+
+
 @coffee_routes.route('/')
 def get_all_coffee():
     coffees = Coffee.query.all()
@@ -45,6 +47,8 @@ def get_one_coffee_details(coffee_id):
     return coffee
 
 # GET current user's curated coffees
+
+
 @coffee_routes.route('/current')
 @login_required
 def get_current_user_coffees():
@@ -74,6 +78,8 @@ notes = [
 ]
 
 # POST one coffee
+
+
 @coffee_routes.route('/', methods=["POST"])
 @login_required
 def add_one_coffee():
@@ -91,35 +97,39 @@ def add_one_coffee():
         "errors": {}
     }
 
+
+    print("FORM.DATA", form.data)
+
+    note_list = [Note(note=note) for note in form.data['notes']]
+    day_list = [Day(day=day) for day in form.data['days']]
+    if not form.data['name']:
+        post_val_error['errors']['name'] = "Coffee name is required."
+    if not form.data['origin']:
+        post_val_error['errors']['origin'] = "Coffee origin is required."
+    if not form.data['roast']:
+        post_val_error['errors']['roast'] = "Coffee roast level is required."
+    if not form.data['brand']:
+        post_val_error['errors']['brand'] = "Coffee brand is required."
+    check_brand = Brand.query.filter_by(name=form.data['brand'])
+    if not check_brand:
+        post_val_error['errors']['brand'] = "Current Brand is not available to purchase through Cawfee"
+    if not form.data['price']:
+        post_val_error['errors']['price'] = "Coffee price is required."
+    if not form.data['description']:
+        post_val_error['errors']['description'] = "Coffee description is required."
+    if not form.data['img_url']:
+        post_val_error['errors']['img_url'] = "Coffee preview image is required."
+    if not form.data['notes']:
+        post_val_error['errors']['notes'] = "Coffee tasting notes are required."
+    if not form.data['days']:
+        post_val_error['errors']['days'] = "Coffee roasting schedule is required."
+
+    if len(post_val_error["errors"]) > 0:
+        return jsonify(post_val_error), 400
+    
+    # print("ERRORS", validation_errors_to_error_messages(form.errors))
+    print("POSTVALERROR", post_val_error)
     if form.validate_on_submit():
-
-        note_list = [Note(note=note) for note in form.data['notes']]
-        day_list = [Day(day=day) for day in form.data['days']]
-        if not form.data['name']:
-            post_val_error['errors']['name'] = "Coffee name is required."
-        if not form.data['origin']:
-            post_val_error['errors']['origin'] = "Coffee origin is required."
-        if not form.data['roast']:
-            post_val_error['errors']['roast'] = "Coffee roast level is required."
-        if not form.data['brand']:
-            post_val_error['errors']['brand'] = "Coffee brand is required."
-        check_brand = Brand.query.filter_by(name=form.data['brand'])
-        if not check_brand:
-            post_val_error['errors']['brand'] = "Current Brand is not available to purchase through Cawfee"
-        if not form.data['price']:
-            post_val_error['errors']['price'] = "Coffee price/lb is required."
-        if not form.data['description']:
-            post_val_error['errors']['description'] = "Coffee description is required."
-        if not form.data['img_url']:
-            post_val_error['errors']['img_url'] = "Coffee preview image is required."
-        if not form.data['notes']:
-            post_val_error['errors']['notes'] = "Coffee tasting notes are required."
-        if not form.data['days']:
-            post_val_error['errors']['days'] = "Coffee roasting schedule is required."
-
-        if len(post_val_error["errors"]) > 0:
-            return jsonify(post_val_error), 400
-
         brand = check_brand.first().to_dict()
 
         coffee = Coffee(
@@ -127,7 +137,7 @@ def add_one_coffee():
             name=form.data['name'],
             origin=form.data['origin'],
             roast=form.data['roast'],
-            process=form.data['wash'],
+            # process=form.data['wash'],
             inventory=form.data['inventory'],
             brand_id=brand['id'],
             price=form.data['price'],
@@ -137,6 +147,7 @@ def add_one_coffee():
             days=day_list
         )
 
+        print(">>>>>>BACKEND COFFEE", coffee)
         db.session.add(coffee)
         db.session.commit()
 
@@ -146,6 +157,7 @@ def add_one_coffee():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # PUT one coffee
+
 @coffee_routes.route('/<int:coffee_id>', methods=["PUT"])
 @login_required
 def edit_one_coffee(coffee_id):
@@ -209,7 +221,6 @@ def edit_one_coffee(coffee_id):
             current_coffee.name = form.data['name']
             current_coffee.origin = form.data['origin']
             current_coffee.roast = form.data['roast']
-            current_coffee.process = form.data['wash']
             current_coffee.inventory = form.data['inventory']
             current_coffee.brand_id = brand['id']
             current_coffee.price = form.data['price']
@@ -226,6 +237,7 @@ def edit_one_coffee(coffee_id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # DELETE one coffee
+
 @coffee_routes.route('/<int:coffee_id>', methods=["DELETE"])
 @login_required
 def delete_one_coffee(coffee_id):
@@ -238,7 +250,7 @@ def delete_one_coffee(coffee_id):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     current_coffee = Coffee.query.get(coffee_id)
-     # checking if coffee exists
+    # checking if coffee exists
     if not current_coffee:
         return jsonify({
             "message": "Coffee couldn't be found",
@@ -250,7 +262,7 @@ def delete_one_coffee(coffee_id):
 
     elif current_coffee.to_dict()['curator_id'] == user_id:
         if form.validate_on_submit():
-           
+
             db.session.delete(current_coffee)
             db.session.commit()
 
@@ -283,6 +295,7 @@ def get_one_coffee_reviews(coffee_id):
     return {"Reviews": reviews}
 
 # POST review for one coffee
+
 @coffee_routes.route('/<int:coffee_id>/reviews', methods=["POST"])
 @login_required
 def create_one_coffee_review(coffee_id):
@@ -297,13 +310,13 @@ def create_one_coffee_review(coffee_id):
             "message": "Coffee couldn't be found",
             "status_code": 404
         })
-    
+
     # checking if user already has reviewed
     _reviews = Review.query.filter_by(coffee_id=current_coffee.to_dict()['id'])
     for review in _reviews:
         if review and review.to_dict()['user_id'] == user_id:
             return {"message": "User already has a review for this coffee", "status_code": 403}, 403
-    
+
     form = AddReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -337,4 +350,3 @@ def create_one_coffee_review(coffee_id):
         review_res['User'] = user
         return review_res
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
-

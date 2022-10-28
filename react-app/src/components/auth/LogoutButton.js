@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { logout } from '../../store/session';
 import account from '../../icons/account.svg'
 import x from '../../icons/x.svg'
@@ -32,7 +33,6 @@ const LogoutButton = () => {
     await dispatch(logout());
   };
 
-  console.log("USER >>", user)
   if (user) {
 
     return (
@@ -43,7 +43,7 @@ const LogoutButton = () => {
         {showProfile && (
           <div className='profile-modal'>
             <span id='close-logout-modal'>
-              <img id='logout-x' src={x}/>
+              <img id='logout-x' src={x} />
             </span>
             <div className='profile-modal-name'>
               {user.first_name} {user.last_name.slice(0, 1)}.
@@ -53,7 +53,19 @@ const LogoutButton = () => {
             </div>}
             <div className='profile-modal-line'></div>
             {user.curator && <div className='profile-modal-interact'>
-              Curate a New Coffee
+              <NavLink className='profile-modal-interact' to='/cawfee/new'>
+                Curate a New Coffee
+              </NavLink>
+            </div>}
+            {user.curator && <div className='profile-modal-interact'>
+              <NavLink className='profile-modal-interact' to='/my-curations'>
+                View My Coffee Curations
+              </NavLink>
+            </div>}
+            {!user.curator && <div className='profile-modal-interact'>
+              <NavLink className='profile-modal-interact' to='/cawfee/new'>
+                Become a Curator
+              </NavLink>
             </div>}
             <div className='profile-modal-interact'>
               Account Details

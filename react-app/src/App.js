@@ -12,6 +12,9 @@ import HomePage from './components/HomePage/homePage';
 import AllCoffee from './components/allCoffee/allCoffee';
 import SingleCoffee from './components/singleCoffee/singleCoffee';
 import Footer from './components/Footer/footer';
+import NewCoffee from './components/newCoffee/newCoffee';
+import CurrentCoffee from './components/currentCoffe/currentCoffee';
+import EditCoffee from './components/editCoffee/editCoffee';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -32,12 +35,22 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+        <Route path='/cawfee/new' exact={true} >
+          <NewCoffee />
+          <Footer />
+        </Route>
         <Route exact path='/cawfee/:coffeeId'>
           <SingleCoffee/>
           <Footer />
         </Route>
+        <Route exact path='/cawfee/edit/:coffeeId'>
+          <EditCoffee/>
+        </Route>
         <Route exact path='/cawfee'>
           <AllCoffee />
+        </Route>
+        <Route exact path='/my-curations'>
+          <CurrentCoffee/>
         </Route>
         {/* <Route path='/signup' exact={true}>
           <SignUpForm /> */}

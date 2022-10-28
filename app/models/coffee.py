@@ -27,7 +27,7 @@ class Coffee(db.Model):
     name = db.Column(db.String(225), nullable=False)
     origin = db.Column(db.String(100), nullable=False)
     roast = db.Column(db.String(100), nullable=False)
-    process = db.Column(db.String(100), nullable=False)
+    # process = db.Column(db.String(100))
     inventory = db.Column(db.Integer, nullable=False)
     price = db.Column(db.Float, nullable=False)
     description = db.Column(db.String(5000), nullable=False)
@@ -57,7 +57,7 @@ class Coffee(db.Model):
             "name": self.name,
             "origin": self.origin,
             "roast": self.roast,
-            "process": self.process,
+            # "process": self.process,
             "inventory": self.inventory,
             "price": self.price,
             "description": self.description,

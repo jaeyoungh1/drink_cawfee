@@ -1,17 +1,8 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Modal } from '../../context/Modal';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { login } from '../../store/session';
-// import LogoutButton from '../auth/LogoutButton';
-// import menu from '../../icons/menu.svg'
-// import cawfeeCrow from '../../icons/cawfee_crow.png'
-import profile from '../../icons/profile.svg'
-import account from '../../icons/account.svg'
-// import LoginForm from '../auth/LoginForm';
 import LoginFormModal from '../auth';
 import './NavBar.css'
 import LogoutButton from '../auth/LogoutButton';
@@ -41,22 +32,6 @@ const NavBar = () => {
       </>
     );
   }
-
-  const onLogin = async (e) => {
-    e.preventDefault();
-    // const data = await dispatch(login(email, password));
-    // if (data) {
-    //   setErrors(data);
-    // }
-  };
-
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
 
   return (
     <nav>

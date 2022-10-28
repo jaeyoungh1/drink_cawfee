@@ -1,0 +1,9 @@
+.new-coffee-page-wrapper {
+    margin-top: 100px;
+}
+
+.add-coffee-preview_img_url {
+    height: 100px;
+    width: 100px;
+    border-radius: 4px;
+}
