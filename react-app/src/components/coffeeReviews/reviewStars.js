@@ -6,7 +6,7 @@ import { deleteOneReview, loadAllReview } from "../../store/review";
 import './coffeeReviews.css'
 
 export default function ReviewStars({ rating }) {
-    
+    // commentthisout
     return (
         <div className='get-user-review-page-wrapper'>
             <div className='get-user-review-header'>
