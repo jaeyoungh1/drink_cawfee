@@ -2,27 +2,34 @@ import { useEffect, useState } from "react";
 import { NavLink, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { deleteOneReview, loadAllReview } from "../../store/review";
-
+import emptyStar from '../../icons/empty-star.svg'
+import fullStar from '../../icons/filled-star.svg'
 import './coffeeReviews.css'
 
 export default function ReviewStars({ rating }) {
-    // commentthisout
+    let filled = Array.from(Array(rating).keys())
+    let empty = Array.from(Array(5 - rating).keys())
+    let filledRating
+    let emptyRating
+    if (filled) {
+        filledRating = filled.map(i => {
+            return (<span><img className='review-star' src={fullStar} /> </span>)
+        })
+    }
+    if (empty) {
+        emptyRating = empty.map(i => {
+            return (<span><img className='review-star' src={emptyStar} /> </span>)
+        })
+    }
+
     return (
         <div className='get-user-review-page-wrapper'>
             <div className='get-user-review-header'>
-                <div className='get-user-review-user-review'>
-                    Reviews
+                <div className='get-user-review-stars'>
+                    {filledRating}{emptyRating}
                 </div>
-                {!user && <div className='get-user-review-subheader'>
-                    Log in to review this product
-                </div>}
-                {user && <div className='get-user-review-subheader'>
-                    Review this product
-                </div>}
             </div>
-            <div className='all-review-line-break'></div>
             <div className='coffee-review-container'>
-                {allReview}
             </div>
         </div>
     )

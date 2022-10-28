@@ -1,6 +1,71 @@
+.coffee-all-reviews-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.get-user-review-header {
+    width: 100%;
+    /* width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px; */
+}
+
+.coffee-all-user-review-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.user-review-container {
+    width: 90%;
+}
+
 .all-review-line-break {
     height: 1px;
-    background-color: grey;
-    width: 80%;
-    text-align: center;
+    background-color: rgb(211, 211, 211);
+    width: 100%;
+    margin: 10px 0;
+}
+
+/* .get-user-review-stars {
+    width: 20px;
+} */
+.review-star {
+    width: 15px;
+}
+
+.user-info-name {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgb(0, 0, 0);
+    letter-spacing: 0.5px;
+}
+
+.coffee-review-stars {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin: 5px 0;
+    width: 100%;
+}
+
+.coffee-review-details {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgb(102, 102, 102);
+}
+
+.get-user-review-user-review {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: rgb(0, 0, 0);
+    margin: 5px 0;
 }

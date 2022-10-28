@@ -139,6 +139,7 @@ export default function NewCoffee() {
                         <label className='coffee-input-label' htmlFor='name'>Coffee Name</label>
                         <input
                             name='name'
+                            autoComplete="off"
                             className='new-coffee-input'
                             type='text'
                             value={name}

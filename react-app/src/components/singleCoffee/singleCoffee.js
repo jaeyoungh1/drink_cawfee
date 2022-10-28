@@ -3,6 +3,7 @@ import { NavLink, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { getOneCoffee } from "../../store/coffee";
 import arrow from '../../icons/whitearrow.svg'
+import brokenImg from '../../icons/broken-img.png'
 import './singleCoffee.css'
 import { loadAllReview } from "../../store/review";
 import CoffeeReviews from "../coffeeReviews/CoffeeReviews";
@@ -111,7 +112,8 @@ return (
         <div className='gradient'></div>
         <div className='single-coffee-wrapper'>
             <div className='single-coffee-single-img'>
-                <img className='single-coffee-img' alt='coffee' src={coffee.img_url} />
+                <img className='single-coffee-img' alt='coffee' src={coffee.img_url}
+                    onError={e => e.target.src = brokenImg} />
                 <div className='bottom-gradient'></div>
             </div>
             <div className='single-coffee-single-details'>
