@@ -3,8 +3,9 @@ import { NavLink, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { deleteOneReview, loadAllReview } from "../../store/review";
 import './coffeeReviews.css'
+import ReviewStars from "./reviewStars";
 
-export default function CoffeeReviews({coffeeId}) {
+export default function CoffeeReviews({ coffeeId }) {
     const dispatch = useDispatch()
 
     const user = useSelector(state => state.session.user)
@@ -28,42 +29,44 @@ export default function CoffeeReviews({coffeeId}) {
             )
         }
     }
-// comment
-    // console.log("REVIEWS", reviews)
+
+    function dateFormatter(date) {
+        if (date) {
+            date = date.toString()
+            return `${date.slice(5, 7)}/${date.slice(8, 10)}/${date.slice(0, 4)}`
+        }
+    }
+
     let allReview
+    let reviewUserIds
     if (reviews) {
         let reviewArr = Object.values(reviews)
-        // console.log("REVIEWSARR", reviewArr)
+        reviewUserIds = reviewArr.map(obj => obj.user_id)
+        console.log(reviewUserIds)
         allReview = reviewArr.map(obj => {
             let user = obj.User
-            console.log("USER", user)
-            console.log("REVIEW", obj)
             return (
                 <div className='user-review-container' key={obj.id}>
                     <div className='user-info-single-container'>
-                            <div className="user-info-name">
-                                {user.first_name.toUpperCase()}
-                                {user.curator && <span>Verified Cawfee Curator</span>}
-                            </div>
-                        <div className='coffee-review-details'>
-                            <div className='coffee-review-details-brand'>
-                                {obj.rating}
-                            </div>
-                            <div className='coffee-review-details-name'>
-                                <NavLink style={{ textDecoration: 'none', color: 'black' }} className='coffee-review-details-name' to={`/cawfee/${obj.id}`}>
-                                    {/* {obj.name} */}
-                                </NavLink>
-                            </div>
-                            <div className='coffee-review-details-price'>
-                                {/* ${obj.price} */}
-                            </div>
+                        <div className="user-info-name">
+                            {user.first_name.toUpperCase()}
+                            {user.curator && <span className='coffee-review-details'>Verified Cawfee Curator</span>}
                         </div>
-                    </div>
-                    <div className='user-review-details-container'>
-                        <div className='user-review-details'>Current Inventory: {obj.inventory}</div>
-                        <div className='user-review-details-container'>
-                            <div ><NavLink className='user-review-details user-review-navlink' to={`/cawfee/edit/${obj.id}`}>Edit Review</NavLink></div>
-                            {/* <div onClick={() => deleteReview(obj.id)} className='user-review-details user-review-navlink' >Remove Curation</div> */}
+                        <div className='coffee-review-details-wrapper'>
+                            <div className='coffee-review-stars'>
+                                <ReviewStars rating={obj.rating} />
+                                <span className='coffee-review-details'>{dateFormatter(obj.updated_at)}</span>
+                                {obj.created_at.slice(0, 19) !== obj.updated_at.slice(0, 19) && <span className='coffee-review-details'>(Edited)</span>}
+                            </div>
+                            <div className='coffee-review-details'>
+                                {obj.review_body}
+                                <div>
+                                    <NavLink to={`/my-reviews/${obj.id}/edit`}>Edit</NavLink>
+                                </div>
+                                <div>
+                                    Delete
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className='all-review-line-break'></div>
@@ -77,20 +80,20 @@ export default function CoffeeReviews({coffeeId}) {
 
 
     return (
-        <div className='get-user-review-page-wrapper'>
-            <div className='get-user-review-header'>
-                <div className='get-user-review-user-review'>
-                    Reviews
+        <div className='coffee-all-reviews-container'>
+            <div className='coffee-all-user-review-container'>
+                <div className='user-review-container'>
+                    <div className='get-user-review-user-review'>
+                        Reviews
+                    </div>
+                    {!user && <div className='coffee-review-details'>
+                        Log in to review this product
+                    </div>}
+                    {user && !reviewUserIds.includes(user.id) && <div className='coffee-review-details'>
+                        Review this product
+                    </div>}
+                    <div className='all-review-line-break'></div>
                 </div>
-                {!user && <div className='get-user-review-subheader'>
-                    Log in to review this product
-                </div>}
-                {user && <div className='get-user-review-subheader'>
-                    Review this product
-                </div>}
-            </div>
-            <div className='all-review-line-break'></div>
-            <div className='coffee-review-container'>
                 {allReview}
             </div>
         </div>
