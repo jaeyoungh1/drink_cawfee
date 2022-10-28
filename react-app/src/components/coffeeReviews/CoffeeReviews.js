@@ -28,7 +28,7 @@ export default function CoffeeReviews({coffeeId}) {
             )
         }
     }
-
+// comment
     // console.log("REVIEWS", reviews)
     let allReview
     if (reviews) {
