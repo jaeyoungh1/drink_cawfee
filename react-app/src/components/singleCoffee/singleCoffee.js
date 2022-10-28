@@ -169,8 +169,6 @@ return (
 
         </div>
 
-        <CoffeeReviews coffeeId={coffeeId}/>
-
         <div className='single-coffee-brand-details'>
             <div className='single-coffee-brand-details-image-wrapper'>
                 <img src={brand && brand.brand_img}/>
@@ -191,6 +189,7 @@ return (
                 </div>
             </div>
         </div>
+        <CoffeeReviews coffeeId={coffeeId} />
     </div>
 )
 }
