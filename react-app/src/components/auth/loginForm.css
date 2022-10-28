@@ -8,6 +8,9 @@
     width: 100%;
     text-align: center;
 }
+.header-top:hover {
+    cursor: pointer;
+}
 
 .login-header-line {
     height: 3px;
