@@ -37,6 +37,30 @@ def get_user_reviews():
         
     return {"Reviews": reviews}
 
+# GET one reviews <<<<<<<<<<<<<<<<< TEST IN POSTMAN!!!!
+@review_routes.route('/<int:review_id>')
+@login_required
+def get_one_reviews(review_id):
+    user = current_user.to_dict()
+    user_id = user['id']
+
+    review = Review.query.get(review_id)
+    if not review:
+        return jsonify({
+            "message": "Review couldn't be found",
+            "status_code": 404
+        })
+    else:
+        if (review):
+            _coffee = Coffee.query.get(review['coffee_id'])
+            coffee = ''
+            if _coffee:
+                coffee = _coffee.to_dict()
+                brand = Brand.query.get(coffee['brand_id']).to_dict()
+                coffee['Brand'] = brand
+            review["Coffee"] = coffee
+
+    return {"Reviews": review}
 
 # EDIT current user's review
 @review_routes.route('/<int:review_id>', methods=["PUT"])

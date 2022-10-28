@@ -14,7 +14,6 @@ const _addOneCoffee = (coffee) => ({
 });
 
 export const addOneCoffee = (coffee) => async dispatch => {
-    console.log(">>>>>>>>>INTHEBACKEND", JSON.stringify(coffee))
     const response = await csrfFetch('/api/coffee/', {
         method: 'POST',
         headers: {

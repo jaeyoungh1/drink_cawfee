@@ -4,16 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { getOneCoffee } from "../../store/coffee";
 import arrow from '../../icons/whitearrow.svg'
 import './singleCoffee.css'
+import { loadAllReview } from "../../store/review";
 
 export default function SingleCoffee() {
     const dispatch = useDispatch()
     const { coffeeId } = useParams()
 
     const coffee = useSelector(state => state.coffee.singleCoffee)
+    const reviews = useSelector(state => state.review.allReview)
 
     
     useEffect(() => {
         dispatch(getOneCoffee(coffeeId))
+        dispatch(loadAllReview(coffeeId))
     }, [dispatch])
     let brand
     if (coffee.Brand) {

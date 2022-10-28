@@ -1,9 +1,95 @@
 .new-coffee-page-wrapper {
     margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 .add-coffee-preview_img_url {
     height: 100px;
     width: 100px;
     border-radius: 4px;
+}
+
+.new-coffee-page-title {
+    font-size: 32px;
+}
+
+.coffee-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.coffee-input-label {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgb(102, 102, 102);
+}
+.new-coffee-input {
+    border:none;
+    border-bottom:1px solid rgb(102, 102, 102);
+    padding: 4px 0;
+}
+.new-coffee-select {
+    border: 1px solid rgb(102, 102, 102);
+    border-radius: 4px;
+}
+.new-coffee-form-wrapper {
+    width: 30%;
+}
+.lonely-div {
+    margin-top: 15px;
+    margin-bottom: 4px;
+}
+
+.coffee-input-wrapper>input {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.coffee-input-wrapper>textarea {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    height: 150px;
+}
+
+.coffee-input-wrapper>select {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.coffee-input-prev-img {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.new-coffee-form-errors {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.new-coffee-form-errors>div {
+    color: red;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.single-note {
+    display: flex;
+}
+.coffee-input-checkboxes-wrapper {
+    display: flex;
+    justify-content: space-between;
+    height: 75px;
+    flex-direction: column;
+    flex-wrap: wrap
 }

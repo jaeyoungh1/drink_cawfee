@@ -9,7 +9,7 @@
 .bottom-gradient {
     background: linear-gradient(rgba(34, 34, 34, 0) 58%, #222222 85%);
     width: 43.95%;
-    bottom: -173px;
+    top: 440px;
     z-index: 3;
     position: absolute;
     height: 200px;
