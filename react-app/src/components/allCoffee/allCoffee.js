@@ -18,7 +18,6 @@ export default function AllCoffee() {
     let allCoffee
     if (coffees) {
         let coffeeArr = Object.values(coffees)
-        console.log("COFFEE ARR", coffeeArr)
         allCoffee = coffeeArr.map(obj => {
             return (
                 <div className='all-coffee-single-container' key={obj.id}>

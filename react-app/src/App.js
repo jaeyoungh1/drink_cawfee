@@ -15,7 +15,8 @@ import Footer from './components/Footer/footer';
 import NewCoffee from './components/newCoffee/newCoffee';
 import CurrentCoffee from './components/currentCoffe/currentCoffee';
 import EditCoffee from './components/editCoffee/editCoffee';
-import AllReviews from './components/userReviews/allReviews';
+import UserReviews from './components/userReviews/userReviews';
+import EditReview from './components/editReview/editReview';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -53,8 +54,11 @@ function App() {
         <Route exact path='/my-curations'>
           <CurrentCoffee/>
         </Route>
+        <Route exact path='/my-reviews/:reviewId/edit'>
+          <EditReview/>
+        </Route>
         <Route exact path='/my-reviews'>
-          <AllReviews />
+          <UserReviews />
         </Route>
         {/* <Route path='/signup' exact={true}>
           <SignUpForm /> */}

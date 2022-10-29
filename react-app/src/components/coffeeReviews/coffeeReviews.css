@@ -45,6 +45,7 @@
     font-weight: 500;
     color: rgb(0, 0, 0);
     letter-spacing: 0.5px;
+    margin-bottom: -5px;
 }
 
 .coffee-review-stars {
@@ -60,6 +61,16 @@
     font-size: 12px;
     font-weight: 400;
     color: rgb(102, 102, 102);
+    display: flex;
+}
+
+.single-coffee-review-details {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgb(102, 102, 102);
+    display: flex;
+    justify-content: space-between;
 }
 
 .get-user-review-user-review {
@@ -68,4 +79,20 @@
     font-weight: 500;
     color: rgb(0, 0, 0);
     margin: 5px 0;
+}
+
+.single-coffee-review-edit-delete {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    color: rgb(0, 0, 0);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.single-coffee-review-edit-delete:hover {
+    color: rgb(102, 102, 102);
+    cursor: pointer;
 }

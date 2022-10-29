@@ -1,7 +1,3 @@
-import { useEffect, useState } from "react";
-import { NavLink, Redirect } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
-import { deleteOneReview, loadAllReview } from "../../store/review";
 import emptyStar from '../../icons/empty-star.svg'
 import fullStar from '../../icons/filled-star.svg'
 import './coffeeReviews.css'

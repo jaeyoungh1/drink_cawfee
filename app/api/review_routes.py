@@ -44,14 +44,16 @@ def get_one_reviews(review_id):
     user = current_user.to_dict()
     user_id = user['id']
 
-    review = Review.query.get(review_id)
-    if not review:
+    review = ''
+    _review = Review.query.get(review_id)
+    if not _review:
         return jsonify({
             "message": "Review couldn't be found",
             "status_code": 404
         })
     else:
-        if (review):
+        if (_review):
+            review = _review.to_dict()
             _coffee = Coffee.query.get(review['coffee_id'])
             coffee = ''
             if _coffee:

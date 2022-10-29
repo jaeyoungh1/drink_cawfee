@@ -1,0 +1,31 @@
+.edit-review-page-wrapper-title {
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.user-review-edit-delete:hover {
+    color: rgb(133, 133, 133);
+    cursor: pointer;
+}
+
+.new-review-form-wrapper {
+    /* background: pink; */
+    border-radius: 4px;
+    padding: 5px;
+    border: 1px solid rgb(133, 133, 133);
+    position: fixed;
+    right: 10%;
+    top: 40%;
+}
+
+.review-input-label {
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}
