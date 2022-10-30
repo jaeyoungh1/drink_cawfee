@@ -26,3 +26,7 @@ NavLink, a {
     text-align: center;
     width: 100%;
 }
+
+.invisible {
+    visibility:hidden;
+}

@@ -55,7 +55,7 @@ function App() {
         <Route exact path='/my-curations'>
           <CurrentCoffee/>
         </Route>
-        <Route exact path='/my-reviews/:reviewId/edit'>
+        <Route exact path='/cawfee/:coffeeId/reviews/:reviewId/edit'>
           <EditReview/>
         </Route>
         <Route exact path='/my-reviews'>

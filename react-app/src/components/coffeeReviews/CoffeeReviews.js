@@ -24,9 +24,9 @@ export default function CoffeeReviews({ coffeeId }) {
         if (Object.values(reviews).length < 1) {
             return (
                 <div className='empty-page'>
-                    This coffee does not have any reviews.
-                    <NavLink to={`/reviews/${coffeeId}/new`}>
-                        Write a Review.
+                    This coffee does not have any reviews. 
+                    <NavLink className='write-a-review' to={`/reviews/${coffeeId}/new`}>
+                        {` Write a Review.`}
                     </NavLink>
                 </div>
             )
@@ -68,9 +68,10 @@ export default function CoffeeReviews({ coffeeId }) {
                                     {obj.review_body}
                                     {obj.user_id === currentUser.id && <div className='single-coffee-review-edit-delete'>
 
-                                        <NavLink className='single-coffee-review-edit-delete' to={`/my-reviews/${obj.id}/edit`}>Edit</NavLink>
+                                        <NavLink className='single-coffee-review-edit-delete' to={`/cawfee/${coffeeId}/reviews/${obj.id}/edit`}>Edit</NavLink>
 
-                                        <div className='single-coffee-review-edit-delete'>
+                                        <div onClick={() => deleteReview(obj.id)} 
+                                        className='single-coffee-review-edit-delete'>
                                             Delete
                                         </div>
                                     </div>}
@@ -99,7 +100,7 @@ export default function CoffeeReviews({ coffeeId }) {
                         Log in to review this product
                     </div>}
                     {currentUser && !reviewUserIds.includes(currentUser.id) && <div className='coffee-review-details'>
-                        Review this product
+                        <NavLink className='coffee-review-details-review-this-product' to={`/reviews/${coffeeId}/new`}>Review this product</NavLink>
                     </div>}
                     <div className='all-review-line-break'></div>
                 </div>

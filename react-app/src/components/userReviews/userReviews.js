@@ -89,7 +89,7 @@ export default function UserReviews() {
     useEffect(() => {
         const errors = [];
 
-        if (rating && (rating < 2 || rating > 5)) {
+        if (rating && (rating < 1 || rating > 5)) {
             errors.push("Rating must be an integer between 1 and 5");
         }
 
@@ -130,9 +130,6 @@ export default function UserReviews() {
         }
 
     }
-
-    console.log(rating)
-
 
         // END FROM EDIT REVIEW --------------------------------------
 
@@ -236,15 +233,15 @@ export default function UserReviews() {
                         </div>
                         <div className='edit-review-page-wrapper-title'>Edit Review</div>
 
-                        <form onSubmit={submitReview}>
+                        <form className='review-input-wrapper' onSubmit={submitReview}>
                             <div className='new-review-form-errors'>
                                 {errors && errors.map((error, ind) => (
-                                    <div key={ind}>{error}</div>
+                                    <div className='new-review-form-errors' key={ind}>{error}</div>
                                 ))}
                             </div>
 
-                            <div className='review-input-wrapper'>
-                                <label className='review-input-label' htmlFor='name'>Rating</label>
+                            <div className='new-review-wrapper'>
+                                {/* <label className='review-input-label' htmlFor='name'>Rating</label> */}
 {/* TESTING ========== */}
                                 <div className='dynamic-star-rating-wrapper '>
                                     {[1, 2, 3, 4, 5].map((star, i) => {
@@ -271,24 +268,25 @@ export default function UserReviews() {
 
                                 <input
                                     name='name'
-                                    className='new-review-input'
+                                    className='new-review-input invisible'
                                     type='text'
                                     value={rating}
                                     onChange={e => setRating(e.target.value)}
                                 />
                             </div>
 
-                            <div className='review-input-wrapper'>
-                                <label className='review-input-label' htmlFor='brand'>Review</label>
+                            <div className='review-input-wrapper new-review-wrapper'>
+                                {/* <label className='review-input-label' htmlFor='brand'>Review</label> */}
                                 <textarea
                                     name='brand'
                                     required
-                                    className='new-review-input'
+                                    className='new-review-wrapper new-review-textarea'
                                     value={review_body}
                                     onChange={e => setReview_body(e.target.value)}
                                 >
 
                                 </textarea>
+                                <div className='characters-remaining'>{500 - review_body.length} CHARACTERS REMAINING</div>
                             </div>
                             <button
                                 type="submit"
