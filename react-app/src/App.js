@@ -17,6 +17,7 @@ import CurrentCoffee from './components/currentCoffe/currentCoffee';
 import EditCoffee from './components/editCoffee/editCoffee';
 import UserReviews from './components/userReviews/userReviews';
 import EditReview from './components/editReview/editReview';
+import AddReview from './components/coffeeReviews/createReview';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -59,6 +60,9 @@ function App() {
         </Route>
         <Route exact path='/my-reviews'>
           <UserReviews />
+        </Route>
+        <Route exact path='/reviews/:coffeeId/new'>
+          <AddReview />
         </Route>
         {/* <Route path='/signup' exact={true}>
           <SignUpForm /> */}

@@ -1,0 +1,8 @@
+.dynamic-star-rating-wrapper{
+    display: flex;
+    gap: 10px;
+}
+
+.review-star:hover {
+    cursor:pointer
+}

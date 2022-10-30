@@ -6,6 +6,9 @@ import './userReviews.css'
 import ReviewStars from "../coffeeReviews/reviewStars";
 import x from '../../icons/x.svg'
 import '../editReview/editReview.css'
+import emptyStar from '../../icons/empty-star.svg'
+import fullStar from '../../icons/filled-star.svg'
+import DynamicRating from "../coffeeReviews/dynamicRating";
 
 export default function UserReviews() {
     const dispatch = useDispatch()
@@ -14,6 +17,9 @@ export default function UserReviews() {
     const reviews = useSelector(state => state.review.allReview)
     const [seeEditModal, setSeeEditModal] = useState(false)
     const [editReviewId, setEditReviewId] = useState('')
+
+    let [starRating, setStarRating] = useState(0)
+    let [hover, setHover] = useState()
 
     useEffect(() => {
         dispatch(loadUserReview())
@@ -60,18 +66,18 @@ export default function UserReviews() {
     useEffect(() => {
         if (!seeEditModal) return;
 
-        let close = document.querySelectorAll('.closeEditModal')
-        let input = document.querySelectorAll('.new-review-input')
-
-        console.log(close)
+        // let close = document.querySelectorAll('.closeEditModal')
+        // let input = document.querySelectorAll('.new-review-input')
+        let stars = document.querySelectorAll('.coffee-all-user-review-container')
 
         const closeEditReview = () => {
             setSeeEditModal(false);
         };
 
         // close.forEach(ele => ele.addEventListener('click', closeEditReview));
-        input.forEach(ele => ele.addEventListener('click', e => e.stopPropagation()));
-        document.addEventListener('click', closeEditReview)
+        // input.forEach(ele => ele.addEventListener('click', e => e.stopPropagation()));
+        stars.forEach(ele => ele.addEventListener('click', closeEditReview));
+        // document.addEventListener('click', closeEditReview)
 
         return () => document.removeEventListener("click", closeEditReview);
     }, [seeEditModal]);
@@ -125,7 +131,7 @@ export default function UserReviews() {
 
     }
 
-
+    console.log(rating)
 
 
         // END FROM EDIT REVIEW --------------------------------------
@@ -138,6 +144,9 @@ export default function UserReviews() {
                 </div>
             )
         }
+    }
+    const handleRating = num => {
+        setRating(num)
     }
 
     if (!user) {
@@ -236,6 +245,30 @@ export default function UserReviews() {
 
                             <div className='review-input-wrapper'>
                                 <label className='review-input-label' htmlFor='name'>Rating</label>
+{/* TESTING ========== */}
+                                <div className='dynamic-star-rating-wrapper '>
+                                    {[1, 2, 3, 4, 5].map((star, i) => {
+                                        i++;
+                                        return (
+                                            <div key={i}
+                                                className={i <= starRating ? "review-star fill" : "review-star empty"}
+                                                onClick={() => {
+                                                    setRating(i)
+                                                    // handleRating(i)
+                                                }
+                                                }
+                                                onMouseEnter={() => setHover(i)}
+                                                onMouseLeave={() => setHover(starRating)}
+
+                                            >
+                                                {i <= (rating || hover) ?
+                                                    (<img className='new-review-input' height='20' width='20' src={fullStar} />) :
+                                                    (<img className='new-review-input' height='20' width='20' src={emptyStar} />)}
+                                            </div>
+                                        )
+                                    })}
+                                </div >
+
                                 <input
                                     name='name'
                                     className='new-review-input'
