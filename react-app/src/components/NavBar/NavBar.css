@@ -78,6 +78,7 @@ nav {
 .navbar-underline {
     height: 2px;
     background-color: rgb(195, 195, 195);
+    margin-top: -3px;
 }
 
 .navbar-dropdown {
@@ -91,7 +92,7 @@ nav {
     justify-content: space-around;
     padding-top: 30px;
     padding-bottom: 30px;
-    margin-top: -1px;
+    margin-top: -2px;
 }
 
 .navbar-dropdown-coffee-selection {
