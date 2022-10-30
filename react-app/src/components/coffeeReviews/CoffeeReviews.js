@@ -45,7 +45,6 @@ export default function CoffeeReviews({ coffeeId }) {
     if (reviews) {
         let reviewArr = Object.values(reviews)
         reviewUserIds = reviewArr.map(obj => obj.user_id)
-        console.log(reviewUserIds)
         allReview = reviewArr.map(obj => {
             let user = obj.User
             if (user) {
@@ -66,7 +65,7 @@ export default function CoffeeReviews({ coffeeId }) {
                                 </div>
                                 <div className='single-coffee-review-details'>
                                     {obj.review_body}
-                                    {obj.user_id === currentUser.id && <div className='single-coffee-review-edit-delete'>
+                                    {currentUser && obj.user_id === currentUser.id && <div className='single-coffee-review-edit-delete'>
 
                                         <NavLink className='single-coffee-review-edit-delete' to={`/cawfee/${coffeeId}/reviews/${obj.id}/edit`}>Edit</NavLink>
 

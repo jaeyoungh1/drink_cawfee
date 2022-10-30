@@ -23,6 +23,13 @@ def validation_errors_to_error_messages(validation_errors):
 
 @coffee_routes.route('/')
 def get_all_coffee():
+
+    # search and filter>>>>>>
+    origin = request.args.get('origin')
+    roast = request.args.get('roast')
+    print(">>>>>>>>>>>>>ORIGIN", origin)
+    print(">>>>>>>>>>>>>ROAST", roast)
+    # end search and filter<<<<<<<<<<<
     coffees = Coffee.query.all()
     coffee_list = [coffee.to_dict() for coffee in coffees]
     for coffee in coffee_list:
@@ -97,7 +104,6 @@ def add_one_coffee():
         "errors": {}
     }
 
-
     print("FORM.DATA", form.data)
 
     note_list = [Note(note=note) for note in form.data['notes']]
@@ -126,7 +132,7 @@ def add_one_coffee():
 
     if len(post_val_error["errors"]) > 0:
         return jsonify(post_val_error), 400
-    
+
     # print("ERRORS", validation_errors_to_error_messages(form.errors))
     print("POSTVALERROR", post_val_error)
     if form.validate_on_submit():
@@ -157,6 +163,7 @@ def add_one_coffee():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # PUT one coffee
+
 
 @coffee_routes.route('/<int:coffee_id>', methods=["PUT"])
 @login_required
@@ -238,6 +245,7 @@ def edit_one_coffee(coffee_id):
 
 # DELETE one coffee
 
+
 @coffee_routes.route('/<int:coffee_id>', methods=["DELETE"])
 @login_required
 def delete_one_coffee(coffee_id):
@@ -296,6 +304,7 @@ def get_one_coffee_reviews(coffee_id):
 
 # POST review for one coffee
 
+
 @coffee_routes.route('/<int:coffee_id>/reviews', methods=["POST"])
 @login_required
 def create_one_coffee_review(coffee_id):
@@ -350,3 +359,15 @@ def create_one_coffee_review(coffee_id):
         review_res['User'] = user
         return review_res
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+# # <--------------------------- SEARCH/FILTER -------------------------->
+# @coffee_routes.route('/')
+# def get_all_coffee_filtered():
+#     origin = request.args.get('origin')
+#     coffees = Coffee.query.all()
+#     coffee_list = [coffee.to_dict() for coffee in coffees]
+#     for coffee in coffee_list:
+#         brand = Brand.query.get(coffee['brand_id']).to_dict()
+#         coffee['Brand'] = brand
+#     return {'Coffees': coffee_list}
