@@ -7,10 +7,7 @@
 
 .get-user-review-header {
     width: 100%;
-    /* width: 90%;
-    display: flex;
-    flex-direction: column;
-    margin-top: 40px; */
+
 }
 
 .coffee-all-user-review-container {
@@ -32,9 +29,6 @@
     margin: 10px 0;
 }
 
-/* .get-user-review-stars {
-    width: 20px;
-} */
 .review-star {
     width: 15px;
 }
@@ -45,6 +39,7 @@
     font-weight: 500;
     color: rgb(0, 0, 0);
     letter-spacing: 0.5px;
+    margin-bottom: -5px;
 }
 
 .coffee-review-stars {
@@ -60,6 +55,16 @@
     font-size: 12px;
     font-weight: 400;
     color: rgb(102, 102, 102);
+    display: flex;
+}
+
+.single-coffee-review-details {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgb(102, 102, 102);
+    display: flex;
+    justify-content: space-between;
 }
 
 .get-user-review-user-review {
@@ -68,4 +73,42 @@
     font-weight: 500;
     color: rgb(0, 0, 0);
     margin: 5px 0;
+}
+
+.single-coffee-review-edit-delete {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    color: rgb(0, 0, 0);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.single-coffee-review-edit-delete:hover {
+    color: rgb(102, 102, 102);
+    cursor: pointer;
+}
+
+.write-a-review {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgb(184, 76, 41);
+}
+
+.write-a-review:hover {
+    transition-delay: 400ms;
+    color: rgb(233, 58, 0)
+}
+
+.coffee-review-details-review-this-product {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgb(184, 76, 41);
+}
+.coffee-review-details-review-this-product:hover {
+    color: rgb(233, 58, 0);
 }

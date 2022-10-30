@@ -8,7 +8,7 @@ import ReviewStars from "./reviewStars";
 export default function CoffeeReviews({ coffeeId }) {
     const dispatch = useDispatch()
 
-    const user = useSelector(state => state.session.user)
+    const currentUser = useSelector(state => state.session.user)
     const reviews = useSelector(state => state.review.allReview)
 
     useEffect(() => {
@@ -24,7 +24,10 @@ export default function CoffeeReviews({ coffeeId }) {
         if (Object.values(reviews).length < 1) {
             return (
                 <div className='empty-page'>
-                    This coffee does not have any reviews.
+                    This coffee does not have any reviews. 
+                    <NavLink className='write-a-review' to={`/reviews/${coffeeId}/new`}>
+                        {` Write a Review.`}
+                    </NavLink>
                 </div>
             )
         }
@@ -45,36 +48,43 @@ export default function CoffeeReviews({ coffeeId }) {
         console.log(reviewUserIds)
         allReview = reviewArr.map(obj => {
             let user = obj.User
-            return (
-                <div className='user-review-container' key={obj.id}>
-                    <div className='user-info-single-container'>
-                        <div className="user-info-name">
-                            {user.first_name.toUpperCase()}
-                            {user.curator && <span className='coffee-review-details'>Verified Cawfee Curator</span>}
-                        </div>
-                        <div className='coffee-review-details-wrapper'>
-                            <div className='coffee-review-stars'>
-                                <ReviewStars rating={obj.rating} />
-                                <span className='coffee-review-details'>{dateFormatter(obj.updated_at)}</span>
-                                {obj.created_at.slice(0, 19) !== obj.updated_at.slice(0, 19) && <span className='coffee-review-details'>(Edited)</span>}
+            if (user) {
+
+
+                return (
+                    <div className='user-review-container' key={obj.id}>
+                        <div className='user-info-single-container'>
+                            <div className="user-info-name">
+                                {user.first_name && user.first_name.toUpperCase()}
+                                {user.curator && <span className='coffee-review-details'>Verified Cawfee Curator</span>}
                             </div>
-                            <div className='coffee-review-details'>
-                                {obj.review_body}
-                                <div>
-                                    <NavLink to={`/my-reviews/${obj.id}/edit`}>Edit</NavLink>
+                            <div className='coffee-review-details-wrapper'>
+                                <div className='coffee-review-stars'>
+                                    <ReviewStars rating={obj.rating} />
+                                    <span className='coffee-review-details'>{dateFormatter(obj.updated_at)}</span>
+                                    {obj.created_at.slice(0, 19) !== obj.updated_at.slice(0, 19) && <span className='coffee-review-details'>(Edited)</span>}
                                 </div>
-                                <div>
-                                    Delete
+                                <div className='single-coffee-review-details'>
+                                    {obj.review_body}
+                                    {obj.user_id === currentUser.id && <div className='single-coffee-review-edit-delete'>
+
+                                        <NavLink className='single-coffee-review-edit-delete' to={`/cawfee/${coffeeId}/reviews/${obj.id}/edit`}>Edit</NavLink>
+
+                                        <div onClick={() => deleteReview(obj.id)} 
+                                        className='single-coffee-review-edit-delete'>
+                                            Delete
+                                        </div>
+                                    </div>}
                                 </div>
                             </div>
                         </div>
+                        <div className='all-review-line-break'></div>
                     </div>
-                    <div className='all-review-line-break'></div>
-                </div>
-            )
+                )
+            }
         })
     }
-    if (!user) {
+    if (!currentUser) {
         return <Redirect to='/' />
     }
 
@@ -86,11 +96,11 @@ export default function CoffeeReviews({ coffeeId }) {
                     <div className='get-user-review-user-review'>
                         Reviews
                     </div>
-                    {!user && <div className='coffee-review-details'>
+                    {!currentUser && <div className='coffee-review-details'>
                         Log in to review this product
                     </div>}
-                    {user && !reviewUserIds.includes(user.id) && <div className='coffee-review-details'>
-                        Review this product
+                    {currentUser && !reviewUserIds.includes(currentUser.id) && <div className='coffee-review-details'>
+                        <NavLink className='coffee-review-details-review-this-product' to={`/reviews/${coffeeId}/new`}>Review this product</NavLink>
                     </div>}
                     <div className='all-review-line-break'></div>
                 </div>

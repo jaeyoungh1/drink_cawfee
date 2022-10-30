@@ -93,7 +93,7 @@ const _editOneReview = payload => ({
 });
 
 export const editOneReview = (id, review) => async dispatch => {
-    const response = await csrfFetch(`/api/reviews/${id}`, {
+    const response = await csrfFetch(`/api/review/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'

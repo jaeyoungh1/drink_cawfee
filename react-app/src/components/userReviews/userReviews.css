@@ -1,0 +1,85 @@
+.coffee-user-reviews-container {
+    margin-top: 100px;
+}
+
+.user-reviews-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-left: 10%;
+    margin-top: 40px;
+}
+
+.user-review-coffee-image {
+    height: 80px;
+    width: 80px;
+    object-fit: cover;
+}
+
+.user-single-coffee-review-container {
+    display: grid;
+    grid-template-columns: 3fr 9fr;
+    width: 60%;
+}
+
+.user-review-coffee-info-single-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 200px;
+}
+
+.coffee-review-details-wrapper {
+    margin-top: 20px;
+}
+
+.coffee-review-details {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+.user-review-coffee-info-name {
+    font-size: 16px;
+    color: black;
+    margin-top: 8px;
+}
+
+.user-review-brand-info-name {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgb(133, 133, 133);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.user-review-line-break {
+    height: 1px;
+    background: rgb(239, 239, 239);
+    width: 70%;
+}
+
+.user-review-edit-delete {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.review-edit-delete {
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.review-edit-delete:hover {
+    color: rgb(133, 133, 133);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}

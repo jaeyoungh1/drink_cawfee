@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { NavLink, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { getOneCoffee } from "../../store/coffee";

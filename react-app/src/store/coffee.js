@@ -7,7 +7,7 @@ const EDIT_ONE_COFFEE = 'coffee/edit_one_coffee';
 // const CLEAR_DATA = '/coffee/CLEAR_DATA';
 
 
-// Add a coffcle
+// Add a coffee
 const _addOneCoffee = (coffee) => ({
     type: ADD_ONE_COFFEE,
     payload: coffee

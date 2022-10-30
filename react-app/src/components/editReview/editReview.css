@@ -1,0 +1,103 @@
+.edit-review-page-wrapper-title {
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.user-review-edit-delete:hover {
+    color: rgb(133, 133, 133);
+    cursor: pointer;
+}
+
+.new-review-page-wrapper {
+    margin-left: 40px;
+}
+
+.create-a-review-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.new-review-form-wrapper {
+    /* background: pink; */
+    border-radius: 4px;
+    padding: 5px;
+    border: 1px solid rgb(185, 185, 185);
+    width: 220px;
+    position: fixed;
+    right: 10%;
+    top: 40%;
+}
+
+.review-input-label {
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.new-review-page-wrapper {
+    margin-top: 100px;
+    width: 40%;
+}
+
+.new-review-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dynamic-star-rating-wrapper {
+    margin-bottom: -10px;
+}
+
+.new-review-textarea {
+    border: 1px solid rgb(185, 185, 185);
+    height: 100px;
+    width: 90%;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+.characters-remaining {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    color: rgb(185, 185, 185);
+    letter-spacing: 0.5px;
+}
+
+.new-review-form-errors {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    color: rgb(255, 0, 0);
+    padding: 0 2px;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+.create-review-input {
+    width: 100%;
+}
+
+.create-review-form-errors {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    color: rgb(255, 0, 0);
+    padding-bottom: 5px;
+}
+
+.edit-review-page {
+    margin-bottom: 10px;
+}
