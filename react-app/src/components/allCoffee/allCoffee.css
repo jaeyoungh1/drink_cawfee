@@ -1,10 +1,19 @@
 .get-all-coffee-page-wrapper {
     margin-top: 100px;
     display: grid;
+    width: 100%;
     gap: 40px;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+.get-all-coffee-header {
+    width: 100%;
+}
+
+.no-coffee-container {
+    width: 1224px;
+    text-align: center;
 }
 
 .all-coffee-container {
@@ -13,7 +22,8 @@
     gap: 30px;
     flex-wrap: wrap;
     margin: 0px 20px;
-    max-width: 1170px;
+    /* max-width: 1170px; */
+    width: 1224px;
 }
 
 .all-coffee-single-container {

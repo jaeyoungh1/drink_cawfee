@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom';
 import {csrfFetch} from './csrf'
 const LOAD_ALL_COFFEE = 'coffee/load_all_coffee';
 const GET_ONE_COFFEE = 'coffee/get_one_coffee';
@@ -43,11 +44,29 @@ const _loadAllCoffee = payload => ({
 //     payload
 // });
 
-export const loadAllCoffee = (category) => async dispatch => {
+export const loadAllCoffee = (category, param) => async dispatch => {
     if (category) {
-        console.log("STORE SEARCHPARAMS", category)
-        if (category === 'singleOrigin') {
+        console.log("STORE SEARCHPARAMS", category, param)
+        if (param === 'singleOrigin') {
             const response = await fetch(`/api/coffee/?origin=singleOrigin`)
+            if (response.ok) {
+                const data = await response.json()
+                console.log("DATA", data)
+                dispatch(_loadAllCoffee(data));
+                return data
+            }
+        }
+        else if (category === 'origin') {
+            const response = await fetch(`/api/coffee/?origin=${param}`)
+            if (response.ok) {
+                const data = await response.json()
+                console.log("DATA", data)
+                dispatch(_loadAllCoffee(data));
+                return data
+            }
+        }
+        else if (category === 'roast') {
+            const response = await fetch(`/api/coffee/?roast=${param}`)
             if (response.ok) {
                 const data = await response.json()
                 console.log("DATA", data)

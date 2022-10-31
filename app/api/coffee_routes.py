@@ -34,11 +34,14 @@ def get_all_coffee():
     print(">>>>>>>>>>>>> SEARCHPARAMS", search_params)
     query = Coffee.query
     for param in search_params:
-        print(">>>>>>>>>> PARAM", param, search_params[param])
+        # print(">>>>>>>>>> PARAM", param, search_params[param])
         if search_params[param] == ["singleOrigin"]:
             query = query.filter(Coffee.origin != 'Various (Blend)')
-        elif param == 'origin':
-            query = query.filter(Coffee.origin.in_(search_params[param]))
+            # print(">>>>>>>>>> I SHOULDNT BE HIT", query)
+        # elif param == 'origin':
+        elif search_params[param] == ['Various (blend)']:
+            query = query.filter(Coffee.origin == 'Various (Blend)')
+            # print(">>>>>>>>>> I'M BEING HIT", search_params[param])
         if param == 'roast':
             query = query.filter(Coffee.roast.in_(search_params[param]))
         if param == 'note':
@@ -46,7 +49,7 @@ def get_all_coffee():
     res = query.all()
 
     if search_params:
-        print(">>>>>>>>>>  SEARCH AND FILTER ACTIVATED!<3")
+        # print(">>>>>>>>>>  SEARCH AND FILTER ACTIVATED!<3")
         coffee_list = [coffee.to_dict() for coffee in res]
         for coffee in coffee_list:
             brand = Brand.query.get(coffee['brand_id']).to_dict()
@@ -167,7 +170,7 @@ def add_one_coffee():
             curator_id=user_id,
             name=form.data['name'],
             origin=form.data['origin'],
-            roast=form.data['roast'],
+            roast=form.data['roast'].lower(),
             # process=form.data['wash'],
             inventory=form.data['inventory'],
             brand_id=brand['id'],

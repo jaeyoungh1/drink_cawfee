@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -6,31 +6,48 @@ import { loadAllCoffee } from "../../store/coffee";
 import arrow from '../../icons/arrow.svg'
 import './allCoffee.css'
 import brokenImg from '../../icons/broken-img.png'
-import SingleOrigin from "./singleOrigin";
 
 export default function AllCoffee() {
     const dispatch = useDispatch()
     let search = useLocation().search
     let roast = new URLSearchParams(search).get('roast')
     let origin = new URLSearchParams(search).get('origin')
-    let note = new URLSearchParams(search).get('note')
-    console.log("ORIGIN", origin)
 
     const coffees = useSelector(state => state.coffee.allCoffee)
 
     useEffect(() => {
-        if (origin) {
-            dispatch(loadAllCoffee(origin))
+        if (origin === 'singleOrigin') {
+            dispatch(loadAllCoffee('origin', origin))
+        } else if (origin) {
+            dispatch(loadAllCoffee('origin', origin))
+        } else if (roast) {
+            dispatch(loadAllCoffee('roast', roast))
         } else {
             dispatch(loadAllCoffee())
         }
-    }, [dispatch])
+    }, [dispatch, roast, origin])
 
     let title
     let subtitle
-    if (origin) {
+    if (origin === 'singleOrigin') {
         title = 'Single Origin'
         subtitle = 'Savor these clear, authentic expressions of unique regions around the world.'
+    }
+    else if (origin === 'Various (blend)') {
+        title = 'Blends'
+        subtitle = 'Balanced, smooth and always consistent for everyday enjoyment.'
+    } else if (origin === 'Brazil') {
+        title = 'Brazil'
+        subtitle = 'Balanced, smooth and always consistent for everyday enjoyment.'
+    } else if (roast === 'light') {
+        title = 'Light Roast'
+        subtitle = 'Taste the coffee, not the roast, with these curations that highlight the variety of flavors inherent to the coffee bean.'
+    } else if (roast === 'medium') {
+        title = 'Medium Roast'
+        subtitle = 'Comforting flavors like chocolate and caramel round out these curations. It\'ll remind you why you love coffee every morning.'
+    } else if (roast === 'dark') {
+        title = 'Dark Roast'
+        subtitle = 'The roasters we partner with take high quality coffees to make full-bodied dark roasts with familiar and intense smoky flavors.'
     } else {
         title = 'All Coffee'
         subtitle = 'Choose from a wide variety of coffee from the top roasters in California. All coffee is roasted to order and shipped fresh to your door.'
@@ -41,6 +58,14 @@ export default function AllCoffee() {
     let allCoffee
     if (coffees) {
         let coffeeArr = Object.values(coffees)
+        // console.log('COFFEEARR', coffeeArr)
+        if (coffeeArr.length < 1) {
+            allCoffee = (
+                <div className='no-coffee-container'>
+                    No such coffees currently available. 
+                </div>
+            )
+        } else {
         allCoffee = coffeeArr.map(obj => {
             return (
                 <div className='all-coffee-single-container' key={obj.id}>
@@ -68,6 +93,7 @@ export default function AllCoffee() {
                 </div>
             )
         })
+    }
     }
 
 
