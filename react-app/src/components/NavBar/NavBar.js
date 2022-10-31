@@ -83,7 +83,7 @@ const NavBar = () => {
           >
             {coffeeVisible && <div className='navbar-dropdown-coffee'>
               <span><NavLink className='navbar-dropdown-coffee-selection' style={{ textDecoration: 'none', color: 'black' }} to='/cawfee'>All Coffee</NavLink></span>
-              <span><NavLink className='navbar-dropdown-coffee-selection' style={{ textDecoration: 'none', color: 'black' }} to='/'>Single Origin</NavLink></span>
+              <span><NavLink className='navbar-dropdown-coffee-selection' style={{ textDecoration: 'none', color: 'black' }} to='/cawfee/?origin=singleOrigin'>Single Origin</NavLink></span>
               <span><NavLink className='navbar-dropdown-coffee-selection' style={{ textDecoration: 'none', color: 'black' }} to='/'>Blends</NavLink></span>
               <span><NavLink className='navbar-dropdown-coffee-selection' style={{ textDecoration: 'none', color: 'black' }} to='/'>Light Roast</NavLink></span>
               <span><NavLink className='navbar-dropdown-coffee-selection' style={{ textDecoration: 'none', color: 'black' }} to='/'>Medium Roast</NavLink></span>

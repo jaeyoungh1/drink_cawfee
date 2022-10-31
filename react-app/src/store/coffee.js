@@ -43,9 +43,18 @@ const _loadAllCoffee = payload => ({
 //     payload
 // });
 
-export const loadAllCoffee = (searchParams) => async dispatch => {
-    if (searchParams) {
-        console.log(searchParams)
+export const loadAllCoffee = (category) => async dispatch => {
+    if (category) {
+        console.log("STORE SEARCHPARAMS", category)
+        if (category === 'singleOrigin') {
+            const response = await fetch(`/api/coffee/?origin=singleOrigin`)
+            if (response.ok) {
+                const data = await response.json()
+                console.log("DATA", data)
+                dispatch(_loadAllCoffee(data));
+                return data
+            }
+        }
         // const response = await fetch(`/api/biz/?location=${location}`);
         // // console.log("hitting res", response)
         // if (response.ok) {
@@ -58,7 +67,7 @@ export const loadAllCoffee = (searchParams) => async dispatch => {
         console.log("hitting res", response)
         if (response.ok) {
             const data = await response.json();
-            console.log("hitting list", data)
+            console.log("hitting all list", data)
             dispatch(_loadAllCoffee(data));
             return data
         }

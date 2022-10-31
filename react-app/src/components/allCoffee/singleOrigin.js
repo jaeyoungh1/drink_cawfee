@@ -6,37 +6,16 @@ import { loadAllCoffee } from "../../store/coffee";
 import arrow from '../../icons/arrow.svg'
 import './allCoffee.css'
 import brokenImg from '../../icons/broken-img.png'
-import SingleOrigin from "./singleOrigin";
 
-export default function AllCoffee() {
+export default function SingleOrigin({origin}) {
     const dispatch = useDispatch()
-    let search = useLocation().search
-    let roast = new URLSearchParams(search).get('roast')
-    let origin = new URLSearchParams(search).get('origin')
-    let note = new URLSearchParams(search).get('note')
-    console.log("ORIGIN", origin)
+    console.log("params", origin)
 
     const coffees = useSelector(state => state.coffee.allCoffee)
 
     useEffect(() => {
-        if (origin) {
-            dispatch(loadAllCoffee(origin))
-        } else {
-            dispatch(loadAllCoffee())
-        }
+        dispatch(loadAllCoffee(origin))
     }, [dispatch])
-
-    let title
-    let subtitle
-    if (origin) {
-        title = 'Single Origin'
-        subtitle = 'Savor these clear, authentic expressions of unique regions around the world.'
-    } else {
-        title = 'All Coffee'
-        subtitle = 'Choose from a wide variety of coffee from the top roasters in California. All coffee is roasted to order and shipped fresh to your door.'
-    }
-
-
 
     let allCoffee
     if (coffees) {
@@ -75,13 +54,13 @@ export default function AllCoffee() {
         <div className='get-all-coffee-page-wrapper'>
             <div className='get-all-coffee-header'>
                 <div className='get-all-coffee-header-link'>
-                    <span><NavLink className='get-all-coffee-header-link-nav' style={{ textDecoration: 'none', color: 'black' }} to='/cawfee'>Coffee</NavLink></span> <img width='10' height='10' src={arrow} /> {title}
+                    <span><NavLink className='get-all-coffee-header-link-nav' style={{ textDecoration: 'none', color: 'black' }} to='/cawfee'>Coffee</NavLink></span> <img width='10' height='10' src={arrow} /> All Coffee
                 </div>
                 <div className='get-all-coffee-all-coffee'>
-                    {title}
+                    Single Origins
                 </div>
                 <div className='get-all-coffee-subheader'>
-                    {subtitle}
+                    Savor these clear, authentic expressions of unique regions around the world.
                 </div>
             </div>
             <div className='all-coffee-container'>
