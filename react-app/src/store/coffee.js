@@ -104,13 +104,15 @@ export const searchAllCoffee = (currUrl, obj) => async dispatch => {
         // building up search string <<<
         // console.log("IN STORE search", currUrl)
         let url = currUrl ? currUrl : '?'
-        // console.log("IN STORE OBJ", obj)
+        console.log("IN STORE OBJ", obj)
         let filterRoast = obj.filter(obj => obj.roast).map(obj => obj.roast)
         let filterOrigin = obj.filter(obj => obj.origin).map(obj => obj.origin)
         let filterNote = obj.filter(obj => obj.note).map(obj => obj.note)
+        let filterBrand = obj.filter(obj => obj.brand).map(obj => obj.brand)
         console.log("IN STORE ROAST", filterRoast)
         console.log("IN STORE ORIGIN", filterOrigin)
         console.log("IN STORE Note", filterNote)
+        console.log("IN STORE BRAND", filterBrand)
         filterRoast.forEach(obj => {
             url+= `&roast=${obj}`})
         filterOrigin.forEach(obj => {
@@ -118,6 +120,10 @@ export const searchAllCoffee = (currUrl, obj) => async dispatch => {
         })
         filterNote.forEach(obj => {
             url += `&note=${obj}`
+        })
+        filterBrand.forEach(obj => {
+            console.log("OBJ IS", obj)
+            url += `&roaster=${obj}`
         })
 
 

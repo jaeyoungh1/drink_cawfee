@@ -8,6 +8,7 @@ import plus from '../../icons/plus.svg'
 import minus from '../../icons/minus.svg'
 import './allCoffee.css'
 import brokenImg from '../../icons/broken-img.png'
+import { loadAllBrand } from "../../store/brand";
 
 export default function Filter({getFilterArr}) {
     const dispatch = useDispatch()
@@ -16,6 +17,21 @@ export default function Filter({getFilterArr}) {
     const [dropdownOpenNotes, setDropdownOpenNotes] = useState(false)
     const [dropdownOpenBrands, setDropdownOpenBrands] = useState(false)
     const [filterArr, setFilterArr] = useState([])
+    const brands = useSelector(state => state.brand.allBrand)
+    let allBrands 
+    if (brands) {
+        let coffeeBrands = Object.values(brands).map(obj => obj.name)
+        let brand_set = new Set()
+        coffeeBrands.forEach(arr => brand_set.add(arr))
+        allBrands = Array.from(brand_set)
+    }
+
+    // console.log("ALL BRANDS", allBrands)
+
+    useEffect(() => {
+        dispatch(loadAllBrand())
+    }, [dispatch])
+
     function toggleFilter(category, param) {
         let obj = {}
         obj[category] = param
@@ -94,6 +110,15 @@ export default function Filter({getFilterArr}) {
                     <div onClick={() => toggleFilter('note', 'Spices')}>Spices</div>
                     <div onClick={() => toggleFilter('note', 'Roastiness')}>Roastiness</div>
                 </div>}
+                <div onClick={() => setDropdownOpenBrands(!dropdownOpenBrands)}>
+                    <div>Roasters</div>
+                    <img src={dropdownOpenBrands ? minus : plus} height='12px' width='12px' alt='filter plus' />
+                </div>
+                {dropdownOpenBrands && allBrands.map(name => {
+                    return (
+                        <div onClick={() => toggleFilter('brand', name)}>{name}</div>
+                    )
+                })}
             </div>
         </div>
     )

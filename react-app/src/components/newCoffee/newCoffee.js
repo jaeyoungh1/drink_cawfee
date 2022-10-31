@@ -5,6 +5,7 @@ import { loadAllCoffee } from "../../store/coffee";
 import { addOneCoffee } from "../../store/coffee";
 import brokenImg from '../../icons/broken-img.png'
 import './newCoffee.css'
+import { loadAllBrand } from "../../store/brand";
 
 export default function NewCoffee() {
     const dispatch = useDispatch()
@@ -44,15 +45,17 @@ export default function NewCoffee() {
     const ROAST_OPT = ['Light', 'Medium', 'Dark']
     const user = useSelector(state => state.session.user)
     const coffee_b = useSelector(state => state.coffee.allCoffee)
+    const brands = useSelector(state => state.brand.allBrand)
     let BRANDS_OPT
-    if (coffee_b) {
-        let coffee_brands = Object.values(coffee_b).map(obj => obj.Brand.name)
+    if (brands) {
+        let coffeeBrands = Object.values(brands).map(obj => obj.name)
         let brand_set = new Set()
-        coffee_brands.forEach(arr => brand_set.add(arr))
+        coffeeBrands.forEach(arr => brand_set.add(arr))
         BRANDS_OPT = Array.from(brand_set)
     }
     useEffect(() => {
         dispatch(loadAllCoffee())
+        dispatch(loadAllBrand())
     }, [dispatch])
 
     useEffect(() => {
