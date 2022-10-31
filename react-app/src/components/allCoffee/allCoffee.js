@@ -1,17 +1,19 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { loadAllCoffee } from "../../store/coffee";
+import { loadAllCoffee, searchAllCoffee } from "../../store/coffee";
 import arrow from '../../icons/arrow.svg'
 import './allCoffee.css'
 import brokenImg from '../../icons/broken-img.png'
+import Filter from "./Filter";
 
 export default function AllCoffee() {
     const dispatch = useDispatch()
     let search = useLocation().search
     let roast = new URLSearchParams(search).get('roast')
     let origin = new URLSearchParams(search).get('origin')
+    const [filter, setFilter] = useState([])
 
     const coffees = useSelector(state => state.coffee.allCoffee)
 
@@ -26,6 +28,23 @@ export default function AllCoffee() {
             dispatch(loadAllCoffee())
         }
     }, [dispatch, roast, origin])
+    useEffect(() => {
+        dispatch(searchAllCoffee(search, filter))
+    }, [dispatch, filter])
+
+    function getFilterArr(obj) {
+        setFilter(obj)
+    }
+    // let filterRoast;
+    // let filter_origin;
+    // let filter_note;
+    // let filter_roaster;
+    // if (filter.length > 0) {
+    //     let roasts = filter.map(obj => obj.roast)
+    //     filterRoast = roasts
+    // }
+    console.log("INALLCOFFEE", filter)
+    // console.log("INALLCOFFEEFILTERROASTS", filterRoast)
 
     let title
     let subtitle
@@ -53,47 +72,44 @@ export default function AllCoffee() {
         subtitle = 'Choose from a wide variety of coffee from the top roasters in California. All coffee is roasted to order and shipped fresh to your door.'
     }
 
-
-
     let allCoffee
     if (coffees) {
         let coffeeArr = Object.values(coffees)
-        // console.log('COFFEEARR', coffeeArr)
         if (coffeeArr.length < 1) {
             allCoffee = (
                 <div className='no-coffee-container'>
-                    No such coffees currently available. 
+                    No such coffees currently available.
                 </div>
             )
         } else {
-        allCoffee = coffeeArr.map(obj => {
-            return (
-                <div className='all-coffee-single-container' key={obj.id}>
-                    <NavLink to={`/cawfee/${obj.id}`}>
-                        <div className="single-coffee-image-wrapper">
-                            <img alt='single coffee' className="single-coffee-image-wrapper-img" src={obj.img_url}
-                                onError={e => e.target.src = brokenImg} />
-                        </div>
-                    </NavLink>
+            allCoffee = coffeeArr.map(obj => {
+                return (
+                    <div className='all-coffee-single-container' key={obj.id}>
+                        <NavLink to={`/cawfee/${obj.id}`}>
+                            <div className="single-coffee-image-wrapper">
+                                <img alt='single coffee' className="single-coffee-image-wrapper-img" src={obj.img_url}
+                                    onError={e => e.target.src = brokenImg} />
+                            </div>
+                        </NavLink>
 
-                    <div className='all-coffee-line-break'></div>
-                    <div className='all-coffee-details'>
-                        <div className='all-coffee-details-brand'>
-                            {obj.Brand.name.toUpperCase()}
-                        </div>
-                        <div className='all-coffee-details-name'>
-                            <NavLink style={{ textDecoration: 'none', color: 'black' }} className='all-coffee-details-name' to={`/cawfee/${obj.id}`}>
-                                {obj.name}
-                            </NavLink>
-                        </div>
-                        <div className='all-coffee-details-price'>
-                            ${obj.price}
+                        <div className='all-coffee-line-break'></div>
+                        <div className='all-coffee-details'>
+                            <div className='all-coffee-details-brand'>
+                                {obj.Brand.name.toUpperCase()}
+                            </div>
+                            <div className='all-coffee-details-name'>
+                                <NavLink style={{ textDecoration: 'none', color: 'black' }} className='all-coffee-details-name' to={`/cawfee/${obj.id}`}>
+                                    {obj.name}
+                                </NavLink>
+                            </div>
+                            <div className='all-coffee-details-price'>
+                                ${obj.price}
+                            </div>
                         </div>
                     </div>
-                </div>
-            )
-        })
-    }
+                )
+            })
+        }
     }
 
 
@@ -110,8 +126,11 @@ export default function AllCoffee() {
                     {subtitle}
                 </div>
             </div>
-            <div className='all-coffee-container'>
-                {allCoffee}
+            <div className='get-all-coffee-page-body'>
+                <Filter getFilterArr={getFilterArr} />
+                <div className='all-coffee-container'>
+                    {allCoffee}
+                </div>
             </div>
         </div>
     )

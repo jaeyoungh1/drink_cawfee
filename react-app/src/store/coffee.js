@@ -1,10 +1,11 @@
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import {csrfFetch} from './csrf'
 const LOAD_ALL_COFFEE = 'coffee/load_all_coffee';
 const GET_ONE_COFFEE = 'coffee/get_one_coffee';
 const ADD_ONE_COFFEE = 'coffee/add_one_coffee';
 const DELETE_ONE_COFFEE = 'coffee/delete_one_coffee';
 const EDIT_ONE_COFFEE = 'coffee/edit_one_coffee';
+const SEARCH = 'coffee/search_coffee'
 // const CLEAR_DATA = '/coffee/CLEAR_DATA';
 
 
@@ -46,12 +47,12 @@ const _loadAllCoffee = payload => ({
 
 export const loadAllCoffee = (category, param) => async dispatch => {
     if (category) {
-        console.log("STORE SEARCHPARAMS", category, param)
+        // console.log("STORE SEARCHPARAMS", category, param)
         if (param === 'singleOrigin') {
             const response = await fetch(`/api/coffee/?origin=singleOrigin`)
             if (response.ok) {
                 const data = await response.json()
-                console.log("DATA", data)
+                // console.log("DATA", data)
                 dispatch(_loadAllCoffee(data));
                 return data
             }
@@ -60,7 +61,7 @@ export const loadAllCoffee = (category, param) => async dispatch => {
             const response = await fetch(`/api/coffee/?origin=${param}`)
             if (response.ok) {
                 const data = await response.json()
-                console.log("DATA", data)
+                // console.log("DATA", data)
                 dispatch(_loadAllCoffee(data));
                 return data
             }
@@ -86,12 +87,62 @@ export const loadAllCoffee = (category, param) => async dispatch => {
         console.log("hitting res", response)
         if (response.ok) {
             const data = await response.json();
+            // console.log("hitting all list", data)
+            dispatch(_loadAllCoffee(data));
+            return data
+        }
+    }
+};
+
+// FILTER all coffees
+const _searchAllCoffee = payload => ({
+    type: SEARCH,
+    payload
+})
+export const searchAllCoffee = (currUrl, obj) => async dispatch => {
+    if (obj) {
+        // building up search string <<<
+        // console.log("IN STORE search", currUrl)
+        let url = currUrl ? currUrl : '?'
+        // console.log("IN STORE OBJ", obj)
+        let filterRoast = obj.filter(obj => obj.roast).map(obj => obj.roast)
+        let filterOrigin = obj.filter(obj => obj.origin).map(obj => obj.origin)
+        let filterNote = obj.filter(obj => obj.note).map(obj => obj.note)
+        console.log("IN STORE ROAST", filterRoast)
+        console.log("IN STORE ORIGIN", filterOrigin)
+        console.log("IN STORE Note", filterNote)
+        filterRoast.forEach(obj => {
+            url+= `&roast=${obj}`})
+        filterOrigin.forEach(obj => {
+            url += `&origin=${obj}`
+        })
+        filterNote.forEach(obj => {
+            url += `&note=${obj}`
+        })
+
+
+        console.log(">>>> CURRENT URL", `/api/coffee/${url}`)
+        const response = await fetch(`/api/coffee/${url}`)
+        if (response.ok) {
+            console.log("I'm inside of the search all coffee response")
+            const data = await response.json()
+            dispatch(_loadAllCoffee(data))
+            return data
+        }
+    }
+
+    else {
+        const response = await fetch('/api/coffee/');
+        console.log("hitting res", response)
+        if (response.ok) {
+            const data = await response.json();
             console.log("hitting all list", data)
             dispatch(_loadAllCoffee(data));
             return data
         }
     }
 };
+
 
 
 // Get user's coffee curations
@@ -101,7 +152,6 @@ export const loadUserCoffee = () => async dispatch => {
     if (response.ok) {
         const data = await response.json();
         dispatch(_loadAllCoffee(data));
-
         return data;
     }
 };

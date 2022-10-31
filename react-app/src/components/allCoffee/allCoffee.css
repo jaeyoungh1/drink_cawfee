@@ -23,9 +23,15 @@
     flex-wrap: wrap;
     margin: 0px 20px;
     /* max-width: 1170px; */
+    max-width: 1224px;
+    /* ^^^^^ may need to change this */
+}
+.get-all-coffee-page-body {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 10px;
     width: 1224px;
 }
-
 .all-coffee-single-container {
     border: 1px solid rgb(239, 239, 239);
     border-radius: 4px;
@@ -98,4 +104,11 @@
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     font-weight: 400;
+}
+
+.filter-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
 }

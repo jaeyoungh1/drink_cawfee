@@ -31,21 +31,21 @@ def normalize_query(params):
 def get_all_coffee():
     # search and filter>>>>>>
     search_params = normalize_query(request.args)
-    print(">>>>>>>>>>>>> SEARCHPARAMS", search_params)
+    print("        >>>>>>>>>>>>> SEARCHPARAMS", search_params)
     query = Coffee.query
     for param in search_params:
         # print(">>>>>>>>>> PARAM", param, search_params[param])
-        if search_params[param] == ["singleOrigin"]:
+        if param == 'origin' and search_params[param] != ["singleOrigin"]:
+            print("        >>>>>>>>>>>>> SEARCHPARAMS", search_params[param])
+            query = query.filter(Coffee.origin.in_(search_params[param]))
+        elif search_params[param] == ["singleOrigin"]:
             query = query.filter(Coffee.origin != 'Various (Blend)')
-            # print(">>>>>>>>>> I SHOULDNT BE HIT", query)
-        # elif param == 'origin':
         elif search_params[param] == ['Various (blend)']:
             query = query.filter(Coffee.origin == 'Various (Blend)')
-            # print(">>>>>>>>>> I'M BEING HIT", search_params[param])
         if param == 'roast':
             query = query.filter(Coffee.roast.in_(search_params[param]))
         if param == 'note':
-            query = query.filter(Coffee.note.in_(search_params[param]))
+            query = query.filter(Coffee.notes.any(Note.note.in_(search_params[param])))
     res = query.all()
 
     if search_params:
@@ -255,7 +255,7 @@ def edit_one_coffee(coffee_id):
             current_coffee.curator_id = user_id
             current_coffee.name = form.data['name']
             current_coffee.origin = form.data['origin']
-            current_coffee.roast = form.data['roast']
+            current_coffee.roast = form.data['roast'].lower()
             current_coffee.inventory = form.data['inventory']
             current_coffee.brand_id = brand['id']
             current_coffee.price = form.data['price']

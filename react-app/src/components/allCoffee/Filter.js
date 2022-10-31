@@ -3,68 +3,97 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { loadAllCoffee } from "../../store/coffee";
-import arrow from '../../icons/arrow.svg'
+import filter from '../../icons/filter.svg'
+import plus from '../../icons/plus.svg'
+import minus from '../../icons/minus.svg'
 import './allCoffee.css'
 import brokenImg from '../../icons/broken-img.png'
 
-export default function SingleOrigin({origin}) {
+export default function Filter({getFilterArr}) {
     const dispatch = useDispatch()
-    console.log("params", origin)
+    const [dropdownOpenRoast, setDropdownOpenRoast] = useState(false)
+    const [dropdownOpenOrigin, setDropdownOpenOrigin] = useState(false)
+    const [dropdownOpenNotes, setDropdownOpenNotes] = useState(false)
+    const [dropdownOpenBrands, setDropdownOpenBrands] = useState(false)
+    const [filterArr, setFilterArr] = useState([])
+    function toggleFilter(category, param) {
+        let obj = {}
+        obj[category] = param
+        let filter = [...filterArr]
+        // console.log("CATEGORY PARAMS", category, param)
 
-    const coffees = useSelector(state => state.coffee.allCoffee)
-
-    useEffect(() => {
-        dispatch(loadAllCoffee(origin))
-    }, [dispatch])
-
-    let allCoffee
-    if (coffees) {
-        let coffeeArr = Object.values(coffees)
-        allCoffee = coffeeArr.map(obj => {
-            return (
-                <div className='all-coffee-single-container' key={obj.id}>
-                    <NavLink to={`/cawfee/${obj.id}`}>
-                        <div className="single-coffee-image-wrapper">
-                            <img alt='single coffee' className="single-coffee-image-wrapper-img" src={obj.img_url}
-                                onError={e => e.target.src = brokenImg} />
-                        </div>
-                    </NavLink>
-
-                    <div className='all-coffee-line-break'></div>
-                    <div className='all-coffee-details'>
-                        <div className='all-coffee-details-brand'>
-                            {obj.Brand.name.toUpperCase()}
-                        </div>
-                        <div className='all-coffee-details-name'>
-                            <NavLink style={{ textDecoration: 'none', color: 'black' }} className='all-coffee-details-name' to={`/cawfee/${obj.id}`}>
-                                {obj.name}
-                            </NavLink>
-                        </div>
-                        <div className='all-coffee-details-price'>
-                            ${obj.price}
-                        </div>
-                    </div>
-                </div>
-            )
-        })
+        if (filterArr.filter(obj => obj[category] === param).length > 0) {
+            let _filter = filter.filter(obj => (obj[category] !== param))
+            setFilterArr(_filter)
+        }
+        else {
+            filter.push(obj)
+            setFilterArr(filter)
+        }
     }
-
+    console.log("CURRENT FILTERARR", filterArr)
+    getFilterArr(filterArr)
 
     return (
-        <div className='get-all-coffee-page-wrapper'>
-            <div className='get-all-coffee-header'>
-                <div className='get-all-coffee-header-link'>
-                    <span><NavLink className='get-all-coffee-header-link-nav' style={{ textDecoration: 'none', color: 'black' }} to='/cawfee'>Coffee</NavLink></span> <img width='10' height='10' src={arrow} /> All Coffee
-                </div>
-                <div className='get-all-coffee-all-coffee'>
-                    Single Origins
-                </div>
-                <div className='get-all-coffee-subheader'>
-                    Savor these clear, authentic expressions of unique regions around the world.
-                </div>
+        <div>
+            <div className='filter-header'>
+                <img src={filter} height='44px' width='44px' alt='filter' />
+                <h2>Filter</h2>
             </div>
-            <div className='all-coffee-container'>
-                {allCoffee}
+            <div>
+                <div onClick={() => setDropdownOpenRoast(!dropdownOpenRoast)}>
+                    <div>Roast Level</div>
+                    <img src={dropdownOpenRoast ? minus : plus} height='12px' width='12px' alt='filter plus' />
+                </div>
+                {dropdownOpenRoast && <div>
+                    <div onClick={() => toggleFilter('roast', 'light')}>Light</div>
+                    <div onClick={() => toggleFilter('roast', 'medium')}>Medium</div>
+                    <div onClick={() => toggleFilter('roast', 'dark')}>Dark</div>
+                </div>}
+                <div onClick={() => setDropdownOpenOrigin(!dropdownOpenOrigin)}>
+                    <div>Origin</div>
+                    <img src={dropdownOpenOrigin ? minus : plus} height='12px' width='12px' alt='filter plus' />
+                </div>
+                {dropdownOpenOrigin && <div>
+                    <div onClick={() => toggleFilter('origin', 'Brazil')}>Brazil</div>
+                    <div onClick={() => toggleFilter('origin', 'Burundi')}>Burundi</div>
+                    <div onClick={() => toggleFilter('origin', 'Colombia')}>Colombia</div>
+                    <div onClick={() => toggleFilter('origin', 'Congo')}>Congo</div>
+                    <div onClick={() => toggleFilter('origin', 'Costa Rica')}>Costa Rica</div>
+                    <div onClick={() => toggleFilter('origin', 'El Salvador')}>El Salvador</div>
+                    <div onClick={() => toggleFilter('origin', 'Ethiopia')}>Ethiopia</div>
+                    <div onClick={() => toggleFilter('origin', 'Guatemala')}>Guatemala</div>
+                    <div onClick={() => toggleFilter('origin', 'Honduras')}>Honduras</div>
+                    <div onClick={() => toggleFilter('origin', 'Indonesia')}>Indonesia</div>
+                    <div onClick={() => toggleFilter('origin', 'Kenya')}>Kenya</div>
+                    <div onClick={() => toggleFilter('origin', 'Mexico')}>Mexico</div>
+                    <div onClick={() => toggleFilter('origin', 'Nicaragua')}>Nicaragua</div>
+                    <div onClick={() => toggleFilter('origin', 'Panama')}>Panama</div>
+                    <div onClick={() => toggleFilter('origin', 'Papua New Guinea')}>Papua New Guinea</div>
+                    <div onClick={() => toggleFilter('origin', 'Peru')}>Peru</div>
+                    <div onClick={() => toggleFilter('origin', 'Rwanda')}>Rwanda</div>
+                    <div onClick={() => toggleFilter('origin', 'Sulawesi')}>Sulawesi</div>
+                    <div onClick={() => toggleFilter('origin', 'Sumatra')}>Sumatra</div>
+                    <div onClick={() => toggleFilter('origin', 'Tanzania')}>Tanzania</div>
+                    <div onClick={() => toggleFilter('origin', 'Uganda')}>Uganda</div>
+                </div>}
+                <div onClick={() => setDropdownOpenNotes(!dropdownOpenNotes)}>
+                    <div>Notes</div>
+                    <img src={dropdownOpenNotes ? minus : plus} height='12px' width='12px' alt='filter plus' />
+                </div>
+                {dropdownOpenNotes && <div>
+                    <div onClick={() => toggleFilter('note', 'Berry Fruit')}>Berry Fruit</div>
+                    <div onClick={() => toggleFilter('note', 'Stone Fruit')}>Stone Fruit</div>
+                    <div onClick={() => toggleFilter('note', 'Tropical Fruit')}>Tropical Fruit</div>
+                    <div onClick={() => toggleFilter('note', 'Citrus')}>Citrus</div>
+                    <div onClick={() => toggleFilter('note', 'Florals')}>Florals</div>
+                    <div onClick={() => toggleFilter('note', 'Vanilla')}>Vanilla</div>
+                    <div onClick={() => toggleFilter('note', 'Brown Sugar')}>Brown Sugar</div>
+                    <div onClick={() => toggleFilter('note', 'Milk Chocolate')}>Milk Chocolate</div>
+                    <div onClick={() => toggleFilter('note', 'Nutty')}>Nutty</div>
+                    <div onClick={() => toggleFilter('note', 'Spices')}>Spices</div>
+                    <div onClick={() => toggleFilter('note', 'Roastiness')}>Roastiness</div>
+                </div>}
             </div>
         </div>
     )
