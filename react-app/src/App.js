@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import LoginForm from './components/auth/LoginForm';
-import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar/NavBar';
-import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
+// import ProtectedRoute from './components/auth/ProtectedRoute';
+// import UsersList from './components/UsersList';
+// import User from './components/User';
 import { authenticate } from './store/session';
 import HomePage from './components/HomePage/homePage';
 import AllCoffee from './components/allCoffee/allCoffee';
@@ -18,6 +16,7 @@ import EditCoffee from './components/editCoffee/editCoffee';
 import UserReviews from './components/userReviews/userReviews';
 import EditReview from './components/editReview/editReview';
 import AddReview from './components/coffeeReviews/createReview';
+import Roasters from './components/roasters/roasters';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -64,18 +63,16 @@ function App() {
         <Route exact path='/reviews/:coffeeId/new'>
           <AddReview />
         </Route>
-        {/* <Route path='/signup' exact={true}>
-          <SignUpForm /> */}
-        {/* </Route> */}
-        {/* <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route> */}
-        <ProtectedRoute path='/users' exact={true} >
+        <Route exact path='/roasters'>
+          <Roasters />
+          <Footer />
+        </Route>
+        {/* <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <Route path='/' exact={true} >
           <HomePage />
           <Footer />

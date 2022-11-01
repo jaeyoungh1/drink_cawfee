@@ -83,10 +83,6 @@ export default function CoffeeReviews({ coffeeId }) {
             }
         })
     }
-    if (!currentUser) {
-        return <Redirect to='/' />
-    }
-
 
     return (
         <div className='coffee-all-reviews-container'>

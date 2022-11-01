@@ -33,7 +33,7 @@ export default function UserReviews() {
     }
 
 
-    
+
     function dateFormatter(date) {
         if (date) {
             date = date.toString()
@@ -41,7 +41,6 @@ export default function UserReviews() {
         }
     }
 
-    let allReview
 
     // GRABBING FROM EDIT REVIEW --------------------------------------
 
@@ -131,17 +130,9 @@ export default function UserReviews() {
 
     }
 
-        // END FROM EDIT REVIEW --------------------------------------
+    // END FROM EDIT REVIEW --------------------------------------
 
-    if (reviews) {
-        if (Object.values(reviews).length < 1) {
-            return (
-                <div className='empty-page'>
-                    You do not currently have any reviews.
-                </div>
-            )
-        }
-    }
+
     const handleRating = num => {
         setRating(num)
     }
@@ -150,67 +141,80 @@ export default function UserReviews() {
         return <Redirect to='/' />
     }
 
+    let allReview
     if (reviews) {
-        let reviewArr = Object.values(reviews)
-        allReview = reviewArr.map(obj => {
-            let coffee = obj.Coffee
-            let brand
-            let id
-            if (coffee) {
-                brand = coffee.Brand
-                id = coffee.id
-            }
-            if (coffee) {
+        console.log(Object.values(reviews).length)
+        if (Object.values(reviews).length < 1) {
+            allReview = (
+                <div className='empty-page'>
+                    You do not currently have any reviews.
+                </div>
 
-                return (
-                    <div className='user-reviews-wrapper'>
-                        <div className='user-single-coffee-review-container' key={obj.id}>
-                            <div className='user-review-coffee-info-single-container'>
-                                <NavLink className='user-review-coffee-info-single-container' to={`/cawfee/${id}`}>
-                                    <div className='user-review-coffee-image'>
-                                        <img className='user-review-coffee-image' alt='coffee image' src={coffee.img_url} />
+       ) } else {
+
+
+            let reviewArr = Object.values(reviews)
+            allReview = reviewArr.map(obj => {
+                let coffee = obj.Coffee
+                let brand
+                let id
+                if (coffee) {
+                    brand = coffee.Brand
+                    id = coffee.id
+                }
+                if (coffee) {
+
+                    return (
+                        <div className='user-reviews-wrapper'>
+                            <div className='user-single-coffee-review-container' key={obj.id}>
+                                <div className='user-review-coffee-info-single-container'>
+                                    <NavLink className='user-review-coffee-info-single-container' to={`/cawfee/${id}`}>
+                                        <div className='user-review-coffee-image'>
+                                            <img className='user-review-coffee-image' alt='coffee image' src={coffee.img_url} />
+                                        </div>
+                                        <div className="user-review-coffee-info-name">
+                                            {coffee.name}
+                                        </div>
+                                        <div className="user-review-brand-info-name">
+                                            {brand.name.toUpperCase()}
+                                        </div>
+                                    </NavLink>
+                                </div>
+                                <div className='coffee-review-details-wrapper'>
+                                    <div className='coffee-review-stars'>
+                                        <ReviewStars rating={obj.rating} />
+                                        <span className='coffee-review-details'>{dateFormatter(obj.updated_at)}</span>
+                                        {obj.created_at.slice(0, 19) !== obj.updated_at.slice(0, 19) && <span className='coffee-review-details'>(Edited)</span>}
                                     </div>
-                                    <div className="user-review-coffee-info-name">
-                                        {coffee.name}
+                                    <div className='coffee-review-details'>
+                                        {obj.review_body}
                                     </div>
-                                    <div className="user-review-brand-info-name">
-                                        {brand.name.toUpperCase()}
+                                    <div></div>
+                                    <div className='user-review-edit-delete'>
+                                        {/* <EditReview reviewId={editReviewId}/> */}
+                                        <div onClick={() => {
+                                            setSeeEditModal(!seeEditModal)
+                                            setEditReviewId(obj.id)
+                                        }} className='review-edit-delete' >
+                                            Edit
+                                        </div>
+                                        <div onClick={() => deleteReview(obj.id)} className='review-edit-delete' >
+                                            Delete
+                                        </div>
                                     </div>
-                                </NavLink>
+                                </div>
                             </div>
-                            <div className='coffee-review-details-wrapper'>
-                                <div className='coffee-review-stars'>
-                                    <ReviewStars rating={obj.rating} />
-                                    <span className='coffee-review-details'>{dateFormatter(obj.updated_at)}</span>
-                                    {obj.created_at.slice(0, 19) !== obj.updated_at.slice(0, 19) && <span className='coffee-review-details'>(Edited)</span>}
-                                </div>
-                                <div className='coffee-review-details'>
-                                    {obj.review_body}
-                                </div>
-                                <div></div>
-                                <div className='user-review-edit-delete'>
-                                    {/* <EditReview reviewId={editReviewId}/> */}
-                                    <div onClick={() => {
-                                        setSeeEditModal(!seeEditModal)
-                                        setEditReviewId(obj.id)
-                                    }} className='review-edit-delete' >
-                                        Edit
-                                    </div>
-                                    <div onClick={() => deleteReview(obj.id)} className='review-edit-delete' >
-                                        Delete
-                                    </div>
-                                </div>
-                            </div>
+                            <div className='user-review-line-break'></div>
                         </div>
-                        <div className='user-review-line-break'></div>
-                    </div>
-                )
-            }
-        })
+                    )
+                }
+
+            })
+        }
     }
 
-    
-    
+
+
     return (
         <div className='coffee-user-reviews-container'>
             <div className='coffee-all-user-review-container'>
@@ -242,7 +246,7 @@ export default function UserReviews() {
 
                             <div className='new-review-wrapper'>
                                 {/* <label className='review-input-label' htmlFor='name'>Rating</label> */}
-{/* TESTING ========== */}
+                                {/* TESTING ========== */}
                                 <div className='dynamic-star-rating-wrapper '>
                                     {[1, 2, 3, 4, 5].map((star, i) => {
                                         i++;

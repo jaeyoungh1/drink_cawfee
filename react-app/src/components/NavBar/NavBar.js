@@ -47,15 +47,20 @@ const NavBar = () => {
         </div>
         <div>
           <NavLink className='navbar-link' style={{ textDecoration: 'none', color: 'black' }}
-            to='/'>Roasters</NavLink></div>
-        <div
-          onMouseEnter={() => setVisible(true)}
-          onMouseLeave={() => setVisible(false)}>
-          <NavLink className='navbar-link' style={{ textDecoration: 'none', color: 'black' }}
-            to='/'>Learn</NavLink></div>
+            to='/roasters'>Roasters</NavLink></div>
+        <div>
+          {/* <NavLink className='navbar-link' style={{ textDecoration: 'none', color: 'black' }}
+            to='/'>Learn</NavLink> */}
+          <a className='navbar-link' style={{ textDecoration: 'none', color: 'black' }}
+            href='https://github.com/jaeyoungh1/drink_cawfee/wiki'>Learn</a>
+            </div>
 
         <div className='navbar-right'>
-          <button className='navbar-trynow'>TRY NOW</button>
+            <NavLink className='navbar-trynow-link' to='/cawfee'>
+          <button className='navbar-trynow'>
+              TRY NOW
+          </button>
+            </NavLink>
           {sessionLinks}
         </div>
       </div>

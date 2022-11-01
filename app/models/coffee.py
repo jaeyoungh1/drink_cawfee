@@ -33,9 +33,12 @@ class Coffee(db.Model):
     description = db.Column(db.String(5000), nullable=False)
     img_url = db.Column(db.String(500))
 
-    curator = db.relationship('User', back_populates='coffee')
-    brand = db.relationship('Brand', back_populates='coffee')
-    review = db.relationship('Review', back_populates='coffee')
+    curator = db.relationship(
+        'User', back_populates='coffee')
+    brand = db.relationship(
+        'Brand', back_populates='coffee')
+    review = db.relationship(
+        'Review', back_populates='coffee', cascade="all, delete-orphan")
 
     days = db.relationship(
         'Day',

@@ -14,10 +14,10 @@ nav {
     padding-top: 30px;
     margin: auto;
     width: 100%;
-    max-width: 1248px;
+    /* max-width: 1248px; */
     align-items: center;
     z-index: 3;
-    padding: 12px 22px;
+    padding: 12px 48px;
     pointer-events: none;
     background: white;
     
@@ -67,8 +67,12 @@ nav {
     border-radius: 4px;
     pointer-events: auto;
 }
+.navbar-trynow-link {
+    color: black;
+}
 
-.navbar-right>button:hover {
+
+.navbar-trynow:hover {
     transition-duration: 200ms;
     cursor: pointer;
     color: rgb(195, 56, 10);
@@ -82,7 +86,7 @@ nav {
 }
 
 .navbar-dropdown {
-    background: rgba(255, 255, 255, 0.737);
+    background-color: rgba(255, 255, 255, 0.493);
     width: 102%;
     margin-left:-10px;
 }
