@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session'
 import coffee from './coffee'
 import review from './review'
+import brand from './brand'
 
 const rootReducer = combineReducers({
   session,
   coffee,
-  review
+  review,
+  brand
 });
 
 

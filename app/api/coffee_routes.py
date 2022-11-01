@@ -18,24 +18,52 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages[field] = error
     return errorMessages
 
+
+# def normalize_query_param(val):
+#     return val if len(val) > 1 else val[0]
+def normalize_query(params):
+    init_params = params.to_dict(flat=False)
+    return {key: val for key, val in init_params.items()}
+
+
 # GET all coffees
-
-
 @coffee_routes.route('/')
 def get_all_coffee():
-
     # search and filter>>>>>>
-    origin = request.args.get('origin')
-    roast = request.args.get('roast')
-    print(">>>>>>>>>>>>>ORIGIN", origin)
-    print(">>>>>>>>>>>>>ROAST", roast)
-    # end search and filter<<<<<<<<<<<
-    coffees = Coffee.query.all()
-    coffee_list = [coffee.to_dict() for coffee in coffees]
-    for coffee in coffee_list:
-        brand = Brand.query.get(coffee['brand_id']).to_dict()
-        coffee['Brand'] = brand
-    return {'Coffees': coffee_list}
+    search_params = normalize_query(request.args)
+    query = Coffee.query
+    for param in search_params:
+        # print(">>>>>>>>>> PARAM", param, search_params[param][0])
+        if param == 'origin' and search_params[param] != ["singleOrigin"] and search_params[param] != ['Various (blend)']:
+            query = query.filter(Coffee.origin.in_(search_params[param]))
+        elif search_params[param] == ["singleOrigin"]:
+            query = query.filter(Coffee.origin != 'Various (Blend)')
+        elif search_params[param][0] == 'Various (blend)':
+            query = query.filter(Coffee.origin == 'Various (Blend)')
+        if param == 'roast':
+            query = query.filter(Coffee.roast.in_(search_params[param]))
+        if param == 'note':
+            query = query.filter(Coffee.notes.any(Note.note.in_(search_params[param])))
+        if param == 'roaster':
+            query = query.join(Brand).filter(Brand.name.in_(search_params[param]))
+    res = query.all()
+
+    if search_params:
+        # print(">>>>>>>>>>  SEARCH AND FILTER ACTIVATED!<3")
+        coffee_list = [coffee.to_dict() for coffee in res]
+        for coffee in coffee_list:
+            brand = Brand.query.get(coffee['brand_id']).to_dict()
+            coffee['Brand'] = brand
+        return {'Coffees': coffee_list}
+    # end search and filter<<<<<<<<<<<''
+
+    else:
+        coffees = Coffee.query.all()
+        coffee_list = [coffee.to_dict() for coffee in coffees]
+        for coffee in coffee_list:
+            brand = Brand.query.get(coffee['brand_id']).to_dict()
+            coffee['Brand'] = brand
+        return {'Coffees': coffee_list}
 
 
 # GET one coffee
@@ -142,7 +170,7 @@ def add_one_coffee():
             curator_id=user_id,
             name=form.data['name'],
             origin=form.data['origin'],
-            roast=form.data['roast'],
+            roast=form.data['roast'].lower(),
             # process=form.data['wash'],
             inventory=form.data['inventory'],
             brand_id=brand['id'],
@@ -227,7 +255,7 @@ def edit_one_coffee(coffee_id):
             current_coffee.curator_id = user_id
             current_coffee.name = form.data['name']
             current_coffee.origin = form.data['origin']
-            current_coffee.roast = form.data['roast']
+            current_coffee.roast = form.data['roast'].lower()
             current_coffee.inventory = form.data['inventory']
             current_coffee.brand_id = brand['id']
             current_coffee.price = form.data['price']

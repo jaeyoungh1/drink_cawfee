@@ -141,11 +141,11 @@ function LoginFormModal() {
                         {showSignup && <div className='login-signup-body'>
                             <form onSubmit={onSignUp}>
                                 {hasSubmitSign && showModal && errors && (
-                                    <ul id='sign-up-errors-div-container'>
+                                    <div className='modal-errors-box' id='sign-up-box'>
                                         {errors.map((error, ind) => (
-                                            <li id='sign-up-errors' key={ind}>{error}</li>
+                                            <div className='modal-errors' key={ind}>{error}</div>
                                         ))}
-                                    </ul>
+                                    </div>
                                 )}
                                 <div className='login-input-wrapper'>
                                     <label className='login-input-label' htmlFor='login-input'>
