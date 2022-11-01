@@ -62,7 +62,7 @@ export default function NewCoffee() {
 
         const errors = [];
 
-        if (name.length && name.length < 2) {
+        if (name.length && name.trim().length < 2) {
             errors.push("Name must be at least 2 characters");
         }
         if (name.length && name.length > 30) {
@@ -77,7 +77,7 @@ export default function NewCoffee() {
             errors.push("Price must be at least $2/bag");
         }
 
-        if (description.length && description.length < 5) {
+        if (description.length && description.trim().length < 5) {
             errors.push("Description must be at least 5 characters");
         }
 
