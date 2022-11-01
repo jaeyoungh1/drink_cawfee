@@ -134,6 +134,9 @@
     color: rgb(194, 194, 194);
     margin-top: 10px;
 }
+.filter-clear:hover {
+    cursor:pointer;
+}
 
 .filter-line-break {
     height: 1px;
