@@ -16,23 +16,23 @@ def seed_brands():
                    state="CA",
                    brand_img="https://images.ctfassets.net/o88ugk6hewlf/tdHjA0afDwuGcauGU2w0S/6808aa45b9d793ffad79b126b2d4e140/BRC__2x.png?q=75&fm=webp&w=1000"
                    )
-    brand3 = Brand(name="Cat & Cloud",
-                   brand_story="Cat & Cloud is a values-based business with the mission of leaving people feeling happier than they were before. They believe in a standard of business that puts people and values above all else, and because of that, they do a few things differently.",
-                   city="Santa Cruz",
+    brand3 = Brand(name="Highwire",
+                   brand_story="Walking a high-wire takes balance, and that’s what Rich Avella, Eric Hashimoto, and Robert Myers’s brainchild is all about. Founded in 2011, Oakland’s Highwire is not only intensely focused on detail and experimenting with roast levels, it’s also incredibly committed to education and fostering the next generation of roasters.",
+                   city="Oakland",
                    state="CA",
-                   brand_img="https://830ca76cf8c4a2f78647-f915a34c6ea40d34f065fa108e75f9dc.ssl.cf5.rackcdn.com/CAT-full-color.png"
+                   brand_img="https://images.ctfassets.net/o88ugk6hewlf/46TRCegY40k02kIUweE2GI/56c64ba356a14b0eccbbf83504409278/HIG__2x.png?q=75&fm=webp&w=1000"
                    )
     brand4 = Brand(name="Equator",
                    brand_story="In 1995, when partners Brooke McDonnell, Maureen McHugh, and Helen Russell began roasting coffee from a garage, they set out to build a high-impact company focused on quality, sustainability, and social responsibility.",
                    city="San Rafael",
                    state="CA",
-                   brand_img="https://storage.googleapis.com/mistobox/roaster_logos/EQT-logo-small.png"
+                   brand_img="https://images.ctfassets.net/o88ugk6hewlf/17Iy2s9ZyyR0PBjMGNNJB6/6a51a47a604826c7c2f29121dbd4aa3f/EQU_2x-white.png?q=75&fm=webp&w=1000"
                    )
     brand5 = Brand(name="Verve",
                    brand_story="Named for an enthusiasm for making art, or in this case coffee, Verve was founded in 2007. Don’t be fooled by the laidback vibes of Colby Barr and Ryan O'Donovan’s West Coast base, this crew is serious about coffee.",
                    city="Santa Cruz",
                    state="CA",
-                   brand_img="https://www.mistobox.com/skin/frontend/default/sns_korion/images/mbox/roaster_logos/Verve.jpg"
+                   brand_img="https://images.ctfassets.net/o88ugk6hewlf/1e77L3ALHYAiiYcGkA62su/27859f5ebd3d4caa886c10fd3b0b0a36/VER__2x.png?q=75&fm=webp&w=1000"
                    )
   
 

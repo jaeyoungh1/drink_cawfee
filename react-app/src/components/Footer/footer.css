@@ -1,5 +1,6 @@
 .footer-wrapper {
     height: 300px;
+    width: 100%;
     background: black;
     margin-top: 150px;
     display: flex;
@@ -7,14 +8,36 @@
     align-items: center;
 }
 
-.footer-wrapper > div {
+.footer-icons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.footer-wrapper>div {
     color: whitesmoke;
     font-family: 'Open Sans';
     font-weight: 400;
 }
 
+.footer-text>p {
+    color: rgb(184, 76, 41);
+    font-family: 'Open Sans';
+    font-weight: 500;
+    text-align: center;
+}
+
 .anchor {
-    color: whitesmoke;
+    color: white;
+    font-family: 'Open Sans';
+    font-weight: 400;
+}
+.anchor:hover {
+    transition-duration: 300ms;
+    color: rgb(184, 76, 41);
     font-family: 'Open Sans';
     font-weight: 400;
 }

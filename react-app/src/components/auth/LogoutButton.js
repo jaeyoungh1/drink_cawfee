@@ -62,14 +62,14 @@ const LogoutButton = () => {
                 View My Coffee Curations
               </NavLink>
             </div>}
-            {!user.curator && <div className='profile-modal-interact'>
+            {/* {!user.curator && <div className='profile-modal-interact'>
               <NavLink className='profile-modal-interact' to='/cawfee/new'>
                 Become a Curator
               </NavLink>
-            </div>}
-            <div className='profile-modal-interact'>
+            </div>} */}
+            {/* <div className='profile-modal-interact'>
               Account Details
-            </div>
+            </div> */}
             <div className='profile-modal-interact'>
               <NavLink className='profile-modal-interact' to='/my-reviews'>
               My Reviews

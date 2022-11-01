@@ -6,6 +6,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    margin-left: 20px;
 }
 
 .get-all-coffee-header {
@@ -56,6 +57,7 @@
 .single-coffee-image-wrapper-img {
     transition: 300ms ease-in-out;;
     width: 92%;
+    object-fit: cover;
     /* height: 70%; */
 }
 .single-coffee-image-wrapper-img:hover {

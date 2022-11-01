@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { deleteOneCoffee, loadUserCoffee } from "../../store/coffee";
-import arrow from '../../icons/arrow.svg'
+import brokenImg from '../../icons/broken-img.png'
 import './currentCoffee.css'
 
 export default function CurrentCoffee() {
@@ -29,7 +29,7 @@ export default function CurrentCoffee() {
                     <div className='user-coffee-single-container'>
                         <NavLink to={`/cawfee/${obj.id}`}>
                             <div className="user-coffee-image-wrapper">
-                                <img alt='coffee bag' className="single-coffee-image-wrapper-img" src={obj.img_url} />
+                                <img alt='coffee bag' className="single-coffee-image-wrapper-img" src={obj.img_url} onError={(e) => e.target.src =brokenImg} />
                             </div>
                         </NavLink>
 

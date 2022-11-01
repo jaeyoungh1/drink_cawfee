@@ -1,0 +1,104 @@
+/* https: //images.ctfassets.net/o88ugk6hewlf/3GvtSLPA1ux3MHAGbVJnmK/95eca3edd33c1d27a11ea772fe600825/1440x770__45_.png?q=75 */
+
+.roaster-page-wrapper {
+    margin-top: 100px;
+    width: 100%;
+}
+
+.get-all-roaster-header {
+    width: 100%;
+    background-image: url(https://images.ctfassets.net/o88ugk6hewlf/uvxmiGvizkTYPN5tiYlpF/2d6e37876fa75fdeb87071cd86d75aa1/1440x770__43_.png?q=75);
+    object-fit: cover;
+    height: 280px;
+    padding: 0 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.no-roaster-container {
+    width: 100%;
+    text-align: center;
+}
+
+.roaster-roasters {
+    margin-top: 40px;
+    padding: 40px 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.all-roaster-single-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 20px;
+    max-width: 100%;
+    margin-bottom:36px;
+    background: white;
+    border: 1px solid rgb(212, 212, 212);
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.single-roaster-image-wrapper {
+    background: #222222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 200px;
+}
+
+.single-roaster-image-wrapper-img {
+    width: 72%;
+}
+
+.all-roaster-details {
+    margin: 20px 20px;
+}
+
+.all-roaster-details-roaster{
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.all-roaster-details-location {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(133, 133, 133);
+}
+
+.all-roaster-details-story {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgb(0, 0, 0);
+    margin: 20px 0;
+}
+
+.get-all-roaster-header-link {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    align-items: center;
+    /* margin-left: 40px; */
+}
+
+.get-all-roaster-header-link-nav {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.get-all-roaster-all-roaster {
+    font-size: 48px;
+    margin: 20px 0px;
+}
+
+.get-all-roaster-subheader {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+}

@@ -1,9 +1,6 @@
-/* 
-.homepage-container {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-} */
+.homepage-splash {
+    margin-bottom: 1000px;
+}
 
 .homepage-splash>img {
     width: 100%;

@@ -13,7 +13,7 @@ export default function NewCoffee() {
 
     const [errors, setErrors] = useState([]);
 
-    const [brand, setBrand] = useState('Barefoot Coffee Roasters');
+    const [brand, setBrand] = useState('Mother Tongue');
     const [name, setName] = useState('');
     const [origin, setOrigin] = useState('Brazil');
     const [roast, setRoast] = useState('light');
@@ -125,8 +125,6 @@ export default function NewCoffee() {
     if (!user || !user.curator) {
         return <Redirect to='/' />;
     }
-
-    console.log("NOTES", notes)
 
     return (
         <div className='new-coffee-page-wrapper'>
@@ -269,6 +267,8 @@ export default function NewCoffee() {
                         <input
                             name='price'
                             type='number'
+                            inputMode="numeric"
+                            autoComplete="off"
                             className='new-coffee-input'
                             min='2'
                             value={price}
@@ -281,6 +281,7 @@ export default function NewCoffee() {
                             name='inventory'
                             type='number'
                             className='new-coffee-input'
+                            autoComplete="off"
                             min='12'
                             value={inventory}
                             onChange={e => setInventory(e.target.value)}
@@ -290,6 +291,7 @@ export default function NewCoffee() {
                         <label className='coffee-input-label' htmlFor='description'>Coffee Description</label>
                         <textarea
                             name='description'
+                            autoComplete="off"
                             value={description}
                             onChange={e => setDescription(e.target.value)}
                         />
@@ -299,6 +301,7 @@ export default function NewCoffee() {
                         <input
                             name='img_url'
                             type='text'
+                            autoComplete="off"
                             className='new-coffee-input'
                             value={img_url}
                             onChange={e => setImg_Url(e.target.value)}

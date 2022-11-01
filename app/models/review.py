@@ -2,6 +2,7 @@ from datetime import datetime
 
 from .db import db
 
+
 class Review(db.Model):
     __tablename__ = "reviews"
 
@@ -14,9 +15,9 @@ class Review(db.Model):
     updated_at = db.Column(
         db.String, default=datetime.now, onupdate=datetime.now)
 
-
     user = db.relationship('User', back_populates='review')
-    coffee = db.relationship('Coffee', back_populates='review')
+    coffee = db.relationship(
+        'Coffee', back_populates='review')
 
     def to_dict(self):
         return {
