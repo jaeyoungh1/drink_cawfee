@@ -104,15 +104,15 @@ export const searchAllCoffee = (currUrl, obj) => async dispatch => {
         // building up search string <<<
         // console.log("IN STORE search", currUrl)
         let url = currUrl ? currUrl : '?'
-        console.log("IN STORE OBJ", obj)
+        // console.log("IN STORE OBJ", obj)
         let filterRoast = obj.filter(obj => obj.roast).map(obj => obj.roast)
         let filterOrigin = obj.filter(obj => obj.origin).map(obj => obj.origin)
         let filterNote = obj.filter(obj => obj.note).map(obj => obj.note)
         let filterBrand = obj.filter(obj => obj.brand).map(obj => obj.brand)
-        console.log("IN STORE ROAST", filterRoast)
-        console.log("IN STORE ORIGIN", filterOrigin)
-        console.log("IN STORE Note", filterNote)
-        console.log("IN STORE BRAND", filterBrand)
+        // console.log("IN STORE ROAST", filterRoast)
+        // console.log("IN STORE ORIGIN", filterOrigin)
+        // console.log("IN STORE Note", filterNote)
+        // console.log("IN STORE BRAND", filterBrand)
         filterRoast.forEach(obj => {
             url+= `&roast=${obj}`})
         filterOrigin.forEach(obj => {
@@ -127,10 +127,10 @@ export const searchAllCoffee = (currUrl, obj) => async dispatch => {
         })
 
 
-        console.log(">>>> CURRENT URL", `/api/coffee/${url}`)
+        // console.log(">>>> CURRENT URL", `/api/coffee/${url}`)
         const response = await fetch(`/api/coffee/${url}`)
         if (response.ok) {
-            console.log("I'm inside of the search all coffee response")
+            // console.log("I'm inside of the search all coffee response")
             const data = await response.json()
             dispatch(_loadAllCoffee(data))
             return data
@@ -139,7 +139,7 @@ export const searchAllCoffee = (currUrl, obj) => async dispatch => {
 
     else {
         const response = await fetch('/api/coffee/');
-        console.log("hitting res", response)
+        // console.log("hitting res", response)
         if (response.ok) {
             const data = await response.json();
             console.log("hitting all list", data)

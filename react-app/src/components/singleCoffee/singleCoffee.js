@@ -179,7 +179,7 @@ return (
                 <div className='single-coffee-more-details-title'>About the Roaster</div>
                 <div>
                     <div className='single-coffee-brand-details-title'>Location</div>
-                    <div className='single-coffee-details-description'>{brand && brand.city}, {brand && brand.city}</div>
+                    <div className='single-coffee-details-description'>{brand && brand.city}, {brand && brand.state}</div>
                 </div>
                 <div>
                     <div className='single-coffee-brand-details-title'>

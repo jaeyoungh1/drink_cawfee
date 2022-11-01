@@ -2,7 +2,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import LoginFormModal from '../auth';
 import './NavBar.css'
 import LogoutButton from '../auth/LogoutButton';
@@ -10,11 +10,6 @@ import LogoutButton from '../auth/LogoutButton';
 const NavBar = () => {
   const [visibility, setVisible] = useState(false)
   const [coffeeVisible, setCoffeeVisible] = useState(false)
-  const [showModal, setShowModal] = useState(false);
-
-  const [errors, setErrors] = useState([]);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
   const user = useSelector(state => state.session.user);
 
@@ -36,12 +31,8 @@ const NavBar = () => {
   return (
     <nav>
       <div className='homepage-navbar'>
-        {/* <div>
-        <img src={menu}/>
-      </div> */}
         <div className='navbar-logo' >
           <NavLink style={{ textDecoration: 'none', color: 'black' }} to='/'>Cawfee</NavLink>
-          {/* Cawfee <img height='100' width='100' src={cawfeeCrow}/> */}
         </div>
 
         <div
@@ -65,7 +56,6 @@ const NavBar = () => {
 
         <div className='navbar-right'>
           <button className='navbar-trynow'>TRY NOW</button>
-          {/* <LoginFormModal /> */}
           {sessionLinks}
         </div>
       </div>

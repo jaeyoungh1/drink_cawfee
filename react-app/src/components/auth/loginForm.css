@@ -4,10 +4,12 @@
     font-size: 18px;
     width: 100%;
 }
+
 .header-top {
     width: 100%;
     text-align: center;
 }
+
 .header-top:hover {
     cursor: pointer;
 }
@@ -19,6 +21,7 @@
     position: absolute;
     left: 0px;
 }
+
 .signup-header-line {
     height: 3px;
     background-color: black;
@@ -26,6 +29,7 @@
     position: absolute;
     left: 50%;
 }
+
 #header-gray {
     background-color: #ccc;
 }
@@ -154,6 +158,7 @@ input:focus {
     display: flex;
     justify-content: flex-end;
 }
+
 #x {
     margin-top: -20px;
     margin-right: -10px;
@@ -164,7 +169,11 @@ input:focus {
     margin-top: 40px;
     margin-bottom: -40px;
     font-family: 'Open Sans', sans-serif;
-        font-size: 12px;
-        font-weight: 400;
-        color: red;
+    font-size: 12px;
+    font-weight: 400;
+    color: red;
+}
+
+#sign-up-box {
+    margin-bottom: 70px;
 }

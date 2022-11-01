@@ -33,13 +33,12 @@ def get_all_coffee():
     search_params = normalize_query(request.args)
     query = Coffee.query
     for param in search_params:
-        # print(">>>>>>>>>> PARAM", param, search_params[param])
-        if param == 'origin' and search_params[param] != ["singleOrigin"]:
-            # print("        >>>>>>>>>>>>> SEARCHPARAMS", search_params[param])
+        # print(">>>>>>>>>> PARAM", param, search_params[param][0])
+        if param == 'origin' and search_params[param] != ["singleOrigin"] and search_params[param] != ['Various (blend)']:
             query = query.filter(Coffee.origin.in_(search_params[param]))
         elif search_params[param] == ["singleOrigin"]:
             query = query.filter(Coffee.origin != 'Various (Blend)')
-        elif search_params[param] == ['Various (blend)']:
+        elif search_params[param][0] == 'Various (blend)':
             query = query.filter(Coffee.origin == 'Various (Blend)')
         if param == 'roast':
             query = query.filter(Coffee.roast.in_(search_params[param]))
@@ -47,7 +46,6 @@ def get_all_coffee():
             query = query.filter(Coffee.notes.any(Note.note.in_(search_params[param])))
         if param == 'roaster':
             query = query.join(Brand).filter(Brand.name.in_(search_params[param]))
-            # print("        >>>>>>>>>>>>> ROASTER QUERY", query)
     res = query.all()
 
     if search_params:

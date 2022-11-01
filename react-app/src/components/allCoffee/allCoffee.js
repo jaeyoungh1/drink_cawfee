@@ -13,6 +13,7 @@ export default function AllCoffee() {
     let search = useLocation().search
     let roast = new URLSearchParams(search).get('roast')
     let origin = new URLSearchParams(search).get('origin')
+
     const [filter, setFilter] = useState([])
 
     const coffees = useSelector(state => state.coffee.allCoffee)
@@ -35,16 +36,6 @@ export default function AllCoffee() {
     function getFilterArr(obj) {
         setFilter(obj)
     }
-    // let filterRoast;
-    // let filter_origin;
-    // let filter_note;
-    // let filter_roaster;
-    // if (filter.length > 0) {
-    //     let roasts = filter.map(obj => obj.roast)
-    //     filterRoast = roasts
-    // }
-    console.log("INALLCOFFEE", filter)
-    // console.log("INALLCOFFEEFILTERROASTS", filterRoast)
 
     let title
     let subtitle
