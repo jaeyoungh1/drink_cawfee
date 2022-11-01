@@ -54,8 +54,12 @@
 }
 
 .single-coffee-image-wrapper-img {
+    transition: 300ms ease-in-out;;
     width: 92%;
     /* height: 70%; */
+}
+.single-coffee-image-wrapper-img:hover {
+    margin-bottom: 20px;
 }
 
 .all-coffee-line-break {
