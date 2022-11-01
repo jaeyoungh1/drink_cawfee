@@ -31,6 +31,10 @@ export default function Filter({ getFilterArr }) {
         allBrands = Array.from(brand_set)
     }
 
+    useEffect(() => {
+        clearFilter()
+    }, [search])
+
 
     useEffect(() => {
         dispatch(loadAllBrand())
