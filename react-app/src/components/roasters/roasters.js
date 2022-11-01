@@ -22,7 +22,7 @@ export default function Roasters() {
         if (brandArr.length < 1) {
             allBrand = (
                 <div className='no-brand-container'>
-                    Loading...
+                    This page is under construction.
                 </div>
             )
         } else {

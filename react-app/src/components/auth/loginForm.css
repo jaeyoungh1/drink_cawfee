@@ -196,6 +196,9 @@ input:focus {
     margin-top: -20px;
     margin-right: -10px;
 }
+#close-x:hover {
+    cursor: pointer;
+}
 
 .modal-errors {
     text-align: center;
