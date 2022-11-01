@@ -18,7 +18,7 @@ export default function Roasters() {
     let allBrand
     if (brands) {
         let brandArr = Object.values(brands)
-        console.log("BRAND ARR", brandArr)
+        // console.log("BRAND ARR", brandArr)
         if (brandArr.length < 1) {
             allBrand = (
                 <div className='no-brand-container'>

@@ -173,7 +173,7 @@ const reviewReducer = (state = initialState, action) => {
             delete newState.allReview[action.id];
             delete newState.singleReview[action.id];
             newState = { ...newState };
-            console.log("NEWSTATE AFTER REMOVE_review ACTION:", newState);
+            // console.log("NEWSTATE AFTER REMOVE_review ACTION:", newState);
             return newState;
         // case CLEAR_DATA:
         //     return initialState;

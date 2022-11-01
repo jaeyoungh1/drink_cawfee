@@ -53,7 +53,7 @@ export default function AddReview() {
         setErrors(_errors);
     }, [rating, review_body]);
 
-    console.log("ERRORS", errors)
+    // console.log("ERRORS", errors)
 
     const submitReview = async (e) => {
         e.preventDefault();

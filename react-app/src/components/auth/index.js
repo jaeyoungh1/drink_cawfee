@@ -28,7 +28,7 @@ function LoginFormModal() {
         setHasSubmitLog(true)
         const data = await dispatch(login(email, password));
         if (data) {
-            console.log(data)
+            // console.log(data)
             setErrors(['The email address or password you entered is incorrect.']);
         }
     };
