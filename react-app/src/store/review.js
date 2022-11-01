@@ -20,7 +20,6 @@ export const addOneReview = (coffeeId, review) => async dispatch => {
         },
         body: JSON.stringify(review)
     });
-    // console.log("RESPONSE AFTER CREATE BIZ THUNK", response)
     if (response.ok) {
         const data = await response.json()
         await dispatch(_addOneReview(data));
@@ -44,10 +43,8 @@ const _loadAllReview = payload => ({
 export const loadAllReview = (id) => async dispatch => {
    
         const response = await fetch(`/api/coffee/${id}/reviews`);
-        // console.log("hitting res", response)
         if (response.ok) {
             const data = await response.json();
-            // console.log("hitting list", data)
             dispatch(_loadAllReview(data));
             return data
     }
@@ -143,37 +140,31 @@ const reviewReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_ALL_REVIEW:
             newState = { ...state, allReview: { ...state.allReview }, singleReview: { ...state.singleReview } };
-            // console.log("LOAD_ALL ACTION.PAYLOAD IS:", action.payload);
             const newAllReview = {};
+            console.log(action.payload)
             action.payload.Reviews.forEach(review => newAllReview[review.id] = review);
             newState.allReview = newAllReview;
-            // console.log("NEWSTATE AFTER LOAD_ALL ACTION:", newState);
             return newState;
         case GET_ONE_REVIEW:
             newState = { ...state, allReview: { ...state.allReview }, singleReview: { ...state.singleReview } };
-            // console.log("LOAD_ONE ACTION.PAYLOAD IS:", action.payload);
             const newSingleReview = { ...action.payload };
             newState.singleReview = newSingleReview;
-            // console.log("NEWSTATE AFTER LOAD_ONE ACTION:", newState);
             return newState;
         case ADD_ONE_REVIEW:
             newState = { ...state, allReview: { ...state.allReview }, singleReview: { ...state.singleReview } };
             const newReview = { ...action.payload };
             newState.singleReview[action.payload.id] = newReview;
-            // console.log("NEWSTATE AFTER CREATE BIZ ACTION:", newState);
             return newState;
         case EDIT_ONE_REVIEW:
             newState = { ...state, allReview: { ...state.allReview }, singleReview: { ...state.singleReview } };
             const updatedReview = { ...action.payload };
             newState.allReview[action.payload.id] = updatedReview;
-            // console.log("NEWSTATE AFTER ADD_review ACTION:", newState);
             return newState;
         case DELETE_ONE_REVIEW:
             newState = { ...state, allReview: { ...state.allReview }, singleReview: { ...state.singleReview } };
             delete newState.allReview[action.id];
             delete newState.singleReview[action.id];
             newState = { ...newState };
-            // console.log("NEWSTATE AFTER REMOVE_review ACTION:", newState);
             return newState;
         // case CLEAR_DATA:
         //     return initialState;

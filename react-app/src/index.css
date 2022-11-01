@@ -30,6 +30,14 @@ NavLink, a {
 .invisible {
     visibility:hidden;
 }
+.ruhroh-page {
+    font-family: 'Open Sans', sans-serif;
+    color: rgb(169, 169, 169);
+}
+.ruhroh-page:hover {
+    transition-duration: 200ms;
+    color: rgb(218, 218, 218);
+}
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
