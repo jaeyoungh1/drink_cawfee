@@ -65,6 +65,9 @@ export default function NewCoffee() {
         if (name.length && name.length < 2) {
             errors.push("Name must be at least 2 characters");
         }
+        if (name.length && name.length > 30) {
+            errors.push("Name can not be more than 30 characters");
+        }
 
         if (inventory && inventory < 12) {
             errors.push("Inventory must have at least 12 bags");

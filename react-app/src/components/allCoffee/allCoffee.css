@@ -40,13 +40,13 @@
     border: 1px solid rgb(239, 239, 239);
     border-radius: 4px;
     max-width: 30%;
-    height: fit-content;
+    height: 480px;
     margin-bottom: 60px;
 }
 
 .single-coffee-image-wrapper {
     display: flex;
-    height: 360px;
+    height: 300px;
     overflow: hidden;
     align-items: center;
     justify-content: center;
@@ -54,8 +54,12 @@
 }
 
 .single-coffee-image-wrapper-img {
-    width: 72%;
+    transition: 300ms ease-in-out;;
+    width: 92%;
     /* height: 70%; */
+}
+.single-coffee-image-wrapper-img:hover {
+    margin-bottom: 20px;
 }
 
 .all-coffee-line-break {
@@ -134,8 +138,9 @@
     color: rgb(194, 194, 194);
     margin-top: 10px;
 }
+
 .filter-clear:hover {
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .filter-line-break {

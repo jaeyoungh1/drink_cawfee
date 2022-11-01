@@ -8,7 +8,7 @@
 
 .bottom-gradient {
     background: linear-gradient(rgba(34, 34, 34, 0) 58%, #222222 85%);
-    width: 43.95%;
+    width: 43.90%;
     top: 440px;
     z-index: 3;
     position: absolute;
@@ -46,8 +46,8 @@
 }
 
 .single-coffee-img {
-    height: 400px;
-    width: 400px;
+    height: 500px;
+    width: 500px;
     object-fit: cover;
 }
 
@@ -173,8 +173,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    width:100%;
 }
-
+.single-coffee-brand-details-image-wrapper>img {
+    background: #222222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+}
 .single-coffee-brand-details-body-wrapper {
     margin-top: 60px;
     margin-left: 50px;
