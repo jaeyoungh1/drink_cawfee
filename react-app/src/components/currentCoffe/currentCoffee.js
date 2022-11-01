@@ -29,7 +29,7 @@ export default function CurrentCoffee() {
                     <div className='user-coffee-single-container'>
                         <NavLink to={`/cawfee/${obj.id}`}>
                             <div className="user-coffee-image-wrapper">
-                                <img className="single-coffee-image-wrapper-img" src={"https://www.mistobox.com/media/catalog/product/cache/0/image/450x450/9df78eab33525d08d6e5fb8d27136e95/B/F/BFC-1040_3.jpg"} />
+                                <img alt='coffee bag' className="single-coffee-image-wrapper-img" src={obj.img_url} />
                             </div>
                         </NavLink>
 
