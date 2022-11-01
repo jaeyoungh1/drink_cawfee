@@ -68,7 +68,7 @@ function LoginFormModal() {
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <div id='close-modal'>
-                        <img id='x' alt='close' src={x} onClick={() => setShowModal(false)} />
+                        <img id='close-x' alt='close' src={x} onClick={() => setShowModal(false)} />
                     </div>
                     <div id="login-modal">
                         <div className='login-header'>
