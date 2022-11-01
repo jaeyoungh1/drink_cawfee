@@ -1,3 +1,35 @@
+.profile-button {
+    height: 44px;
+    width: 44px;
+    overflow: hidden;
+    position: relative;
+}
+.profile-button:hover {
+    cursor: pointer;
+}
+
+.swiper-no-swiping {
+    display: flex;
+    justify-content: center;
+    width: 88px;
+
+}
+.swiper-no-swiping > span {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;;
+}
+
+.swiper-no-swiping {
+    transform: translate3d(0px, 0px, 0px);
+    transition: transform 175ms ease-in-out
+}
+.swiper-no-swiping:hover {
+    transform: translate3d(-44px, 0px, 0px);
+}
+
 .login-header {
     display: flex;
     justify-content: center;
@@ -29,6 +61,7 @@
     position: absolute;
     left: 50%;
 }
+
 
 #header-gray {
     background-color: #ccc;
