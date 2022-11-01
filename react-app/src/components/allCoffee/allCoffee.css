@@ -23,6 +23,7 @@
     gap: 30px;
     flex-wrap: wrap;
     margin: 0px 20px;
+    margin-top: 80px;
     /* max-width: 1170px; */
     max-width: 1224px;
     /* ^^^^^ may need to change this */
@@ -114,9 +115,24 @@
 
 .filter-header {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.filter-header>div {
+    display: flex;
     justify-content: flex-start;
     align-items: center;
     margin-bottom: 15px;
+}
+
+.filter-clear {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: rgb(194, 194, 194);
+    margin-top: 10px;
 }
 
 .filter-line-break {
@@ -156,27 +172,8 @@
     color: rgb(184, 76, 41);
 }
 
-/* .filter-body > label {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 400;
-    padding-bottom: 20px;
-    text-align: left;
-    display: grid;
-    grid-template-columns: 15px 4fr;
-}
 
-[type='checkbox'] {
-    appearance: none;
-}
-input:checked + label {
-    color: rgb(184, 76, 41);
-    content: ''
-}
-
-*/
 .filter-body:hover {
     color: rgb(184, 76, 41);
-    cursor:pointer;
-}  
-
+    cursor: pointer;
+}

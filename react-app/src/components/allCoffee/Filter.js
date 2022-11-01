@@ -31,19 +31,6 @@ export default function Filter({ getFilterArr }) {
         allBrands = Array.from(brand_set)
     }
 
-    // let body = document.querySelectorAll('.filter-body')
-    // useEffect(() => {
-    // body.forEach(ele => ele.addEventListener('click', () => {
-    //     let color = ele.style.color
-    //     if (color !== '#b84c29') {
-    //         ele.style.color = '#b84c29'
-    //     }
-    //     else if (color === '#b84c29') {
-    //         ele.style.color = '#black'
-    //     }
-
-    // }))}, [body])
-
 
     useEffect(() => {
         dispatch(loadAllBrand())
@@ -53,7 +40,6 @@ export default function Filter({ getFilterArr }) {
         let obj = {}
         obj[category] = param
         let filter = [...filterArr]
-        // console.log("CATEGORY PARAMS", category, param)
 
         if (filterArr.filter(obj => obj[category] === param).length > 0) {
             let _filter = filter.filter(obj => (obj[category] !== param))
@@ -64,12 +50,15 @@ export default function Filter({ getFilterArr }) {
             setFilterArr(filter)
         }
     }
-    // let toggleClassName
+
+    function clearFilter() {
+        setFilterArr([])
+        setToggleClassName([])
+    }
     function toggleColor(param) {
         console.log(param)
         let toggleArr = [...toggleClassName]
         if (toggleArr.includes(param)) {
-            console.log("I'm being hit")
             let i = toggleArr.indexOf(param)
             toggleArr.splice(i, 1)
             setToggleClassName(toggleArr)
@@ -80,16 +69,17 @@ export default function Filter({ getFilterArr }) {
             return
         }
     }
-    console.log('TOGGLECLASSNAME', toggleClassName)
-
-    console.log("CURRENT FILTERARR", filterArr)
+    // console.log("CURRENT FILTERARR", filterArr)
     getFilterArr(filterArr)
 
     return (
         <div>
             <div className='filter-header'>
-                <img src={filter} height='44px' width='44px' alt='filter' onError={e => e.target.src = { brokenImg }} />
-                <h2>Filter</h2>
+                <div>
+                    <img src={filter} height='44px' width='44px' alt='filter' onError={e => e.target.src = { brokenImg }} />
+                    <h2>Filter</h2>
+                </div>
+                <div className='filter-clear' onClick={() => clearFilter()}>Clear</div>
             </div>
             <div className='filter-body-wrapper'>
                 <div className='filter-line-break'></div>
