@@ -4,17 +4,17 @@ from app.models import db, Brand
 # Adds a demo Brand, you can add other Brands here if you want
 def seed_brands():
 
-    brand1 = Brand(name="Barefoot Coffee Roasters",
-                   brand_story="Considered one of the pioneers of direct trade coffee sourcing over a decade ago, Barefoot believes in sustainable farm fresh beans, small batch roasting to order and wildly intense flavors. Serious coffee and happy people, cant beat that.",
-                   city="Santa Clara",
+    brand1 = Brand(name="Mother Tongue",
+                   brand_story="After roasting for coffee’s biggest names and winning the US Cup Tasters Championship, Jen Apodaca set out to launch Mother Tongue Coffee in 2019. With an equal emphasis on how coffee tastes and how it makes you feel, the Oakland, California-based roaster builds relationships based on mutual values of creating sustainable communities near and far, paying better-than-fair prices to producers and connecting with the Bay Area through its work with public radio and local food banks.",
+                   city="Oakland",
                    state="CA",
-                   brand_img="https://storage.googleapis.com/mistobox/roaster_logos/BFC-logo-small.png"
+                   brand_img="https://images.ctfassets.net/o88ugk6hewlf/RZ2lUQYS8kbxXrKQVrjtz/24d4eca886315001cb97ecbe3f7deb3c/MotherTongue_Update_WhiteVersion_2x.png?q=75&fm=webp&w=1000"
                    )
     brand2 = Brand(name="Bird Rock Coffee Roasters",
                    brand_story="Roast Magazine’s 2012 Micro Roaster of the Year, Bird Rock is truly farm-to-cup. Since 2006, this San Diego roaster not only sources from top-tier growers, but takes pride in fostering true collaboration, building long-term relationships, and showcasing its partners.",
                    city="San Diego",
                    state="CA",
-                   brand_img="https://storage.googleapis.com/mistobox/roaster_logos/BIRD-logo-small.png"
+                   brand_img="https://images.ctfassets.net/o88ugk6hewlf/tdHjA0afDwuGcauGU2w0S/6808aa45b9d793ffad79b126b2d4e140/BRC__2x.png?q=75&fm=webp&w=1000"
                    )
     brand3 = Brand(name="Cat & Cloud",
                    brand_story="Cat & Cloud is a values-based business with the mission of leaving people feeling happier than they were before. They believe in a standard of business that puts people and values above all else, and because of that, they do a few things differently.",

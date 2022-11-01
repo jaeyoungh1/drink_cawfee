@@ -13,7 +13,7 @@
 }
 
 .no-coffee-container {
-    width: 1224px;
+    width: 100%;
     text-align: center;
 }
 
@@ -133,6 +133,9 @@
     font-weight: 600;
     color: rgb(194, 194, 194);
     margin-top: 10px;
+}
+.filter-clear:hover {
+    cursor:pointer;
 }
 
 .filter-line-break {
