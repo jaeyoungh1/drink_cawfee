@@ -43,7 +43,7 @@ const _loadAllBrand = payload => ({
 
 export const loadAllBrand = () => async dispatch => {
 
-    const response = await fetch(`/api/brand`);
+    const response = await fetch(`/api/brand/`);
     // console.log("hitting res", response)
     if (response.ok) {
         const data = await response.json();
@@ -173,10 +173,7 @@ const brandReducer = (state = initialState, action) => {
             delete newState.allBrand[action.id];
             delete newState.singleBrand[action.id];
             newState = { ...newState };
-            console.log("NEWSTATE AFTER REMOVE_brand ACTION:", newState);
             return newState;
-        // case CLEAR_DATA:
-        //     return initialState;
         default:
             return state;
     }

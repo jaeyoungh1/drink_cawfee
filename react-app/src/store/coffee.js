@@ -23,7 +23,7 @@ export const addOneCoffee = (coffee) => async dispatch => {
                 },
         body: JSON.stringify(coffee)
     });
-    console.log("RESPONSE AFTER CREATE BIZ THUNK", response)
+    // console.log("RESPONSE AFTER CREATE BIZ THUNK", response)
     if (response.ok) {
         const data = await response.json()
 
@@ -84,7 +84,7 @@ export const loadAllCoffee = (category, param) => async dispatch => {
     }
     else {
         const response = await fetch('/api/coffee/');
-        console.log("hitting res", response)
+        // console.log("hitting res", response)
         if (response.ok) {
             const data = await response.json();
             // console.log("hitting all list", data)
@@ -122,7 +122,6 @@ export const searchAllCoffee = (currUrl, obj) => async dispatch => {
             url += `&note=${obj}`
         })
         filterBrand.forEach(obj => {
-            console.log("OBJ IS", obj)
             url += `&roaster=${obj}`
         })
 
@@ -288,7 +287,7 @@ const coffeeReducer = (state = initialState, action) => {
             delete newState.allCoffee[action.id];
             delete newState.singleCoffee[action.id];
             newState = { ...newState };
-            console.log("NEWSTATE AFTER REMOVE_coffee ACTION:", newState);
+            // console.log("NEWSTATE AFTER REMOVE_coffee ACTION:", newState);
             return newState;
         // case CLEAR_DATA:
         //     return initialState;

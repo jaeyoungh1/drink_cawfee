@@ -114,7 +114,7 @@ export default function NewCoffee() {
 
         try {
             const createdCoffee = await dispatch(addOneCoffee(newCoffee))
-            console.log("COMPONENT CREATED COFFEE", newCoffee)
+            // console.log("COMPONENT CREATED COFFEE", newCoffee)
             setErrors([])
             history.replace(`/cawfee/${createdCoffee.id}`)
         } catch (res) {

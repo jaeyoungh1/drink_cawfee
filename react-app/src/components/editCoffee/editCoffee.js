@@ -143,8 +143,6 @@ export default function EditCoffee() {
         brandVar = singleCoffee.Brand.name
     }
 
-    console.log("NOTES", notes)
-    console.log(errors)
 
     const submitCoffee = async (e) => {
         e.preventDefault();

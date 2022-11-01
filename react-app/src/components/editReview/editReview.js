@@ -26,7 +26,6 @@ export default function EditReview() {
     const review = useSelector(state => state.review.singleReview)
     const coffee = useSelector(state => state.coffee.singleCoffee)
 
-    console.log("COFFEE", coffee)
 
     let singleReview;
     if (review) {

@@ -143,7 +143,7 @@ export default function UserReviews() {
 
     let allReview
     if (reviews) {
-        console.log(Object.values(reviews).length)
+        // console.log(Object.values(reviews).length)
         if (Object.values(reviews).length < 1) {
             allReview = (
                 <div className='empty-page'>

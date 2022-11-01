@@ -60,7 +60,7 @@ export default function Filter({ getFilterArr }) {
         setToggleClassName([])
     }
     function toggleColor(param) {
-        console.log(param)
+        // console.log(param)
         let toggleArr = [...toggleClassName]
         if (toggleArr.includes(param)) {
             let i = toggleArr.indexOf(param)
