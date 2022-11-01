@@ -26,13 +26,13 @@ def seed_brands():
                    brand_story="In 1995, when partners Brooke McDonnell, Maureen McHugh, and Helen Russell began roasting coffee from a garage, they set out to build a high-impact company focused on quality, sustainability, and social responsibility.",
                    city="San Rafael",
                    state="CA",
-                   brand_img="https://storage.googleapis.com/mistobox/roaster_logos/EQT-logo-small.png"
+                   brand_img="https://images.ctfassets.net/o88ugk6hewlf/17Iy2s9ZyyR0PBjMGNNJB6/6a51a47a604826c7c2f29121dbd4aa3f/EQU_2x-white.png?q=75&fm=webp&w=1000"
                    )
     brand5 = Brand(name="Verve",
                    brand_story="Named for an enthusiasm for making art, or in this case coffee, Verve was founded in 2007. Don’t be fooled by the laidback vibes of Colby Barr and Ryan O'Donovan’s West Coast base, this crew is serious about coffee.",
                    city="Santa Cruz",
                    state="CA",
-                   brand_img="https://www.mistobox.com/skin/frontend/default/sns_korion/images/mbox/roaster_logos/Verve.jpg"
+                   brand_img="https://images.ctfassets.net/o88ugk6hewlf/1e77L3ALHYAiiYcGkA62su/27859f5ebd3d4caa886c10fd3b0b0a36/VER__2x.png?q=75&fm=webp&w=1000"
                    )
   
 

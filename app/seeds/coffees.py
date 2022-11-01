@@ -1,5 +1,5 @@
 from app.models import db, Coffee, Day, Note
-
+import numpy as np
 
 # Adds a demo Coffee, you can add other Coffees here if you want
 def seed_coffee_day_note():
@@ -50,7 +50,7 @@ def seed_coffee_day_note():
         {
             "curator_id": 1,
             "brand_id": 1,
-            "name": "Santa Marta - MATAQUESCUINTLA, GUATEMALA",
+            "name": "Santa Marta - GUATEMALA",
             "origin": "Guatemala",
             "roast": "light",
             "inventory": 100,
@@ -185,10 +185,10 @@ def seed_coffee_day_note():
             "curator_id": 2,
             "brand_id": 3,
             "name": "Darkroom",
-            "origin": "Honduras",
+            "origin": "Various (Blend)",
             "roast": "dark",
             "inventory": 100,
-            "price": 17,
+            "price": 23,
             "description": "This dark roast features a rich, velvety body with a pleasantly balanced roastiness and bittersweet honeycomb aftertaste.",
             "img_url": "https://res.cloudinary.com/roastcollective/image/upload/h_1000,w_1000,f_auto,fl_progressive:steep,q_auto:good/v1660255519/solidus/vxjztjguoljmtsff5dcl.png",
             "notes": [notes_dict['Milk Chocolate'], notes_dict["Vanilla"], notes_dict["Roastiness"]],
@@ -197,74 +197,199 @@ def seed_coffee_day_note():
         {
             "curator_id": 2,
             "brand_id": 3,
-            "name": "Cerberus",
-            "origin": "Honduras",
-            "roast": "dark",
+            "name": "Wata Dara - Ethiopia",
+            "origin": "Ethiopia",
+            "roast": "medium",
             "inventory": 100,
-            "price": 17,
-            "description": "",
-            "img_url": "",
-            "notes": [notes_dict['Milk Chocolate'], notes_dict["Nutty"], notes_dict["Roastiness"]],
-            "days": [days_dict['Monday'], days_dict['Tuesday'], days_dict['Wednesday'], days_dict['Thursday'], days_dict['Friday'], days_dict['Saturday'], days_dict['Sunday']]
+            "price": 24,
+            "description": "This washed Ethiopian coffee features tons of sugary sweetness in addition to juicy stone fruit and fresh floral notes. There is a sweet, citric acidity that reminded us of limeade and an overall floral character that reminded us of rose. This is a delicate but delicious coffee.",
+            "img_url": "https://res.cloudinary.com/roastcollective/image/upload/h_1000,w_1000,f_auto,fl_progressive:steep,q_auto:good/v1661464716/solidus/nmsjwwhwbecqy2gcn87m.png",
+            "notes": [notes_dict['Stone Fruit'], notes_dict["Citrus"], notes_dict["Florals"]],
+            "days": [days_dict['Monday'], days_dict['Tuesday'], days_dict['Wednesday'], days_dict['Thursday'], days_dict['Friday']]
         },
         {
             "curator_id": 2,
             "brand_id": 3,
-            "name": "Cerberus",
-            "origin": "Honduras",
-            "roast": "dark",
+            "name": "Conscientious Objector",
+            "origin": "Various (Blend)",
+            "roast": "medium",
             "inventory": 100,
-            "price": 17,
-            "description": "",
-            "img_url": "",
-            "notes": [notes_dict['Milk Chocolate'], notes_dict["Nutty"], notes_dict["Roastiness"]],
-            "days": [days_dict['Monday'], days_dict['Tuesday'], days_dict['Wednesday'], days_dict['Thursday'], days_dict['Friday'], days_dict['Saturday'], days_dict['Sunday']]
+            "price": 23,
+            "description": "Blended to offer full flavor and body to your cup. You can expect a classic sweet earthiness up front with a creamy milk chocolate bar finish. Hearty, smooth and Free to be Bold.",
+            "img_url": "https://res.cloudinary.com/roastcollective/image/upload/h_1000,w_1000,f_auto,fl_progressive:steep,q_auto:good/v1660246118/solidus/lkpjonsy23ndn0rpa5ej.png",
+            "notes": [notes_dict['Milk Chocolate'], notes_dict["Nutty"], notes_dict["Citrus"]],
+            "days": [days_dict['Monday'], days_dict['Tuesday'], days_dict['Wednesday'], days_dict['Thursday'], days_dict['Friday']]
         },
         {
             "curator_id": 2,
             "brand_id": 3,
-            "name": "Cerberus",
-            "origin": "Honduras",
+            "name": "Bauhaus",
+            "origin": "Various (Blend)",
             "roast": "dark",
             "inventory": 100,
-            "price": 17,
-            "description": "",
-            "img_url": "",
-            "notes": [notes_dict['Milk Chocolate'], notes_dict["Nutty"], notes_dict["Roastiness"]],
-            "days": [days_dict['Monday'], days_dict['Tuesday'], days_dict['Wednesday'], days_dict['Thursday'], days_dict['Friday'], days_dict['Saturday'], days_dict['Sunday']]
+            "price": 23,
+            "description": "A sticky body and the tell-tale tolls of a big ol' dark roast are front and center in this blend that's not just for goths and art students. This remains a favorite among fans of sweet, mellow full bodied cups that only a skillful roast can provide. Bauhaus is taken deep enough to bring you the bittersweet chocolate cookie flavors of a full roast without the smokiness.",
+            "img_url": "https://res.cloudinary.com/roastcollective/image/upload/h_1000,w_1000,f_auto,fl_progressive:steep,q_auto:good/v1660249800/solidus/ygqarv9xiiz1plzpo7j9.png",
+            "notes": [notes_dict['Milk Chocolate'], notes_dict["Nutty"], notes_dict["Vanilla"]],
+            "days": [days_dict['Monday'], days_dict['Tuesday'], days_dict['Wednesday'], days_dict['Thursday'], days_dict['Friday']]
         },
         {
             "curator_id": 2,
             "brand_id": 3,
-            "name": "Cerberus",
+            "name": "After Hours Decaf",
             "origin": "Honduras",
-            "roast": "dark",
+            "roast": "light",
             "inventory": 100,
-            "price": 17,
-            "description": "",
-            "img_url": "",
+            "price": 22,
+            "description": "With a level of brightness higher than most decafs, After Hours provides an actually exciting caffeine-free drinking experience.",
+            "img_url": "https://res.cloudinary.com/roastcollective/image/upload/h_1000,w_1000,f_auto,fl_progressive:steep,q_auto:good/v1660262909/solidus/yjdzexy39hykmdb3yxm0.png",
             "notes": [notes_dict['Milk Chocolate'], notes_dict["Nutty"], notes_dict["Roastiness"]],
+            "days": [days_dict['Monday'], days_dict['Tuesday'], days_dict['Wednesday'], days_dict['Thursday'], days_dict['Friday']]
+        },
+    ]
+    brand4Coffee = [
+        {
+            "curator_id": 2,
+            "brand_id": 4,
+            "name": "Suke Quto Organic",
+            "origin": "Ethiopia",
+            "roast": "light",
+            "inventory": 100,
+            "price": 26,
+            "description": "Delicate flavors of vanilla wafer, dried pineapple, lavender, and brown sugar. Juicy blood orange acidity, lavender florals, and a splash of tropical fruit all combine in this fun and beautiful Ethiopian cup.",
+            "img_url": "https://res.cloudinary.com/roastcollective/image/upload/h_1000,w_1000,f_auto,fl_progressive:steep,q_auto:good/v1663337584/solidus/bp9q2iw1mlj3kpddsuku.png",
+            "notes": [notes_dict['Citrus'], notes_dict["Florals"], notes_dict["Tropical Fruit"]],
+            "days": [days_dict['Tuesday'], days_dict['Wednesday'], days_dict['Thursday'], days_dict['Friday']]
+        },
+        {
+            "curator_id": 2,
+            "brand_id": 4,
+            "name": "Nicaragua Sacaclí",
+            "origin": "Nicaragua",
+            "roast": "medium",
+            "inventory": 100,
+            "price": 26,
+            "description": "This Nicaraguan coffee is the first one to receive a regenerative agriculture certification and is perfect for fall with its toasted nutty sweetness in addition to notes of cooked apples and baking spice.",
+            "img_url": "https://res.cloudinary.com/roastcollective/image/upload/h_1000,w_1000,f_auto,fl_progressive:steep,q_auto:good/v1663954591/solidus/nsnxd1u12rs1o1bfjqp8.png",
+            "notes": [notes_dict['Citrus'], notes_dict["Nutty"], notes_dict["Stone Fruit"]],
+            "days": [days_dict['Tuesday'], days_dict['Wednesday'], days_dict['Thursday'], days_dict['Friday']]
+        },
+        {
+            "curator_id": 2,
+            "brand_id": 4,
+            "name": "Sumatra Queen Ketiara",
+            "origin": "Sumatra",
+            "roast": "light",
+            "inventory": 100,
+            "price": 23,
+            "description": "Earthy-sweet tobacco notes draw from a deep, dark chocolaty sweetness, made extra cozy by its subtle clove spiciness.",
+            "img_url": "https://res.cloudinary.com/roastcollective/image/upload/h_1000,w_1000,f_auto,fl_progressive:steep,q_auto:good/v1660251371/solidus/ps3x9h5xfydstfzriyp2.png",
+            "notes": [notes_dict['Milk Chocolate'], notes_dict["Nutty"], notes_dict["Roastiness"]],
+            "days": [days_dict['Tuesday'], days_dict['Wednesday'], days_dict['Thursday'], days_dict['Friday']]
+        },
+        {
+            "curator_id": 2,
+            "brand_id": 4,
+            "name": "Las Margaritas Yellow Bourbon",
+            "origin": "Colombia",
+            "roast": "light",
+            "inventory": 100,
+            "price": 29,
+            "description": "Syrupy tart cherry notes and juicy tropical sweetness combine with complex citrus and green apple acidity in this dynamic cup.",
+            "img_url": "https://res.cloudinary.com/roastcollective/image/upload/h_1000,w_1000,f_auto,fl_progressive:steep,q_auto:good/v1660249302/solidus/ehuiq2eu9inlb1efvmsc.png",
+            "notes": [notes_dict['Stone Fruit'], notes_dict["Citrus"], notes_dict["Tropical Fruit"]],
+            "days": [days_dict['Tuesday'], days_dict['Wednesday'], days_dict['Thursday'], days_dict['Friday']]
+        }
+    ]
+    brand5Coffee = [
+        {
+            "curator_id": 2,
+            "brand_id": 5,
+            "name": "El Salvador Metapan",
+            "origin": "El Salvador",
+            "roast": "light",
+            "inventory": 100,
+            "price": 25,
+            "description": "Medium-roasted but with an incredibly rich body, this coffee also features rich cocoa sweetness and notes of juicy green apple.",
+            "img_url": "https://res.cloudinary.com/roastcollective/image/upload/h_1000,w_1000,f_auto,fl_progressive:steep,q_auto:good/v1662048240/solidus/kgphbwgwf33se7j8n5jx.png",
+            "notes": [notes_dict['Milk Chocolate'], notes_dict["Nutty"], notes_dict["Stone Fruit"]],
+            "days": [days_dict['Monday'], days_dict['Tuesday'], days_dict['Wednesday'], days_dict['Thursday'], days_dict['Friday'], days_dict['Saturday'], days_dict['Sunday']]
+        },
+        {
+            "curator_id": 2,
+            "brand_id": 5,
+            "name": "Sermon",
+            "origin": "Brazil",
+            "roast": "light",
+            "inventory": 100,
+            "price": 25,
+            "description": "We can testify to this new take on classically brewed coffee: sweet, but substantial; playful but rich. Preach.",
+            "img_url": "https://res.cloudinary.com/roastcollective/image/upload/h_1000,w_1000,f_auto,fl_progressive:steep,q_auto:good/v1665604244/solidus/cbzflfpbnhruwbggrzd6.png",
+            "notes": [notes_dict['Milk Chocolate'], notes_dict["Nutty"], notes_dict["Berry Fruit"]],
+            "days": [days_dict['Monday'], days_dict['Tuesday'], days_dict['Wednesday'], days_dict['Thursday']]
+        },
+        {
+            "curator_id": 2,
+            "brand_id": 5,
+            "name": "Vancouver Decaf",
+            "origin": "Brazil",
+            "roast": "medium",
+            "inventory": 100,
+            "price": 23,
+            "description": "Mellow out with an impressively complex coffee that sacrifices caffeine without abandoning flavor—rich, but sweet. A coffee lover’s decaf.",
+            "img_url": "https://res.cloudinary.com/roastcollective/image/upload/h_1000,w_1000,f_auto,fl_progressive:steep,q_auto:good/v1665604287/solidus/aq6ejsxgxefbrf5wycwi.png",
+            "notes": [notes_dict['Citrus'], notes_dict["Nutty"], notes_dict["Vanilla"]],
+            "days": [days_dict['Monday'], days_dict['Tuesday'], days_dict['Wednesday'], days_dict['Thursday']]
+        },
+        {
+            "curator_id": 2,
+            "brand_id": 5,
+            "name": "Streetlevel",
+            "origin": "Various (Blend)",
+            "roast": "medium",
+            "inventory": 100,
+            "price": 23,
+            "description": "This dynamic blend takes Verve’s roaster ethos to the streets with an accessible espresso-citrus balance that feels essentially democratic (coffee for all).",
+            "img_url": "https://res.cloudinary.com/roastcollective/image/upload/h_1000,w_1000,f_auto,fl_progressive:steep,q_auto:good/v1665604186/solidus/rxjvbxkucaeefgogssjx.png",
+            "notes": [notes_dict['Milk Chocolate'], notes_dict["Nutty"], notes_dict["Roastiness"]],
+            "days": [days_dict['Monday'], days_dict['Tuesday'], days_dict['Wednesday'], days_dict['Thursday']]
+        },
+        {
+            "curator_id": 2,
+            "brand_id": 5,
+            "name": "Pulcal",
+            "origin": "Guatemala",
+            "roast": "light",
+            "inventory": 100,
+            "price": 25,
+            "description": "Tons of rich, caramelly sweetness and juicy plum are brightened up by an intriguing note of syrupy, sparkly cola. Another fan favorite from Antigua, Guatemala, this year’s Pulcal encompasses all of the delicate and exciting flavors we love about Guatemalan coffee. ",
+            "img_url": "https://res.cloudinary.com/roastcollective/image/upload/h_1000,w_1000,f_auto,fl_progressive:steep,q_auto:good/v1665606671/solidus/fmdoazhk5zzfhpuqbccj.png",
+            "notes": [notes_dict['Spices'], notes_dict["Stone Fruit"], notes_dict["Vanilla"]],
             "days": [days_dict['Monday'], days_dict['Tuesday'], days_dict['Wednesday'], days_dict['Thursday'], days_dict['Friday'], days_dict['Saturday'], days_dict['Sunday']]
         },
     ]
 
-    brandCoffee = [
-        {
-            "curator_id": 2,
-            "brand_id": 2,
-            "name": "Cerberus",
-            "origin": "Honduras",
-            "roast": "dark",
-            "inventory": 100,
-            "price": 17,
-            "description": "",
-            "img_url": "",
-            "notes": [notes_dict['Milk Chocolate'], notes_dict["Nutty"], notes_dict["Roastiness"]],
-            "days": [days_dict['Monday'], days_dict['Tuesday'], days_dict['Wednesday'], days_dict['Thursday'], days_dict['Friday'], days_dict['Saturday'], days_dict['Sunday']]
-        },
-    ]
+    # brandCoffee = [
+    #     {
+    #         "curator_id": 2,
+    #         "brand_id": 2,
+    #         "name": "Cerberus",
+    #         "origin": "Honduras",
+    #         "roast": "dark",
+    #         "inventory": 100,
+    #         "price": 17,
+    #         "description": "",
+    #         "img_url": "",
+    #         "notes": [notes_dict['Milk Chocolate'], notes_dict["Nutty"], notes_dict["Roastiness"]],
+    #         "days": [days_dict['Monday'], days_dict['Tuesday'], days_dict['Wednesday'], days_dict['Thursday'], days_dict['Friday'], days_dict['Saturday'], days_dict['Sunday']]
+    #     },
+    # ]
+    all_coffee = [brand1Coffee, *brand2Coffee, *brand3Coffee, *brand4Coffee, *brand5Coffee]
+    np.random.shuffle(all_coffee)
 
-    for coffee in brand1Coffee:
+    print("  >>>>>> All coffee", all_coffee)
+
+    for coffee in all_coffee: 
         coffeeRow = Coffee(
             curator_id=coffee['curator_id'],
             brand_id=coffee['brand_id'],
@@ -279,21 +404,85 @@ def seed_coffee_day_note():
             days=coffee['days'],
         )
         db.session.add(coffeeRow)
-    for coffee in brand2Coffee:
-        coffeeRow = Coffee(
-            curator_id=coffee['curator_id'],
-            brand_id=coffee['brand_id'],
-            name=coffee['name'],
-            origin=coffee['origin'],
-            roast=coffee['roast'],
-            inventory=coffee['inventory'],
-            price=coffee['price'],
-            description=coffee['description'],
-            img_url=coffee['img_url'],
-            notes=coffee['notes'],
-            days=coffee['days'],
-        )
-        db.session.add(coffeeRow)
+
+    # for coffee in brand1Coffee:
+    #     coffeeRow = Coffee(
+    #         curator_id=coffee['curator_id'],
+    #         brand_id=coffee['brand_id'],
+    #         name=coffee['name'],
+    #         origin=coffee['origin'],
+    #         roast=coffee['roast'],
+    #         inventory=coffee['inventory'],
+    #         price=coffee['price'],
+    #         description=coffee['description'],
+    #         img_url=coffee['img_url'],
+    #         notes=coffee['notes'],
+    #         days=coffee['days'],
+    #     )
+    #     db.session.add(coffeeRow)
+    # for coffee in brand2Coffee:
+    #     coffeeRow = Coffee(
+    #         curator_id=coffee['curator_id'],
+    #         brand_id=coffee['brand_id'],
+    #         name=coffee['name'],
+    #         origin=coffee['origin'],
+    #         roast=coffee['roast'],
+    #         inventory=coffee['inventory'],
+    #         price=coffee['price'],
+    #         description=coffee['description'],
+    #         img_url=coffee['img_url'],
+    #         notes=coffee['notes'],
+    #         days=coffee['days'],
+    #     )
+    #     db.session.add(coffeeRow)
+    # for coffee in brand3Coffee:
+    #     coffeeRow = Coffee(
+    #         curator_id=coffee['curator_id'],
+    #         brand_id=coffee['brand_id'],
+    #         name=coffee['name'],
+    #         origin=coffee['origin'],
+    #         roast=coffee['roast'],
+    #         inventory=coffee['inventory'],
+    #         price=coffee['price'],
+    #         description=coffee['description'],
+    #         img_url=coffee['img_url'],
+    #         notes=coffee['notes'],
+    #         days=coffee['days'],
+    #     )
+    #     db.session.add(coffeeRow)
+    
+    # for coffee in brand4Coffee:
+    #     coffeeRow = Coffee(
+    #         curator_id=coffee['curator_id'],
+    #         brand_id=coffee['brand_id'],
+    #         name=coffee['name'],
+    #         origin=coffee['origin'],
+    #         roast=coffee['roast'],
+    #         inventory=coffee['inventory'],
+    #         price=coffee['price'],
+    #         description=coffee['description'],
+    #         img_url=coffee['img_url'],
+    #         notes=coffee['notes'],
+    #         days=coffee['days'],
+    #     )
+    #     db.session.add(coffeeRow)
+    
+    # for coffee in brand5Coffee:
+    #     coffeeRow = Coffee(
+    #         curator_id=coffee['curator_id'],
+    #         brand_id=coffee['brand_id'],
+    #         name=coffee['name'],
+    #         origin=coffee['origin'],
+    #         roast=coffee['roast'],
+    #         inventory=coffee['inventory'],
+    #         price=coffee['price'],
+    #         description=coffee['description'],
+    #         img_url=coffee['img_url'],
+    #         notes=coffee['notes'],
+    #         days=coffee['days'],
+    #     )
+    #     db.session.add(coffeeRow)
+
 
 
     db.session.commit()
