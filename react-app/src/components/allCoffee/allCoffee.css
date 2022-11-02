@@ -40,13 +40,14 @@
     border-radius: 4px;
     width: 24%;
     max-width: 360px;
-    height: 480px;
+    height: 36%;
+    max-height: 480px;
     margin-bottom: 60px;
 }
 
 .single-coffee-image-wrapper {
     display: flex;
-    height: 300px;
+    height: 280px;
     overflow: hidden;
     align-items: center;
     justify-content: center;

@@ -70,7 +70,7 @@ export const loadAllCoffee = (category, param) => async dispatch => {
             const response = await fetch(`/api/coffee/?roast=${param}`)
             if (response.ok) {
                 const data = await response.json()
-                console.log("DATA", data)
+                // console.log("DATA", data)
                 dispatch(_loadAllCoffee(data));
                 return data
             }
@@ -141,7 +141,7 @@ export const searchAllCoffee = (currUrl, obj) => async dispatch => {
         // console.log("hitting res", response)
         if (response.ok) {
             const data = await response.json();
-            console.log("hitting all list", data)
+            // console.log("hitting all list", data)
             dispatch(_loadAllCoffee(data));
             return data
         }
@@ -216,11 +216,11 @@ const _deleteOneCoffee = id => ({
 });
 
 export const deleteOneCoffee = id => async dispatch => {
-    console.log("COFFEEID", id)
+    // console.log("COFFEEID", id)
     const response = await fetch(`/api/coffee/${id}`, {
         method: 'DELETE'
     });
-    console.log("RESPONSE AFTER DELETE THUNK", response)
+    // console.log("RESPONSE AFTER DELETE THUNK", response)
 
     if (response.ok) {
         const id = await response.json();

@@ -60,7 +60,7 @@ def add_one_to_cart(coffee_id):
     if len(post_val_error["errors"]) > 0:
         return jsonify(post_val_error), 400
 
-    print("POSTVALERROR", post_val_error)
+    # print("POSTVALERROR", post_val_error)
     if form.validate_on_submit():
 
         cart = Cart(
