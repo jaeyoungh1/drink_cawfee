@@ -8,6 +8,7 @@ import './editReview.css'
 import { getOneCoffee } from "../../store/coffee";
 import emptyStar from '../../icons/empty-star.svg'
 import fullStar from '../../icons/filled-star.svg'
+import noImg from '../../icons/no_image.svg'
 
 import DynamicRating from "../coffeeReviews/dynamicRating";
 
@@ -95,7 +96,7 @@ export default function EditReview() {
                 <div className='user-review-coffee-info-single-container'>
                     <NavLink className='user-review-coffee-info-single-container' to={`/cawfee/${coffeeId}`}>
                         <div className='user-review-coffee-image'>
-                            <img className='user-review-coffee-image' alt='coffee image' src={coffee.img_url} />
+                            <img className='user-review-coffee-image' alt='coffee image' src={coffee.img_url} onError={e => e.target.src = noImg} />
                         </div>
                         <div className="user-review-coffee-info-name">
                             {coffee && coffee.name}
