@@ -7,6 +7,11 @@
     /* font-family: 'Open Sans', sans-serif; */
 }
 
+body{
+    margin: 0;
+    /* belly: none; */
+}
+
 textarea {
     resize: none;
 }

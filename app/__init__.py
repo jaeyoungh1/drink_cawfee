@@ -12,6 +12,7 @@ from .api.coffee_routes import coffee_routes
 from .api.review_routes import review_routes
 from .api.brand_routes import brand_routes
 from .api.cart_routes import cart_routes
+from .api.order_routes import order_routes
 
 from .seeds import seed_commands
 
@@ -39,6 +40,7 @@ app.register_blueprint(coffee_routes, url_prefix='/api/coffee')
 app.register_blueprint(review_routes, url_prefix='/api/review')
 app.register_blueprint(brand_routes, url_prefix='/api/brand')
 app.register_blueprint(cart_routes, url_prefix='/api/cart')
+app.register_blueprint(order_routes, url_prefix='/api/order')
 
 db.init_app(app)
 Migrate(app, db)

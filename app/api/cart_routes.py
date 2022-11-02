@@ -2,8 +2,6 @@ from flask import Blueprint, jsonify, session, request
 from flask_login import login_required, current_user
 from app.models import Cart, Coffee, User, db
 from app.forms.add_to_cart_form import AddToCartForm
-# from app.forms.add_cart_form import AddCartForm
-# from app.forms.add_review_form import AddReviewForm
 from app.forms.delete_form import DeleteForm
 
 cart_routes = Blueprint('carts', __name__)
@@ -18,13 +16,6 @@ def validation_errors_to_error_messages(validation_errors):
         for error in validation_errors[field]:
             errorMessages[field] = error
     return errorMessages
-
-
-# def normalize_query_param(val):
-#     return val if len(val) > 1 else val[0]de
-def normalize_query(params):
-    init_params = params.to_dict(flat=False)
-    return {key: val for key, val in init_params.items()}
 
 
 # GET user's cart
