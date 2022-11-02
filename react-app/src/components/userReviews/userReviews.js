@@ -8,6 +8,7 @@ import x from '../../icons/x.svg'
 import '../editReview/editReview.css'
 import emptyStar from '../../icons/empty-star.svg'
 import fullStar from '../../icons/filled-star.svg'
+import noImg from '../../icons/no_image.svg'
 import DynamicRating from "../coffeeReviews/dynamicRating";
 
 export default function UserReviews() {
@@ -172,7 +173,7 @@ export default function UserReviews() {
                                 <div className='user-review-coffee-info-single-container review-image-wrapper'>
                                     <NavLink className='user-review-coffee-info-single-container' to={`/cawfee/${id}`}>
                                         <div className='user-review-coffee-image'>
-                                            <img className='user-review-coffee-image' alt='coffee image' src={coffee.img_url} />
+                                            <img className='user-review-coffee-image' alt='coffee image' src={coffee.img_url} onError={e => e.target.src = noImg} />
                                         </div>
                                         <div className="user-review-coffee-info-name">
                                             {coffee.name}

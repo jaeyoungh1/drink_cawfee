@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addOneReview, loadUserReview } from "../../store/review";
 import { getOneCoffee } from "../../store/coffee";
 import brokenImg from '../../icons/broken-img.png'
+import noImg from '../../icons/no_image.svg'
 import '../editReview/editReview.css'
 import DynamicRating from "./dynamicRating";
 
@@ -83,7 +84,7 @@ export default function AddReview() {
                 <div className='user-review-coffee-info-single-container'>
                     <NavLink className='user-review-coffee-info-single-container' to={`/cawfee/${coffeeId}`}>
                         <div className='user-review-coffee-image'>
-                            <img className='user-review-coffee-image' alt='coffee image' src={coffee.img_url} />
+                            <img className='user-review-coffee-image' alt='coffee image' src={coffee.img_url} onError={(e) => e.target.src = noImg} />
                         </div>
                         <div className="user-review-coffee-info-name">
                             {coffee && coffee.name}
