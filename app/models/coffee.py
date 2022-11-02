@@ -27,7 +27,6 @@ class Coffee(db.Model):
     name = db.Column(db.String(225), nullable=False)
     origin = db.Column(db.String(100), nullable=False)
     roast = db.Column(db.String(100), nullable=False)
-    # process = db.Column(db.String(100))
     inventory = db.Column(db.Integer, nullable=False)
     price = db.Column(db.Float, nullable=False)
     description = db.Column(db.String(5000), nullable=False)
@@ -39,10 +38,10 @@ class Coffee(db.Model):
         'Brand', back_populates='coffee')
     review = db.relationship(
         'Review', back_populates='coffee', cascade="all, delete-orphan")
-    # order = db.relationship(
-    #     'Order', back_populates='coffee')
-    # cart = db.relationship(
-    #     'Cart', back_populates='coffee')
+    order = db.relationship(
+        'Order', back_populates='coffee')
+    cart = db.relationship(
+        'Cart', back_populates='coffee')
 
     days = db.relationship(
         'Day',
@@ -64,7 +63,6 @@ class Coffee(db.Model):
             "name": self.name,
             "origin": self.origin,
             "roast": self.roast,
-            # "process": self.process,
             "inventory": self.inventory,
             "price": self.price,
             "description": self.description,
