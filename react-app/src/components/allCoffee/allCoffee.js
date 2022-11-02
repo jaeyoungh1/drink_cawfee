@@ -6,6 +6,7 @@ import { loadAllCoffee, searchAllCoffee } from "../../store/coffee";
 import arrow from '../../icons/arrow.svg'
 import './allCoffee.css'
 import brokenImg from '../../icons/broken-img.png'
+import noImg from '../../icons/no_image.svg'
 import Filter from "./Filter";
 
 export default function AllCoffee() {
@@ -79,7 +80,7 @@ export default function AllCoffee() {
                         <NavLink to={`/cawfee/${obj.id}`}>
                             <div className="single-coffee-image-wrapper">
                                 <img alt='single coffee' className="single-coffee-image-wrapper-img" src={obj.img_url}
-                                    onError={e => e.target.src = brokenImg} />
+                                    onError={e => e.target.src = noImg} />
                             </div>
                         </NavLink>
 

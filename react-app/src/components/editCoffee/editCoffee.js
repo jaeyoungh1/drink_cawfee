@@ -3,6 +3,8 @@ import { NavLink, useParams, Redirect, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { loadAllCoffee, getOneCoffee, editOneCoffee } from "../../store/coffee";
 import brokenImg from '../../icons/broken-img.png'
+import noImg from '../../icons/no_image.svg'
+
 // import './newCoffee.css'
 
 export default function EditCoffee() {
@@ -386,7 +388,7 @@ export default function EditCoffee() {
                         />
                     </div>
                     <div className='coffee-input-prev-img'>
-                        {img_url && <img className='add-coffee-preview_img_url' src={img_url} alt='img' onError={e => e.target.src = brokenImg} />}
+                        {img_url && <img className='add-coffee-preview_img_url' src={img_url} alt='img' onError={e => e.target.src = noImg} />}
                     </div>
                     <button
                         type="submit"

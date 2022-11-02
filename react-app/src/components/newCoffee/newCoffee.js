@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadAllCoffee } from "../../store/coffee";
 import { addOneCoffee } from "../../store/coffee";
 import brokenImg from '../../icons/broken-img.png'
+import noImg from '../../icons/no_image.svg'
+
 import './newCoffee.css'
 import { loadAllBrand } from "../../store/brand";
 
@@ -341,7 +343,7 @@ export default function NewCoffee() {
                         />
                     </div>
                     <div className='coffee-input-prev-img'>
-                        {img_url && <img className='add-coffee-preview_img_url' src={img_url} alt='img' onError={e => e.target.src = brokenImg} />}
+                        {img_url && <img className='add-coffee-preview_img_url' src={img_url} alt='img' onError={e => e.target.src = noImg} />}
                     </div>
                     <button
                         type="submit"

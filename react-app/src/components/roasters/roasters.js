@@ -5,6 +5,8 @@ import { useLocation } from "react-router-dom";
 import { loadAllBrand } from "../../store/brand";
 import './roasters.css'
 import brokenImg from '../../icons/broken-img.png'
+import noImg from '../../icons/no_image.svg'
+
 
 export default function Roasters() {
     const dispatch = useDispatch()
@@ -32,7 +34,7 @@ export default function Roasters() {
 
                         <div className="single-roaster-image-wrapper">
                             <img alt='single roaster' className="single-roaster-image-wrapper-img" src={obj.brand_img}
-                                onError={e => e.target.src = brokenImg} />
+                                onError={e => e.target.src = noImg} />
                         </div>
                         <div className='all-roaster-details'>
                             <div className='all-roaster-details-roaster'>
