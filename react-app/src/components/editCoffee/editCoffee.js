@@ -269,6 +269,7 @@ export default function EditCoffee() {
                             <div id='single-note' key={note} onClick={() => setRefreshChecks(!refreshChecks)}>
                                 <input
                                     type="checkbox"
+                                    id='edit-coffee-note'
                                     className='add-coffee-form-note'
                                     onChange={
                                         (e) => {
@@ -304,6 +305,7 @@ export default function EditCoffee() {
                             <div id='single-day' key={day} onClick={() => setRefreshChecks(!refreshChecks)} >
                                 <input
                                     type="checkbox"
+                                    id='edit-coffee-day'
                                     className='add-coffee-form-day'
                                     onChange={
                                         (e) => {
