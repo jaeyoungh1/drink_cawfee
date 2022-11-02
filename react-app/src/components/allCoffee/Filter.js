@@ -8,6 +8,8 @@ import plus from '../../icons/plus.svg'
 import minus from '../../icons/minus.svg'
 import './allCoffee.css'
 import brokenImg from '../../icons/broken-img.png'
+import noImg from '../../icons/no_image.svg'
+
 import { loadAllBrand } from "../../store/brand";
 
 export default function Filter({ getFilterArr }) {
@@ -80,7 +82,7 @@ export default function Filter({ getFilterArr }) {
         <div>
             <div className='filter-header'>
                 <div>
-                    <img src={filter} height='44px' width='44px' alt='filter' onError={e => e.target.src = { brokenImg }} />
+                    <img src={filter} height='44px' width='44px' alt='filter' onError={e => e.target.src = { noImg }} />
                     <h2>Filter</h2>
                 </div>
                 <div className='filter-clear' onClick={() => clearFilter()}>Clear</div>

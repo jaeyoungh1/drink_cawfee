@@ -39,8 +39,10 @@ class Coffee(db.Model):
         'Brand', back_populates='coffee')
     review = db.relationship(
         'Review', back_populates='coffee', cascade="all, delete-orphan")
-    review = db.relationship(
-        'Review', back_populates='coffee')
+    order = db.relationship(
+        'Order', back_populates='coffee')
+    cart = db.relationship(
+        'Cart', back_populates='coffee')
 
     days = db.relationship(
         'Day',
