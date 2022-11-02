@@ -23,6 +23,8 @@ export default function NewCoffee() {
     const [img_url, setImg_Url] = useState('')
     const [days, setDays] = useState([])
     const [notes, setNotes] = useState([])
+    const [onSubmit, setOnSubmit] = useState(false)
+    const [refreshChecks, setRefreshChecks] = useState(false)
 
     const NOTES_OPT = ["Berry Fruit",
         "Stone Fruit",
@@ -59,45 +61,55 @@ export default function NewCoffee() {
     }, [dispatch])
 
     useEffect(() => {
-
+        const refreshNoteArr = [...notes]
+        const refreshDaysArr = [...days]
+        setNotes(refreshNoteArr)
+        setDays(refreshDaysArr)
+    }, [dispatch, refreshChecks])
+    
+    
+    useEffect(() => {
+ 
         const errors = [];
-
-        if (name.length && name.length < 2) {
+        if (name.trim().length === 0) {
+            errors.push("Name must be at least 2 characters");
+        }
+        if (name.length && name.trim().length < 2) {
             errors.push("Name must be at least 2 characters");
         }
         if (name.length && name.length > 30) {
             errors.push("Name can not be more than 30 characters");
         }
 
-        if (inventory && inventory < 12) {
-            errors.push("Inventory must have at least 12 bags");
+        if (inventory && inventory < 10) {
+            errors.push("Inventory must have at least 10 bags");
         }
 
         if (price && price < 2) {
             errors.push("Price must be at least $2/bag");
         }
-
-        if (description.length && description.length < 5) {
+        if (description.length && description.trim().length < 5) {
             errors.push("Description must be at least 5 characters");
         }
-
         if (img_url && img_url.length < 1) {
             errors.push("Please include a preview image");
         }
-
         if (days.length && days.length < 1) {
             errors.push("Please include roasting schedule");
         }
-
         if (notes.length && notes.length !== 3) {
             errors.push("Please include 3 tasting notes");
         }
-
         setErrors(errors);
-    }, [name, inventory, price, description, img_url, days, notes]);
+    }, [name, inventory, price, description, img_url, days, notes, onSubmit]);
 
     const submitCoffee = async (e) => {
         e.preventDefault();
+        setOnSubmit(true)
+        if (errors.length > 0) {
+            return;
+        }
+
         const newCoffee = {
             name,
             curator_id: user.id,
@@ -122,6 +134,11 @@ export default function NewCoffee() {
         }
 
     }
+
+    console.log("NOTES", notes)
+
+    console.log("ERRORS", errors)
+
     if (!user || !user.curator) {
         return <Redirect to='/' />;
     }
@@ -133,13 +150,16 @@ export default function NewCoffee() {
             </div>
             <div className='new-coffee-form-wrapper'>
                 <form onSubmit={submitCoffee}>
-                    <div className='new-coffee-form-errors'>
+                    {/* <div className='new-coffee-form-errors'>
                         {errors && errors.map((error, ind) => (
                             <div key={ind}>{error}</div>
                         ))}
-                    </div>
+                    </div> */}
 
                     <div className='coffee-input-wrapper'>
+                        {onSubmit && (name.length < 2 || name.length > 30) && <div className='new-coffee-form-error'>Name must be at least 2 characters</div>}
+                        {!onSubmit && name && name.length < 2 && <div className='new-coffee-form-error'>Name must be at least 2 characters</div>}
+                        {name && name.length > 30 && <div className='new-coffee-form-error'>Name can not exceed 30 characters</div>}
                         <label className='coffee-input-label' htmlFor='name'>Coffee Name</label>
                         <input
                             name='name'
@@ -194,12 +214,12 @@ export default function NewCoffee() {
                             ))}
                         </select>
                     </div>
-
-                    <div className='coffee-input-label lonely-div'>With Notes Of</div>
+                    {onSubmit && notes.length !== 3 && <div className='new-coffee-form-error-lonely-div'>Please include 3 notes</div>}
+                    <div className='coffee-input-label lonely-div'>With Notes Of (Select 3)</div>
                     <div className='coffee-input-checkboxes-wrapper'>
 
                         {NOTES_OPT.map(note => (
-                            <div id='single-note' key={note}>
+                            <div id='single-note' key={note} onClick={() => setRefreshChecks(!refreshChecks)}>
                                 <input
                                     type="checkbox"
                                     className='add-coffee-form-note'
@@ -228,11 +248,13 @@ export default function NewCoffee() {
                             </div>
                         ))}
                     </div>
+                    {onSubmit && days.length < 1 && <div className='new-coffee-form-error-lonely-div'>Please include a roasting schedule</div>}
+
 
                     <div className='coffee-input-label lonely-div' >Roasting Schedule</div>
                     <div className='coffee-input-checkboxes-wrapper'>
                         {DAYS_OPT.map(day => (
-                            <div id='single-day' key={day}>
+                            <div id='single-day' key={day} onClick={() => setRefreshChecks(!refreshChecks)} >
                                 <input
                                     type="checkbox"
                                     className='add-coffee-form-day'
@@ -263,7 +285,9 @@ export default function NewCoffee() {
                     </div>
 
                     <div className='coffee-input-wrapper'>
-                        <label className='coffee-input-label' htmlFor='price'>Price</label>
+                        {onSubmit && price < 2 && <div className='new-coffee-form-error'>Price must be at least $2/bag</div>}
+                        {!onSubmit && price && price < 2 && <div className='new-coffee-form-error'>Price must be at least $2/bag</div>}
+                        <label className='coffee-input-label' htmlFor='price'>Price ($USD/bag)</label>
                         <input
                             name='price'
                             type='number'
@@ -276,7 +300,9 @@ export default function NewCoffee() {
                         />
                     </div>
                     <div className='coffee-input-wrapper'>
-                        <label className='coffee-input-label' htmlFor='inventory'>Inventory</label>
+                        <label className='coffee-input-label' htmlFor='inventory'>Inventory (bags)</label>
+                        {onSubmit && inventory < 10 && <div className='new-coffee-form-error'>Inventory must include at least 10 bags</div>}
+                        {!onSubmit && inventory && inventory < 10 && <div className='new-coffee-form-error'>Inventory must include at least 10 bags</div>}
                         <input
                             name='inventory'
                             type='number'
@@ -288,6 +314,10 @@ export default function NewCoffee() {
                         />
                     </div>
                     <div className='coffee-input-wrapper'>
+                        {onSubmit && description.length < 5 && <div className='new-coffee-form-error'>Description must be at least 5 characters</div>}
+                        {onSubmit && description.length > 750 && <div className='new-coffee-form-error'>Description must not exceed 750 characters</div>}
+                        {!onSubmit && description && description.length < 5 && <div className='new-coffee-form-error'>Description must be at least 5 characters</div>}
+                        {!onSubmit && description && description.length > 750 && <div className='new-coffee-form-error'>Description must not exceed 750 characters</div>}
                         <label className='coffee-input-label' htmlFor='description'>Coffee Description</label>
                         <textarea
                             name='description'
@@ -297,6 +327,9 @@ export default function NewCoffee() {
                         />
                     </div>
                     <div className='coffee-input-wrapper'>
+                        {onSubmit && img_url.length < 1 && <div className='new-coffee-form-error'>Please provide a preview image URL</div>}
+                        {!onSubmit && img_url && img_url.length < 1 && <div className='new-coffee-form-error'>Please provide a preview image URL</div>}
+
                         <label className='coffee-input-label' htmlFor='img_url'>Preview Image</label>
                         <input
                             name='img_url'
@@ -312,11 +345,12 @@ export default function NewCoffee() {
                     </div>
                     <button
                         type="submit"
-                        disabled={errors.length}
+                        // disabled={errors.length}
                         id='login-button'
                     >
                         SUBMIT
                     </button>
+                    {onSubmit && errors.length > 0 && <div style={{textAlign:'center'}} className='new-coffee-form-error'>Unable to submit curation. Please address the above errors.</div>}
                 </form>
 
             </div>

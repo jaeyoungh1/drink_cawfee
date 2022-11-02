@@ -11,6 +11,9 @@ export default function CurrentCoffee() {
     const user = useSelector(state => state.session.user)
     const coffees = useSelector(state => state.coffee.allCoffee)
 
+    const [openConfirm, setOpenConfirm] = useState(false)
+
+
     useEffect(() => {
         dispatch(loadUserCoffee(user.id))
     }, [dispatch, coffees.length])
@@ -19,6 +22,8 @@ export default function CurrentCoffee() {
         await dispatch(deleteOneCoffee(id))
         dispatch(loadUserCoffee(user.id))
     }
+
+    console.log("OPEN CONFIRM", openConfirm)
 
     let allCoffee
     if (coffees) {
@@ -29,7 +34,7 @@ export default function CurrentCoffee() {
                     <div className='user-coffee-single-container'>
                         <NavLink to={`/cawfee/${obj.id}`}>
                             <div className="user-coffee-image-wrapper">
-                                <img alt='coffee bag' className="single-coffee-image-wrapper-img" src={obj.img_url} onError={(e) => e.target.src =brokenImg} />
+                                <img alt='coffee bag' className="single-coffee-image-wrapper-img" src={obj.img_url} onError={(e) => e.target.src = brokenImg} />
                             </div>
                         </NavLink>
 
@@ -52,7 +57,20 @@ export default function CurrentCoffee() {
                         <div className='user-coffee-details'>Current Inventory: {obj.inventory}</div>
                         <div className='user-coffee-details-container'>
                             <div ><NavLink className='user-coffee-details user-coffee-navlink' to={`/cawfee/edit/${obj.id}`}>Edit Coffee</NavLink></div>
-                            <div onClick={() => deleteCoffee(obj.id)} className='user-coffee-details user-coffee-navlink' >Remove Curation</div>
+                            <div onClick={() => {
+                                setOpenConfirm(obj.id)
+                            }} className='user-coffee-details user-coffee-navlink'>
+                                {openConfirm === obj.id ?
+                                    <div
+                                        onClick={() => deleteCoffee(obj.id)} className='user-coffee-details user-coffee-navlink request-confirmation'>Confirm Remove Curation
+                                    </div>
+                                    :
+                                    <div className='user-coffee-details user-coffee-navlink'>Remove Curation</div>}
+                            </div>
+                            {openConfirm === obj.id && <div className='user-coffee-details user-coffee-navlink'
+                                onClick={() => setOpenConfirm(0)}>
+                                Cancel
+                            </div>}
                         </div>
                     </div>
                 </div>

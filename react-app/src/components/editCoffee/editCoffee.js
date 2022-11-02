@@ -22,6 +22,8 @@ export default function EditCoffee() {
     const [img_url, setImg_Url] = useState('')
     const [days, setDays] = useState([])
     const [notes, setNotes] = useState([])
+    const [onSubmit, setOnSubmit] = useState(false)
+    const [refreshChecks, setRefreshChecks] = useState(false)
 
 
     const user = useSelector(state => state.session.user)
@@ -59,6 +61,14 @@ export default function EditCoffee() {
         dispatch(loadAllCoffee())
         dispatch(getOneCoffee(coffeeId))
     }, [dispatch, coffeeId])
+
+    useEffect(() => {
+        const refreshNoteArr = [...notes]
+        const refreshDaysArr = [...days]
+        setNotes(refreshNoteArr)
+        setDays(refreshDaysArr)
+    }, [dispatch, refreshChecks])
+
 
     
     useEffect(() => {
@@ -146,6 +156,11 @@ export default function EditCoffee() {
 
     const submitCoffee = async (e) => {
         e.preventDefault();
+        setOnSubmit(true)
+        if (errors.length > 0) {
+            return;
+        }
+
         const newCoffee = {
             name,
             curator_id: user.id,
@@ -180,16 +195,20 @@ export default function EditCoffee() {
             </div>
             <div className='new-coffee-form-wrapper'>
                 <form onSubmit={submitCoffee}>
-                    <div className='new-coffee-form-errors'>
+                    {/* <div className='new-coffee-form-errors'>
                         {errors && errors.map((error, ind) => (
                             <div key={ind}>{error}</div>
                         ))}
-                    </div>
+                    </div> */}
 
                     <div className='coffee-input-wrapper'>
+                        {onSubmit && (name.length < 2 || name.length > 30) && <div className='new-coffee-form-error'>Name must be at least 2 characters</div>}
+                        {!onSubmit && name && name.length < 2 && <div className='new-coffee-form-error'>Name must be at least 2 characters</div>}
+                        {name && name.length > 30 && <div className='new-coffee-form-error'>Name can not exceed 30 characters</div>}
                         <label className='coffee-input-label' htmlFor='name'>Coffee Name</label>
                         <input
                             name='name'
+                            autoComplete="off"
                             className='new-coffee-input'
                             type='text'
                             value={name}
@@ -240,19 +259,17 @@ export default function EditCoffee() {
                             ))}
                         </select>
                     </div>
-
-                    <div className='coffee-input-label lonely-div'>With Notes Of</div>
+                    {onSubmit && notes.length !== 3 && <div className='new-coffee-form-error-lonely-div'>Please include 3 notes</div>}
+                    <div className='coffee-input-label lonely-div'>With Notes Of (Select 3)</div>
                     <div className='coffee-input-checkboxes-wrapper'>
 
                         {NOTES_OPT.map(note => (
-                            <div id='single-note' key={note}>
+                            <div id='single-note' key={note} onClick={() => setRefreshChecks(!refreshChecks)}>
                                 <input
                                     type="checkbox"
-                                    id='edit-coffee-note'
                                     className='add-coffee-form-note'
                                     onChange={
                                         (e) => {
-                                            setErrors([])
                                             const notesList = notes;
                                             if (e.target.checked) {
                                                 notesList.push(e.target.value);
@@ -276,14 +293,15 @@ export default function EditCoffee() {
                             </div>
                         ))}
                     </div>
+                    {onSubmit && days.length < 1 && <div className='new-coffee-form-error-lonely-div'>Please include a roasting schedule</div>}
+
 
                     <div className='coffee-input-label lonely-div' >Roasting Schedule</div>
                     <div className='coffee-input-checkboxes-wrapper'>
                         {DAYS_OPT.map(day => (
-                            <div id='single-day' key={day}>
+                            <div id='single-day' key={day} onClick={() => setRefreshChecks(!refreshChecks)} >
                                 <input
                                     type="checkbox"
-                                    id='edit-coffee-day'
                                     className='add-coffee-form-day'
                                     onChange={
                                         (e) => {
@@ -312,10 +330,14 @@ export default function EditCoffee() {
                     </div>
 
                     <div className='coffee-input-wrapper'>
-                        <label className='coffee-input-label' htmlFor='price'>Price</label>
+                        {onSubmit && price < 2 && <div className='new-coffee-form-error'>Price must be at least $2/bag</div>}
+                        {!onSubmit && price && price < 2 && <div className='new-coffee-form-error'>Price must be at least $2/bag</div>}
+                        <label className='coffee-input-label' htmlFor='price'>Price ($USD/bag)</label>
                         <input
                             name='price'
                             type='number'
+                            inputMode="numeric"
+                            autoComplete="off"
                             className='new-coffee-input'
                             min='2'
                             value={price}
@@ -323,29 +345,41 @@ export default function EditCoffee() {
                         />
                     </div>
                     <div className='coffee-input-wrapper'>
-                        <label className='coffee-input-label' htmlFor='inventory'>Inventory</label>
+                        <label className='coffee-input-label' htmlFor='inventory'>Inventory (bags)</label>
+                        {onSubmit && inventory < 10 && <div className='new-coffee-form-error'>Inventory must include at least 10 bags</div>}
+                        {!onSubmit && inventory && inventory < 10 && <div className='new-coffee-form-error'>Inventory must include at least 10 bags</div>}
                         <input
                             name='inventory'
                             type='number'
                             className='new-coffee-input'
+                            autoComplete="off"
                             min='12'
                             value={inventory}
                             onChange={e => setInventory(e.target.value)}
                         />
                     </div>
                     <div className='coffee-input-wrapper'>
+                        {onSubmit && description.length < 5 && <div className='new-coffee-form-error'>Description must be at least 5 characters</div>}
+                        {onSubmit && description.length > 750 && <div className='new-coffee-form-error'>Description must not exceed 750 characters</div>}
+                        {!onSubmit && description && description.length < 5 && <div className='new-coffee-form-error'>Description must be at least 5 characters</div>}
+                        {!onSubmit && description && description.length > 750 && <div className='new-coffee-form-error'>Description must not exceed 750 characters</div>}
                         <label className='coffee-input-label' htmlFor='description'>Coffee Description</label>
                         <textarea
                             name='description'
+                            autoComplete="off"
                             value={description}
                             onChange={e => setDescription(e.target.value)}
                         />
                     </div>
                     <div className='coffee-input-wrapper'>
+                        {onSubmit && img_url.length < 1 && <div className='new-coffee-form-error'>Please provide a preview image URL</div>}
+                        {!onSubmit && img_url && img_url.length < 1 && <div className='new-coffee-form-error'>Please provide a preview image URL</div>}
+
                         <label className='coffee-input-label' htmlFor='img_url'>Preview Image</label>
                         <input
                             name='img_url'
                             type='text'
+                            autoComplete="off"
                             className='new-coffee-input'
                             value={img_url}
                             onChange={e => setImg_Url(e.target.value)}
@@ -356,11 +390,12 @@ export default function EditCoffee() {
                     </div>
                     <button
                         type="submit"
-                        disabled={errors.length > 0}
+                        // disabled={errors.length}
                         id='login-button'
                     >
                         SUBMIT
                     </button>
+                    {onSubmit && errors.length > 0 && <div style={{ textAlign: 'center' }} className='new-coffee-form-error'>Unable to submit curation. Please address the above errors.</div>}
                 </form>
 
             </div>
