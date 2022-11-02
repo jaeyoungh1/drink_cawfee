@@ -83,3 +83,6 @@
     font-weight: 500;
     cursor: pointer;
 }
+.review-request-confirmation {
+    color: red;
+}

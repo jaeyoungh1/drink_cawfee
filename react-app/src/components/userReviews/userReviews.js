@@ -17,6 +17,7 @@ export default function UserReviews() {
     const reviews = useSelector(state => state.review.allReview)
     const [seeEditModal, setSeeEditModal] = useState(false)
     const [editReviewId, setEditReviewId] = useState('')
+    const [openConfirm, setOpenConfirm] = useState('')
 
     let [starRating, setStarRating] = useState(0)
     let [hover, setHover] = useState()
@@ -150,7 +151,8 @@ export default function UserReviews() {
                     You do not currently have any reviews.
                 </div>
 
-       ) } else {
+            )
+        } else {
 
 
             let reviewArr = Object.values(reviews)
@@ -198,14 +200,22 @@ export default function UserReviews() {
                                         }} className='review-edit-delete' >
                                             Edit
                                         </div>
-                                        <div onClick={() => deleteReview(obj.id)} className='review-edit-delete' >
-                                            Delete
-                                        </div>
+                                        {openConfirm === obj.id ?
+                                            <div onClick={() => deleteReview(obj.id)} className='review-edit-delete review-request-confirmation'>
+                                                Confirm Delete
+                                            </div>
+                                            :
+                                            <div onClick={() => setOpenConfirm(obj.id)} className='review-edit-delete' >
+                                                Delete
+                                            </div>
+                                        }
+
+                                        {openConfirm === obj.id && <div onClick={() => setOpenConfirm(0)} className='review-edit-delete'>Cancel</div>}
                                     </div>
                                 </div>
                             </div>
                             <div className='user-review-line-break'></div>
-                        </div>
+                        </div >
                     )
                 }
 
