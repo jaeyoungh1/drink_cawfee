@@ -216,7 +216,7 @@ const _deleteOneCoffee = id => ({
 });
 
 export const deleteOneCoffee = id => async dispatch => {
-    const response = await fetch(`/api/coffee/${id}`, {
+    const response = await fetch(`/api/coffee/${id}/`, {
         method: 'DELETE'
     });
 

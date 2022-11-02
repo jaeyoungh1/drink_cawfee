@@ -59,7 +59,8 @@ export default function CurrentCoffee() {
                         <div className='user-coffee-details'>Current Inventory: {obj.inventory}</div>
                         <div className='user-coffee-details-container'>
                             <div ><NavLink className='user-coffee-details user-coffee-navlink' to={`/cawfee/edit/${obj.id}`}>Edit Coffee</NavLink></div>
-                            <div onClick={() => {
+                            <div onClick={() => deleteCoffee(obj.id)} >Remove Curation</div>
+                            {/* <div onClick={() => {
                                 setOpenConfirm(obj.id)
                             }} className='user-coffee-details user-coffee-navlink'>
                                 {openConfirm === obj.id ?
@@ -72,7 +73,7 @@ export default function CurrentCoffee() {
                             {openConfirm === obj.id && <div className='user-coffee-details user-coffee-navlink'
                                 onClick={() => setOpenConfirm(0)}>
                                 Cancel
-                            </div>}
+                            </div>} */}
                         </div>
                     </div>
                 </div>
