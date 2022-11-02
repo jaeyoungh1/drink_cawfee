@@ -84,7 +84,9 @@
 .all-coffee-details-name {
     font-size: 24px;
     font-weight: 500;
-    margin: 10px 0px
+    margin: 10px 0px;
+    overflow-wrap: break-word;
+    /* word-break:keep-all;     */
 }
 
 .all-coffee-details-price {

@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadAllCoffee } from "../../store/coffee";
 import { addOneCoffee } from "../../store/coffee";
 import brokenImg from '../../icons/broken-img.png'
+import noImg from '../../icons/no_image.svg'
+
 import './newCoffee.css'
 import { loadAllBrand } from "../../store/brand";
 
@@ -77,7 +79,7 @@ export default function NewCoffee() {
         if (name.length && name.trim().length < 2) {
             errors.push("Name must be at least 2 characters");
         }
-        if (name.length && name.length > 30) {
+        if (name.length && name.trim().length > 30) {
             errors.push("Name can not be more than 30 characters");
         }
 
@@ -135,9 +137,9 @@ export default function NewCoffee() {
 
     }
 
-    console.log("NOTES", notes)
+    // console.log("NOTES", notes)
 
-    console.log("ERRORS", errors)
+    // console.log("ERRORS", errors)
 
     if (!user || !user.curator) {
         return <Redirect to='/' />;
@@ -157,9 +159,9 @@ export default function NewCoffee() {
                     </div> */}
 
                     <div className='coffee-input-wrapper'>
-                        {onSubmit && (name.length < 2 || name.length > 30) && <div className='new-coffee-form-error'>Name must be at least 2 characters</div>}
-                        {!onSubmit && name && name.length < 2 && <div className='new-coffee-form-error'>Name must be at least 2 characters</div>}
-                        {name && name.length > 30 && <div className='new-coffee-form-error'>Name can not exceed 30 characters</div>}
+                        {onSubmit && (name.trim().length < 2 || name.trim().length > 30) && <div className='new-coffee-form-error'>Name must be at least 2 characters</div>}
+                        {!onSubmit && name && name.trim().length < 2 && <div className='new-coffee-form-error'>Name must be at least 2 characters</div>}
+                        {name && name.trim().length > 30 && <div className='new-coffee-form-error'>Name can not exceed 30 characters</div>}
                         <label className='coffee-input-label' htmlFor='name'>Coffee Name</label>
                         <input
                             name='name'
@@ -341,7 +343,7 @@ export default function NewCoffee() {
                         />
                     </div>
                     <div className='coffee-input-prev-img'>
-                        {img_url && <img className='add-coffee-preview_img_url' src={img_url} alt='img' onError={e => e.target.src = brokenImg} />}
+                        {img_url && <img className='add-coffee-preview_img_url' src={img_url} alt='img' onError={e => e.target.src = noImg} />}
                     </div>
                     <button
                         type="submit"

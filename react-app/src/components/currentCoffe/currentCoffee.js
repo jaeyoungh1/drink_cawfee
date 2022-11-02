@@ -3,6 +3,8 @@ import { NavLink, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { deleteOneCoffee, loadUserCoffee } from "../../store/coffee";
 import brokenImg from '../../icons/broken-img.png'
+import noImg from '../../icons/no_image.svg'
+
 import './currentCoffee.css'
 
 export default function CurrentCoffee() {
@@ -34,7 +36,7 @@ export default function CurrentCoffee() {
                     <div className='user-coffee-single-container'>
                         <NavLink to={`/cawfee/${obj.id}`}>
                             <div className="user-coffee-image-wrapper">
-                                <img alt='coffee bag' className="single-coffee-image-wrapper-img" src={obj.img_url} onError={(e) => e.target.src = brokenImg} />
+                                <img alt='coffee bag' className="single-coffee-image-wrapper-img" src={obj.img_url} onError={(e) => e.target.src = noImg} />
                             </div>
                         </NavLink>
 
@@ -57,6 +59,7 @@ export default function CurrentCoffee() {
                         <div className='user-coffee-details'>Current Inventory: {obj.inventory}</div>
                         <div className='user-coffee-details-container'>
                             <div ><NavLink className='user-coffee-details user-coffee-navlink' to={`/cawfee/edit/${obj.id}`}>Edit Coffee</NavLink></div>
+                            {/* <div onClick={() => deleteCoffee(obj.id)} >Remove Curation</div> */}
                             <div onClick={() => {
                                 setOpenConfirm(obj.id)
                             }} className='user-coffee-details user-coffee-navlink'>

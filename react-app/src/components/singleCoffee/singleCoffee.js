@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getOneCoffee } from "../../store/coffee";
 import arrow from '../../icons/whitearrow.svg'
 import brokenImg from '../../icons/broken-img.png'
+import noImg from '../../icons/no_image.svg'
 import './singleCoffee.css'
 import { loadAllReview } from "../../store/review";
 import CoffeeReviews from "../coffeeReviews/CoffeeReviews";
@@ -127,7 +128,7 @@ export default function SingleCoffee() {
                 <div className='single-coffee-wrapper'>
                     <div className='single-coffee-single-img'>
                         <img className='single-coffee-img' alt='coffee' src={coffee.img_url}
-                            onError={e => e.target.src = brokenImg} />
+                            onError={e => e.target.src = noImg} />
                         <div className='bottom-gradient'></div>
                     </div>
                     <div className='single-coffee-single-details'>

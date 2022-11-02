@@ -169,7 +169,7 @@ export default function UserReviews() {
                     return (
                         <div className='user-reviews-wrapper'>
                             <div className='user-single-coffee-review-container' key={obj.id}>
-                                <div className='user-review-coffee-info-single-container'>
+                                <div className='user-review-coffee-info-single-container review-image-wrapper'>
                                     <NavLink className='user-review-coffee-info-single-container' to={`/cawfee/${id}`}>
                                         <div className='user-review-coffee-image'>
                                             <img className='user-review-coffee-image' alt='coffee image' src={coffee.img_url} />
