@@ -38,11 +38,13 @@ function LoginFormModal() {
     const onSignUp = async (e) => {
         e.preventDefault();
         let errs = []
-        if (first_name.length < 2) errs.push('First name must be at least 2 characters.')
-        if (last_name.length < 2) errs.push('Last name must be at least 2 characters.')
-        if (!email.includes('@') || !email.includes('.')) errs.push('Must sign up with a valid email.')
-        // if (!email.includes('@') || !email.includes('.')) errs.push('Must sign up with a valid email.')
-        if (password.length < 5) errs.push('Password must be at least 6 characters.')
+        if (first_name.trim().length >25 ) errs.push('Please limit First Name to 25 characters')
+        if (first_name.trim().length < 2) errs.push('First name must be at least 2 characters')
+        if (last_name.trim().length < 2) errs.push('Last name must be at least 2 characters.')
+        if (last_name.trim().length > 25) errs.push('Please limit Last Name to 25 characters')
+        if (!email.includes('@') || !email.includes('.')) errs.push('Must sign up with a valid email')
+        if (password.trim().length < 5) errs.push('Password must be at least 6 characters')
+        if (password.trim().length > 25) errs.push('Password must be limited to 25 characters')
         if (errs.length > 0) {
             setSignErrors(errs)
             setHasSubmitSign(true)
@@ -51,7 +53,6 @@ function LoginFormModal() {
         else if (password) {
             setHasSubmitSign(true);
             const data = await dispatch(signUp(first_name, last_name, email, password));
-            console.log(data[0])
             if (data) {
                 if (data[0].includes('email')) {
                     setSignErrors(['Email is already in use'])
