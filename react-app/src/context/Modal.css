@@ -26,13 +26,3 @@
     padding: 30px 20px;
     border-radius: 4px;
 }
-
-#cart-container {
-    position: fixed;
-    height: 100%;
-    width: 20%;
-    top: 150px;
-    right: 0px;
-    background-color: white;
-    ;
-}

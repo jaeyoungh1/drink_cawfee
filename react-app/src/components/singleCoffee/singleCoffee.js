@@ -48,8 +48,8 @@ export default function SingleCoffee() {
 
         try {
             let cartItem = await dispatch(addOneCart(+coffeeId, newCart))
-            console.log("CARTIEM", cartItem)
-            console.log("WORKED!!!")
+            // console.log("CARTIEM", cartItem)
+            // console.log("WORKED!!!")
             // history.replace(`/cawfee/${coffee.id}`)
         } catch (res) {
             console.log(res)

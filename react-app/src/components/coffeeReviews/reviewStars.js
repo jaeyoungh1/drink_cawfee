@@ -9,12 +9,12 @@ export default function ReviewStars({ rating }) {
     let emptyRating
     if (filled) {
         filledRating = filled.map(i => {
-            return (<span><img className='review-star' src={fullStar} /> </span>)
+            return (<span key={i} ><img className='review-star' src={fullStar} /> </span>)
         })
     }
     if (empty) {
         emptyRating = empty.map(i => {
-            return (<span><img className='review-star' src={emptyStar} /> </span>)
+            return (<span key = { i }><img className='review-star' src={emptyStar} /> </span>)
         })
     }
 
