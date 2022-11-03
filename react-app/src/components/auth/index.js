@@ -23,6 +23,7 @@ function LoginFormModal() {
 
     const dispatch = useDispatch();
 
+
     const onLogin = async (e) => {
         e.preventDefault();
         setHasSubmitLog(true)
@@ -39,6 +40,7 @@ function LoginFormModal() {
         if (first_name.length < 2) errs.push('First name must be at least 2 characters.')
         if (last_name.length < 2) errs.push('Last name must be at least 2 characters.')
         if (!email.includes('@') || !email.includes('.')) errs.push('Must sign up with a valid email.')
+        // if (!email.includes('@') || !email.includes('.')) errs.push('Must sign up with a valid email.')
         if (password.length < 5) errs.push('Password must be at least 6 characters.')
         if (errs.length > 0) {
             setErrors(errs)
@@ -48,11 +50,14 @@ function LoginFormModal() {
         else if (password) {
             setHasSubmitSign(true);
             const data = await dispatch(signUp(first_name, last_name, email, password));
+            console.log("SIGNUP ERRORS", data)
             if (data) {
-                setErrors([data.message ?? data.username])
+                setErrors([data])
             }
         }
     };
+
+    console.log('errors', errors)
 
 
     return (
