@@ -1,6 +1,8 @@
 .gradient {
     background: linear-gradient(180deg, #000000ec, #0000004d 42.92%, #0000);
     width: 44.45%;
+    max-width: 1000px;
+    min-width: 500px;
     z-index: 3;
     position: absolute;
     height: 200px;
@@ -9,6 +11,8 @@
 .bottom-gradient {
     background: linear-gradient(rgba(34, 34, 34, 0) 58%, #222222 85%);
     width: 44.90%;
+    max-width: 1000px;
+    min-width: 500px;
     top: 440px;
     z-index: 3;
     position: absolute;
@@ -43,6 +47,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 1000px;
 }
 
 .single-coffee-img {
@@ -64,8 +69,12 @@
     margin: 20px;
     margin-left: 30px;
     margin-right: 100px;
+    max-width: 640px;
+    min-width: 480px;
 }
-
+.single-coffee-purchase-toggle-buttons:hover {
+    cursor: pointer;
+}
 .single-coffee-details-brand {
     font-size: 36px;
 }
@@ -93,16 +102,41 @@
     margin: 15px 0px
 }
 
+
+.single-coffee-purchase-title {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.single-coffee-purchase-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .single-coffee-details-purchase-container {
     background-color: #30302e;
     padding: 20px 20px;
     border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+.single-coffee-purchase-title:hover {
+    cursor: pointer;
+}
+
+.single-coffee-details-purchase-selected {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
 }
 
 .single-coffee-details-purchase {
-    font-size: 18px;
+    font-size: 16px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 500;
+    padding-bottom: 5px;
 }
 
 .single-coffee-details-price {
@@ -112,6 +146,56 @@
     margin: 5px 5px;
 }
 
+.single-coffee-purchase-title {
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    margin: 5px 5px;
+}
+
+
+.single-coffee-purchase-toggle {
+    display: flex;
+    background-color: whitesmoke;
+    justify-content: space-around;
+    padding: 7px 0px;
+    border-radius: 4px;
+    margin-top: 4px;
+    margin-left: 5px;
+    width: 98%;
+    max-width: 240px;
+}
+
+.single-coffee-purchase-quantity {
+    display: flex;
+    color: #222;
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+}
+
+.add-to-cart {
+    background-color: rgb(184, 76, 41);
+    color: white;
+    width: 100%;
+    grid-column: 1/3;
+    max-width: 520px;
+    margin-left: 5px;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.add-to-cart:hover {
+    cursor:pointer;
+    transition-duration: 400ms;
+    background-color: rgb(195, 56, 10);
+}
 .single-coffee-more-details-padding {
     height: 10px;
     background-color: #222;
@@ -173,8 +257,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width:100%;
+    width: 100%;
+    max-height: 480px;
 }
+
 .single-coffee-brand-details-image-wrapper>img {
     background: #222222;
     display: flex;
@@ -182,6 +268,7 @@
     justify-content: center;
     width: 40%;
 }
+
 .single-coffee-brand-details-body-wrapper {
     margin-top: 60px;
     margin-left: 50px;

@@ -1,12 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { getOneCoffee } from "../../store/coffee";
 import arrow from '../../icons/whitearrow.svg'
-import brokenImg from '../../icons/broken-img.png'
+import emptyButton from '../../icons/emptyButton.svg'
+import filledButton from '../../icons/filledButton.svg'
+import minus from '../../icons/minus.svg'
+import plus from '../../icons/plus.svg'
+// import brokenImg from '../../icons/broken-img.png'
 import noImg from '../../icons/no_image.svg'
 import './singleCoffee.css'
 import { loadAllReview } from "../../store/review";
+import { addOneCart } from "../../store/cart";
 import CoffeeReviews from "../coffeeReviews/CoffeeReviews";
 
 export default function SingleCoffee() {
@@ -14,9 +19,12 @@ export default function SingleCoffee() {
     const { coffeeId } = useParams()
 
     const coffee = useSelector(state => state.coffee.singleCoffee)
-    const reviews = useSelector(state => state.review.allReview)
+    const user = useSelector(state => state.session.user)
 
-    // console.log("COFFEE", coffee.id)
+    const [selected, setSelected] = useState('single')
+    const [quantity, setQuantity] = useState(1);
+
+    console.log("QUANTITY", quantity)
 
     useEffect(() => {
         dispatch(getOneCoffee(coffeeId))
@@ -24,6 +32,8 @@ export default function SingleCoffee() {
             dispatch(loadAllReview(coffeeId))
         }
     }, [dispatch])
+
+
     let brand
     if (coffee.Brand) {
         brand = coffee.Brand
@@ -98,13 +108,28 @@ export default function SingleCoffee() {
         })
     }
 
+    const submitToCart = async (e) => {
+        e.preventDefault();
+        if (quantity < 1) {
+            return;
+        }
+
+        try {
+            await dispatch(addOneCart(coffeeId, quantity))
+            // history.replace(`/cawfee/${coffee.id}`)
+        } catch (res) {
+            console.log(res)
+        }
+
+    }
+
 
 
 
     return (
         <>
             {!coffee.id && <div className='empty-page'>
-                Page Not Found! <NavLink className='ruhroh-page' to='/'>Return back to safe waters.</NavLink> 
+                Page Not Found! <NavLink className='ruhroh-page' to='/'>Return back to safe waters.</NavLink>
             </div>}
             {coffee.id && <div className='single-coffee-page-wrapper'>
                 {/* <img className='single-coffee-page-bg-img' alt='coffeeshop' src="https://images.ctfassets.net/o88ugk6hewlf/7j8fz2gBeperXhNAUxodex/a87ef2b8cccbc19a235ac7b7c69ddbb7/Cuvee_Coffee.jpeg?q=75&fm=webp&w=1000"/> */}
@@ -139,15 +164,88 @@ export default function SingleCoffee() {
                         <div className='single-coffee-details-name'>
                             {coffee.name && coffee.name.toUpperCase()}
                         </div>
+                        <div className='single-coffee-details-description'>
+                            {coffee.origin}
+                        </div>
                         <div className='single-coffee-details-notes'>
                             {notes}
                         </div>
                         <div className='single-coffee-details-description'>
                             {coffee.description}
                         </div>
+
+
+                        {/* CART FORM ---------------------------------------------- */}
+
                         <div className='single-coffee-details-purchase-container'>
+
+                            <div className='single-coffee-purchase-top'
+                                onClick={() => setSelected('single')}>
+
+                                <div className='single-coffee-purchase-title'>
+
+                                    <div className='single-coffee-purchase-button'>
+                                        <img alt='button' height='24' width='24' src={selected === 'single' ? filledButton : emptyButton} />
+                                    </div>
+
+                                    <div className='single-coffee-details-purchase'>
+                                        One Time Purchase
+                                    </div>
+                                </div>
+                                <div className='single-coffee-details-price'>
+                                    {priceFormatter(coffee.price)}/bag
+
+                                </div>
+
+                            </div>
+                            {selected === 'single' &&
+                                <div className='single-coffee-details-purchase-selected'>
+                                    <div className='single-coffee-purchase-title'>Bag Size</div>
+                                    <div className='single-coffee-purchase-title'>Quantity</div>
+
+                                    <div className='single-coffee-purchase-toggle'>
+                                        <div className='single-coffee-purchase-quantity'>
+                                            12 oz.
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div className='single-coffee-purchase-toggle'>
+                                            <div className='single-coffee-purchase-toggle-buttons'
+                                                onClick={() => {
+                                                    if (quantity > 1) {
+                                                        setQuantity(quantity - 1)
+                                                    }
+                                                }}>
+                                                <img height='12' width='12' alt='reduce quantity' src={minus} />
+                                            </div>
+                                            <div className='single-coffee-purchase-quantity'>
+                                                {quantity}
+                                            </div>
+                                            <div className='single-coffee-purchase-toggle-buttons'
+                                                onClick={() => {
+                                                    if (quantity < 99) {
+                                                        setQuantity(quantity + 1)
+                                                    }
+                                                }}>
+                                                <img height='12' width='12' alt='increase quantity' src={plus} />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id='login-button' className='add-to-cart'>
+                                        ADD TO CART
+                                    </div>
+                                </div>
+
+                            }
+
+                        </div>
+                        <div className='single-coffee-details-purchase-container'>
+
                             <div className='single-coffee-details-purchase'>
-                                One Time Purchase
+                                <div className='single-coffee-details-purchase'>
+                                    One Time Purchase
+                                </div>
                             </div>
                             <div className='single-coffee-details-price'>
                                 {priceFormatter(coffee.price)}/bag
@@ -158,7 +256,12 @@ export default function SingleCoffee() {
                             <div>12 oz.</div>
                             <div>1</div>
                         </div> */}
+
                         </div>
+
+
+
+
                     </div>
                 </div>
 

@@ -15,13 +15,13 @@ const _addOneCart = (cart) => ({
     payload: cart
 });
 
-export const addOneCart = (coffeeId, cart) => async dispatch => {
+export const addOneCart = (coffeeId, quantity) => async dispatch => {
     const response = await csrfFetch(`/api/cart/${coffeeId}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(cart)
+        body: JSON.stringify(quantity)
     });
     if (response.ok) {
         const data = await response.json()
