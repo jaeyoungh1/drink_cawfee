@@ -42,11 +42,17 @@ def add_one_to_cart(coffee_id):
     user = current_user.to_dict()
     if not user:
         return {"message": "Forbidden", "status_code": 403}, 403
+
     user_id = user['id']
+
+    print("   >>>>> USERID", user_id)
+
+
 
     form = AddToCartForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
+    print("   >>>>> FORM DATA", form.data['quantity'])
     post_val_error = {
         "message": "Validation error",
         "status_code": 400,

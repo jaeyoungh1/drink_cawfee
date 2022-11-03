@@ -5,7 +5,6 @@ const GET_ONE_CART = 'cart/get_one_cart';
 const ADD_ONE_CART = 'cart/add_one_cart';
 const DELETE_ONE_CART = 'cart/delete_one_cart';
 const EDIT_ONE_CART = 'cart/edit_one_cart';
-const SEARCH = 'cart/search_cart'
 // const CLEAR_DATA = '/cart/CLEAR_DATA';
 
 
@@ -15,14 +14,16 @@ const _addOneCart = (cart) => ({
     payload: cart
 });
 
-export const addOneCart = (coffeeId, quantity) => async dispatch => {
+export const addOneCart = (coffeeId, cart) => async dispatch => {
+    console.log("INSIDE STORE", typeof (coffeeId), coffeeId, typeof (cart), cart)
     const response = await csrfFetch(`/api/cart/${coffeeId}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(quantity)
+        body: JSON.stringify(cart)
     });
+    console.log("RESPONSE", response)
     if (response.ok) {
         const data = await response.json()
 

@@ -21,7 +21,7 @@ export default function SingleCoffee() {
     const coffee = useSelector(state => state.coffee.singleCoffee)
     const user = useSelector(state => state.session.user)
 
-    const [selected, setSelected] = useState('single')
+    const [selected, setSelected] = useState('')
     const [quantity, setQuantity] = useState(1);
 
     console.log("QUANTITY", quantity)
@@ -32,6 +32,30 @@ export default function SingleCoffee() {
             dispatch(loadAllReview(coffeeId))
         }
     }, [dispatch])
+
+
+    const submitToCart = async () => {
+        // e.preventDefault();
+        // if (quantity < 1) {
+        //     return;
+        // }
+        console.log("FRONT END USER ID", user.id)
+        const newCart = {
+            user_id: user.id,
+            coffee_id: coffeeId,
+            quantity
+        }
+
+        try {
+            let cartItem = await dispatch(addOneCart(+coffeeId, newCart))
+            console.log("CARTIEM", cartItem)
+            console.log("WORKED!!!")
+            // history.replace(`/cawfee/${coffee.id}`)
+        } catch (res) {
+            console.log(res)
+        }
+
+    }
 
 
     let brand
@@ -108,20 +132,6 @@ export default function SingleCoffee() {
         })
     }
 
-    const submitToCart = async (e) => {
-        e.preventDefault();
-        if (quantity < 1) {
-            return;
-        }
-
-        try {
-            await dispatch(addOneCart(coffeeId, quantity))
-            // history.replace(`/cawfee/${coffee.id}`)
-        } catch (res) {
-            console.log(res)
-        }
-
-    }
 
 
 
@@ -209,7 +219,7 @@ export default function SingleCoffee() {
                                         </div>
                                     </div>
 
-                                    <div>
+                                    <div className='single-coffee-purchase'>
                                         <div className='single-coffee-purchase-toggle'>
                                             <div className='single-coffee-purchase-toggle-buttons'
                                                 onClick={() => {
@@ -232,34 +242,17 @@ export default function SingleCoffee() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div id='login-button' className='add-to-cart'>
+                                    {user ? <div id='login-button' className='add-to-cart'
+                                    onClick={() => submitToCart()}>
                                         ADD TO CART
                                     </div>
+                                    :
+                                    <div className='please-login-to-shop'> Please log in to add to cart </div>
+                                        }
                                 </div>
 
                             }
-
                         </div>
-                        <div className='single-coffee-details-purchase-container'>
-
-                            <div className='single-coffee-details-purchase'>
-                                <div className='single-coffee-details-purchase'>
-                                    One Time Purchase
-                                </div>
-                            </div>
-                            <div className='single-coffee-details-price'>
-                                {priceFormatter(coffee.price)}/bag
-                            </div>
-                            {/* <div>
-                            <div>Bag Size</div>
-                            <div>Quantity</div>
-                            <div>12 oz.</div>
-                            <div>1</div>
-                        </div> */}
-
-                        </div>
-
-
 
 
                     </div>
