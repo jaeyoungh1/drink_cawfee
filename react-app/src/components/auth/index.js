@@ -10,7 +10,8 @@ import './loginForm.css'
 
 function LoginFormModal() {
     const [showModal, setShowModal] = useState(false);
-    const [errors, setErrors] = useState([]);
+    const [loginErrors, setLoginErrors] = useState([]);
+    const [signErrors, setSignErrors] = useState([]);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [hasSubmitLog, setHasSubmitLog] = useState(false);
@@ -30,7 +31,7 @@ function LoginFormModal() {
         const data = await dispatch(login(email, password));
         if (data) {
             // console.log(data)
-            setErrors(['The email address or password you entered is incorrect.']);
+            setLoginErrors(['The email address or password you entered is incorrect.']);
         }
     };
 
@@ -43,21 +44,25 @@ function LoginFormModal() {
         // if (!email.includes('@') || !email.includes('.')) errs.push('Must sign up with a valid email.')
         if (password.length < 5) errs.push('Password must be at least 6 characters.')
         if (errs.length > 0) {
-            setErrors(errs)
+            setSignErrors(errs)
             setHasSubmitSign(true)
         }
 
         else if (password) {
             setHasSubmitSign(true);
             const data = await dispatch(signUp(first_name, last_name, email, password));
-            console.log("SIGNUP ERRORS", data)
+            console.log(data[0])
             if (data) {
-                setErrors([data])
+                if (data[0].includes('email')) {
+                    setSignErrors(['Email is already in use'])
+                } else {
+                    setSignErrors([data])
+                }
             }
         }
     };
 
-    console.log('errors', errors)
+    console.log('errors', signErrors, loginErrors)
 
 
     return (
@@ -109,9 +114,9 @@ function LoginFormModal() {
 
                                 <div id='modal-lines'><span className='or'>Or Sign In with Your Email</span></div>
 
-                                {showModal && hasSubmitLog && errors && (
+                                {showModal && hasSubmitLog && loginErrors && (
                                     <div className='modal-errors-box'>
-                                        {errors.map((error, ind) => (
+                                        {loginErrors.map((error, ind) => (
                                             <div className='modal-errors' key={ind}>{error}</div>
                                         ))}
                                     </div>
@@ -150,9 +155,9 @@ function LoginFormModal() {
                         </div>}
                         {showSignup && <div className='login-signup-body'>
                             <form onSubmit={onSignUp}>
-                                {hasSubmitSign && showModal && errors && (
+                                {hasSubmitSign && showModal && signErrors && (
                                     <div className='modal-errors-box' id='sign-up-box'>
-                                        {errors.map((error, ind) => (
+                                        {signErrors.map((error, ind) => (
                                             <div className='modal-errors' key={ind}>{error}</div>
                                         ))}
                                     </div>
