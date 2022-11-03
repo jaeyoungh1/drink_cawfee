@@ -6,6 +6,9 @@
     box-sizing: border-box;
     /* font-family: 'Open Sans', sans-serif; */
 }
+body {
+    margin: 0;
+}
 
 textarea {
     resize: none;
