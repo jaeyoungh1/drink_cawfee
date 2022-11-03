@@ -25,8 +25,6 @@ export default function Cart() {
         dispatch(loadAllCart())
     }, [dispatch])
 
-    console.log("new quantity", newQuantity)
-
     async function updateCart(cartId) {
         let newCart = {
             quantity: newQuantity
@@ -209,7 +207,7 @@ export default function Cart() {
                             {allCart}
                         </div>
 
-                        {user && <div>
+                        {user && <div className='cart-total'>
                             <div>Total</div>
                             <div>{priceFormatter(total)}</div>
                         </div>}

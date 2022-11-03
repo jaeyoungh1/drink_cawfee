@@ -63,6 +63,7 @@ const _editOneCart = payload => ({
 });
 
 export const editOneCart = (cartId, cart) => async dispatch => {
+    console.log("EDITING CART", cartId, cart)
     const response = await csrfFetch(`/api/cart/${cartId}`, {
         method: 'PUT',
         headers: {

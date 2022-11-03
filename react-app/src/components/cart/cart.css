@@ -11,10 +11,13 @@
     position: fixed;
     height: 100%;
     width: 24%;
+    min-width: 400px;
     top: 0;
     right: 0px;
     background-color: white;
-    padding: 12px 24px;
+    padding: 12px 0;
+    padding-right: 24px;
+    padding-left: 18px;
     overflow: scroll;
 }
 
@@ -55,6 +58,7 @@
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     font-weight: 400;
+    overflow-wrap: break-word;
 }
 
 .cart-item-price {
@@ -76,6 +80,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 10px;
     margin-bottom: 4px;
     margin-right: 4px;
 }
@@ -90,6 +95,7 @@
 
 .cart-item-actions>span:hover {
     cursor: pointer;
+    color: rgb(184, 76, 41);
 }
 
 .cart-line-break {
@@ -112,7 +118,7 @@
     font-size: 12px;
     font-weight: 500;
     margin-top: 20px;
-    padding: 4px 0;
+    padding: 10px 0;
     letter-spacing: 0.5px;
 }
 
@@ -143,9 +149,10 @@
     font-weight: 600;
     color: rgb(159, 159, 159);
 }
+
 .cart-quantity-adjust-confirm:hover {
     color: rgb(184, 76, 41);
-        cursor: pointer;
+    cursor: pointer;
 }
 
 
@@ -155,4 +162,18 @@
     font-weight: 400;
     color: black;
     padding: 0 6px;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 36px;
+}
+
+.cart-total>div {
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    color: black;
 }

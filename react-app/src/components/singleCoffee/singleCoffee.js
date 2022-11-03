@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { getOneCoffee } from "../../store/coffee";
 import arrow from '../../icons/whitearrow.svg'
@@ -11,50 +11,87 @@ import plus from '../../icons/plus.svg'
 import noImg from '../../icons/no_image.svg'
 import './singleCoffee.css'
 import { loadAllReview } from "../../store/review";
-import { addOneCart } from "../../store/cart";
+import { addOneCart, editOneCart, loadAllCart } from "../../store/cart";
 import CoffeeReviews from "../coffeeReviews/CoffeeReviews";
 
 export default function SingleCoffee() {
     const dispatch = useDispatch()
     const { coffeeId } = useParams()
+    const history = useHistory()
 
     const coffee = useSelector(state => state.coffee.singleCoffee)
     const user = useSelector(state => state.session.user)
+    const cart = useSelector(state => state.cart.allCart)
 
     const [selected, setSelected] = useState('')
     const [quantity, setQuantity] = useState(1);
+    const [added, setAdded] = useState(false);
 
-    console.log("QUANTITY", quantity)
+    console.log("cart", cart)
 
     useEffect(() => {
         dispatch(getOneCoffee(coffeeId))
         if (coffee.id) {
             dispatch(loadAllReview(coffeeId))
         }
+        dispatch(loadAllCart())
     }, [dispatch])
 
+    let cartedCoffee
+    let cartArr
+    if (cart) {
+        cartArr = Object.values(cart)
+        if (cartArr.length > 1) {
+
+            cartedCoffee = cartArr.map(obj => obj.coffee_id)
+        }
+        console.log("CARTED COFFEE", cartedCoffee)
+        console.log("CARTARR", cartArr)
+    }
+
+    // console.log("cartedCoffee.includes(coffeeId)", cartedCoffee && cartedCoffee.includes(+coffeeId))
+    
+    // console.log("CARTID", cartId, currQuan)
+    
 
     const submitToCart = async () => {
-        // e.preventDefault();
-        // if (quantity < 1) {
-        //     return;
-        // }
-        console.log("FRONT END USER ID", user.id)
-        const newCart = {
-            user_id: user.id,
-            coffee_id: coffeeId,
-            quantity
+        if (quantity < 1) {
+            return;
         }
+        if (cartedCoffee && cartedCoffee.includes(+coffeeId)) {
+            let currentCart= cartArr.filter(obj => +obj.coffee_id === +coffeeId)
+            let cartId = currentCart[0]?.id
+            let currQuan = currentCart[0]?.quantity
+            let nq = +currQuan + +quantity
+            const editCart = {
+                quantity: nq
+            }
+            // let cartId = cartArr.filter(obj => +obj.coffee_id === +coffeeId)[0]?.id
+            console.log("CARTID", cartId)
+            await dispatch(editOneCart(+cartId, editCart))
+            await dispatch(loadAllCart())
+        } else {
 
-        try {
-            let cartItem = await dispatch(addOneCart(+coffeeId, newCart))
-            // console.log("CARTIEM", cartItem)
-            // console.log("WORKED!!!")
-            // history.replace(`/cawfee/${coffee.id}`)
-        } catch (res) {
-            console.log(res)
+            const newCart = {
+                user_id: user.id,
+                coffee_id: coffeeId,
+                quantity
+            }
+
+            try {
+                let cartItem = await dispatch(addOneCart(+coffeeId, newCart))
+                await dispatch(loadAllCart())
+                setAdded(true)
+
+                setTimeout(() => {
+                    setAdded(false)
+                }, 2000)
+                return
+            } catch (res) {
+                console.log(res)
+            }
+
         }
-
     }
 
 
@@ -243,12 +280,12 @@ export default function SingleCoffee() {
                                         </div>
                                     </div>
                                     {user ? <div id='login-button' className='add-to-cart'
-                                    onClick={() => submitToCart()}>
-                                        ADD TO CART
+                                        onClick={() => submitToCart()}>
+                                        {added ? "ADDED TO CART!" : "ADD TO CART"}
                                     </div>
-                                    :
-                                    <div className='please-login-to-shop'> Please log in to add to cart </div>
-                                        }
+                                        :
+                                        <div className='please-login-to-shop'> Please log in to add to cart </div>
+                                    }
                                 </div>
 
                             }
