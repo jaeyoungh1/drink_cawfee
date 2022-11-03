@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import LoginFormModal from '../auth';
 import './NavBar.css'
 import LogoutButton from '../auth/LogoutButton';
+import Cart from '../cart/cart';
 
 const NavBar = () => {
   const [visibility, setVisible] = useState(false)
@@ -62,6 +63,7 @@ const NavBar = () => {
           </button>
             </NavLink>
           {sessionLinks}
+          <Cart />
         </div>
       </div>
 

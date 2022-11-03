@@ -90,8 +90,8 @@ const _deleteOneCart = id => ({
     id
 });
 
-export const deleteOneCart = cartIdd => async dispatch => {
-    const response = await fetch(`/api/cart/${cartIdd}`, {
+export const deleteOneCart = cartId => async dispatch => {
+    const response = await fetch(`/api/cart/${cartId}`, {
         method: 'DELETE'
     });
     // console.log("RESPONSE AFTER DELETE THUNK", response)
@@ -116,16 +116,9 @@ const cartReducer = (state = initialState, action) => {
             newState = { ...state, allCart: { ...state.allCart }, singleCart: { ...state.singleCart } };
             // console.log("LOAD_ALL ACTION.PAYLOAD IS:", action.payload);
             const newAllCart = {};
-            action.payload.Carts.forEach(cart => newAllCart[cart.id] = cart);
+            action.payload.Cart.forEach(cart => newAllCart[cart.id] = cart);
             newState.allCart = newAllCart;
             // console.log("NEWSTATE AFTER LOAD_ALL ACTION:", newState);
-            return newState;
-        case GET_ONE_CART:
-            newState = { ...state, allCart: { ...state.allCart }, singleCart: { ...state.singleCart } };
-            // console.log("LOAD_ONE ACTION.PAYLOAD IS:", action.payload);
-            const newSingleCart = { ...action.payload };
-            newState.singleCart = newSingleCart;
-            // console.log("NEWSTATE AFTER LOAD_ONE ACTION:", newState);
             return newState;
         case ADD_ONE_CART:
             newState = { ...state, allCart: { ...state.allCart }, singleCart: { ...state.singleCart } };

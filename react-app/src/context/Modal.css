@@ -1,4 +1,4 @@
-#modal {
+.modal {
     position: fixed;
     top: 0;
     right: 0;
@@ -10,7 +10,7 @@
     z-index: 99;
 }
 
-#modal-background {
+.modal-background {
     position: fixed;
     top: 0;
     right: 0;
@@ -19,10 +19,20 @@
     background-color: rgba(0, 0, 0, 0.7);
 }
 
-#modal-content {
+.modal-content {
     position: absolute;
     background-color: white;
     width: 30%;
     padding: 30px 20px;
     border-radius: 4px;
+}
+
+#cart-container {
+    position: fixed;
+    height: 100%;
+    width: 20%;
+    top: 150px;
+    right: 0px;
+    background-color: white;
+    ;
 }
