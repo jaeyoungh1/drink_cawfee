@@ -45,39 +45,34 @@ export default function SingleCoffee() {
 
             cartedCoffee = cartArr.map(obj => obj.coffee_id)
         }
-        console.log("CARTED COFFEE", cartedCoffee)
-        console.log("CARTARR", cartArr)
     }
 
-    // console.log("cartedCoffee.includes(coffeeId)", cartedCoffee && cartedCoffee.includes(+coffeeId))
-    
-    // console.log("CARTID", cartId, currQuan)
-    
 
     const submitToCart = async () => {
         if (quantity < 1) {
             return;
         }
         if (cartedCoffee && cartedCoffee.includes(+coffeeId)) {
-            let currentCart= cartArr.filter(obj => +obj.coffee_id === +coffeeId)
+            let currentCart = cartArr.filter(obj => +obj.coffee_id === +coffeeId)
             let cartId = currentCart[0]?.id
             let currQuan = currentCart[0]?.quantity
             let nq = +currQuan + +quantity
             const editCart = {
                 quantity: nq
             }
-            // let cartId = cartArr.filter(obj => +obj.coffee_id === +coffeeId)[0]?.id
-            console.log("CARTID", cartId)
             await dispatch(editOneCart(+cartId, editCart))
             await dispatch(loadAllCart())
-        } else {
+            setAdded(true)
 
+            setTimeout(() => {
+                setAdded(false)
+            }, 2000)
+        } else {
             const newCart = {
                 user_id: user.id,
                 coffee_id: coffeeId,
                 quantity
             }
-
             try {
                 let cartItem = await dispatch(addOneCart(+coffeeId, newCart))
                 await dispatch(loadAllCart())

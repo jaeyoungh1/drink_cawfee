@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import LoginFormModal from '../auth';
@@ -12,6 +12,8 @@ const NavBar = () => {
   const [visibility, setVisible] = useState(false)
   const [coffeeVisible, setCoffeeVisible] = useState(false)
 
+  const url = useLocation().pathname
+  // console.log("URL", url)
   const user = useSelector(state => state.session.user);
 
   let sessionLinks;
@@ -63,7 +65,7 @@ const NavBar = () => {
           </button>
             </NavLink>
           {sessionLinks}
-          <Cart />
+          {url !== '/checkout' && <Cart />}
         </div>
       </div>
 

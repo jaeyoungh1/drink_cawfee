@@ -177,3 +177,105 @@
     font-family: 'Open Sans', sans-serif;
     color: black;
 }
+
+.checkout-cart-title {
+    font-size: 24px;
+    margin-bottom: 26px;
+}
+
+.checkout-container {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 64px;
+    margin-top: 100px;
+    padding-left: 120px;
+    padding-right: 24px;
+    height: 100%;
+}
+
+.checkout-color {
+    background: whitesmoke;
+    position: absolute;
+    height: 100%;
+    width: 448px;
+    right: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.checkout-line-break {
+    height: 1px;
+    background-color: rgb(239, 239, 239);
+    width: 100%;
+    margin-bottom: 8px;
+    margin-top: 20px;
+}
+
+.checkout-title {
+    font-size: 18px;
+    font-weight: 400;
+    margin: 22px 0;
+}
+
+.checkout-user-info {
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    color: rgb(159, 159, 159);
+    margin: 4px 0;
+}
+
+.checkout-card {
+    display: flex;
+    align-items: center;
+}
+
+.checkout-label {
+    margin-bottom: 20px;
+}
+
+.checkout-input {
+    border: none;
+    border-bottom: 1px solid rgb(102, 102, 102);
+    padding: 4px 0;
+    width: 100%;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    height: 36px;
+}
+
+.checkout-address {
+    width: 360px;
+}
+
+.checkout-zipcode {
+    width: 80px;
+}
+
+.checkout-state {
+    width: 80px;
+}
+.checkout-city {
+    width: 195px;
+}
+
+.checkout-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout-wrapper-div {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+.checkout-errors {
+    color: red;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+
+}

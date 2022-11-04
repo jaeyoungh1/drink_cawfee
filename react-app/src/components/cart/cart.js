@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NavLink, Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { loadAllCart, deleteOneCart, editOneCart } from "../../store/cart";
 import { CartModal } from '../../context/Modal';
@@ -12,10 +12,11 @@ import cart from '../../icons/cart.svg'
 
 export default function Cart() {
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const user = useSelector(state => state.session.user)
     const carts = useSelector(state => state.cart.allCart)
-    const [showModal, setShowModal] = useState(true);
+    const [showModal, setShowModal] = useState(false);
     const [newQuantity, setNewQuantity] = useState('');
     const [total, setTotal] = useState(0);
     const [showUpdate, setShowUpdate] = useState(false);
@@ -37,21 +38,11 @@ export default function Cart() {
         await dispatch(deleteOneCart(id))
         await dispatch(loadAllCart())
     }
-
-    const checkout = async (e) => {
-        e.preventDefault();
-
-        // cart.forEach(item => {
-        //     deleteCart(item.id)
-        // })
-
-        try {
-
-        } catch (res) {
-            console.log(res)
-        }
-
+    const checkout = async () => {
+        setShowModal(false)
+        return history.push('/checkout')
     }
+
     function priceFormatter(num) {
         if (num) {
 
@@ -80,8 +71,6 @@ export default function Cart() {
         }
     }, [carts])
 
-    // console.log("TOTAL", total)
-
 
     let allCart
     if (!user) {
@@ -107,11 +96,8 @@ export default function Cart() {
             allCart = cartArr.map(obj => {
                 let coffee = obj.Coffee
                 let quantity = obj.quantity
-                let brand
-                let id
                 let price
                 if (coffee) {
-                    id = coffee.id
                     price = coffee.price
 
                     return (
@@ -203,15 +189,15 @@ export default function Cart() {
                             <div className='get-all-coffee-all-coffee'>
                                 My Cart
                             </div>
-
                             {allCart}
                         </div>
 
-                        {user && <div className='cart-total'>
+                        {user && Object.values(carts).length >0 && <div className='cart-total'>
                             <div>Total</div>
                             <div>{priceFormatter(total)}</div>
                         </div>}
-                        {user && <div className='cart-checkout'
+                        {user && Object.values(carts).length>0 &&  <div className='cart-checkout'
+                        onClick={() => checkout()}
                         >
                             CHECKOUT
                         </div>}

@@ -9,6 +9,7 @@ def seed_users():
         email='chelseacat@user.io',
         password='password',
         shipping_address='123 Cat St',
+        zipcode='',
         city="Riverside",
         state="CA",
         curator=True
@@ -17,9 +18,6 @@ def seed_users():
     owner1 = User(
         email="davidrogers@user.io",
         password="password",
-        shipping_address="123 Street Ln",
-        city="San Francisco",
-        state="CA",
         curator=False,
         first_name="David",
         last_name="Rogers"
@@ -30,6 +28,7 @@ def seed_users():
                   email='adamselki@user.io',
                   password='password',
                   shipping_address="123 Street Ln",
+                  zipcode='94111',
                   city="San Francisco",
                   state="CA",
                   curator=False)
@@ -39,6 +38,7 @@ def seed_users():
                   email='aijiawang@user.io',
                   password='password',
                   shipping_address="123 Street Ln",
+                  zipcode='94111',
                   city="San Francisco",
                   state="CA",
                   curator=False
@@ -48,6 +48,7 @@ def seed_users():
                   email='alexanderklivecka@user.io',
                   password='password',
                   shipping_address="123 Street Ln",
+                  zipcode='94111',
                   city="San Francisco",
                   state="CA",
                   curator=False
@@ -57,6 +58,7 @@ def seed_users():
                   email='andreawu@user.io',
                   password='password',
                   shipping_address="123 Street Ln",
+                  zipcode='94111',
                   city="San Francisco",
                   state="CA",
                   curator=False
@@ -66,6 +68,7 @@ def seed_users():
                   email='brandontasaki@user.io',
                   password='password',
                   shipping_address="123 Street Ln",
+                  zipcode='94111',
                   city="San Francisco",
                   state="CA",
                   curator=False
@@ -75,6 +78,7 @@ def seed_users():
                   email='christopherpannella@user.io',
                   password='password',
                   shipping_address="123 Street Ln",
+                  zipcode='94111',
                   city="San Francisco",
                   state="CA",
                   curator=False
@@ -84,6 +88,7 @@ def seed_users():
                   email='jacoblamar@user.io',
                   password='password',
                   shipping_address="123 Street Ln",
+                  zipcode='94111',
                   city="San Francisco",
                   state="CA",
                   curator=False)
@@ -92,6 +97,7 @@ def seed_users():
                   email='jaehwang@user.io',
                   password='password',
                   shipping_address="123 Street Ln",
+                  zipcode='94111',
                   city="San Francisco",
                   state="CA",
                   curator=False
@@ -101,6 +107,7 @@ def seed_users():
                    email='jakematillano@user.io',
                    password='password',
                    shipping_address="123 Street Ln",
+                   zipcode='94111',
                    city="San Francisco",
                    state="CA",
                    curator=False
@@ -110,6 +117,7 @@ def seed_users():
                    email='jameslee@user.io',
                    password='password',
                    shipping_address="123 Street Ln",
+                   zipcode='94111',
                    city="San Francisco",
                    state="CA",
                    curator=False
@@ -119,6 +127,7 @@ def seed_users():
                    email='jasonkong@user.io',
                    password='password',
                    shipping_address="123 Street Ln",
+                   zipcode='94111',
                    city="San Francisco",
                    state="CA",
                    curator=False
@@ -128,6 +137,7 @@ def seed_users():
                    email='jasonarnold@user.io',
                    password='password',
                    shipping_address="123 Street Ln",
+                   zipcode='94111',
                    city="San Francisco",
                    state="CA",
                    curator=False
@@ -137,6 +147,7 @@ def seed_users():
                    email='jessiebaron@user.io',
                    password='password',
                    shipping_address="123 Street Ln",
+                   zipcode='94111',
                    city="San Francisco",
                    state="CA",
                    curator=False
@@ -146,6 +157,7 @@ def seed_users():
                    email='joannagilbert@user.io',
                    password='password',
                    shipping_address="123 Street Ln",
+                   zipcode='94111',
                    city="San Francisco",
                    state="CA",
                    curator=False
@@ -155,6 +167,7 @@ def seed_users():
                    email='johncarrera@user.io',
                    password='password',
                    shipping_address="123 Street Ln",
+                   zipcode='94111',
                    city="San Francisco",
                    state="CA",
                    curator=False
@@ -164,6 +177,7 @@ def seed_users():
                    email='loganseals@user.io',
                    password='password',
                    shipping_address="123 Street Ln",
+                   zipcode='94111',
                    city="San Francisco",
                    state="CA",
                    curator=False
@@ -173,6 +187,7 @@ def seed_users():
                    email='keerthanayellapragada@user.io',
                    password='password',
                    shipping_address="123 Street Ln",
+                   zipcode='94111',
                    city="San Francisco",
                    state="CA",
                    curator=False
@@ -182,6 +197,7 @@ def seed_users():
                    email='kylekassen@user.io',
                    password='password',
                    shipping_address="123 Street Ln",
+                   zipcode='94111',
                    city="San Francisco",
                    state="CA",
                    curator=False
@@ -191,6 +207,7 @@ def seed_users():
                    email='michaeljung@user.io',
                    password='password',
                    shipping_address="123 Street Ln",
+                   zipcode='94111',
                    city="San Francisco",
                    state="CA",
                    curator=False
@@ -200,6 +217,7 @@ def seed_users():
                    email='nachen@user.io',
                    password='password',
                    shipping_address="123 Street Ln",
+                   zipcode='94111',
                    city="San Francisco",
                    state="CA",
                    curator=False
@@ -209,6 +227,7 @@ def seed_users():
                    email='samuelsuh@user.io',
                    password='password',
                    shipping_address="123 Street Ln",
+                   zipcode='94111',
                    city="San Francisco",
                    state="CA",
                    curator=False
@@ -218,6 +237,7 @@ def seed_users():
                    email='schaefferahn@user.io',
                    password='password',
                    shipping_address="123 Street Ln",
+                   zipcode='94111',
                    city="San Francisco",
                    state="CA",
                    curator=False
@@ -227,6 +247,7 @@ def seed_users():
                    email='seankennedy@user.io',
                    password='password',
                    shipping_address="123 Street Ln",
+                   zipcode='94111',
                    city="San Francisco",
                    state="CA",
                    curator=False
@@ -236,6 +257,7 @@ def seed_users():
                    email='amandavien@user.io',
                    password='password',
                    shipping_address="123 Street Ln",
+                   zipcode='94111',
                    city="San Francisco",
                    state="CA",
                    curator=False
@@ -245,6 +267,7 @@ def seed_users():
                    email='yashayang@user.io',
                    password='password',
                    shipping_address="123 Street Ln",
+                   zipcode='94111',
                    city="San Francisco",
                    state="CA",
                    curator=False
@@ -254,6 +277,7 @@ def seed_users():
                    email='yiboguo@user.io',
                    password='password',
                    shipping_address="123 Street Ln",
+                   zipcode='94111',
                    city="San Francisco",
                    state="CA",
                    curator=False
