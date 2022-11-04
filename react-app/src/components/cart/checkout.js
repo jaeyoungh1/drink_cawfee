@@ -9,6 +9,7 @@ import plus from '../../icons/plus.svg'
 import minus from '../../icons/minus.svg'
 import cart from '../../icons/cart.svg'
 import { update } from "../../store/session";
+import { addOneOrder, loadAllOrder } from "../../store/order";
 
 export default function Checkout() {
     const dispatch = useDispatch()
@@ -55,10 +56,13 @@ export default function Checkout() {
             let cartArr = Object.values(carts)
 
             cartArr.forEach(item => {
+                dispatch(addOneOrder(item.id))
+                console.log("ADDED")
                 deleteCart(item.id)
             })
+            await dispatch(loadAllOrder())
 
-            return history.push('/my-orders')
+            return history.push('/account')
 
         }
 

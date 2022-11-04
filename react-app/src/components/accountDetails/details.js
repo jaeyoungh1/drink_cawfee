@@ -181,18 +181,6 @@ export default function Details() {
 
     }
 
-    function priceFormatter(num) {
-        if (num) {
-
-            let res
-            if (num.toString().includes('.')) {
-                res = `$${num}`
-            }
-            else res = `$${num}.00`
-            return res
-        }
-    }
-
     if (!user) {
         return history.push('/')
     }

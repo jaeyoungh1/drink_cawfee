@@ -7,6 +7,9 @@
     height: 100%;
     margin-top: 100px;
 }
+.tab-selected {
+    border-right: 3px solid rgb(207, 74, 21);
+}
 
 .details-container {
     display: flex;

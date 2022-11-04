@@ -5,13 +5,15 @@ import coffee from './coffee'
 import review from './review'
 import brand from './brand'
 import cart from './cart'
+import order from './order'
 
 const rootReducer = combineReducers({
   session,
   coffee,
   review,
   brand,
-  cart
+  cart,
+  order
 });
 
 
