@@ -18,6 +18,7 @@ import EditReview from './components/editReview/editReview';
 import AddReview from './components/coffeeReviews/createReview';
 import Roasters from './components/roasters/roasters';
 import Checkout from './components/cart/checkout';
+import AccountDetails from './components/accountDetails/accountDetails';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -69,6 +70,10 @@ function App() {
         </Route>
         <Route exact path='/roasters'>
           <Roasters />
+          <Footer />
+        </Route>
+        <Route exact path='/account'>
+          <AccountDetails />
           <Footer />
         </Route>
         {/* <ProtectedRoute path='/users' exact={true} >

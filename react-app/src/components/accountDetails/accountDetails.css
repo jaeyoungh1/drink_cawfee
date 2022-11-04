@@ -1,0 +1,73 @@
+.account-container {
+    display: flex;
+    gap: 64px;
+    margin-top: 100px;
+    padding-left: 120px;
+    padding-right: 24px;
+    height: 100%;
+    margin-top: 100px;
+}
+
+.details-container {
+    display: flex;
+    margin-top: 80px;
+    margin-left: 24px;
+    gap: 64px;
+    width: 100%;
+}
+.details-container>div {
+    max-width: 540px;
+    width: 40%;
+}
+
+.details-user-info-wrapper {
+    display: flex;
+    gap: 48px;
+
+}
+
+.details-input-label {
+    font-size: 10px;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    color: rgb(183, 183, 183);
+    margin-bottom: 8px;
+}
+
+.details-user-info-div {
+    margin-bottom: 18px;
+}
+
+.details-user-info {
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    color: black;
+}
+
+.details-update-button {
+    text-align: center;
+    color: rgb(184, 76, 41);
+    width: 100%;
+    padding: 10px 0;
+    border: 2px solid rgb(184, 76, 41);
+    border-radius: 4px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    margin-top: 16px;
+}
+
+.details-update-button:hover {
+    transition-duration: 300ms;
+    color: rgb(193, 193, 193);
+    border: 2px solid rgb(193, 193, 193);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.checkout-name {
+    width: 178px;
+}

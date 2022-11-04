@@ -106,7 +106,7 @@ export const signUp = (first_name, last_name, email, password) => async (dispatc
 
 export const update = (address, zipcode, city, state) => async (dispatch) => {
   // const [address, zipcode, city, state] = newAddress
-  console.log("NEW ADDRESS", address, zipcode, city, state)
+  // console.log("NEW ADDRESS", address, zipcode, city, state)
   const response = await fetch('/api/users/update', {
     method: 'PUT',
     headers: {
@@ -118,6 +118,30 @@ export const update = (address, zipcode, city, state) => async (dispatch) => {
         zipcode,
         city,
         state,
+      })
+  })
+  if (response.ok) {
+    const data = await response.json()
+    dispatch(updateUser(data))
+    if (data.errors) {
+      return data.errors
+    }
+
+  }
+}
+export const updateName = (first_name, last_name, email) => async (dispatch) => {
+  // const [address, zipcode, city, state] = newAddress
+  console.log("NEW ADDRESS", first_name, last_name, email)
+  const response = await fetch('/api/users/update_name', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body:
+      JSON.stringify({
+        first_name,
+        last_name,
+        email
       })
   })
   if (response.ok) {
