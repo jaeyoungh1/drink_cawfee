@@ -84,41 +84,43 @@ export default function Orders() {
             allOrder = uniqueArr.map(arr => {
                 return (
                     <div key={arr.id} className='order-wrapper'>
-                        <div>Order #{arr[0]?.order_number}</div>
-                        <div>Placed {arr[0]?.created_at}</div>
+                        <div className='order-number'>ORDER #{arr[0]?.order_number}</div>
+                        <div className='order-coffee-info-name'>Placed {arr[0]?.created_at}</div>
 
                         {arr.map(obj => {
                             let coffee = obj.Coffee
 
 
                             return (
-                                <div key={obj.id} className='order-div'>
-                                    <div className='order-coffee-image'>
-                                        <img className='user-review-coffee-image' alt='coffee image' src={coffee.img_url} onError={e => e.target.src = noImg} />
-                                    </div>
+                                <>
+                                    <div key={obj.id} className='order-div'>
+                                        <div className='order-coffee-image'>
+                                            <img className='user-review-coffee-image' alt='coffee image' src={coffee.img_url} onError={e => e.target.src = noImg} />
+                                        </div>
 
-                                    <div className='order-item-info'>
-                                        <div className='order-item-name-quantity'>
-                                            <div className="order-coffee-info-name">
-                                                {obj.Brand?.name}
+                                        <div className='order-item-info'>
+                                            <div className='order-item-name-quantity'>
+                                                <div className="order-coffee-info-brand-name">
+                                                    {obj.Brand?.name.toUpperCase()}
+                                                </div>
+                                                <div className="order-coffee-info-name">
+                                                    {coffee.name}
+                                                </div>
+                                                <div className='cart-item-size'>
+                                                    Whole Bean | 12 oz.
+                                                </div>
                                             </div>
-                                            <div className="order-coffee-info-name">
-                                                {coffee.name}
-                                            </div>
-                                            <div className='order-item-size'>
-                                                Whole Bean | 12 oz.
+                                            <div>
+                                                <div className='order-item-price'>{priceFormatter(coffee.price)}</div>
+                                                <div className='order-item-price'>Qty. {obj.quantity}</div>
+                                                <div className='order-item-actions'>
+
+                                                </div>
                                             </div>
                                         </div>
-                                        <div>
-                                            <div className='order-item-price'>{priceFormatter(coffee.price)}</div>
-                                            <div className='order-item-price'>Qty. {obj.quantity}</div>
-                                            <div className='order-item-actions'>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className='order-line-break'></div>
-                                </div >
+                                    </div >
+                                    <div className='cart-line-break'></div>
+                                </>
                             )
                         })}
                     </div>
