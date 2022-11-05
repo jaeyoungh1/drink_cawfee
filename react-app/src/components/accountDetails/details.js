@@ -119,7 +119,7 @@ export default function Details() {
         setErrors(errors);
     }, [first_name, last_name, email, address, city, state, zipcode, onSubmit]);
 
-    console.log("errors", errors)
+    // console.log("errors", errors)
     const submitUserAddress = async (e) => {
         e.preventDefault();
         setOnSubmit(true)

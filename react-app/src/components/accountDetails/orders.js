@@ -86,7 +86,7 @@ export default function Orders() {
             )
         } else {
             let orderArr = Object.values(orders)
-            console.log(Object.values(orders))
+            console.log("ORDERARR", orderArr)
 
             allOrder = orderArr.map(obj => {
                 let coffee = obj.Coffee
@@ -171,7 +171,7 @@ export default function Orders() {
             <div className='order-container'>
                 <div className='coffee-all-user-order-container'>
                     <div className='get-all-coffee-all-coffee'>
-                        My Order
+                        My Orders
                     </div>
                     {allOrder}
                 </div>
@@ -180,11 +180,7 @@ export default function Orders() {
                     <div>Total</div>
                     <div>{priceFormatter(total)}</div>
                 </div>}
-                {user && Object.values(orders).length > 0 && <div className='order-checkout'
-                    onClick={() => checkout()}
-                >
-                    CHECKOUT
-                </div>}
+               
             </div>
 
 

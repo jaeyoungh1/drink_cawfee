@@ -55,20 +55,23 @@ export default function Checkout() {
         if (carts) {
             let cartArr = Object.values(carts)
 
-            cartArr.forEach(item => {
-                dispatch(addOneOrder(item.id))
-                console.log("ADDED")
-                deleteCart(item.id)
-            })
-            await dispatch(loadAllOrder())
+            console.log("cartArr", cartArr)
 
-            return history.push('/account')
+            let order_number = Math.random().toString(36).substring(2, 15)
+
+            for (let i = 0; i < cartArr.length; i++) {
+                let added = await dispatch(addOneOrder(cartArr[i].id, order_number))
+                // deleteCart(cartArr[i].id)
+            }
+            // await dispatch(loadAllOrder())
+
+            // return history.push('/account')
 
         }
 
     }
 
-    console.log('state', state, 'city', city)
+    // console.log('state', state, 'city', city)
 
     useEffect(() => {
 
@@ -92,7 +95,7 @@ export default function Checkout() {
         setErrors(errors);
     }, [address, city, state, zipcode, onSubmit]);
 
-    console.log(errors)
+    // console.log(errors)
     const submitUserAddress = async (e) => {
         e.preventDefault();
         setOnSubmit(true)

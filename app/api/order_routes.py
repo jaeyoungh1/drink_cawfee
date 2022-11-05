@@ -46,6 +46,8 @@ def add_one_to_order(cart_id):
     user_id = user['id']
 
     cart = {}
+
+    print("   >>>> CART ID", cart_id)
     _cart = Cart.query.get(cart_id)
     if not _cart:
         return ({
@@ -55,46 +57,48 @@ def add_one_to_order(cart_id):
     else:
         cart = _cart.to_dict()
 
-    # form = AddToOrderForm()
-    # form['csrf_token'].data = request.cookies['csrf_token']
+    form = AddToOrderForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
 
+    print("   >>>> FORM", form.data)
     post_val_error = {
         "message": "Validation error",
         "status_code": 400,
         "errors": {}
     }
-    if not cart['quantity']:
-        post_val_error['errors']['quantity'] = "Quantity is required."
+    # if not cart['quantity']:
+    #     post_val_error['errors']['quantity'] = "Quantity is required."
     # if not form.data['order_number']:
     #     post_val_error['errors']['order_number'] = "Order Number is required."
 
     if len(post_val_error["errors"]) > 0:
         return jsonify(post_val_error), 400
 
-    # if form.validate_on_submit():
-        
-    s = slice(10)
-    coffee_id = cart['coffee_id']
-    quantity = cart['quantity']
+    if form.validate_on_submit():
+            
+        s = slice(10)
+        coffee_id = cart['coffee_id']
+        quantity = cart['quantity']
 
-    order = Order(
-        user_id=user_id,
-        coffee_id=coffee_id,
-        quantity=quantity
-                )
+        order = Order(
+            user_id=user_id,
+            coffee_id=coffee_id,
+            quantity=quantity,
+            order_number=form.data['order_number']
+                    )
 
-    # print("    >>>> CART", order)
+        # print("    >>>> CART", order)
 
-    db.session.add(order)
-    db.session.commit()
+        db.session.add(order)
+        db.session.commit()
 
-    order_res = order.to_dict()
+        order_res = order.to_dict()
 
-    coffee = Coffee.query.get(order_res['coffee_id']).to_dict()
+        coffee = Coffee.query.get(order_res['coffee_id']).to_dict()
 
-    order_res['Coffee'] = coffee
+        order_res['Coffee'] = coffee
 
-    return order_res
+        return order_res
         # return "Being pinged"
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
