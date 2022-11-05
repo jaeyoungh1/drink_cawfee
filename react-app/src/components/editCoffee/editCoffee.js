@@ -80,7 +80,7 @@ export default function EditCoffee() {
             errors.push("Name must be at least 2 characters");
         }
 
-        if (inventory && inventory < 12) {
+        if (inventory && inventory < 10) {
             errors.push("Inventory must have at least 12 bags");
         }
 
