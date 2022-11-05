@@ -357,7 +357,7 @@ export default function EditCoffee() {
                             type='number'
                             className='new-coffee-input'
                             autoComplete="off"
-                            min='12'
+                            min='10'
                             value={inventory}
                             onChange={e => setInventory(e.target.value)}
                         />
