@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import login_required, current_user
-from app.models import Order, Coffee, Cart, User, db
+from app.models import Order, Coffee, Cart, Brand, User, db
 from app.forms.add_to_order_form import AddToOrderForm
 # from app.forms.add_order_form import AddOrderForm
 # from app.forms.add_review_form import AddReviewForm
@@ -32,7 +32,9 @@ def get_user_order():
         order_list = [order.to_dict() for order in orders]
         for order in order_list:
             coffee = Coffee.query.get(order['coffee_id']).to_dict()
+            brand = Brand.query.get(coffee['brand_id']).to_dict()
             order['Coffee'] = coffee
+            order['Brand'] = brand
         return {'Order': order_list}
 
 

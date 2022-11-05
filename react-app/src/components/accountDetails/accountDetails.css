@@ -74,3 +74,24 @@
 .checkout-name {
     width: 178px;
 }
+.order-container {
+    width: 100%;
+}
+
+.order-wrapper {
+    border: 1px solid rgb(193, 193, 193);
+    border-radius: 4px;
+    width: 85%;
+    padding: 36px 24px;
+    margin: 24px 0px;
+}
+.order-div {
+    display: flex;
+    width: 100%;
+}
+
+.order-item-info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}

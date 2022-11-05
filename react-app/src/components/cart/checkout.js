@@ -61,11 +61,11 @@ export default function Checkout() {
 
             for (let i = 0; i < cartArr.length; i++) {
                 let added = await dispatch(addOneOrder(cartArr[i].id, order_number))
-                // deleteCart(cartArr[i].id)
+                deleteCart(cartArr[i].id)
             }
-            // await dispatch(loadAllOrder())
+            await dispatch(loadAllOrder())
 
-            // return history.push('/account')
+            return history.push('/account')
 
         }
 

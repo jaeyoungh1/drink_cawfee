@@ -50,22 +50,6 @@ export default function Orders() {
         }
     }
 
-    useEffect(() => {
-        let total = 0
-        if (orders) {
-            let orderArr = Object.values(orders)
-
-            if (orderArr.length > 0) {
-
-                orderArr.forEach(obj => {
-                    total += obj.Coffee.price * obj.quantity
-                    setTotal(total)
-                })
-            }
-
-        }
-    }, [orders])
-
 
     let allOrder
     if (!user) {
@@ -87,103 +71,75 @@ export default function Orders() {
         } else {
             let orderArr = Object.values(orders)
             console.log("ORDERARR", orderArr)
-
-            allOrder = orderArr.map(obj => {
-                let coffee = obj.Coffee
-                let quantity = obj.quantity
-                let price
-                if (coffee) {
-                    price = coffee.price
-
-                    return (
-                        <div key={obj.id} className='order-item-wrapper'>
-                            <div className='order-coffee-image'>
-                                <img className='user-review-coffee-image' alt='coffee image' src={coffee.img_url} onError={e => e.target.src = noImg} />
-                            </div>
-
-                            <div className='order-item-info'>
-                                <div className='order-item-name-quantity'>
-                                    <div className="order-coffee-info-name">
-                                        {quantity}x <span>{coffee.name}</span>
-                                    </div>
-                                    <div className='order-item-price' >{priceFormatter(price * quantity)}</div>
-                                </div>
-                                <div className='order-item-size'>
-                                    Whole Bean | 12 oz.
-                                </div>
-                                <div className='order-item-actions'>
-                                    <span onClick={() => deleteOrder(obj.id)}>
-                                        Remove
-                                    </span>
-
-                                    {showUpdate !== obj.id && <span onClick={() => {
-                                        setNewQuantity(quantity)
-                                        setShowUpdate(obj.id)
-                                    }}>Update Quantity</span>}
-                                    {showUpdate === obj.id && <span
-
-                                    >
-                                        <div className="order-quantity-toggle">
-
-                                            <img alt='change' height='12' width='12' src={plus}
-                                                onClick={() => {
-                                                    if (newQuantity < +coffee.inventory) {
-                                                        let nq = newQuantity + 1
-                                                        setNewQuantity(nq)
-                                                    }
-                                                }} />
-                                            <span className='order-quantity-adjust'>{newQuantity}</span>
-                                            <img alt='change' height='12' width='12' src={minus}
-                                                onClick={() => {
-                                                    if (newQuantity > 1) {
-                                                        let nq = newQuantity - 1
-                                                        setNewQuantity(nq)
-                                                    }
-                                                }} />
-                                        </div>
-
-                                        <div className='order-quantity-adjust-confirm'
-                                            onClick={() => {
-                                                updateOrder(obj.id)
-                                                setShowUpdate(!showUpdate)
-                                            }}>
-                                            Confirm</div>
-                                    </span>}
-
-                                </div>
-                            </div>
-                            <div className='order-line-break'></div>
-
-                        </div >
-                    )
-
-                }
-
+            let orderSet = new Set(orderArr?.map(obj => obj.order_number))
+            console.log("ORDERSET", orderSet)
+            let uniqueArr = []
+            orderSet?.forEach(str => {
+                uniqueArr.push(orderArr?.filter(obj => obj.order_number === str))
             })
+            console.log("UNIQUEARR", uniqueArr)
+
+
+
+            allOrder = uniqueArr.map(arr => {
+                return (
+                    <div key={arr.id} className='order-wrapper'>
+                        <div>Order #{arr[0]?.order_number}</div>
+                        <div>Placed {arr[0]?.created_at}</div>
+
+                        {arr.map(obj => {
+                            let coffee = obj.Coffee
+
+
+                            return (
+                                <div key={obj.id} className='order-div'>
+                                    <div className='order-coffee-image'>
+                                        <img className='user-review-coffee-image' alt='coffee image' src={coffee.img_url} onError={e => e.target.src = noImg} />
+                                    </div>
+
+                                    <div className='order-item-info'>
+                                        <div className='order-item-name-quantity'>
+                                            <div className="order-coffee-info-name">
+                                                {obj.Brand?.name}
+                                            </div>
+                                            <div className="order-coffee-info-name">
+                                                {coffee.name}
+                                            </div>
+                                            <div className='order-item-size'>
+                                                Whole Bean | 12 oz.
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div className='order-item-price'>{priceFormatter(coffee.price)}</div>
+                                            <div className='order-item-price'>Qty. {obj.quantity}</div>
+                                            <div className='order-item-actions'>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='order-line-break'></div>
+                                </div >
+                            )
+                        })}
+                    </div>
+
+                )
+            })
+
         }
     }
 
 
 
+
     return (
         <>
-
             <div className='order-container'>
-                <div className='coffee-all-user-order-container'>
-                    <div className='get-all-coffee-all-coffee'>
-                        My Orders
-                    </div>
-                    {allOrder}
+                <div className='get-all-coffee-all-coffee'>
+                    My Orders
                 </div>
-
-                {user && Object.values(orders).length > 0 && <div className='order-total'>
-                    <div>Total</div>
-                    <div>{priceFormatter(total)}</div>
-                </div>}
-               
+                {allOrder}
             </div>
-
-
         </>
     )
 }
