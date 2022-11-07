@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .db import db
 
 coffee_days = db.Table(
     'coffee_days',
@@ -20,8 +20,6 @@ coffee_notes = db.Table(
 
 class Coffee(db.Model):
     __tablename__ = "coffees"
-    if environment == "production":
-        __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     curator_id = db.Column(db.Integer, db.ForeignKey('users.id'))
