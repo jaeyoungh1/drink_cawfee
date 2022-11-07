@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .db import db
 from .user import User
 from .brands import Brand
 from .review import Review
