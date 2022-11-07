@@ -14,6 +14,19 @@ seed_commands = AppGroup('seed')
 # Creates the `flask seed all` command
 @seed_commands.command('all')
 def seed():
+    # if environment == 'production':
+        # Before seeding, truncate all tables prefixed with schema name
+        # db.session.execute(
+        #     f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;"
+        #     f"TRUNCATE table {SCHEMA}.brands RESTART IDENTITY CASCADE;"
+        #     f"TRUNCATE table {SCHEMA}.coffees RESTART IDENTITY CASCADE;"
+        #     f"TRUNCATE table {SCHEMA}.days RESTART IDENTITY CASCADE;"
+        #     f"TRUNCATE table {SCHEMA}.notes RESTART IDENTITY CASCADE;"
+        #     f"TRUNCATE table {SCHEMA}.reviews RESTART IDENTITY CASCADE;"
+        # )
+
+        # # Add a truncate command here for every table that will be seeded.
+        # db.session.commit()
     seed_users()
     seed_brands()
     seed_coffee_day_note()

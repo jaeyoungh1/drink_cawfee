@@ -80,7 +80,7 @@ export default function EditCoffee() {
             errors.push("Name must be at least 2 characters");
         }
 
-        if (inventory && inventory < 12) {
+        if (inventory && inventory < 10) {
             errors.push("Inventory must have at least 12 bags");
         }
 
@@ -106,6 +106,8 @@ export default function EditCoffee() {
         setErrors(errors);
     }, [name, inventory, price, description, img_url, days, notes, notes.length]);
 
+
+    // console.log("ERRORS", errors)
     useEffect(() => {
         if (singleCoffee) {
             setName(singleCoffee.name);
@@ -357,7 +359,7 @@ export default function EditCoffee() {
                             type='number'
                             className='new-coffee-input'
                             autoComplete="off"
-                            min='12'
+                            min='10'
                             value={inventory}
                             onChange={e => setInventory(e.target.value)}
                         />
