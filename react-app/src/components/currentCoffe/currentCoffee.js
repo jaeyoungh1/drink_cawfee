@@ -25,7 +25,7 @@ export default function CurrentCoffee() {
         dispatch(loadUserCoffee(user.id))
     }
 
-    console.log("OPEN CONFIRM", openConfirm)
+    // console.log("OPEN CONFIRM", openConfirm)
 
     let allCoffee
     if (coffees) {

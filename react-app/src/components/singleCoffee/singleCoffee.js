@@ -16,7 +16,7 @@ export default function SingleCoffee() {
     const coffee = useSelector(state => state.coffee.singleCoffee)
     const reviews = useSelector(state => state.review.allReview)
 
-    console.log("COFFEE", coffee.id)
+    // console.log("COFFEE", coffee.id)
 
     useEffect(() => {
         dispatch(getOneCoffee(coffeeId))

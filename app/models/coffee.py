@@ -1,4 +1,4 @@
-from .db import db
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 coffee_days = db.Table(
     'coffee_days',
@@ -13,17 +13,19 @@ coffee_notes = db.Table(
     'coffee_notes',
     db.Model.metadata,
     db.Column('note_id', db.Integer, db.ForeignKey(
-        'notes.id'), primary_key=True),
+        add_prefix_for_prod('notes.id')), primary_key=True),
     db.Column('coffee_id', db.Integer, db.ForeignKey(
-        'coffees.id'), primary_key=True),
+        add_prefix_for_prod('coffees.id')), primary_key=True),
 )
 
 class Coffee(db.Model):
     __tablename__ = "coffees"
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    curator_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    brand_id = db.Column(db.Integer, db.ForeignKey('brands.id'))
+    curator_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+    brand_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('brands.id')))
     name = db.Column(db.String(225), nullable=False)
     origin = db.Column(db.String(100), nullable=False)
     roast = db.Column(db.String(100), nullable=False)
