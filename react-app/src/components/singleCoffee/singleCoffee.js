@@ -51,41 +51,43 @@ export default function SingleCoffee() {
             return;
         }
         console.log("CURRENT CARTED COFFEE", cartedCoffee, +coffeeId)
-        console.log("DOES THE CART INCLUDE CURRENT COFFEE",cartedCoffee?.includes(+coffeeId))
-        if (cartedCoffee && cartedCoffee.includes(+coffeeId)) {
-            let currentCart = cartArr.filter(obj => +obj.coffee_id === +coffeeId)
-            let cartId = currentCart[0]?.id
-            let currQuan = currentCart[0]?.quantity
-            let nq = +currQuan + +quantity
-            const editCart = {
-                quantity: nq
-            }
-            await dispatch(editOneCart(+cartId, editCart))
-            await dispatch(loadAllCart())
-            setAdded(true)
-
-            setTimeout(() => {
-                setAdded(false)
-            }, 2000)
-        } else {
-            const newCart = {
-                user_id: user.id,
-                coffee_id: coffeeId,
-                quantity
-            }
-            try {
-                let cartItem = await dispatch(addOneCart(+coffeeId, newCart))
+        console.log("DOES THE CART INCLUDE CURRENT COFFEE", cartedCoffee?.includes(+coffeeId))
+        if (cartedCoffee) {
+            if (cartedCoffee && cartedCoffee.includes(+coffeeId)) {
+                let currentCart = cartArr.filter(obj => +obj.coffee_id === +coffeeId)
+                let cartId = currentCart[0]?.id
+                let currQuan = currentCart[0]?.quantity
+                let nq = +currQuan + +quantity
+                const editCart = {
+                    quantity: nq
+                }
+                await dispatch(editOneCart(+cartId, editCart))
                 await dispatch(loadAllCart())
                 setAdded(true)
 
                 setTimeout(() => {
                     setAdded(false)
                 }, 2000)
-                return
-            } catch (res) {
-                console.log(res)
-            }
+            } else {
+                const newCart = {
+                    user_id: user.id,
+                    coffee_id: coffeeId,
+                    quantity
+                }
+                try {
+                    let cartItem = await dispatch(addOneCart(+coffeeId, newCart))
+                    await dispatch(loadAllCart())
+                    setAdded(true)
 
+                    setTimeout(() => {
+                        setAdded(false)
+                    }, 2000)
+                    return
+                } catch (res) {
+                    console.log(res)
+                }
+
+            }
         }
     }
 
