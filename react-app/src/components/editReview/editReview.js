@@ -45,7 +45,7 @@ export default function EditReview() {
     useEffect(() => {
         const errors = [];
 
-        if (rating && (rating < 2 || rating > 5)) {
+        if (rating && (rating < 1 || rating > 5)) {
             errors.push("Rating must be an integer between 1 and 5");
         }
 
