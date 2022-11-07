@@ -86,6 +86,7 @@ def add_one_to_order(cart_id):
             user_id=user_id,
             coffee_id=coffee_id,
             quantity=quantity,
+            total =form.data['total'],
             order_number=form.data['order_number']
                     )
 

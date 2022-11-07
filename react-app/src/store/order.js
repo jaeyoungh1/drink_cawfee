@@ -14,14 +14,14 @@ const _addOneOrder = (order) => ({
     payload: order
 });
 
-export const addOneOrder = (cartId, order_number) => async dispatch => {
-    console.log("INSIDE STORE ADDING ORDER", typeof (cartId), cartId, typeof (order_number), order_number)
+export const addOneOrder = (cartId, order_number, total) => async dispatch => {
+    // console.log("INSIDE STORE ADDING ORDER", typeof (cartId), cartId, typeof (order_number), order_number)
     const response = await csrfFetch(`/api/order/${cartId}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({order_number})
+        body: JSON.stringify({order_number, total})
     });
     console.log("RESPONSE", response)
     if (response.ok) {

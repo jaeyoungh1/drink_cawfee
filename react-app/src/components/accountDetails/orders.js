@@ -34,7 +34,7 @@ export default function Orders() {
         for (let i = 0; i < arr.length; i++) {
             await dispatch(deleteOneOrder(arr[i].id))
         }
-            await dispatch(loadAllOrder())
+        await dispatch(loadAllOrder())
     }
     const checkout = async () => {
         return history.push('/checkout')
@@ -55,7 +55,7 @@ export default function Orders() {
         let current = new Date()
         console.log("CURRENT", current)
     }
-    
+    dateCalculator("2022-11-06 23:00:09.380824")
 
 
     let allOrder
@@ -91,7 +91,10 @@ export default function Orders() {
             allOrder = uniqueArr.map(arr => {
                 return (
                     <div key={arr.id} className='order-wrapper'>
-                        <div className='order-number'>ORDER #{arr[0]?.order_number}</div>
+                        <div className='order-top'>
+                            <div className='order-number'>ORDER #{arr[0]?.order_number}</div>
+                            <div>{priceFormatter(arr[0].total)}</div>
+                        </div>
                         <div className='order-coffee-info-name'>Placed {arr[0]?.created_at}</div>
 
                         {arr.map(obj => {

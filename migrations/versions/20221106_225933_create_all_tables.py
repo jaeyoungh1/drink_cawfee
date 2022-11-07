@@ -1,8 +1,8 @@
 """Create all tables
 
-Revision ID: d091894ef310
+Revision ID: 0acebe06b7d9
 Revises: 
-Create Date: 2022-11-04 16:30:17.586423
+Create Date: 2022-11-06 22:59:33.439508
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'd091894ef310'
+revision = '0acebe06b7d9'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -96,6 +96,7 @@ def upgrade():
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('coffee_id', sa.Integer(), nullable=True),
     sa.Column('quantity', sa.Integer(), nullable=False),
+    sa.Column('total', sa.Integer(), nullable=False),
     sa.Column('order_number', sa.String(length=225), nullable=True),
     sa.Column('created_at', sa.String(length=225), nullable=True),
     sa.Column('updated_at', sa.String(), nullable=True),

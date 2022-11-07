@@ -60,7 +60,7 @@ export default function Checkout() {
             let order_number = Math.random().toString(36).substring(2, 15)
 
             for (let i = 0; i < cartArr.length; i++) {
-                let added = await dispatch(addOneOrder(cartArr[i].id, order_number))
+                let added = await dispatch(addOneOrder(cartArr[i].id, order_number, total))
                 deleteCart(cartArr[i].id)
             }
             await dispatch(loadAllOrder())
@@ -397,12 +397,12 @@ export default function Checkout() {
 
                     {user && <div className='cart-total'>
                         <div>Shipping</div>
-                        <div>{priceFormatter(5)}</div>
+                        <div>{priceFormatter(0)}</div>
                     </div>}
 
                     {user && <div className='cart-total'>
                         <div>Total</div>
-                        <div>{priceFormatter(total + 5)}</div>
+                        <div>{priceFormatter(total)}</div>
                     </div>}
 
                     {user && <div className='cart-checkout'

@@ -9,7 +9,7 @@ def seed_users():
         email='chelseacat@user.io',
         password='password',
         shipping_address='123 Cat St',
-        zipcode='',
+        zipcode='92501',
         city="Riverside",
         state="CA",
         curator=True

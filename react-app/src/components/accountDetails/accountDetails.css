@@ -88,6 +88,11 @@
     padding: 36px 24px;
     margin: 24px 0px;
 }
+.order-top {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 12px;
+}
 
 .order-div {
     display: flex;

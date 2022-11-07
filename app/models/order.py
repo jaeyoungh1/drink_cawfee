@@ -10,7 +10,7 @@ class Order(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     coffee_id = db.Column(db.Integer, db.ForeignKey('coffees.id'))
     quantity = db.Column(db.Integer, nullable=False)
-    # price = db.Column(db.Integer, nullable=False)
+    total = db.Column(db.Integer, nullable=False)
     order_number = db.Column(db.String(225))
     created_at = db.Column(db.String(225), default=datetime.now)
     updated_at = db.Column(
@@ -26,7 +26,7 @@ class Order(db.Model):
             "user_id": self.user_id,
             "coffee_id": self.coffee_id,
             "quantity": self.quantity,
-            # "price": self.price,
+            "total": self.total,
             "order_number": self.order_number,
             "created_at": self.created_at,
             "updated_at": self.updated_at
