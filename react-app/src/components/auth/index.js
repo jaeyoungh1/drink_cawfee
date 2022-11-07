@@ -63,7 +63,7 @@ function LoginFormModal() {
         }
     };
 
-    console.log('errors', signErrors, loginErrors)
+    // console.log('errors', signErrors, loginErrors)
 
 
     return (

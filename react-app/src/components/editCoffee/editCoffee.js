@@ -107,7 +107,7 @@ export default function EditCoffee() {
     }, [name, inventory, price, description, img_url, days, notes, notes.length]);
 
 
-    console.log("ERRORS", errors)
+    // console.log("ERRORS", errors)
     useEffect(() => {
         if (singleCoffee) {
             setName(singleCoffee.name);
