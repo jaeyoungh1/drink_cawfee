@@ -43,7 +43,7 @@ const _loadAllCart = payload => ({
 export const loadAllCart = () => async dispatch => {
 
     const response = await fetch('/api/cart/');
-    // console.log("hitting res", response)
+    console.log("hitting res", response)
     if (response.ok) {
         const data = await response.json();
         // console.log("hitting all list", data)
