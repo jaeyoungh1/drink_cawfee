@@ -27,8 +27,6 @@ export default function SingleCoffee() {
     const [quantity, setQuantity] = useState(1);
     const [added, setAdded] = useState(false);
 
-    console.log("cart", cart)
-
     useEffect(() => {
         dispatch(getOneCoffee(coffeeId))
         if (coffee.id) {
