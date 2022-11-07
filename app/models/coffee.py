@@ -4,9 +4,9 @@ coffee_days = db.Table(
     'coffee_days',
     db.Model.metadata,
     db.Column('coffee_id', db.Integer, db.ForeignKey(
-        'coffees.id'), primary_key=True),
+        add_prefix_for_prod('coffees.id')), primary_key=True),
     db.Column('day_id', db.Integer, db.ForeignKey(
-        'days.id'), primary_key=True)
+        add_prefix_for_prod('days.id')), primary_key=True)
 )
 
 coffee_notes = db.Table(
