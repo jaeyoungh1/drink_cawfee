@@ -30,16 +30,22 @@ def upgrade():
     sa.Column('brand_img', sa.String(length=500), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE brands SET SCHEMA {SCHEMA};")
     op.create_table('days',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('day', sa.String(length=50), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE days SET SCHEMA {SCHEMA};")
     op.create_table('notes',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('note', sa.String(length=500), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE notes SET SCHEMA {SCHEMA};")
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('first_name', sa.String(length=100), nullable=False),
@@ -53,6 +59,8 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
     op.create_table('coffees',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('curator_id', sa.Integer(), nullable=True),
@@ -68,6 +76,8 @@ def upgrade():
     sa.ForeignKeyConstraint(['curator_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE coffees SET SCHEMA {SCHEMA};")
     op.create_table('carts',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
@@ -79,6 +89,8 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE carts SET SCHEMA {SCHEMA};")
     op.create_table('coffee_days',
     sa.Column('coffee_id', sa.Integer(), nullable=False),
     sa.Column('day_id', sa.Integer(), nullable=False),
@@ -86,6 +98,8 @@ def upgrade():
     sa.ForeignKeyConstraint(['day_id'], ['days.id'], ),
     sa.PrimaryKeyConstraint('coffee_id', 'day_id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE coffee_days SET SCHEMA {SCHEMA};")
     op.create_table('coffee_notes',
     sa.Column('note_id', sa.Integer(), nullable=False),
     sa.Column('coffee_id', sa.Integer(), nullable=False),
@@ -93,6 +107,8 @@ def upgrade():
     sa.ForeignKeyConstraint(['note_id'], ['notes.id'], ),
     sa.PrimaryKeyConstraint('note_id', 'coffee_id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE coffee_notes SET SCHEMA {SCHEMA};")
     op.create_table('orders',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
@@ -106,6 +122,8 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE orders SET SCHEMA {SCHEMA};")
     op.create_table('reviews',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
@@ -120,7 +138,7 @@ def upgrade():
     )
     # ### end Alembic commands ###
     if environment == "production":
-        op.execute(f"ALTER TABLE <table_name> SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
 
 
 def downgrade():
