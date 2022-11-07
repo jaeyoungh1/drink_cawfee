@@ -21,6 +21,8 @@ def seed():
             f"TRUNCATE table {SCHEMA}.coffees RESTART IDENTITY CASCADE;"
             f"TRUNCATE table {SCHEMA}.days RESTART IDENTITY CASCADE;"
             f"TRUNCATE table {SCHEMA}.notes RESTART IDENTITY CASCADE;"
+            f"TRUNCATE table {SCHEMA}.coffee_days RESTART IDENTITY CASCADE;"
+            f"TRUNCATE table {SCHEMA}.coffee_notes RESTART IDENTITY CASCADE;"
             f"TRUNCATE table {SCHEMA}.reviews RESTART IDENTITY CASCADE;"
         )
 
