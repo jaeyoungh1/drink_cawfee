@@ -49,6 +49,11 @@ export default function Orders() {
             return res
         }
     }
+    function dateCalculator(str) {
+        let current = new Date()
+        console.log("CURRENT", current)
+    }
+    
 
 
     let allOrder
@@ -123,6 +128,7 @@ export default function Orders() {
                                 </>
                             )
                         })}
+                        <div onClick={() => deleteOrder(arr[0].id)}>Cancel Order</div>
                     </div>
 
                 )
