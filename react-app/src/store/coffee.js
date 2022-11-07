@@ -70,7 +70,7 @@ export const loadAllCoffee = (category, param) => async dispatch => {
             const response = await fetch(`/api/coffee/?roast=${param}`)
             if (response.ok) {
                 const data = await response.json()
-                console.log("DATA", data)
+                // console.log("DATA", data)
                 dispatch(_loadAllCoffee(data));
                 return data
             }

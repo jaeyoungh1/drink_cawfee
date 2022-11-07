@@ -63,12 +63,12 @@ export default function Roasters() {
                 <div className='get-all-roaster-all-roaster'>
                     Roasters
                 </div>
-                <div className='get-all-roaster-header-img'>
-
-                </div>
                 <div className='get-all-roaster-subheader'>
                     Explore the dedicated people standing behind your coffee.
                 </div>
+            </div>
+            <div className='get-all-roaster-header-img'>
+                <img alt='header' src="https://images.ctfassets.net/o88ugk6hewlf/uvxmiGvizkTYPN5tiYlpF/2d6e37876fa75fdeb87071cd86d75aa1/1440x770__43_.png?q=75" />
             </div>
             <div className='roaster-roasters'>
                 {allBrand}

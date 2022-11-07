@@ -14,14 +14,15 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     shipping_address = db.Column(db.String(225))
+    zipcode = db.Column(db.String(6))
     city = db.Column(db.String(100))
     state = db.Column(db.String(100))
     curator = db.Column(db.Boolean, nullable=False)
 
     review = db.relationship('Review', back_populates='user')
     coffee = db.relationship('Coffee', back_populates='curator')
-    # cart = db.relationship('Cart', back_populates='user')
-    # order = db.relationship('Order', back_populates='user')
+    cart = db.relationship('Cart', back_populates='user')
+    order = db.relationship('Order', back_populates='user')
 
     @property
     def password(self):
@@ -41,6 +42,7 @@ class User(db.Model, UserMixin):
             'last_name': self.last_name,
             'email': self.email,
             'shipping_address': self.shipping_address,
+            'zipcode': self.zipcode,
             'city': self.city,
             'state': self.state,
             'curator': self.curator

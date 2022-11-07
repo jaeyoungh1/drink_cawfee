@@ -7,7 +7,7 @@
 
 .get-all-roaster-header {
     width: 100%;
-    background-image: url(https://images.ctfassets.net/o88ugk6hewlf/uvxmiGvizkTYPN5tiYlpF/2d6e37876fa75fdeb87071cd86d75aa1/1440x770__43_.png?q=75);
+    /* background-image: url(https://images.ctfassets.net/o88ugk6hewlf/uvxmiGvizkTYPN5tiYlpF/2d6e37876fa75fdeb87071cd86d75aa1/1440x770__43_.png?q=75); */
     object-fit: cover;
     height: 280px;
     padding: 0 50px;
@@ -16,6 +16,18 @@
     justify-content: center;
 }
 
+.get-all-roaster-header-img {
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    height: 400px;
+    overflow: hidden;
+}
+.get-all-roaster-header-img > img {
+    width: 100%;
+    object-fit: cover;
+}
 
 .no-roaster-container {
     width: 100%;
@@ -40,6 +52,8 @@
     border: 1px solid rgb(212, 212, 212);
     padding: 4px;
     border-radius: 4px;
+    height: 20%;
+    max-height: 400px;
 }
 
 .single-roaster-image-wrapper {
@@ -48,11 +62,17 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 200px;
+    /* max-height: 200px; */
+    height: 100%;
+    object-fit: cover;
 }
 
 .single-roaster-image-wrapper-img {
     width: 72%;
+    max-width: 240px;
+    object-fit: cover;
+    
+    /* height: 100%; */
 }
 
 .all-roaster-details {

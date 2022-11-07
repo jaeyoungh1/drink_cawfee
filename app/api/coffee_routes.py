@@ -132,7 +132,7 @@ def add_one_coffee():
         "errors": {}
     }
 
-    print("FORM.DATA", form.data)
+    # print("FORM.DATA", form.data)
 
     note_list = [Note(note=note) for note in form.data['notes']]
     day_list = [Day(day=day) for day in form.data['days']]
@@ -162,7 +162,7 @@ def add_one_coffee():
         return jsonify(post_val_error), 400
 
     # print("ERRORS", validation_errors_to_error_messages(form.errors))
-    print("POSTVALERROR", post_val_error)
+    # print("POSTVALERROR", post_val_error)
     if form.validate_on_submit():
         brand = check_brand.first().to_dict()
 
@@ -181,7 +181,7 @@ def add_one_coffee():
             days=day_list
         )
 
-        print(">>>>>>BACKEND COFFEE", coffee)
+        # print(">>>>>>BACKEND COFFEE", coffee)
         db.session.add(coffee)
         db.session.commit()
 

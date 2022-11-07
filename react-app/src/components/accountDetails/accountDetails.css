@@ -1,0 +1,132 @@
+.account-container {
+    display: flex;
+    gap: 64px;
+    margin-top: 100px;
+    padding-left: 120px;
+    padding-right: 24px;
+    height: 100%;
+    margin-top: 100px;
+}
+
+.tab-selected {
+    border-right: 3px solid rgb(207, 74, 21);
+}
+
+.details-container {
+    display: flex;
+    margin-top: 80px;
+    margin-left: 24px;
+    gap: 64px;
+    width: 100%;
+}
+
+.details-container>div {
+    max-width: 540px;
+    width: 40%;
+}
+
+.details-user-info-wrapper {
+    display: flex;
+    gap: 48px;
+
+}
+
+.details-input-label {
+    font-size: 10px;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    color: rgb(183, 183, 183);
+    margin-bottom: 8px;
+}
+
+.details-user-info-div {
+    margin-bottom: 18px;
+}
+
+.details-user-info {
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    color: black;
+}
+
+.details-update-button {
+    text-align: center;
+    color: rgb(184, 76, 41);
+    width: 100%;
+    padding: 10px 0;
+    border: 2px solid rgb(184, 76, 41);
+    border-radius: 4px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    margin-top: 16px;
+}
+
+.details-update-button:hover {
+    transition-duration: 300ms;
+    color: rgb(193, 193, 193);
+    border: 2px solid rgb(193, 193, 193);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.checkout-name {
+    width: 178px;
+}
+
+.order-container {
+    width: 100%;
+}
+
+.order-wrapper {
+    border: 1px solid rgb(193, 193, 193);
+    border-radius: 4px;
+    width: 85%;
+    padding: 36px 24px;
+    margin: 24px 0px;
+}
+.order-top {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 12px;
+}
+
+.order-div {
+    display: flex;
+    width: 100%;
+}
+
+.order-item-info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 18px;
+    margin-right: 12px;
+}
+
+.order-coffee-info-brand-name {
+    font-size: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+
+}
+.order-number {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.order-coffee-info-name {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 4px;
+}
+
+.order-item-price {
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+}

@@ -115,4 +115,8 @@ nav {
 }
 .login-button {
     pointer-events: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: -15px;
 }

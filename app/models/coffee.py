@@ -4,18 +4,18 @@ coffee_days = db.Table(
     'coffee_days',
     db.Model.metadata,
     db.Column('coffee_id', db.Integer, db.ForeignKey(
-        add_prefix_for_prod('coffees.id')), primary_key=True),
+        'coffees.id'), primary_key=True),
     db.Column('day_id', db.Integer, db.ForeignKey(
-        add_prefix_for_prod('days.id')), primary_key=True)
+        'days.id'), primary_key=True)
 )
 
 coffee_notes = db.Table(
     'coffee_notes',
     db.Model.metadata,
     db.Column('note_id', db.Integer, db.ForeignKey(
-        add_prefix_for_prod('notes.id')), primary_key=True),
+        'notes.id'), primary_key=True),
     db.Column('coffee_id', db.Integer, db.ForeignKey(
-        add_prefix_for_prod('coffees.id')), primary_key=True),
+        'coffees.id'), primary_key=True),
 )
 
 class Coffee(db.Model):
@@ -24,12 +24,11 @@ class Coffee(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    curator_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
-    brand_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('brands.id')))
+    curator_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    brand_id = db.Column(db.Integer, db.ForeignKey('brands.id'))
     name = db.Column(db.String(225), nullable=False)
     origin = db.Column(db.String(100), nullable=False)
     roast = db.Column(db.String(100), nullable=False)
-    # process = db.Column(db.String(100))
     inventory = db.Column(db.Integer, nullable=False)
     price = db.Column(db.Float, nullable=False)
     description = db.Column(db.String(5000), nullable=False)
@@ -41,10 +40,10 @@ class Coffee(db.Model):
         'Brand', back_populates='coffee')
     review = db.relationship(
         'Review', back_populates='coffee', cascade="all, delete-orphan")
-    # order = db.relationship(
-    #     'Order', back_populates='coffee')
-    # cart = db.relationship(
-    #     'Cart', back_populates='coffee')
+    order = db.relationship(
+        'Order', back_populates='coffee')
+    cart = db.relationship(
+        'Cart', back_populates='coffee')
 
     days = db.relationship(
         'Day',
@@ -66,7 +65,6 @@ class Coffee(db.Model):
             "name": self.name,
             "origin": self.origin,
             "roast": self.roast,
-            # "process": self.process,
             "inventory": self.inventory,
             "price": self.price,
             "description": self.description,

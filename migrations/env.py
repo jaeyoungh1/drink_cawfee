@@ -1,4 +1,5 @@
 from __future__ import with_statement
+from flask import current_app
 
 import logging
 from logging.config import fileConfig
@@ -25,7 +26,6 @@ logger = logging.getLogger('alembic.env')
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-from flask import current_app
 config.set_main_option(
     'sqlalchemy.url',
     str(current_app.extensions['migrate'].db.engine.url).replace('%', '%%'))
@@ -90,14 +90,7 @@ def run_migrations_online():
             **current_app.extensions['migrate'].configure_args
         )
 
-        # Create a schema (only in production)
-        if environment == "production":
-            connection.execute(f"CREATE SCHEMA IF NOT EXISTS {SCHEMA}")
-
-        # Set search path to your schema (only in production)
         with context.begin_transaction():
-            if environment == "production":
-                context.execute(f"SET search_path TO {SCHEMA}")
             context.run_migrations()
 
 

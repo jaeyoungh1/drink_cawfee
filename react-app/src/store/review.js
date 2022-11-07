@@ -141,7 +141,7 @@ const reviewReducer = (state = initialState, action) => {
         case LOAD_ALL_REVIEW:
             newState = { ...state, allReview: { ...state.allReview }, singleReview: { ...state.singleReview } };
             const newAllReview = {};
-            console.log(action.payload)
+            // console.log(action.payload)
             action.payload.Reviews.forEach(review => newAllReview[review.id] = review);
             newState.allReview = newAllReview;
             return newState;
