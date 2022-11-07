@@ -30,9 +30,11 @@ export default function Orders() {
     }
 
 
-    async function deleteOrder(id) {
-        await dispatch(deleteOneOrder(id))
-        await dispatch(loadAllOrder())
+    async function deleteOrder(arr) {
+        for (let i = 0; i < arr.length; i++) {
+            await dispatch(deleteOneOrder(arr[i].id))
+        }
+            await dispatch(loadAllOrder())
     }
     const checkout = async () => {
         return history.push('/checkout')
@@ -128,7 +130,7 @@ export default function Orders() {
                                 </>
                             )
                         })}
-                        <div onClick={() => deleteOrder(arr[0].id)}>Cancel Order</div>
+                        <div onClick={() => deleteOrder(arr)}>Cancel Order</div>
                     </div>
 
                 )
