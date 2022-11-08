@@ -24,27 +24,32 @@ export default function SingleCoffee() {
     const cart = useSelector(state => state.cart.allCart)
 
     const [selected, setSelected] = useState('')
+    const [cartArr, setCartArr] = useState([])
+    const [cartedCoffee, setCartedCoffee] = useState([])
     const [quantity, setQuantity] = useState(1);
     const [added, setAdded] = useState(false);
 
+    // let cartedCoffee = []
     useEffect(() => {
         dispatch(getOneCoffee(coffeeId))
         if (coffee.id) {
             dispatch(loadAllReview(coffeeId))
         }
+        if (cart) {
+            setCartArr(Object.values(cart))
+            let arr = cartArr.map(obj => obj.coffee_id)       
+            setCartedCoffee(arr)
+        }
+
         dispatch(loadAllCart())
     }, [dispatch])
 
-    let cartedCoffee
-    let cartArr
-    if (cart) {
-        cartArr = Object.values(cart)
-        if (cartArr.length > 1) {
-
-            cartedCoffee = cartArr.map(obj => obj.coffee_id)
-        }
-    }
-
+    // if (cart) {
+    //     cartArr = Object.values(cart)
+    //     if (cartArr.length > 1) {
+    //         cartedCoffee = cartArr.map(obj => obj.coffee_id)
+    //     }
+    // }
 
     const submitToCart = async () => {
         if (quantity < 1) {
@@ -52,8 +57,8 @@ export default function SingleCoffee() {
         }
         console.log("CURRENT CARTED COFFEE", cartedCoffee, +coffeeId)
         console.log("DOES THE CART INCLUDE CURRENT COFFEE", cartedCoffee?.includes(+coffeeId))
-        if (cartedCoffee) {
-            if (cartedCoffee && cartedCoffee.includes(+coffeeId)) {
+        if (cartArr) {
+            if (cartArr && cartedCoffee.includes(+coffeeId)) {
                 let currentCart = cartArr.filter(obj => +obj.coffee_id === +coffeeId)
                 let cartId = currentCart[0]?.id
                 let currQuan = currentCart[0]?.quantity
