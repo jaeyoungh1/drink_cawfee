@@ -37,12 +37,13 @@ export default function SingleCoffee() {
         }
         if (cart) {
             setCartArr(Object.values(cart))
+            console.log("THIS IS CART ARR", cartArr)
             let arr = cartArr.map(obj => obj.coffee_id)       
             setCartedCoffee(arr)
         }
 
         dispatch(loadAllCart())
-    }, [dispatch])
+    }, [dispatch, cart])
 
     // if (cart) {
     //     cartArr = Object.values(cart)
