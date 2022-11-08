@@ -43,7 +43,7 @@ export default function SingleCoffee() {
         }
 
         dispatch(loadAllCart())
-    }, [dispatch, cart])
+    }, [dispatch, cartArr])
 
     // if (cart) {
     //     cartArr = Object.values(cart)
