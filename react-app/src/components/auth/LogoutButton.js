@@ -68,12 +68,14 @@ const LogoutButton = () => {
                 Become a Curator
               </NavLink>
             </div>} */}
-            {/* <div className='profile-modal-interact'>
-              Account Details
-            </div> */}
             <div className='profile-modal-interact'>
               <NavLink className='profile-modal-interact' to='/my-reviews'>
               My Reviews
+              </NavLink>
+            </div>
+            <div className='profile-modal-interact'>
+              <NavLink className='profile-modal-interact' to='/account'>
+                Account Details
               </NavLink>
             </div>
             <div className='profile-modal-interact' onClick={() => onLogout()}>

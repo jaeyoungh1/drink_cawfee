@@ -50,8 +50,8 @@ export default function SingleCoffee() {
         if (quantity < 1) {
             return;
         }
-        console.log("CURRENT CARTED COFFEE", cartedCoffee, +coffeeId)
-        console.log("DOES THE CART INCLUDE CURRENT COFFEE", cartedCoffee?.includes(+coffeeId))
+        // console.log("CURRENT CARTED COFFEE", cartedCoffee, +coffeeId)
+        // console.log("DOES THE CART INCLUDE CURRENT COFFEE", cartedCoffee?.includes(+coffeeId))
         if (cartArr) {
             if (cartArr && cartedCoffee && cartedCoffee.includes(+coffeeId)) {
                 let currentCart = cartArr.filter(obj => +obj.coffee_id === +coffeeId)
