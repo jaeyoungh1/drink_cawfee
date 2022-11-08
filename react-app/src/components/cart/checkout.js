@@ -51,6 +51,10 @@ export default function Checkout() {
         await dispatch(loadAllCart())
     }
 
+    let cartArr = Object.values(carts)
+
+    console.log("cartArr", cartArr)
+
     const checkout = async () => {
         if (carts) {
             let cartArr = Object.values(carts)

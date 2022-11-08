@@ -53,9 +53,13 @@ export default function Orders() {
     }
     function dateCalculator(str) {
         let current = new Date()
-        // console.log("CURRENT", current)
+        console.log("DIFFERENCE", (new Date() - new Date(str)) / (1000 * 60))
+        let difference = (new Date() - new Date(str)) / (1000 * 60)
+        if (difference > 30) {
+            return false
+        }
+        else return true
     }
-    dateCalculator("2022-11-06 23:00:09.380824")
 
 
     let allOrder
@@ -89,6 +93,7 @@ export default function Orders() {
 
 
             allOrder = uniqueArr.map(arr => {
+                console.log("ARR", arr)
                 return (
                     <div key={arr.id} className='order-wrapper'>
                         <div className='order-top'>
@@ -133,7 +138,8 @@ export default function Orders() {
                                 </>
                             )
                         })}
-                        <div onClick={() => deleteOrder(arr)}>Cancel Order</div>
+                        {dateCalculator(arr[arr.length - 1].created_at) && <div onClick={() => deleteOrder(arr)}>Edit Order</div>}
+                        {dateCalculator(arr[arr.length-1].created_at) ? <div onClick={() => deleteOrder(arr)}>Cancel Order</div> : <div>Order Shipped</div>}
                     </div>
 
                 )
