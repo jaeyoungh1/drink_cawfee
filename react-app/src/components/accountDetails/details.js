@@ -68,7 +68,7 @@ export default function Details() {
 
     }
 
-    console.log('state', state, 'city', city)
+    // console.log('state', state, 'city', city)
 
     useEffect(() => {
         if (user.shipping_address) {
@@ -124,15 +124,15 @@ export default function Details() {
         e.preventDefault();
         setOnSubmit(true)
         if (errors.length > 0) {
-            console.log('you got errors!')
+            // console.log('you got errors!')
             return;
         } else {
 
 
-            console.log("CHECKOUT NEW ADDRESS", address,
-                zipcode,
-                city,
-                state)
+            // console.log("CHECKOUT NEW ADDRESS", address,
+                // zipcode,
+                // city,
+                // state)
 
             try {
                 // include edit user route <<<<<<<<<<<<<<<<<
@@ -155,15 +155,15 @@ export default function Details() {
         e.preventDefault();
         setOnSubmit(true)
         if (errors.length > 0) {
-            console.log('you got errors!')
+            // console.log('you got errors!')
             return;
         } else {
 
 
-            console.log("CHECKOUT NEW INFO",
-                first_name,
-                last_name,
-                email)
+            // console.log("CHECKOUT NEW INFO",
+                // first_name,
+                // last_name,
+                // email)
 
             try {
                 // include edit user route <<<<<<<<<<<<<<<<<

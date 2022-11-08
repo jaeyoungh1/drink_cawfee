@@ -53,7 +53,7 @@ export default function Orders() {
     }
     function dateCalculator(str) {
         let current = new Date()
-        console.log("CURRENT", current)
+        // console.log("CURRENT", current)
     }
     dateCalculator("2022-11-06 23:00:09.380824")
 
@@ -77,14 +77,14 @@ export default function Orders() {
             )
         } else {
             let orderArr = Object.values(orders)
-            console.log("ORDERARR", orderArr)
+            // console.log("ORDERARR", orderArr)
             let orderSet = new Set(orderArr?.map(obj => obj.order_number))
-            console.log("ORDERSET", orderSet)
+            // console.log("ORDERSET", orderSet)
             let uniqueArr = []
             orderSet?.forEach(str => {
                 uniqueArr.push(orderArr?.filter(obj => obj.order_number === str))
             })
-            console.log("UNIQUEARR", uniqueArr)
+            // console.log("UNIQUEARR", uniqueArr)
 
 
 

@@ -91,7 +91,7 @@ export default function Cart() {
             )
         } else {
             let cartArr = Object.values(carts)
-            console.log(Object.values(carts))
+            // console.log(Object.values(carts))
 
             allCart = cartArr.map(obj => {
                 let coffee = obj.Coffee
