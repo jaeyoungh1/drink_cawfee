@@ -10,6 +10,7 @@ import minus from '../../icons/minus.svg'
 import cart from '../../icons/cart.svg'
 import { update } from "../../store/session";
 import { addOneOrder, loadAllOrder } from "../../store/order";
+import { editOneCoffeeInventory } from "../../store/coffee";
 
 export default function Checkout() {
     const dispatch = useDispatch()
@@ -51,6 +52,10 @@ export default function Checkout() {
         await dispatch(loadAllCart())
     }
 
+    let cartArr = Object.values(carts)
+
+    // console.log("cartArr", cartArr)
+
     const checkout = async () => {
         if (carts) {
             let cartArr = Object.values(carts)
@@ -61,6 +66,7 @@ export default function Checkout() {
 
             for (let i = 0; i < cartArr.length; i++) {
                 let added = await dispatch(addOneOrder(cartArr[i].id, order_number, total))
+                await dispatch(editOneCoffeeInventory(cartArr[i].id, "minus", cartArr[i].quantity))
                 deleteCart(cartArr[i].id)
             }
             await dispatch(loadAllOrder())

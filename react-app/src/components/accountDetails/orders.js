@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { loadAllOrder, deleteOneOrder, editOneOrder } from "../../store/order";
+import { editOneCoffeeInventory } from "../../store/coffee";
+
 import './accountDetails.css'
 import noImg from '../../icons/no_image.svg'
 import x from '../../icons/x.svg'
@@ -31,13 +33,13 @@ export default function Orders() {
 
 
     async function deleteOrder(arr) {
+        console.log("ARR TO BE DELETED", arr)
         for (let i = 0; i < arr.length; i++) {
+            await dispatch(editOneCoffeeInventory(arr[i].id, "plus", arr[i].quantity))
             await dispatch(deleteOneOrder(arr[i].id))
+
         }
         await dispatch(loadAllOrder())
-    }
-    const checkout = async () => {
-        return history.push('/checkout')
     }
 
     function priceFormatter(num) {
@@ -53,9 +55,13 @@ export default function Orders() {
     }
     function dateCalculator(str) {
         let current = new Date()
-        // console.log("CURRENT", current)
+        console.log("DIFFERENCE", (new Date() - new Date(str)) / (1000 * 60))
+        let difference = (new Date() - new Date(str)) / (1000 * 60)
+        if (difference > 30) {
+            return false
+        }
+        else return true
     }
-    dateCalculator("2022-11-06 23:00:09.380824")
 
 
     let allOrder
@@ -89,6 +95,7 @@ export default function Orders() {
 
 
             allOrder = uniqueArr.map(arr => {
+                console.log("ARR", arr)
                 return (
                     <div key={arr.id} className='order-wrapper'>
                         <div className='order-top'>
@@ -133,7 +140,8 @@ export default function Orders() {
                                 </>
                             )
                         })}
-                        <div onClick={() => deleteOrder(arr)}>Cancel Order</div>
+                        {dateCalculator(arr[arr.length - 1].created_at) && <div onClick={() => deleteOrder(arr)}>Edit Order</div>}
+                        {dateCalculator(arr[arr.length-1].created_at) ? <div onClick={() => deleteOrder(arr)}>Cancel Order</div> : <div>Order Shipped</div>}
                     </div>
 
                 )

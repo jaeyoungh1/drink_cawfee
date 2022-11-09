@@ -1,9 +1,10 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import login_required, current_user
-from app.models import Coffee, Note, Day, Brand, Review, User, db
+from app.models import Coffee, Cart, Order, Note, Day, Brand, Review, User, db
 from app.forms.add_coffee_form import AddCoffeeForm
 from app.forms.add_review_form import AddReviewForm
 from app.forms.delete_form import DeleteForm
+from app.forms.add_to_cart_form import AddToCartForm
 
 coffee_routes = Blueprint('coffees', __name__)
 
@@ -190,6 +191,81 @@ def add_one_coffee():
         return coffee_res
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
+#EDIT coffee INVENTORY
+@coffee_routes.route('/inventory/<string:opt>/<int:id>', methods=["PUT"])
+@login_required
+def edit_one_coffee_inventory(id, opt):
+    print("   >>>>>> ID OPT", id, opt)
+    print("   >>>>>> OPT", opt == 'plus')
+    user = current_user.to_dict()
+    if not user:
+        return {"message": "Forbidden", "status_code": 403}, 403
+    user_id = user['id']
+
+    if opt == 'minus':
+        print("   >>>>>> MINUS BEING HIT")
+        current_cart_coffee = Cart.query.get(id)
+    # checking if cart exist
+        if not current_cart_coffee:
+            return jsonify({
+                "message": "Cart couldn't be found",
+                "status_code": 404
+            })
+        # checking if user added this cart item
+        if current_cart_coffee.to_dict()['user_id'] != user_id:
+            return {"message": "Forbidden", "status_code": 403}, 403
+
+
+        if current_cart_coffee.to_dict()['user_id'] == user_id:
+            coffee = Coffee.query.get(current_cart_coffee.to_dict()['coffee_id'])
+
+            current_inventory = coffee.to_dict()['inventory']
+            new_inventory = +current_inventory - +current_cart_coffee.to_dict()['quantity']
+
+            coffee.inventory = new_inventory 
+
+            db.session.commit()
+
+            coffee_res = coffee.to_dict()
+            brand = Brand.query.get(coffee_res['brand_id']).to_dict()
+            coffee_res['Brand'] = brand
+
+        return coffee_res
+    elif opt == 'plus':
+        # print("   >>>>>> PLUS BEING HIT", id)
+        current_order_coffee = Order.query.get(id)
+        # print("   >>>>>> CURRENT ORDER COFFEE", current_order_coffee)
+    # checking if order exist
+        if not current_order_coffee:
+            return jsonify({
+                "message": "Order couldn't be found",
+                "status_code": 404
+            })
+        # checking if user added this order item
+        if current_order_coffee.to_dict()['user_id'] != user_id:
+            return {"message": "Forbidden", "status_code": 403}, 403
+
+        # print("   >>>>>> CURRENT ORDER COFFEE", current_order_coffee.to_dict())
+        if current_order_coffee.to_dict()['user_id'] == user_id:
+            coffee = Coffee.query.get(current_order_coffee.to_dict()['coffee_id'])
+
+            current_inventory = coffee.to_dict()['inventory']
+            # print(" >>>>>> CURRENT INVENTORY", current_inventory)
+            new_inventory = +current_inventory + +current_order_coffee.to_dict()['quantity']
+            # print(" >>>>>> NEW INVENTORY", new_inventory)
+
+            coffee.inventory = new_inventory 
+
+            db.session.commit()
+
+            coffee_res = coffee.to_dict()
+            brand = Brand.query.get(coffee_res['brand_id']).to_dict()
+            coffee_res['Brand'] = brand
+            # print(" >>>>>> COFFEE RES", coffee_res)
+
+            return coffee_res
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
 # PUT one coffee
 
 
@@ -331,8 +407,6 @@ def get_one_coffee_reviews(coffee_id):
     return {"Reviews": reviews}
 
 # POST review for one coffee
-
-
 @coffee_routes.route('/<int:coffee_id>/reviews', methods=["POST"])
 @login_required
 def create_one_coffee_review(coffee_id):

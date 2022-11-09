@@ -12,8 +12,12 @@
     display: flex;
     justify-content: center;
     width: 88px;
-
 }
+
+.move-right {
+    margin-right: -25px;
+}
+
 .swiper-no-swiping > span {
     font-family: 'Open Sans', sans-serif;
     font-size: 12px;

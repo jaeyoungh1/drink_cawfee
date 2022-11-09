@@ -50,8 +50,8 @@ export default function SingleCoffee() {
         if (quantity < 1) {
             return;
         }
-        console.log("CURRENT CARTED COFFEE", cartedCoffee, +coffeeId)
-        console.log("DOES THE CART INCLUDE CURRENT COFFEE", cartedCoffee?.includes(+coffeeId))
+        // console.log("CURRENT CARTED COFFEE", cartedCoffee, +coffeeId)
+        // console.log("DOES THE CART INCLUDE CURRENT COFFEE", cartedCoffee?.includes(+coffeeId))
         if (cartArr) {
             if (cartArr && cartedCoffee && cartedCoffee.includes(+coffeeId)) {
                 let currentCart = cartArr.filter(obj => +obj.coffee_id === +coffeeId)
@@ -276,7 +276,8 @@ export default function SingleCoffee() {
                                             </div>
                                         </div>
                                     </div>
-                                    {user ? <div id='login-button' className='add-to-cart'
+                                    {coffee.inventory === 0 && <div className='please-login-to-shop'> OUT OF STOCK </div> }
+                                    {coffee.inventory > 0 && user ? <div id='login-button' className='add-to-cart'
                                         onClick={() => submitToCart()}>
                                         {added ? "ADDED TO CART!" : "ADD TO CART"}
                                     </div>

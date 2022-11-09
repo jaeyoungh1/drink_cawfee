@@ -68,13 +68,13 @@ function LoginFormModal() {
 
     return (
         <>
-            <div className='profile-button' onClick={() => setShowModal(true)}>
-                <span className='swiper-no-swiping'>
-                    <img  alt='profile' src={account} />
+            <div className='profile-button move-right' onClick={() => setShowModal(true)}>
+                <div className='swiper-no-swiping'>
+                    <img alt='profile' src={account} />
                     <span>
                         Log In
                     </span>
-                </span>
+                </div>
             </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
