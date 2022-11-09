@@ -55,7 +55,7 @@ export default function Orders() {
     }
     function dateCalculator(str) {
         let current = new Date()
-        console.log("DIFFERENCE", (new Date() - new Date(str)) / (1000 * 60))
+        // console.log("DIFFERENCE", (new Date() - new Date(str)) / (1000 * 60))
         let difference = (new Date() - new Date(str)) / (1000 * 60)
         if (difference > 30) {
             return false

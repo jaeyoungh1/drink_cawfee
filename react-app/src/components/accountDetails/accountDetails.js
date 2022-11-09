@@ -33,20 +33,23 @@ export default function AccountDetails() {
                 </div>
                 <div>
                     <div
-                        onClick={() => setTab('details')} className={tab === 'details' ? 'checkout-title tab-selected' : 'checkout-title'}>
+                        onClick={() => setTab('details')}
+                        className={tab === 'details' ? 'checkout-title tab-selected' : 'checkout-title'}>
                         Details</div>
                     <div className='checkout-line-break'></div>
                     <div
                         onClick={() => setTab('orders')}
-                        className='checkout-title'>Orders</div>
-                    <div className='checkout-line-break'></div>
+                        className={tab === 'orders' ? 'checkout-title tab-selected' : 'checkout-title'}>
+                        Orders</div>
+                    <div
+                        className='checkout-line-break'></div>
                     <div className='checkout-title'>Preferences</div>
                     <div className='checkout-line-break'></div>
                 </div>
             </div>
 
             {tab === 'details' && <Details />}
-            {tab === '' && <Orders />}
+            {tab === 'orders' && <Orders />}
 
 
 
