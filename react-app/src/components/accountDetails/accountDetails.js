@@ -37,18 +37,18 @@ export default function AccountDetails() {
                             setTab('details')
                             // history.replace('/account/details') <<<<<< NTS: create helper function to change url and conditional based on url
                          }}
-                        className={tab === 'details' ? 'checkout-title tab-selected' : 'checkout-title'}>
+                        className={tab === 'details' ? 'detail-title tab-selected' : 'detail-title'}>
                         Details</div>
                     <div className='checkout-line-break'></div>
                     <div
                         onClick={() => setTab('orders')}
-                        className={tab === 'orders' ? 'checkout-title tab-selected' : 'checkout-title'}>
+                        className={tab === 'orders' ? 'detail-title tab-selected' : 'detail-title'}>
                         Order History</div>
                     <div
                         className='checkout-line-break'></div>
                     <div 
                         onClick={() => setTab('preference')}
-                        className={tab === 'preference' ? 'checkout-title tab-selected' : 'checkout-title'}>
+                        className={tab === 'preference' ? 'detail-title tab-selected' : 'detail-title'}>
                             Preferences</div>
                     <div className='checkout-line-break'></div>
                 </div>
