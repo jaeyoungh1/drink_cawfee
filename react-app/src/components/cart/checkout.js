@@ -116,10 +116,10 @@ export default function Checkout() {
             //     city,
             //     state
             // }
-            console.log("CHECKOUT NEW ADDRESS", address,
-                zipcode,
-                city,
-                state)
+            // console.log("CHECKOUT NEW ADDRESS", address,
+            //     zipcode,
+            //     city,
+            //     state)
 
             try {
                 // include edit user route <<<<<<<<<<<<<<<<<
@@ -403,7 +403,7 @@ export default function Checkout() {
 
                     {user && <div className='cart-total'>
                         <div>Shipping</div>
-                        <div>{priceFormatter(0)}</div>
+                        <div>Free</div>
                     </div>}
 
                     {user && <div className='cart-total'>
