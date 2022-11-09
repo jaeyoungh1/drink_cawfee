@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { loadAllOrder, deleteOneOrder, editOneOrder } from "../../store/order";
+import { editOneCoffeeInventory } from "../../store/coffee";
+
 import './accountDetails.css'
 import noImg from '../../icons/no_image.svg'
 import x from '../../icons/x.svg'
@@ -31,13 +33,13 @@ export default function Orders() {
 
 
     async function deleteOrder(arr) {
+        console.log("ARR TO BE DELETED", arr)
         for (let i = 0; i < arr.length; i++) {
+            await dispatch(editOneCoffeeInventory(arr[i].id, "plus", arr[i].quantity))
             await dispatch(deleteOneOrder(arr[i].id))
+
         }
         await dispatch(loadAllOrder())
-    }
-    const checkout = async () => {
-        return history.push('/checkout')
     }
 
     function priceFormatter(num) {

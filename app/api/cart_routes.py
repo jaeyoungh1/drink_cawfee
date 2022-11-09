@@ -155,12 +155,11 @@ def delete_one_cart(cart_id):
             "message": "Cart coffee couldn't be found",
             "status_code": 404
         })
-    # checking if user added to this cart
+    # checking if user is authorized to add to cart
     if current_cart_coffee.to_dict()['user_id'] != user_id:
         return {"message": "Forbidden", "status_code": 403}, 403
 
     elif current_cart_coffee.to_dict()['user_id'] == user_id:
-        if form.validate_on_submit():
 
             db.session.delete(current_cart_coffee)
             db.session.commit()

@@ -276,7 +276,8 @@ export default function SingleCoffee() {
                                             </div>
                                         </div>
                                     </div>
-                                    {user ? <div id='login-button' className='add-to-cart'
+                                    {coffee.inventory === 0 && <div className='please-login-to-shop'> OUT OF STOCK </div> }
+                                    {coffee.inventory > 0 && user ? <div id='login-button' className='add-to-cart'
                                         onClick={() => submitToCart()}>
                                         {added ? "ADDED TO CART!" : "ADD TO CART"}
                                     </div>

@@ -205,6 +205,27 @@ export const editOneCoffee = (id, coffee) => async dispatch => {
     }
 };
 
+// Update a coffee inventory ONLY
+
+export const editOneCoffeeInventory = (id, opt, quantity) => async dispatch => {
+    console.log("I'M BEING EDITED", id, opt, quantity)
+    const response = await csrfFetch(`/api/coffee/inventory/${opt}/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({quantity})
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+
+        dispatch(_editOneCoffee(data));
+
+        return data;
+    }
+};
+
 
 /********************************* DELETE *************************************/
 

@@ -43,7 +43,7 @@ export default function CurrentCoffee() {
                         <div className='all-coffee-line-break'></div>
                         <div className='all-coffee-details'>
                             <div className='all-coffee-details-brand'>
-                                {obj.Brand.name.toUpperCase()}
+                                {obj.Brand?.name.toUpperCase()}
                             </div>
                             <div className='all-coffee-details-name'>
                                 <NavLink style={{ textDecoration: 'none', color: 'black' }} className='all-coffee-details-name' to={`/cawfee/${obj.id}`}>
