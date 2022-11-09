@@ -16,7 +16,7 @@ export default function AccountDetails() {
     // const dispatch = useDispatch()
     const history = useHistory()
 
-    const [tab, setTab] = useState('')
+    const [tab, setTab] = useState('orders')
 
     const user = useSelector(state => state.session.user)
 
