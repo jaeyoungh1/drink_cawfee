@@ -95,7 +95,7 @@ export default function Orders() {
 
 
             allOrder = uniqueArr.map(arr => {
-                console.log("ARR", arr)
+                // console.log("ARR", arr)
                 return (
                     <div key={arr.id} className='order-wrapper'>
                         <div className='order-top'>

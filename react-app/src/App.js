@@ -72,7 +72,7 @@ function App() {
           <Roasters />
           <Footer />
         </Route>
-        <Route exact path='/account'>
+        <Route path='/account'>
           <AccountDetails />
           <Footer />
         </Route>

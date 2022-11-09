@@ -82,8 +82,9 @@
 }
 
 .order-wrapper {
-    border: 1px solid rgb(193, 193, 193);
+    border: 1px solid rgb(246, 246, 246);
     border-radius: 4px;
+    box-shadow: 0px 0px 5px rgb(236, 236, 236);
     width: 85%;
     padding: 36px 24px;
     margin: 24px 0px;
