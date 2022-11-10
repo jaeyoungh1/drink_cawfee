@@ -1,5 +1,5 @@
 .homepage-splash {
-    margin-bottom: 850px;
+    margin-bottom: 870px;
 }
 
 .homepage-splash>img {
@@ -74,7 +74,7 @@
 }
 
 .perfect-cup {
-    top: 1050px;
+    top: 1090px;
     margin-left: 85px;
     font-size: 36px;
 }
@@ -85,4 +85,41 @@
     margin-left: 85px;
     margin-top: 10px;
     margin-bottom: 500px;
+}
+
+.scrolling-banner {
+    font-size: 18px;
+    display: flex;
+    justify-content: space-around;
+    background: rgb(245, 229, 191);
+    width:100%;
+    padding: 20px;
+    overflow: hidden;
+}
+.scrolling-banner > div {
+    display: flex;
+    animation: scroll 15s linear infinite;
+    /* transform: translateX(100%); */
+    justify-content: space-around;
+    width: 100%;
+}
+
+.scrolling-banner>div > span {
+    display: block;
+    margin: 1vw;
+    width: 100%;
+}
+.banner-2 {
+    animation-delay: 7.5s;
+}
+
+
+@keyframes scroll {
+    0% {
+            transform: translateX(0%);
+        }
+    
+        100% {
+            transform: translateX(-100%);
+}
 }

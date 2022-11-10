@@ -174,21 +174,21 @@ const HomePage = () => {
                             </div>
                         </div>
                         <div id="item-image">
-                            <img alt='light' src="https://res.cloudinary.com/roastcollective/image/upload/w_182,f_auto,fl_progressive:steep,q_auto:good/v1663780540/landing/homepage/desktop-light-roast.png" />
+                            <img alt='light' src="https://res.cloudinary.com/roastcollective/image/upload/w_182,f_auto,fl_progressive:steep,q_auto:good/v1663780540/landing/homepage/desktop-staff-picks.png" />
                         </div>
                     </div>
 
                     {coffeeArr.slice(0, 5).map(obj => {
                         return (
-                            
-                            <NavLink key={obj.id} style={{ color: 'black' }} to={`/cawfee/${obj.id}`}>
-                                <div className="item-coffee" style={{ ...coffeeItemStyle }}>
 
-                                    <div className="item-image-wrapper">
-                                        <img alt='single coffee' className="item-image" src={obj.img_url}
-                                            onError={e => e.target.src = noImg} />
-                                    </div>
+                            <div className="item-coffee" style={{ ...coffeeItemStyle }}>
 
+                                <div className="item-image-wrapper">
+                                    <img alt='single coffee' className="item-image" src={obj.img_url}
+                                        onError={e => e.target.src = noImg} />
+                                </div>
+
+                                <NavLink key={obj.id} style={{ color: 'black' }} to={`/cawfee/${obj.id}`}>
                                     <div className='item-title-div'>
                                         <div>
                                             <div className="coffee-item-title">{obj.name}</div>
@@ -198,20 +198,82 @@ const HomePage = () => {
                                             Learn More
                                         </div> */}
                                     </div>
+                                </NavLink>
 
 
-                                </div>
-                            </NavLink>
+                            </div>
                         )
                     })}
-                    
+
 
                 </Carousel>
-
-
             </div>
-            <div className='recent-activity-container'>
-                <div className='recent-cards-container'>
+
+
+            <div className='scrolling-banner'>
+                <div>
+                    <span>
+                        Roasted Fresh to Order
+                    </span>
+                    <span>
+                        Free Shipping
+                    </span>
+                    <span>
+                        Delivered on Your Schedule
+                    </span>
+                    <span>
+                        Ethically Sourced
+                    </span>
+                    <span>
+                        Support Local Roasters
+                    </span>
+                    <span>
+                        Roasted Fresh to Order
+                    </span>
+                    <span>
+                        Free Shipping
+                    </span>
+                    <span>
+                        Delivered on Your Schedule
+                    </span>
+                    <span>
+                        Ethically Sourced
+                    </span>
+                    <span>
+                        Support Local Roasters
+                    </span>
+                </div>
+                <div className='banner-2'>
+                    <span>
+                        Roasted Fresh to Order
+                    </span>
+                    <span>
+                        Free Shipping
+                    </span>
+                    <span>
+                        Delivered on Your Schedule
+                    </span>
+                    <span>
+                        Ethically Sourced
+                    </span>
+                    <span>
+                        Support Local Roasters
+                    </span>
+                    <span>
+                        Roasted Fresh to Order
+                    </span>
+                    <span>
+                        Free Shipping
+                    </span>
+                    <span>
+                        Delivered on Your Schedule
+                    </span>
+                    <span>
+                        Ethically Sourced
+                    </span>
+                    <span>
+                        Support Local Roasters
+                    </span>
                 </div>
             </div>
 
