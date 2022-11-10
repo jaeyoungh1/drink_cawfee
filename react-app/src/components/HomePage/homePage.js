@@ -209,71 +209,43 @@ const HomePage = () => {
                 </Carousel>
             </div>
 
-
-            <div className='scrolling-banner'>
-                <div>
-                    <span>
-                        Roasted Fresh to Order
-                    </span>
-                    <span>
-                        Free Shipping
-                    </span>
-                    <span>
-                        Delivered on Your Schedule
-                    </span>
-                    <span>
-                        Ethically Sourced
-                    </span>
-                    <span>
-                        Support Local Roasters
-                    </span>
-                    <span>
-                        Roasted Fresh to Order
-                    </span>
-                    <span>
-                        Free Shipping
-                    </span>
-                    <span>
-                        Delivered on Your Schedule
-                    </span>
-                    <span>
-                        Ethically Sourced
-                    </span>
-                    <span>
-                        Support Local Roasters
-                    </span>
+            <div class="scrolling-banner">
+                <div class="menu__item">
+                    <div class="marquee">
+                        <div class="marquee__inner">
+                            <span>Free Shipping</span>
+                            <span>Ethically Sourced</span>
+                            <span>Roasted Fresh to Order</span>
+                            <span>Support Local Roasters</span>
+                            <span>Specially Curated Coffees</span>
+                            <span>Delivered on Your Schedule</span>
+                            <span>Roasted Fresh to Order</span>
+                            <span>Support Local Roasters</span>
+                            <span>Free Shipping</span>
+                            <span>Ethically Sourced</span>
+                            <span>Roasted Fresh to Order</span>
+                            <span>Support Local Roasters</span>
+                        </div>
+                    </div>
                 </div>
-                <div className='banner-2'>
-                    <span>
-                        Roasted Fresh to Order
-                    </span>
-                    <span>
-                        Free Shipping
-                    </span>
-                    <span>
-                        Delivered on Your Schedule
-                    </span>
-                    <span>
-                        Ethically Sourced
-                    </span>
-                    <span>
-                        Support Local Roasters
-                    </span>
-                    <span>
-                        Roasted Fresh to Order
-                    </span>
-                    <span>
-                        Free Shipping
-                    </span>
-                    <span>
-                        Delivered on Your Schedule
-                    </span>
-                    <span>
-                        Ethically Sourced
-                    </span>
-                    <span>
-                        Support Local Roasters
-                    </span>
+            </div>
+
+            <div className='double-div'>
+                <div>
+
+                Supporting local roasters in California
+                </div>
+                <div>
+                    <img alt='bean and bean' src="//images.ctfassets.net/o88ugk6hewlf/hHri2lBehPWnITqpeaTP6/7cc2bb0b8fbd2f0ec4ab2cc0b06ffa1e/desktop-50-beanbean_hmujuh.jpg?q=75&fm=webp&w=1000" onError={e => e.target.src=noImg}/>
+                    <div>Get to Know our Roasters</div>
+                    <div>Explore the dedicated people standing behind your coffee.</div>
+                    <NavLink to ='/roasters'>View Roasters</NavLink>
+                </div>
+                <div>
+                    <img alt='explore' src="https://images.ctfassets.net/o88ugk6hewlf/4N7cJ0P1uGYC2BreAZtyZQ/a465e5e07823c13c9386713a69bda67e/desktop-tile-plans.jpg?fl=progressive&q=75" onError={e => e.target.src=noImg}/>
+                    <div>Find Coffee from your Local Roaster</div>
+                    <div>Travel along the California coast with the best roasters in the state.</div>
+                    <NavLink to='/cawfee'>Shop Coffee</NavLink>
                 </div>
             </div>
 

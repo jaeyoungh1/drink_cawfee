@@ -88,38 +88,70 @@
 }
 
 .scrolling-banner {
-    font-size: 18px;
-    display: flex;
-    justify-content: space-around;
-    background: rgb(245, 229, 191);
-    width:100%;
-    padding: 20px;
+    background: rgb(229, 223, 208);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding: 20px 0 ;
+    --marquee-width: 100vw;
+    --offset: 20vw;
+    --move-initial: calc(-25% + var(--offset));
+    --move-final: calc(-50% + var(--offset));
+    --item-font-size: 18px;
+    counter-reset: menu;
+}
+
+/* Make sure 3 items are visible in the viewport by setting suitable font size. */
+
+.marquee {
+    /* position: absolute;
+    top: 0;
+    left: 0; */
+    width: var(--marquee-width);
     overflow: hidden;
+    pointer-events: none;
+    mix-blend-mode: color-burn;
 }
-.scrolling-banner > div {
+
+.marquee__inner {
+    width: fit-content;
     display: flex;
-    animation: scroll 15s linear infinite;
-    /* transform: translateX(100%); */
-    justify-content: space-around;
-    width: 100%;
+    position: relative;
+    transform: translate3d(var(--move-initial), 0, 0);
+    animation: marquee 15s linear infinite;
+    animation-play-state: paused;
+    opacity: 0;
+    transition: opacity 0.1s;
 }
 
-.scrolling-banner>div > span {
-    display: block;
-    margin: 1vw;
-    width: 100%;
-}
-.banner-2 {
-    animation-delay: 7.5s;
+.marquee .marquee__inner {
+    animation-play-state: running;
+    opacity: 1;
+    transition-duration: 0.4s;
 }
 
+.marquee span {
+    text-align: center;
+    white-space: nowrap;
+    font-size: var(--item-font-size);
+    padding: 0 1vw;
+    font-weight: 400;
+    line-height: 1.15;
+}
 
-@keyframes scroll {
+@keyframes marquee {
     0% {
-            transform: translateX(0%);
-        }
-    
-        100% {
-            transform: translateX(-100%);
+        transform: translate3d(var(--move-initial), 0, 0);
+    }
+
+    100% {
+        transform: translate3d(var(--move-final), 0, 0);
+    }
 }
+
+
+.double-div {
+    
 }
