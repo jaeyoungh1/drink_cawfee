@@ -231,21 +231,28 @@ const HomePage = () => {
             </div>
 
             <div className='double-div'>
-                <div>
+                <div className='local-roaster-title'>
 
-                Supporting local roasters in California
+                    Supporting local roasters in California
                 </div>
-                <div>
-                    <img alt='bean and bean' src="//images.ctfassets.net/o88ugk6hewlf/hHri2lBehPWnITqpeaTP6/7cc2bb0b8fbd2f0ec4ab2cc0b06ffa1e/desktop-50-beanbean_hmujuh.jpg?q=75&fm=webp&w=1000" onError={e => e.target.src=noImg}/>
-                    <div>Get to Know our Roasters</div>
-                    <div>Explore the dedicated people standing behind your coffee.</div>
-                    <NavLink to ='/roasters'>View Roasters</NavLink>
-                </div>
-                <div>
-                    <img alt='explore' src="https://images.ctfassets.net/o88ugk6hewlf/4N7cJ0P1uGYC2BreAZtyZQ/a465e5e07823c13c9386713a69bda67e/desktop-tile-plans.jpg?fl=progressive&q=75" onError={e => e.target.src=noImg}/>
-                    <div>Find Coffee from your Local Roaster</div>
-                    <div>Travel along the California coast with the best roasters in the state.</div>
-                    <NavLink to='/cawfee'>Shop Coffee</NavLink>
+                <div className='double'>
+                    <div className='double-panel'>
+                        <div className='double-panel-img'>
+
+                            <img alt='bean and bean' src="//images.ctfassets.net/o88ugk6hewlf/hHri2lBehPWnITqpeaTP6/7cc2bb0b8fbd2f0ec4ab2cc0b06ffa1e/desktop-50-beanbean_hmujuh.jpg?q=75&fm=webp&w=1000" onError={e => e.target.src = noImg} />
+                        </div>
+                        <div className='double-panel-title'>Get to Know Our Roasters</div>
+                        <div className='double-panel-body'>Explore the dedicated people standing behind your coffee.</div>
+                        <NavLink className='double-panel-body panel-link' to='/roasters'>View Roasters</NavLink>
+                    </div>
+                    <div className='double-panel'>
+                        <div className='double-panel-img' >
+                            <img alt='explore' src="https://images.ctfassets.net/o88ugk6hewlf/4N7cJ0P1uGYC2BreAZtyZQ/a465e5e07823c13c9386713a69bda67e/desktop-tile-plans.jpg?fl=progressive&q=75" onError={e => e.target.src = noImg} />
+                        </div>
+                        <div className='double-panel-title'>Find Coffee From Your Local Roaster</div>
+                        <div className='double-panel-body'>Travel along the California coast with the best roasters in the state.</div>
+                        <NavLink className='double-panel-body panel-link' to='/cawfee'>Shop Coffee</NavLink>
+                    </div>
                 </div>
             </div>
 
