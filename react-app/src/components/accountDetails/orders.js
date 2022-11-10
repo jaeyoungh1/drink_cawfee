@@ -9,6 +9,8 @@ import noImg from '../../icons/no_image.svg'
 import x from '../../icons/x.svg'
 import plus from '../../icons/plus.svg'
 import minus from '../../icons/minus.svg'
+import Cart from "../cart/cart";
+import EditOrder from "../cart/editOrder";
 
 export default function Orders() {
     const dispatch = useDispatch()
@@ -18,7 +20,9 @@ export default function Orders() {
     const orders = useSelector(state => state.order.allOrder)
     const [newQuantity, setNewQuantity] = useState('');
     const [total, setTotal] = useState(0);
-    const [showUpdate, setShowUpdate] = useState(false);
+    const [showUpdate, setShowUpdate] = useState([]);
+    const [showIndUpdate, setShowIndUpdate] = useState('');
+
 
     useEffect(() => {
         dispatch(loadAllOrder())
@@ -31,9 +35,6 @@ export default function Orders() {
         await dispatch(editOneOrder(orderId, newOrder))
     }
 
-    function editOrder(arr) {
-        // OPEN UP AN EDIT QUANTITY MODAL <<<<<<
-    }
     async function deleteOrder(arr) {
         for (let i = 0; i < arr.length; i++) {
             await dispatch(editOneCoffeeInventory(arr[i].id, "plus", arr[i].quantity))
@@ -44,11 +45,11 @@ export default function Orders() {
     }
 
     function orderNumberGen(date, ord) {
-        let res = date.slice(5, 7) + date.slice(8, 10) + date.slice(0, 4) + ord.slice(0,3)
+        let res = date.slice(5, 7) + date.slice(8, 10) + date.slice(0, 4) + ord.slice(0, 3)
         return res
     }
 
-    
+
     function priceFormatter(num) {
         if (num) {
 
@@ -70,6 +71,15 @@ export default function Orders() {
             return false
         }
         else return true
+    }
+    function totalCalculator(arr) {
+        let total = 0
+        if (arr.length) {
+            arr.forEach(obj => {
+                total += +obj.quantity * +obj.Coffee?.price
+            })
+        }
+        return total
     }
 
 
@@ -104,17 +114,18 @@ export default function Orders() {
 
 
             allOrder = uniqueArr.map(arr => {
-                // console.log("ARR", arr)
+                let total = totalCalculator(arr)
                 return (
                     <div key={arr.id} className='order-wrapper'>
                         <div className='order-top'>
                             <div className='order-number'>ORDER #{orderNumberGen(arr[0]?.created_at, arr[0]?.order_number)}</div>
-                            <div>{priceFormatter(arr[0].total)}</div>
+                            <div>{priceFormatter(total)}</div>
                         </div>
                         <div className='order-coffee-info-name order-date'>Placed {dateFormatter(arr[0]?.created_at)}</div>
 
                         {arr.map(obj => {
                             let coffee = obj.Coffee
+                            let quantity = obj.quantity
 
 
                             return (
@@ -136,10 +147,49 @@ export default function Orders() {
                                                     Whole Bean | 12 oz.
                                                 </div>
                                             </div>
-                                            <div>
+                                            <div className='order-item-information'>
                                                 <div className='order-item-price'>{priceFormatter(coffee.price)}</div>
                                                 <div className='order-item-price'>Qty. {obj.quantity}</div>
                                                 <div className='order-item-actions'>
+                                                    {showUpdate.includes(obj.id) && <span
+                                                        className='update-order-quantity'
+                                                        onClick={() => {
+                                                            if (dateCalculator(obj.created_at)) {
+                                                                setNewQuantity(quantity)
+                                                                setShowIndUpdate(obj.id)
+                                                            }
+                                                        }}>Update Quantity</span>}
+                                                    {showIndUpdate === obj.id && <span
+
+                                                    >
+                                                        <div className="cart-quantity-toggle">
+                                                            <img alt='change' height='12' width='12' src={minus}
+                                                                onClick={() => {
+                                                                    if (newQuantity > 1) {
+                                                                        let nq = newQuantity - 1
+                                                                        setNewQuantity(nq)
+                                                                    }
+                                                                }} />
+
+
+                                                            <span className='cart-quantity-adjust'>{newQuantity}</span>
+                                                            <img alt='change' height='12' width='12' src={plus}
+                                                                onClick={() => {
+                                                                    if (newQuantity < +coffee.inventory) {
+                                                                        let nq = newQuantity + 1
+                                                                        setNewQuantity(nq)
+                                                                    }
+                                                                }} />
+                                                        </div>
+
+                                                        <div className='cart-quantity-adjust-confirm'
+                                                            onClick={() => {
+                                                                updateOrder(obj.id)
+                                                                setShowIndUpdate('')
+                                                                setShowUpdate([])
+                                                            }}>
+                                                            Confirm</div>
+                                                    </span>}
 
                                                 </div>
                                             </div>
@@ -150,8 +200,15 @@ export default function Orders() {
                             )
                         })}
                         <div className='order-status'>
-                        {dateCalculator(arr[arr.length - 1].created_at) && <div className='shipped' onClick={() => editOrder(arr)}>Edit Order</div>}
-                        {dateCalculator(arr[arr.length - 1].created_at) ? <div className='shipped canceled' onClick={() => deleteOrder(arr)}>Cancel Order</div> : <div className='shipped-order-div'><div className='shipped ordershipping'>Order Shipped</div><div className='shipped-order'>Order can not be changed after it has shipped</div></div>}
+                            {dateCalculator(arr[arr.length - 1].created_at) &&
+                                <div className='shipped'
+                                    onClick={() => setShowUpdate([...arr.map(obj => obj.id)])}>Edit Order</div>}
+                            {dateCalculator(arr[arr.length - 1].created_at) ?
+                                <div className='shipped canceled' onClick={() => deleteOrder(arr)}>
+                                    Cancel Order</div> : <div className='shipped-order-div'>
+                                    <div className='shipped ordershipping'>Order Shipped</div>
+                                    <div className='shipped-order'>Order can not be changed after it has shipped</div>
+                                </div>}
                         </div>
                     </div>
 

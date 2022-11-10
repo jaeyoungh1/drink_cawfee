@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { loadAllCart, deleteOneCart, editOneCart } from "../../store/cart";
 import './cart.css'
@@ -71,7 +71,7 @@ export default function Checkout() {
             }
             await dispatch(loadAllOrder())
 
-            return history.push('/account')
+            return history.push('/account/orders')
 
         }
 
@@ -365,6 +365,7 @@ export default function Checkout() {
                                     <div className='checkout-user-info'>{user.shipping_address}</div>
                                     <div className='checkout-user-info'>{user.city}, {user.state}, {user.zipcode}</div>
                                 </div>
+                                <NavLink className='checkout-user-info change-address' to='/account/details'>Change Shipping Address</NavLink>
                             </div>
                         }
 
