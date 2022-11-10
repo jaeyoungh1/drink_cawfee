@@ -279,3 +279,9 @@
     font-family: 'Open Sans', sans-serif;
 
 }
+.change-address {
+    color: black;
+}
+.change-address:hover {
+    color: rgb(102, 102, 102);
+}

@@ -77,11 +77,13 @@
 .checkout-name {
     width: 178px;
 }
+
 .detail-title {
     font-size: 18px;
     margin-top: 14px;
 
 }
+
 .detail-title:hover {
     cursor: pointer;
 }
@@ -123,7 +125,12 @@
     font-size: 10px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
+}
 
+.order-item-information {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .order-number {
@@ -137,8 +144,22 @@
     font-weight: 400;
     margin-bottom: 4px;
 }
+
 .order-date {
     color: rgb(137, 137, 137);
+}
+.cart-quantity-toggle > img:hover {
+    cursor: pointer;
+}
+.update-order-quantity {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgb(137, 137, 137);
+}
+.update-order-quantity:hover {
+    color: rgb(207, 74, 21);
+    cursor: pointer;
 }
 
 .order-item-price {
@@ -155,7 +176,7 @@
     font-weight: 500;
     font-size: 10px;
     /* padding: 0px 4px;  */
-    margin-top:20px;
+    margin-top: 20px;
     margin-bottom: -10px;
     color: rgb(176, 176, 176);
     /* display:none; */
@@ -168,9 +189,11 @@
     font-weight: 600;
     margin-top: 14px;
 }
+
 .ordershipping {
     margin-bottom: -15px;
 }
+
 .order-status {
     display: flex;
     justify-content: space-between;

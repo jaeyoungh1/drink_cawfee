@@ -208,7 +208,7 @@ export const editOneCoffee = (id, coffee) => async dispatch => {
 // Update a coffee inventory ONLY
 
 export const editOneCoffeeInventory = (id, opt, quantity) => async dispatch => {
-    console.log("I'M BEING EDITED", id, opt, quantity)
+    // console.log("I'M BEING EDITED", id, opt, quantity)
     const response = await csrfFetch(`/api/coffee/inventory/${opt}/${id}`, {
         method: 'PUT',
         headers: {

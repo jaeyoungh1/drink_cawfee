@@ -62,7 +62,7 @@ def add_one_to_order(cart_id):
     form = AddToOrderForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    print("   >>>> FORM", form.data)
+    # print("   >>>> FORM", form.data)
     post_val_error = {
         "message": "Validation error",
         "status_code": 400,
@@ -135,8 +135,11 @@ def edit_one_order(order_id):
         "errors": {}
     }
 
+    # print("    >>>> CURRENT ORDER COFFEE", current_order_coffee.to_dict())
     if current_order_coffee.to_dict()['user_id'] == user_id:
         if form.validate_on_submit():
+            coffee = Coffee.query.get(current_order_coffee.to_dict()['coffee_id']).to_dict()
+            price = coffee['price']
 
             if not form.data['quantity']:
                 post_val_error['errors']['quantity'] = "Quantity is required."
@@ -144,11 +147,13 @@ def edit_one_order(order_id):
                 return jsonify(post_val_error), 400
 
             current_order_coffee.quantity = form.data['quantity']
+            current_order_coffee.total = +form.data['quantity'] * +price
 
             db.session.commit()
 
             order_res = current_order_coffee.to_dict()
-            coffee = Coffee.query.get(order_res['coffee_id']).to_dict()
+            # coffee = Coffee.query.get(order_res['coffee_id']).to_dict()
+            
 
             order_res['Coffee'] = coffee
 

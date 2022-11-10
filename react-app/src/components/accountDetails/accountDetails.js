@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { loadAllCart, deleteOneCart, editOneCart } from "../../store/cart";
 import './accountDetails.css'
@@ -15,8 +15,12 @@ import Orders from "./orders";
 export default function AccountDetails() {
     // const dispatch = useDispatch()
     const history = useHistory()
+    const url = useLocation().pathname
+    console.log("URL", url)
 
-    const [tab, setTab] = useState('orders')
+    function setUrl(str) {
+        history.replace(`/account/${str}`)
+    }
 
     const user = useSelector(state => state.session.user)
 
@@ -34,29 +38,29 @@ export default function AccountDetails() {
                 <div>
                     <div
                         onClick={() => {
-                            setTab('details')
+                            setUrl('details')
                             // history.replace('/account/details') <<<<<< NTS: create helper function to change url and conditional based on url
                          }}
-                        className={tab === 'details' ? 'detail-title tab-selected' : 'detail-title'}>
+                        className={url.includes('details') ? 'detail-title tab-selected' : 'detail-title'}>
                         Details</div>
                     <div className='checkout-line-break'></div>
                     <div
-                        onClick={() => setTab('orders')}
-                        className={tab === 'orders' ? 'detail-title tab-selected' : 'detail-title'}>
+                        onClick={() => setUrl('orders')}
+                        className={url.includes('orders') ? 'detail-title tab-selected' : 'detail-title'}>
                         Order History</div>
                     <div
                         className='checkout-line-break'></div>
                     <div 
-                        onClick={() => setTab('preference')}
-                        className={tab === 'preference' ? 'detail-title tab-selected' : 'detail-title'}>
+                        onClick={() => setUrl('preference')}
+                        className={url.includes('preference') ? 'detail-title tab-selected' : 'detail-title'}>
                             Preferences</div>
                     <div className='checkout-line-break'></div>
                 </div>
             </div>
 
-            {tab === 'details' && <Details />}
-            {tab === 'orders' && <Orders />}
-            {tab === 'preference' && <div className='empty-page'>Page Under Construction</div>}
+            {url.includes('details') && <Details />}
+            {url.includes('orders') && <Orders />}
+            {url.includes('preference') && <div className='empty-page'>Page Under Construction</div>}
 
 
 

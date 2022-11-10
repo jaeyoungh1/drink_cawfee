@@ -5,9 +5,9 @@ from wtforms.validators import DataRequired
 
 
 class AddToOrderForm(FlaskForm):
-    total = IntegerField('Total', validators=[DataRequired()])
+    total = IntegerField('Total')
     order_number = StringField('order_number')
-    # quantity = IntegerField('Quantity', validators=[DataRequired()])
+    quantity = IntegerField('Quantity')
     # order_number = StringField('Order Number', validators=[DataRequired()])
 
     submit = SubmitField('Submit')
