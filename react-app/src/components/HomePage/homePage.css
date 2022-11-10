@@ -1,5 +1,5 @@
 .homepage-splash {
-    /* margin-bottom: 1000px; */
+    margin-bottom: 850px;
 }
 
 .homepage-splash>img {
@@ -50,10 +50,12 @@
     color: white;
     padding: 17px 30px
 }
+
 .homepage-try-now:hover {
     background: rgb(195, 56, 10);
     border: 2px solid rgb(195, 56, 10)
 }
+
 .homepage-shop-all {
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
@@ -64,9 +66,23 @@
     color: black;
     padding: 17px 50px
 }
+
 .homepage-shop-all:hover {
     border: 2px solid rgb(115, 44, 20);
     background: rgba(255, 255, 255, 0.493);
     color: rgb(115, 44, 20);
 }
 
+.perfect-cup {
+    top: 1050px;
+    margin-left: 85px;
+    font-size: 36px;
+}
+
+.experience-coffees {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    margin-left: 85px;
+    margin-top: 10px;
+    margin-bottom: 500px;
+}
