@@ -1,5 +1,5 @@
 .homepage-splash {
-    margin-bottom: 1000px;
+    /* margin-bottom: 1000px; */
 }
 
 .homepage-splash>img {
@@ -16,7 +16,7 @@
     position: absolute;
     z-index: 2;
     top: 200px;
-    margin-left: 55px;
+    margin-left: 85px;
     /* display: flex; */
     /* align-items: center; */
 }
@@ -69,3 +69,4 @@
     background: rgba(255, 255, 255, 0.493);
     color: rgb(115, 44, 20);
 }
+
