@@ -174,21 +174,21 @@ const HomePage = () => {
                             </div>
                         </div>
                         <div id="item-image">
-                            <img alt='light' src="https://res.cloudinary.com/roastcollective/image/upload/w_182,f_auto,fl_progressive:steep,q_auto:good/v1663780540/landing/homepage/desktop-light-roast.png" />
+                            <img alt='light' src="https://res.cloudinary.com/roastcollective/image/upload/w_182,f_auto,fl_progressive:steep,q_auto:good/v1663780540/landing/homepage/desktop-staff-picks.png" />
                         </div>
                     </div>
 
                     {coffeeArr.slice(0, 5).map(obj => {
                         return (
-                            
-                            <NavLink key={obj.id} style={{ color: 'black' }} to={`/cawfee/${obj.id}`}>
-                                <div className="item-coffee" style={{ ...coffeeItemStyle }}>
 
-                                    <div className="item-image-wrapper">
-                                        <img alt='single coffee' className="item-image" src={obj.img_url}
-                                            onError={e => e.target.src = noImg} />
-                                    </div>
+                            <div className="item-coffee" style={{ ...coffeeItemStyle }}>
 
+                                <div className="item-image-wrapper">
+                                    <img alt='single coffee' className="item-image" src={obj.img_url}
+                                        onError={e => e.target.src = noImg} />
+                                </div>
+
+                                <NavLink key={obj.id} style={{ color: 'black' }} to={`/cawfee/${obj.id}`}>
                                     <div className='item-title-div'>
                                         <div>
                                             <div className="coffee-item-title">{obj.name}</div>
@@ -198,20 +198,61 @@ const HomePage = () => {
                                             Learn More
                                         </div> */}
                                     </div>
+                                </NavLink>
 
 
-                                </div>
-                            </NavLink>
+                            </div>
                         )
                     })}
-                    
+
 
                 </Carousel>
-
-
             </div>
-            <div className='recent-activity-container'>
-                <div className='recent-cards-container'>
+
+            <div class="scrolling-banner">
+                <div class="menu__item">
+                    <div class="marquee">
+                        <div class="marquee__inner">
+                            <span>Free Shipping</span>
+                            <span>Ethically Sourced</span>
+                            <span>Roasted Fresh to Order</span>
+                            <span>Support Local Roasters</span>
+                            <span>Specially Curated Coffees</span>
+                            <span>Delivered on Your Schedule</span>
+                            <span>Roasted Fresh to Order</span>
+                            <span>Support Local Roasters</span>
+                            <span>Free Shipping</span>
+                            <span>Ethically Sourced</span>
+                            <span>Roasted Fresh to Order</span>
+                            <span>Support Local Roasters</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className='double-div'>
+                <div className='local-roaster-title'>
+
+                    Supporting local roasters in California
+                </div>
+                <div className='double'>
+                    <div className='double-panel'>
+                        <div className='double-panel-img'>
+
+                            <img alt='bean and bean' src="//images.ctfassets.net/o88ugk6hewlf/hHri2lBehPWnITqpeaTP6/7cc2bb0b8fbd2f0ec4ab2cc0b06ffa1e/desktop-50-beanbean_hmujuh.jpg?q=75&fm=webp&w=1000" onError={e => e.target.src = noImg} />
+                        </div>
+                        <div className='double-panel-title'>Get to Know Our Roasters</div>
+                        <div className='double-panel-body'>Explore the dedicated people standing behind your coffee.</div>
+                        <NavLink className='double-panel-body panel-link' to='/roasters'>View Roasters</NavLink>
+                    </div>
+                    <div className='double-panel'>
+                        <div className='double-panel-img' >
+                            <img alt='explore' src="https://images.ctfassets.net/o88ugk6hewlf/4N7cJ0P1uGYC2BreAZtyZQ/a465e5e07823c13c9386713a69bda67e/desktop-tile-plans.jpg?fl=progressive&q=75" onError={e => e.target.src = noImg} />
+                        </div>
+                        <div className='double-panel-title'>Find Coffee From Your Local Roaster</div>
+                        <div className='double-panel-body'>Travel along the California coast with the best roasters in the state.</div>
+                        <NavLink className='double-panel-body panel-link' to='/cawfee'>Shop Coffee</NavLink>
+                    </div>
                 </div>
             </div>
 
