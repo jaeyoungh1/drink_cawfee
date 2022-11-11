@@ -48,7 +48,8 @@
     border: 2px solid rgb(184, 76, 41);
     background: rgb(184, 76, 41);
     color: white;
-    padding: 17px 30px
+    padding: 17px 30px;
+    z-index: 2;
 }
 
 .homepage-try-now:hover {
@@ -64,7 +65,9 @@
     font-weight: 600;
     background: none;
     color: black;
-    padding: 17px 50px
+    padding: 17px 50px;
+    z-index: 2;
+
 }
 
 .homepage-shop-all:hover {
