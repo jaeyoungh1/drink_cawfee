@@ -123,6 +123,9 @@
     font-size: 14px;
     font-weight: 400;
 }
+.filter {
+    min-width: 300px;
+}
 
 .filter-header {
     display: flex;
