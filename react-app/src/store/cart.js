@@ -15,7 +15,7 @@ const _addOneCart = (cart) => ({
 });
 
 export const addOneCart = (coffeeId, cart) => async dispatch => {
-    console.log("INSIDE STORE", typeof (coffeeId), coffeeId, typeof (cart), cart)
+    // console.log("INSIDE STORE", typeof (coffeeId), coffeeId, typeof (cart), cart)
     const response = await csrfFetch(`/api/cart/${coffeeId}`, {
         method: 'POST',
         headers: {
@@ -23,7 +23,7 @@ export const addOneCart = (coffeeId, cart) => async dispatch => {
         },
         body: JSON.stringify(cart)
     });
-    console.log("RESPONSE", response)
+    // console.log("RESPONSE", response)
     if (response.ok) {
         const data = await response.json()
 
@@ -43,7 +43,7 @@ const _loadAllCart = payload => ({
 export const loadAllCart = () => async dispatch => {
 
     const response = await fetch('/api/cart/');
-    console.log("hitting res", response)
+    // console.log("hitting res", response)
     if (response.ok) {
         const data = await response.json();
         // console.log("hitting all list", data)
@@ -63,7 +63,7 @@ const _editOneCart = payload => ({
 });
 
 export const editOneCart = (cartId, cart) => async dispatch => {
-    console.log("EDITING CART", cartId, cart)
+    // console.log("EDITING CART", cartId, cart)
     const response = await csrfFetch(`/api/cart/${cartId}`, {
         method: 'PUT',
         headers: {

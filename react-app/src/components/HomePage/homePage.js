@@ -26,7 +26,7 @@ const HomePage = () => {
     const single = Object.values(coffees)?.length - Object.values(coffees)?.filter(obj => obj.single === 'Various (Blend)')?.length
 
 
-    console.log("COFFEE ARR", coffeeArr.slice(0, 5))
+    // console.log("COFFEE ARR", coffeeArr.slice(0, 5))
     const items = ['one', 'two', 'three', 'four', 'five', 'six']
 
     const setting = {
@@ -209,10 +209,10 @@ const HomePage = () => {
                 </Carousel>
             </div>
 
-            <div class="scrolling-banner">
-                <div class="menu__item">
-                    <div class="marquee">
-                        <div class="marquee__inner">
+            <div className="scrolling-banner">
+                <div className="menu__item">
+                    <div className="marquee">
+                        <div className="marquee__inner">
                             <span>Free Shipping</span>
                             <span>Ethically Sourced</span>
                             <span>Roasted Fresh to Order</span>

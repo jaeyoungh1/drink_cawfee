@@ -22,7 +22,7 @@ export default function NewCoffee() {
     const [inventory, setInventory] = useState('')
     const [price, setPrice] = useState('')
     const [description, setDescription] = useState('')
-    const [img_url, setImg_Url] = useState('')
+    const [image, setImage] = useState(null)
     const [days, setDays] = useState([])
     const [notes, setNotes] = useState([])
     const [onSubmit, setOnSubmit] = useState(false)
@@ -93,9 +93,9 @@ export default function NewCoffee() {
         if (description.length && description.trim().length < 5) {
             errors.push("Description must be at least 5 characters");
         }
-        if (img_url && img_url.length < 1) {
-            errors.push("Please include a preview image");
-        }
+        // if (!image || image && image.length < 1) {
+        //     errors.push("Please include a preview image");
+        // }
         if (days.length && days.length < 1) {
             errors.push("Please include roasting schedule");
         }
@@ -103,7 +103,14 @@ export default function NewCoffee() {
             errors.push("Please include 3 tasting notes");
         }
         setErrors(errors);
-    }, [name, inventory, price, description, img_url, days, notes, onSubmit]);
+    }, [name, inventory, price, description, image, days, notes, onSubmit]);
+
+    const updateImage = (e) => {
+        const file = e.target.files[0];
+        // console.log("FILES", e.target.files)
+        console.log("FILE", file)
+        setImage(file);
+    }
 
     const submitCoffee = async (e) => {
         e.preventDefault();
@@ -112,25 +119,57 @@ export default function NewCoffee() {
             return;
         }
 
-        const newCoffee = {
-            name,
-            curator_id: user.id,
-            inventory,
-            origin,
-            brand,
-            roast,
-            price: +price,
-            description,
-            img_url,
-            days,
-            notes
-        }
+        const formData = new FormData()
+        console.log("IMAGE", image)
+        formData.append("image", image)
+        formData.append("name", name)
+        formData.append("curator_id", user.id)
+        formData.append("inventory", inventory)
+        formData.append("origin", origin)
+        formData.append("brand", brand)
+        formData.append("roast", roast)
+        formData.append("price", +price)
+        formData.append("description", description)
+        formData.append("days", days)
+        formData.append("notes", notes)
+
+        // for (let value of formData.values()) {
+        //     console.log("VALUE", value, typeof(value));
+        // }
+        // for (let entry of formData.entries()) {
+        //     console.log("ENTRY", entry);
+        // }
+
+        // const newCoffee = {
+        //     name,
+        //     curator_id: user.id,
+        //     inventory,
+        //     origin,
+        //     brand,
+        //     roast,
+        //     price: +price,
+        //     description,
+        //     image,
+        //     days,
+        //     notes
+        // }
 
         try {
-            const createdCoffee = await dispatch(addOneCoffee(newCoffee))
+            // const createdCoffee = await dispatch(addOneCoffee(newCoffee))
+            // const createdCoffee = await dispatch(addOneCoffee(formData))
             // console.log("COMPONENT CREATED COFFEE", newCoffee)
+            const response = await fetch('/api/coffee/', {
+                method: 'POST',
+                // headers: {
+                //     'Content-Type': 'application/json'
+                //         },
+                // body: JSON.stringify(coffee)
+                body: formData
+            });
+            console.log("RESPONSE AFTER CREATE COFFEE THUNK", response)
+            
             setErrors([])
-            history.replace(`/cawfee/${createdCoffee.id}`)
+            // history.replace(`/cawfee/${createdCoffee.id}`)
         } catch (res) {
             console.log(res)
         }
@@ -329,22 +368,23 @@ export default function NewCoffee() {
                         />
                     </div>
                     <div className='coffee-input-wrapper'>
-                        {onSubmit && img_url.length < 1 && <div className='new-coffee-form-error'>Please provide a preview image URL</div>}
-                        {!onSubmit && img_url && img_url.length < 1 && <div className='new-coffee-form-error'>Please provide a preview image URL</div>}
+                        {/* {onSubmit && img_url.length < 1 && <div className='new-coffee-form-error'>Please provide a preview image URL</div>} */}
+                        {/* {!onSubmit && img_url && img_url.length < 1 && <div className='new-coffee-form-error'>Please provide a preview image URL</div>} */}
 
                         <label className='coffee-input-label' htmlFor='img_url'>Preview Image</label>
                         <input
                             name='img_url'
-                            type='text'
-                            autoComplete="off"
+                            type='file'
+                            // accept='image/*'
+                            // autoComplete="off"
                             className='new-coffee-input'
-                            value={img_url}
-                            onChange={e => setImg_Url(e.target.value)}
+                            // value={img_url}
+                            onChange={updateImage}
                         />
                     </div>
-                    <div className='coffee-input-prev-img'>
-                        {img_url && <img className='add-coffee-preview_img_url' src={img_url} alt='img' onError={e => e.target.src = noImg} />}
-                    </div>
+                    {/* <div className='coffee-input-prev-img'>
+                        {image && <img className='add-coffee-preview_img_url' src={image} alt='img' onError={e => e.target.src = noImg} />}
+                    </div> */}
                     <button
                         type="submit"
                         // disabled={errors.length}
