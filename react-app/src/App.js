@@ -11,7 +11,7 @@ import AllCoffee from './components/allCoffee/allCoffee';
 import SingleCoffee from './components/singleCoffee/singleCoffee';
 import Footer from './components/Footer/footer';
 import NewCoffee from './components/newCoffee/newCoffee';
-import CurrentCoffee from './components/currentCoffe/currentCoffee';
+import CurrentCoffee from './components/currentCoffee/currentCoffee';
 import EditCoffee from './components/editCoffee/editCoffee';
 import UserReviews from './components/userReviews/userReviews';
 import EditReview from './components/editReview/editReview';
