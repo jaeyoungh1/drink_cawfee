@@ -16,7 +16,7 @@ const _addOneCoffee = (coffee) => ({
 });
 
 export const addOneCoffee = (formData) => async dispatch => {
-    console.log("COFFEE IN STATE", formData)
+    // console.log("COFFEE IN STATE", formData)
     const response = await csrfFetch('/api/coffee/', {
         method: 'POST',
 

@@ -123,7 +123,7 @@ notes = [
 @coffee_routes.route('/', methods=["POST"])
 @login_required
 def add_one_coffee():
-    print(">>>>> IM BEING PINGED")
+    # print(">>>>> IM BEING PINGED")
     user = current_user.to_dict()
     if user['curator'] != True:
         return {"message": "User does not have permission to curate", "status_code": 403}, 403
@@ -164,10 +164,10 @@ def add_one_coffee():
 
     url = upload["url"]
 
-    print("  >>>>>> URL", url)
+    # print("  >>>>>> URL", url)
 
     note_list = [Note(note=note) for note in form.data['notes'].split(',')]
-    print(" >>>>>> note_list", note_list)
+    # print(" >>>>>> note_list", note_list)
     day_list = [Day(day=day) for day in form.data['days'].split(',')]
     if not form.data['name']:
         post_val_error['errors']['name'] = "Coffee name is required."
@@ -337,12 +337,33 @@ def edit_one_coffee(coffee_id):
         "status_code": 400,
         "errors": {}
     }
+    url = ''
+    print("FORM.DATA", form.data)
+    if "image" not in request.files:
+        url = form.data['img_url']
+    else:
+        image = request.files["image"]
+        if not allowed_file(image.filename):
+            return {"errors": "file type not permitted"}, 400
+
+        image.filename = get_unique_filename(image.filename)
+
+        upload = upload_file_to_s3(image)
+
+        if "url" not in upload:
+            # if the dictionary doesn't have a url key
+            # it means that there was an error when we tried to upload
+            # so we send back that error message
+            return upload, 400
+
+        url = upload["url"]
 
     if current_coffee.to_dict()['curator_id'] == user_id:
         if form.validate_on_submit():
 
-            note_list = [Note(note=note) for note in form.data['notes']]
-            day_list = [Day(day=day) for day in form.data['days']]
+            note_list = [Note(note=note) for note in form.data['notes'].split(',')]
+            # print(" >>>>>> note_list", note_list)
+            day_list = [Day(day=day) for day in form.data['days'].split(',')]
             if not form.data['name']:
                 post_val_error['errors']['name'] = "Coffee name is required."
             if not form.data['origin']:
@@ -358,8 +379,8 @@ def edit_one_coffee(coffee_id):
                 post_val_error['errors']['price'] = "Coffee price/lb is required."
             if not form.data['description']:
                 post_val_error['errors']['description'] = "Coffee description is required."
-            if not form.data['img_url']:
-                post_val_error['errors']['img_url'] = "Coffee preview image is required."
+            # if not form.data['img_url']:
+            #     post_val_error['errors']['img_url'] = "Coffee preview image is required."
             if not form.data['notes']:
                 post_val_error['errors']['notes'] = "Coffee tasting notes are required."
             if not form.data['days']:
@@ -378,7 +399,8 @@ def edit_one_coffee(coffee_id):
             current_coffee.brand_id = brand['id']
             current_coffee.price = form.data['price']
             current_coffee.description = form.data['description']
-            current_coffee.img_url = form.data['img_url']
+            # current_coffee.img_url = form.data['img_url']
+            current_coffee.img_url = url
             current_coffee.notes = note_list
             current_coffee.days = day_list
 
@@ -390,8 +412,6 @@ def edit_one_coffee(coffee_id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # DELETE one coffee
-
-
 @coffee_routes.route('/<int:coffee_id>', methods=["DELETE"])
 @login_required
 def delete_one_coffee(coffee_id):

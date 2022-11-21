@@ -108,7 +108,7 @@ export default function NewCoffee() {
     const updateImage = (e) => {
         const file = e.target.files[0];
         // console.log("FILES", e.target.files)
-        console.log("FILE", file)
+        // console.log("FILE", file)
         setImage(file);
     }
 
@@ -120,7 +120,7 @@ export default function NewCoffee() {
         }
 
         const formData = new FormData()
-        console.log("IMAGE", image)
+        // console.log("IMAGE", image)
         formData.append("image", image)
         formData.append("name", name)
         formData.append("curator_id", user.id)

@@ -39,7 +39,7 @@ class AddCoffeeForm(FlaskForm):
     price = IntegerField('Price', validators=[DataRequired()])
     description = StringField('Description', validators=[DataRequired()])
     # image_url = FileField('Preview Image', validators=[FileAllowed(['jpg', 'png', 'gif'])])
-    # img_url = StringField('Preview Image', validators=[DataRequired()])
+    img_url = StringField('Preview Image')
     notes = StringField('Tasting Notes', validators=[
         DataRequired()])
     days = StringField('Roasting Days', validators=[
