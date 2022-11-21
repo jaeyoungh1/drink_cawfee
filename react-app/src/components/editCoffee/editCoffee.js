@@ -24,6 +24,8 @@ export default function EditCoffee() {
     const [img_url, setImg_Url] = useState('')
     const [days, setDays] = useState([])
     const [notes, setNotes] = useState([])
+    const [image, setImage] = useState(null)
+
     const [onSubmit, setOnSubmit] = useState(false)
     const [refreshChecks, setRefreshChecks] = useState(false)
 
@@ -72,7 +74,7 @@ export default function EditCoffee() {
     }, [dispatch, refreshChecks])
 
 
-    
+
     useEffect(() => {
         const errors = [];
 
@@ -156,6 +158,12 @@ export default function EditCoffee() {
     if (singleCoffee.Brand) {
         brandVar = singleCoffee.Brand.name
     }
+    const updateImage = (e) => {
+        const file = e.target.files[0];
+        // console.log("FILES", e.target.files)
+        // console.log("FILE", file)
+        setImage(file);
+    }
 
 
     const submitCoffee = async (e) => {
@@ -165,23 +173,51 @@ export default function EditCoffee() {
             return;
         }
 
-        const newCoffee = {
-            name,
-            curator_id: user.id,
-            inventory,
-            origin,
-            brand,
-            roast,
-            price: +price,
-            description,
-            img_url,
-            days,
-            notes
+        const formData = new FormData()
+        // console.log("IMAGE", image)
+        if (image) {
+            formData.append("image", image)
         }
+        else {
+            formData.append("img_url", img_url)
+        }
+        formData.append("name", name)
+        formData.append("curator_id", user.id)
+        formData.append("inventory", inventory)
+        formData.append("origin", origin)
+        formData.append("brand", brand)
+        formData.append("roast", roast)
+        formData.append("price", +price)
+        formData.append("description", description)
+        formData.append("days", days)
+        formData.append("notes", notes)
+
+        // const newCoffee = {
+        //     name,
+        //     curator_id: user.id,
+        //     inventory,
+        //     origin,
+        //     brand,
+        //     roast,
+        //     price: +price,
+        //     description,
+        //     img_url,
+        //     days,
+        //     notes
+        // }
 
         try {
-            const createdCoffee = await dispatch(editOneCoffee(coffeeId, newCoffee))
+            // const createdCoffee = await dispatch(editOneCoffee(coffeeId, newCoffee))
+            const response = await fetch(`/api/coffee/${coffeeId}`, {
+                method: 'PUT',
+                // headers: {
+                //     'Content-Type': 'application/json'
+                //         },
+                // body: JSON.stringify(coffee)
+                body: formData
+            });
             setErrors([])
+            // console.log("RESPONSE", await response.json())
             history.replace(`/cawfee/${coffeeId}`)
         } catch (res) {
             console.log(res)
@@ -381,16 +417,17 @@ export default function EditCoffee() {
                         {onSubmit && img_url.length < 1 && <div className='new-coffee-form-error'>Please provide a preview image URL</div>}
                         {!onSubmit && img_url && img_url.length < 1 && <div className='new-coffee-form-error'>Please provide a preview image URL</div>}
 
-                        <label className='coffee-input-label' htmlFor='img_url'>Preview Image</label>
+                        <label className='coffee-input-label' htmlFor='img_url'>Update Preview Image</label>
                         <input
                             name='img_url'
-                            type='text'
-                            autoComplete="off"
+                            type='file'
+                            // autoComplete="off"
                             className='new-coffee-input'
-                            value={img_url}
-                            onChange={e => setImg_Url(e.target.value)}
+                            // value={img_url}
+                            onChange={updateImage}
                         />
                     </div>
+                    <label className='coffee-input-label' htmlFor='img_url'>Current Preview Image</label>
                     <div className='coffee-input-prev-img'>
                         {img_url && <img className='add-coffee-preview_img_url' src={img_url} alt='img' onError={e => e.target.src = noImg} />}
                     </div>

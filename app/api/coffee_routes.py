@@ -5,6 +5,8 @@ from app.forms.add_coffee_form import AddCoffeeForm
 from app.forms.add_review_form import AddReviewForm
 from app.forms.delete_form import DeleteForm
 from app.forms.add_to_cart_form import AddToCartForm
+from app.aws import (
+    upload_file_to_s3, allowed_file, get_unique_filename)
 
 coffee_routes = Blueprint('coffees', __name__)
 
@@ -44,9 +46,11 @@ def get_all_coffee():
         if param == 'roast':
             query = query.filter(Coffee.roast.in_(search_params[param]))
         if param == 'note':
-            query = query.filter(Coffee.notes.any(Note.note.in_(search_params[param])))
+            query = query.filter(Coffee.notes.any(
+                Note.note.in_(search_params[param])))
         if param == 'roaster':
-            query = query.join(Brand).filter(Brand.name.in_(search_params[param]))
+            query = query.join(Brand).filter(
+                Brand.name.in_(search_params[param]))
     res = query.all()
 
     if search_params:
@@ -119,24 +123,52 @@ notes = [
 @coffee_routes.route('/', methods=["POST"])
 @login_required
 def add_one_coffee():
+    # print(">>>>> IM BEING PINGED")
     user = current_user.to_dict()
     if user['curator'] != True:
         return {"message": "User does not have permission to curate", "status_code": 403}, 403
     user_id = user['id']
 
+
+    # image = request.files["image"]
+
+    # print(">>>>> request", request.files)
+
     form = AddCoffeeForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    # form = {}
 
     post_val_error = {
         "message": "Validation error",
         "status_code": 400,
-        "errors": {}
-    }
+            "errors": {}
+        }
 
     # print("FORM.DATA", form.data)
+    if "image" not in request.files:
+            return {"errors": "image required"}, 401
 
-    note_list = [Note(note=note) for note in form.data['notes']]
-    day_list = [Day(day=day) for day in form.data['days']]
+    image = request.files["image"]
+    if not allowed_file(image.filename):
+        return {"errors": "file type not permitted"}, 400
+
+    image.filename = get_unique_filename(image.filename)
+
+    upload = upload_file_to_s3(image)
+
+    if "url" not in upload:
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when we tried to upload
+        # so we send back that error message
+        return upload, 400
+
+    url = upload["url"]
+
+    # print("  >>>>>> URL", url)
+
+    note_list = [Note(note=note) for note in form.data['notes'].split(',')]
+    # print(" >>>>>> note_list", note_list)
+    day_list = [Day(day=day) for day in form.data['days'].split(',')]
     if not form.data['name']:
         post_val_error['errors']['name'] = "Coffee name is required."
     if not form.data['origin']:
@@ -152,8 +184,8 @@ def add_one_coffee():
         post_val_error['errors']['price'] = "Coffee price is required."
     if not form.data['description']:
         post_val_error['errors']['description'] = "Coffee description is required."
-    if not form.data['img_url']:
-        post_val_error['errors']['img_url'] = "Coffee preview image is required."
+    # if not form.data['img_url']:
+    #     post_val_error['errors']['img_url'] = "Coffee preview image is required."
     if not form.data['notes']:
         post_val_error['errors']['notes'] = "Coffee tasting notes are required."
     if not form.data['days']:
@@ -162,9 +194,12 @@ def add_one_coffee():
     if len(post_val_error["errors"]) > 0:
         return jsonify(post_val_error), 400
 
+   
+
     # print("ERRORS", validation_errors_to_error_messages(form.errors))
     # print("POSTVALERROR", post_val_error)
     if form.validate_on_submit():
+        # print("  >>>>>> IM GETTING HIT")
         brand = check_brand.first().to_dict()
 
         coffee = Coffee(
@@ -177,7 +212,8 @@ def add_one_coffee():
             brand_id=brand['id'],
             price=form.data['price'],
             description=form.data['description'],
-            img_url=form.data['img_url'],
+            # img_url=form.data['img_url'],
+            img_url=url,
             notes=note_list,
             days=day_list
         )
@@ -189,21 +225,24 @@ def add_one_coffee():
         coffee_res = coffee.to_dict()
         coffee_res['Brand'] = brand
         return coffee_res
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    # print(">>>>>", validation_errors_to_error_messages(form.errors))
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
-#EDIT coffee INVENTORY
+# EDIT coffee INVENTORY
+
+
 @coffee_routes.route('/inventory/<string:opt>/<int:id>', methods=["PUT"])
 @login_required
 def edit_one_coffee_inventory(id, opt):
-    print("   >>>>>> ID OPT", id, opt)
-    print("   >>>>>> OPT", opt == 'plus')
+    # print("   >>>>>> ID OPT", id, opt)
+    # print("   >>>>>> OPT", opt == 'plus')
     user = current_user.to_dict()
     if not user:
         return {"message": "Forbidden", "status_code": 403}, 403
     user_id = user['id']
 
     if opt == 'minus':
-        print("   >>>>>> MINUS BEING HIT")
+        # print("   >>>>>> MINUS BEING HIT")
         current_cart_coffee = Cart.query.get(id)
     # checking if cart exist
         if not current_cart_coffee:
@@ -215,14 +254,15 @@ def edit_one_coffee_inventory(id, opt):
         if current_cart_coffee.to_dict()['user_id'] != user_id:
             return {"message": "Forbidden", "status_code": 403}, 403
 
-
         if current_cart_coffee.to_dict()['user_id'] == user_id:
-            coffee = Coffee.query.get(current_cart_coffee.to_dict()['coffee_id'])
+            coffee = Coffee.query.get(
+                current_cart_coffee.to_dict()['coffee_id'])
 
             current_inventory = coffee.to_dict()['inventory']
-            new_inventory = +current_inventory - +current_cart_coffee.to_dict()['quantity']
+            new_inventory = +current_inventory - + \
+                current_cart_coffee.to_dict()['quantity']
 
-            coffee.inventory = new_inventory 
+            coffee.inventory = new_inventory
 
             db.session.commit()
 
@@ -247,14 +287,16 @@ def edit_one_coffee_inventory(id, opt):
 
         # print("   >>>>>> CURRENT ORDER COFFEE", current_order_coffee.to_dict())
         if current_order_coffee.to_dict()['user_id'] == user_id:
-            coffee = Coffee.query.get(current_order_coffee.to_dict()['coffee_id'])
+            coffee = Coffee.query.get(
+                current_order_coffee.to_dict()['coffee_id'])
 
             current_inventory = coffee.to_dict()['inventory']
             # print(" >>>>>> CURRENT INVENTORY", current_inventory)
-            new_inventory = +current_inventory + +current_order_coffee.to_dict()['quantity']
+            new_inventory = +current_inventory + + \
+                current_order_coffee.to_dict()['quantity']
             # print(" >>>>>> NEW INVENTORY", new_inventory)
 
-            coffee.inventory = new_inventory 
+            coffee.inventory = new_inventory
 
             db.session.commit()
 
@@ -295,12 +337,33 @@ def edit_one_coffee(coffee_id):
         "status_code": 400,
         "errors": {}
     }
+    url = ''
+    print("FORM.DATA", form.data)
+    if "image" not in request.files:
+        url = form.data['img_url']
+    else:
+        image = request.files["image"]
+        if not allowed_file(image.filename):
+            return {"errors": "file type not permitted"}, 400
+
+        image.filename = get_unique_filename(image.filename)
+
+        upload = upload_file_to_s3(image)
+
+        if "url" not in upload:
+            # if the dictionary doesn't have a url key
+            # it means that there was an error when we tried to upload
+            # so we send back that error message
+            return upload, 400
+
+        url = upload["url"]
 
     if current_coffee.to_dict()['curator_id'] == user_id:
         if form.validate_on_submit():
 
-            note_list = [Note(note=note) for note in form.data['notes']]
-            day_list = [Day(day=day) for day in form.data['days']]
+            note_list = [Note(note=note) for note in form.data['notes'].split(',')]
+            # print(" >>>>>> note_list", note_list)
+            day_list = [Day(day=day) for day in form.data['days'].split(',')]
             if not form.data['name']:
                 post_val_error['errors']['name'] = "Coffee name is required."
             if not form.data['origin']:
@@ -316,8 +379,8 @@ def edit_one_coffee(coffee_id):
                 post_val_error['errors']['price'] = "Coffee price/lb is required."
             if not form.data['description']:
                 post_val_error['errors']['description'] = "Coffee description is required."
-            if not form.data['img_url']:
-                post_val_error['errors']['img_url'] = "Coffee preview image is required."
+            # if not form.data['img_url']:
+            #     post_val_error['errors']['img_url'] = "Coffee preview image is required."
             if not form.data['notes']:
                 post_val_error['errors']['notes'] = "Coffee tasting notes are required."
             if not form.data['days']:
@@ -336,7 +399,8 @@ def edit_one_coffee(coffee_id):
             current_coffee.brand_id = brand['id']
             current_coffee.price = form.data['price']
             current_coffee.description = form.data['description']
-            current_coffee.img_url = form.data['img_url']
+            # current_coffee.img_url = form.data['img_url']
+            current_coffee.img_url = url
             current_coffee.notes = note_list
             current_coffee.days = day_list
 
@@ -348,8 +412,6 @@ def edit_one_coffee(coffee_id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # DELETE one coffee
-
-
 @coffee_routes.route('/<int:coffee_id>', methods=["DELETE"])
 @login_required
 def delete_one_coffee(coffee_id):
@@ -407,6 +469,8 @@ def get_one_coffee_reviews(coffee_id):
     return {"Reviews": reviews}
 
 # POST review for one coffee
+
+
 @coffee_routes.route('/<int:coffee_id>/reviews', methods=["POST"])
 @login_required
 def create_one_coffee_review(coffee_id):

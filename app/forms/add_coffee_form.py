@@ -29,7 +29,6 @@ DAYS = [
 ]
 
 
-
 class AddCoffeeForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     origin = StringField('Origin', validators=[DataRequired()])
@@ -39,11 +38,15 @@ class AddCoffeeForm(FlaskForm):
     brand = StringField('Brand', validators=[DataRequired()])
     price = IntegerField('Price', validators=[DataRequired()])
     description = StringField('Description', validators=[DataRequired()])
-    # image_url = FileField('Preview Image', validators=[FileAllowed(['jpg', 'png', 'gif'])]) 
-    img_url = StringField('Preview Image', validators=[DataRequired()]) 
-    notes = SelectMultipleField('Tasting Notes', validators=[
-                                DataRequired()], choices=NOTES)
-    days = SelectMultipleField('Roasting Days', validators=[
-                               DataRequired()], choices=DAYS)
+    # image_url = FileField('Preview Image', validators=[FileAllowed(['jpg', 'png', 'gif'])])
+    img_url = StringField('Preview Image')
+    notes = StringField('Tasting Notes', validators=[
+        DataRequired()])
+    days = StringField('Roasting Days', validators=[
+        DataRequired()])
+    # notes = SelectMultipleField('Tasting Notes', validators=[
+    #                             DataRequired()], choices=NOTES)
+    # days = SelectMultipleField('Roasting Days', validators=[
+    #                            DataRequired()], choices=DAYS)
 
     submit = SubmitField('Submit')
