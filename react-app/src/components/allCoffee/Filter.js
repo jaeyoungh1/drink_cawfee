@@ -79,7 +79,7 @@ export default function Filter({ getFilterArr }) {
     getFilterArr(filterArr)
 
     return (
-        <div>
+        <div className='filter'>
             <div className='filter-header'>
                 <div>
                     <img src={filter} height='44px' width='44px' alt='filter' onError={e => e.target.src = { noImg }} />

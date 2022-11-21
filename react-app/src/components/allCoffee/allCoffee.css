@@ -40,8 +40,9 @@
     border-radius: 4px;
     width: 24%;
     max-width: 360px;
-    height: 36%;
-    max-height: 480px;
+    min-width: 260px;
+    height: 480px;
+    /* max-height: 480px; */
     margin-bottom: 60px;
 }
 
@@ -121,6 +122,9 @@
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     font-weight: 400;
+}
+.filter {
+    min-width: 300px;
 }
 
 .filter-header {

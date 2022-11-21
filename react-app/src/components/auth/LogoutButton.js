@@ -74,7 +74,7 @@ const LogoutButton = () => {
               </NavLink>
             </div>
             <div className='profile-modal-interact'>
-              <NavLink className='profile-modal-interact' to='/account'>
+              <NavLink className='profile-modal-interact' to='/account/details'>
                 Account Details
               </NavLink>
             </div>
