@@ -166,10 +166,13 @@ export default function NewCoffee() {
                 // body: JSON.stringify(coffee)
                 body: formData
             });
-            console.log("RESPONSE AFTER CREATE COFFEE THUNK", response)
+            // console.log("RESPONSE AFTER CREATE COFFEE THUNK", response)
+            let createdCoffee = await response.json()
+            console.log("createdCoffee", createdCoffee)
             
             setErrors([])
-            // history.replace(`/cawfee/${createdCoffee.id}`)
+            return history.push(`/cawfee/${createdCoffee.id}`)
+            // return history.push(`/cawfee/my-curations`)
         } catch (res) {
             console.log(res)
         }

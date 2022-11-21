@@ -19,13 +19,10 @@ export const addOneCoffee = (formData) => async dispatch => {
     console.log("COFFEE IN STATE", formData)
     const response = await csrfFetch('/api/coffee/', {
         method: 'POST',
-        // headers: {
-        //     'Content-Type': 'application/json'
-        //         },
-        // body: JSON.stringify(coffee)
+
         body: formData
     });
-    console.log("RESPONSE AFTER CREATE COFFEE THUNK", response)
+    // console.log("RESPONSE AFTER CREATE COFFEE THUNK", response)
     if (response.ok) {
         const data = await response.json()
 

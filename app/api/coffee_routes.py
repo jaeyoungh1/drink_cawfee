@@ -132,7 +132,7 @@ def add_one_coffee():
 
     # image = request.files["image"]
 
-    print(">>>>> request", request.files)
+    # print(">>>>> request", request.files)
 
     form = AddCoffeeForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -144,7 +144,7 @@ def add_one_coffee():
             "errors": {}
         }
 
-    print("FORM.DATA", form.data)
+    # print("FORM.DATA", form.data)
     if "image" not in request.files:
             return {"errors": "image required"}, 401
 
@@ -166,8 +166,9 @@ def add_one_coffee():
 
     print("  >>>>>> URL", url)
 
-    note_list = [Note(note=note) for note in form.data['notes']]
-    day_list = [Day(day=day) for day in form.data['days']]
+    note_list = [Note(note=note) for note in form.data['notes'].split(',')]
+    print(" >>>>>> note_list", note_list)
+    day_list = [Day(day=day) for day in form.data['days'].split(',')]
     if not form.data['name']:
         post_val_error['errors']['name'] = "Coffee name is required."
     if not form.data['origin']:
@@ -193,10 +194,12 @@ def add_one_coffee():
     if len(post_val_error["errors"]) > 0:
         return jsonify(post_val_error), 400
 
+   
+
     # print("ERRORS", validation_errors_to_error_messages(form.errors))
     # print("POSTVALERROR", post_val_error)
     if form.validate_on_submit():
-        print("  >>>>>> IM GETTING HIT")
+        # print("  >>>>>> IM GETTING HIT")
         brand = check_brand.first().to_dict()
 
         coffee = Coffee(
@@ -222,7 +225,8 @@ def add_one_coffee():
         coffee_res = coffee.to_dict()
         coffee_res['Brand'] = brand
         return coffee_res
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 402
+    # print(">>>>>", validation_errors_to_error_messages(form.errors))
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 # EDIT coffee INVENTORY
 
