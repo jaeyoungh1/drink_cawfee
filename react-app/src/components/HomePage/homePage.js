@@ -255,6 +255,15 @@ const HomePage = () => {
                     </div>
                 </div>
             </div>
+            <div className='homepage-get-started'>
+                <div className='homepage-get-started-today'>
+                    Get started today with our First Match Guarantee.
+                </div>
+                <div className='homepage-splash-buttons'>
+                    <NavLink to='/cawfee' style={{ textDecoration: 'none' }} id='homepage-dark-bg' className='homepage-try-now'>TRY NOW</NavLink>
+                    <NavLink to='/cawfee' style={{ textDecoration: 'none' }} id='homepage-dark-bg-shop-all' className='homepage-shop-all'>SHOP ALL COFFEE</NavLink>
+                </div>
+            </div>
 
         </div>
     )

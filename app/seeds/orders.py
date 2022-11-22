@@ -5,18 +5,23 @@ from app.models import db, Order
 def seed_order():
 
     order1 = Order(user_id=1,
-                 coffee_id=1,
-                 quantity=1,
-                 total=20,
-                 )
+                   coffee_id=1,
+                   quantity=1,
+                   total=20,
+                   order_number='abc'
+                   )
     order2 = Order(user_id=1,
-                 coffee_id=2,
-                 quantity=1,
-                   total=20,)
+                   coffee_id=2,
+                   quantity=1,
+                   total=20,
+                   order_number='abc'
+                   )
     order3 = Order(user_id=1,
-                 coffee_id=3,
-                 quantity=2,
-                   total=20,)
+                   coffee_id=3,
+                   quantity=2,
+                   total=20,
+                   order_number='abc'
+                   )
 
     db.session.add(order1)
     db.session.add(order2)
