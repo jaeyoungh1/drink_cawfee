@@ -57,7 +57,7 @@
 .homepage-try-now:hover {
     background: rgb(195, 56, 10);
     border: 2px solid rgb(195, 56, 10);
-    z-index:5;
+    z-index: 5;
 }
 
 .homepage-shop-all {
@@ -207,17 +207,19 @@
     font-size: 14px;
     margin: 8px 0;
 }
+
 .panel-link {
     text-decoration: underline;
     color: black;
     margin-bottom: 28px;
 }
+
 .homepage-get-started {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    background-color:rgb(184, 76, 41);
+    background-color: rgb(184, 76, 41);
     height: 260px;
     margin-bottom: -150px;
     padding: 0px 55px;
@@ -228,11 +230,112 @@
     width: 40%;
     color: white;
 }
+
 #homepage-dark-bg {
     background: white;
     color: rgb(184, 76, 41);
 }
-#homepage-dark-bg-shop-all{
+
+#homepage-dark-bg-shop-all {
     color: white;
     border: 2px solid white;
+}
+
+@media (max-width:1100px) {
+    .homepage-splash>img {
+        width: 100%;
+        height: 490px;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        z-index: 1;
+    }
+
+    .homepage-text {
+        position: absolute;
+        z-index: 2;
+        top: 160px;
+        margin-left: 85px;
+    }
+
+    .homepage-text-upgrade {
+        font-size: 40px;
+        overflow-wrap: break-word;
+        /* text-align: center; */
+    }
+
+    .homepage-try-now {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 16px;
+        border-radius: 4px;
+        font-weight: 600;
+        border: 2px solid rgb(184, 76, 41);
+        background: rgb(184, 76, 41);
+        color: white;
+        padding: 12px 15px;
+        z-index: 5;
+    }
+
+    .homepage-try-now:hover {
+        background: rgb(195, 56, 10);
+        border: 2px solid rgb(195, 56, 10);
+        z-index: 5;
+    }
+
+    .homepage-shop-all {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 16px;
+        border-radius: 4px;
+        border: 2px solid black;
+        font-weight: 600;
+        background: none;
+        color: black;
+        padding: 12px 15px;
+        z-index: 2;
+
+    }
+
+    .homepage-text-best {
+        /* text-align: center; */
+        overflow-wrap: break-word;
+        width: 40%;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        margin-top: 20px;
+    }
+
+    .double {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 36px;
+    }
+
+    .double-panel-title,
+    .double-panel-body {
+        text-align: center;
+    }
+
+    .homepage-get-started-today {
+        font-size: 24px;
+        width: 40%;
+        color: white;
+    }
+
+    #homepage-dark-bg {
+        background: white;
+        color: rgb(184, 76, 41);
+        font-size: 12px;
+        padding: 12px;
+    }
+
+    #homepage-dark-bg-shop-all {
+        color: white;
+        border: 2px solid white;
+        font-size: 12px;
+        text-align: center;
+        padding: 12px;
+    }
+
 }
