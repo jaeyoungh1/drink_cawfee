@@ -469,8 +469,6 @@ def get_one_coffee_reviews(coffee_id):
     return {"Reviews": reviews}
 
 # POST review for one coffee
-
-
 @coffee_routes.route('/<int:coffee_id>/reviews', methods=["POST"])
 @login_required
 def create_one_coffee_review(coffee_id):

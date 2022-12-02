@@ -26,6 +26,8 @@ export default function NewCoffee() {
     const [days, setDays] = useState([])
     const [notes, setNotes] = useState([])
     const [onSubmit, setOnSubmit] = useState(false)
+    const [loading, setLoading] = useState('SUBMIT')
+
     const [refreshChecks, setRefreshChecks] = useState(false)
 
     const NOTES_OPT = ["Berry Fruit",
@@ -153,6 +155,7 @@ export default function NewCoffee() {
         //     days,
         //     notes
         // }
+        setLoading("LOADING...")
 
         try {
             // const createdCoffee = await dispatch(addOneCoffee(newCoffee))
@@ -174,6 +177,7 @@ export default function NewCoffee() {
             return history.push(`/cawfee/${createdCoffee.id}`)
             // return history.push(`/cawfee/my-curations`)
         } catch (res) {
+            setLoading("SUBMIT")
             console.log(res)
         }
 
@@ -320,7 +324,13 @@ export default function NewCoffee() {
                                 />
                                 <label className='coffee-input-label'
                                     htmlFor={day}
-                                // className='add-coffee-form-label'
+                                    onClick={() => {
+                                        const dayList = days;
+                                        
+                                        dayList.includes(day) ? setDays(dayList.splice(dayList.indexOf(day), 1)) : setDays(dayList.push(day))
+                                        console.log("DAY", dayList)
+                                    }
+                                    }
                                 >
                                     {day}
                                 </label>
@@ -393,7 +403,7 @@ export default function NewCoffee() {
                         // disabled={errors.length}
                         id='login-button'
                     >
-                        SUBMIT
+                        {loading}
                     </button>
                     {onSubmit && errors.length > 0 && <div style={{textAlign:'center'}} className='new-coffee-form-error'>Unable to submit curation. Please address the above errors.</div>}
                 </form>

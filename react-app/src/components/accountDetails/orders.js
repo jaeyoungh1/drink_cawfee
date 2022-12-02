@@ -45,7 +45,7 @@ export default function Orders() {
     }
 
     function orderNumberGen(date, ord) {
-        let res = date.slice(5, 7) + date.slice(8, 10) + date.slice(0, 4) + ord.slice(0, 3)
+        let res = date?.slice(5, 7) + date?.slice(8, 10) + date?.slice(0, 4) + ord?.slice(0, 3)
         return res
     }
 

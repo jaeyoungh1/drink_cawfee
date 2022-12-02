@@ -25,6 +25,7 @@ export default function EditCoffee() {
     const [days, setDays] = useState([])
     const [notes, setNotes] = useState([])
     const [image, setImage] = useState(null)
+    const [loading, setLoading] = useState('SUBMIT')
 
     const [onSubmit, setOnSubmit] = useState(false)
     const [refreshChecks, setRefreshChecks] = useState(false)
@@ -215,11 +216,14 @@ export default function EditCoffee() {
                 //         },
                 // body: JSON.stringify(coffee)
                 body: formData
+
             });
+            setLoading("LOADING...")
             setErrors([])
             // console.log("RESPONSE", await response.json())
             history.replace(`/cawfee/${coffeeId}`)
         } catch (res) {
+            setLoading("SUBMIT")
             console.log(res)
         }
 
@@ -436,7 +440,7 @@ export default function EditCoffee() {
                         // disabled={errors.length}
                         id='login-button'
                     >
-                        SUBMIT
+                        {loading}
                     </button>
                     {onSubmit && errors.length > 0 && <div style={{ textAlign: 'center' }} className='new-coffee-form-error'>Unable to submit curation. Please address the above errors.</div>}
                 </form>

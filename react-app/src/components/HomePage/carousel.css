@@ -5,7 +5,7 @@ body {
 
 .carousel {
     width: 100vw;
-    height: 500px;
+    height: 370px;
     direction: rtl;
     display: flex;
     justify-content: flex-start;
@@ -13,12 +13,13 @@ body {
     overflow: hidden;
     z-index: 3;
     position: absolute;
-    top: 430px;
+    top: 530px;
 }
 
 .coffee-carousel {
     position: absolute;
     top: 485px;
+    height: 400px;
 }
 
 .carousel.active {
@@ -139,4 +140,23 @@ body {
     text-decoration: underline;
     margin-top: 29px;
     text-align: center;
+}
+
+@media (max-width:1100px) {
+
+    .carousel {
+        width: 100vw;
+        height: 370px;
+        direction: rtl;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        overflow: hidden;
+        z-index: 3;
+        position: absolute;
+        top: 390px;
+    }
+    .perfect-cup {
+        margin-top: -130px;
+    }
 }
