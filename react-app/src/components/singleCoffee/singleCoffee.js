@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink, useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { getOneCoffee } from "../../store/coffee";
+import { clearData, getOneCoffee } from "../../store/coffee";
 import arrow from '../../icons/whitearrow.svg'
 import emptyButton from '../../icons/emptyButton.svg'
 import filledButton from '../../icons/filledButton.svg'
@@ -32,6 +32,7 @@ export default function SingleCoffee() {
     let cartedCoffee = []
     let cartArr
     useEffect(() => {
+        dispatch(clearData())
         dispatch(getOneCoffee(coffeeId))
         if (coffee.id) {
             dispatch(loadAllReview(coffeeId))

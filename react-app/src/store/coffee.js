@@ -6,7 +6,7 @@ const ADD_ONE_COFFEE = 'coffee/add_one_coffee';
 const DELETE_ONE_COFFEE = 'coffee/delete_one_coffee';
 const EDIT_ONE_COFFEE = 'coffee/edit_one_coffee';
 const SEARCH = 'coffee/search_coffee'
-// const CLEAR_DATA = '/coffee/CLEAR_DATA';
+const CLEAR_DATA = '/coffee/CLEAR_DATA';
 
 
 // Add a coffee
@@ -255,15 +255,10 @@ export const deleteOneCoffee = id => async dispatch => {
 
 /* --------------------------- REDUCER: --------------------------- */
 
-// export const clearData = () => ({
-//     type: CLEAR_DATA
-// });
+export const clearData = () => ({
+    type: CLEAR_DATA
+});
 
-// const LOAD_ALL_COFFEE = 'coffee/load_all_coffee';
-// const GET_ONE_COFFEE = 'coffee/get_one_coffee';
-// const ADD_ONE_COFFEE = 'coffee/add_one_coffee';
-// const DELETE_ONE_COFFEE = 'coffee/delete_one_coffee';
-// const EDIT_ONE_COFFEE = 'coffee/edit_one_coffee';
 
 
 const initialState = { allCoffee: {}, singleCoffee: {} };
@@ -314,8 +309,8 @@ const coffeeReducer = (state = initialState, action) => {
             newState = { ...newState };
             // console.log("NEWSTATE AFTER REMOVE_coffee ACTION:", newState);
             return newState;
-        // case CLEAR_DATA:
-        //     return initialState;
+        case CLEAR_DATA:
+            return initialState;
         default:
             return state;
     }
