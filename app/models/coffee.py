@@ -42,7 +42,7 @@ class Coffee(db.Model):
         'Order', back_populates='coffee')
     cart = db.relationship(
         'Cart', back_populates='coffee')
-
+    
     days = db.relationship(
         'Day',
         secondary=coffee_days,

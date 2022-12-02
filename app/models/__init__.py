@@ -7,3 +7,4 @@ from .coffee import Day
 from .coffee import Note
 from .order import Order
 from .cart import Cart
+from .preferences import Preference

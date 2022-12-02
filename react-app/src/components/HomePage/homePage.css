@@ -55,6 +55,7 @@
 }
 
 .homepage-try-now:hover {
+    transition-duration: 300ms;
     background: rgb(195, 56, 10);
     border: 2px solid rgb(195, 56, 10);
     z-index: 5;
@@ -74,6 +75,7 @@
 }
 
 .homepage-shop-all:hover {
+    transition-duration: 300ms;
     border: 2px solid rgb(115, 44, 20);
     background: rgba(255, 255, 255, 0.493);
     color: rgb(115, 44, 20);
@@ -91,6 +93,7 @@
     margin-left: 85px;
     margin-top: 10px;
     margin-bottom: 500px;
+    font-weight: 500;
 }
 
 .scrolling-banner {
@@ -143,7 +146,7 @@
     white-space: nowrap;
     font-size: var(--item-font-size);
     padding: 0 1vw;
-    font-weight: 400;
+    /* font-weight: 400; */
     line-height: 1.15;
 }
 
@@ -206,6 +209,7 @@
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     margin: 8px 0;
+    font-weight: 500
 }
 
 .panel-link {
@@ -280,6 +284,7 @@
         background: rgb(195, 56, 10);
         border: 2px solid rgb(195, 56, 10);
         z-index: 5;
+        transition-duration: 300ms;
     }
 
     .homepage-shop-all {

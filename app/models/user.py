@@ -21,6 +21,10 @@ class User(db.Model, UserMixin):
     coffee = db.relationship('Coffee', back_populates='curator')
     cart = db.relationship('Cart', back_populates='user')
     order = db.relationship('Order', back_populates='user')
+    preference = db.relationship(
+        'Preference', back_populates='user'
+    )
+
 
     @property
     def password(self):

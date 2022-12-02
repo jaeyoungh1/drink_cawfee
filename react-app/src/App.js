@@ -19,6 +19,8 @@ import AddReview from './components/coffeeReviews/createReview';
 import Roasters from './components/roasters/roasters';
 import Checkout from './components/cart/checkout';
 import AccountDetails from './components/accountDetails/accountDetails';
+import LearnMore from './components/learnMore/learnMore';
+import Preferences from './components/preferences/preferences';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -74,6 +76,14 @@ function App() {
         </Route>
         <Route path='/account'>
           <AccountDetails />
+          <Footer />
+        </Route>
+        <Route path='/learn-more'>
+          <LearnMore />
+          <Footer />
+        </Route>
+        <Route path='/my-profile'>
+          <Preferences />
           <Footer />
         </Route>
         {/* <ProtectedRoute path='/users' exact={true} >
