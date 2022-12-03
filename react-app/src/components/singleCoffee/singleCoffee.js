@@ -31,12 +31,16 @@ export default function SingleCoffee() {
 
     let cartedCoffee = []
     let cartArr
+
     useEffect(() => {
         dispatch(clearData())
         dispatch(getOneCoffee(coffeeId))
         if (coffee.id) {
             dispatch(loadAllReview(coffeeId))
         }
+    }, [dispatch])
+
+    useEffect(() => {
         dispatch(loadAllCart())
     }, [dispatch, quantity])
 
