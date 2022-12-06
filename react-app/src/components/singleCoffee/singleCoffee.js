@@ -33,6 +33,9 @@ export default function SingleCoffee() {
     let cartArr
     useEffect(() => {
         dispatch(clearData())
+    }, [dispatch])
+    useEffect(() => {
+        
         dispatch(getOneCoffee(coffeeId))
         if (coffee.id) {
             dispatch(loadAllReview(coffeeId))

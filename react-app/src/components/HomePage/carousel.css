@@ -5,7 +5,7 @@ body {
 
 .carousel {
     width: 100vw;
-    height: 370px;
+    height: 390px;
     direction: rtl;
     display: flex;
     justify-content: flex-start;
@@ -13,13 +13,13 @@ body {
     overflow: hidden;
     z-index: 3;
     position: absolute;
-    top: 530px;
+    top: 510px;
 }
 
 .coffee-carousel {
     position: absolute;
-    top: 485px;
-    height: 400px;
+    top: 460px;
+    height: 450px;
 }
 
 .carousel.active {
@@ -49,6 +49,7 @@ body {
 .item:hover {
     transition-duration: 300ms;
     box-shadow: 2px 10px 8px 4px rgba(149, 149, 149, 0.18);
+    /* cursor: none; */
 }
 
 .item:first-child {
@@ -97,6 +98,7 @@ body {
 .item-coffee:hover {
     transition-duration: 300ms;
     box-shadow: 2px 10px 8px 4px rgba(149, 149, 149, 0.18);
+    /* cursor: none; */
 }
 
 .item-image-wrapper {
@@ -159,4 +161,30 @@ body {
     .perfect-cup {
         margin-top: -130px;
     }
+}
+#cursor > img {
+    height: 20px;
+    width: 20px;
+}
+#cursor {
+    font-family: 'Open Sans', sans-serif;
+    font-weight:400;
+    position: absolute;
+    margin-top: -35px;
+    margin-left: 85px;
+    display: flex;
+    align-items: center;
+    /* color: grey; */
+    background-color: rgb(244, 241, 233);
+    font-size: 8px;
+    padding: 1px 3px;
+}
+
+.hidden {
+    visibility: hidden;
+    /* visibility: visible; */
+}
+.visible {
+    transition-duration: 300ms;
+    visibility:visible;
 }
