@@ -189,7 +189,7 @@ const HomePage = () => {
                 {/* <div id='cursor' className={cursorClass}> Click & Drag to View More <img height='20' width='20' src={clickDrag} ></img></div> */}
 
                 <Carousel className='carousel' _data={items} {...setting}>
-                    <div className="item-coffee" style={{ ...coffeeItemStyle }} >
+                    <div className="item-coffee" style={{ ...coffeeItemStyle }} onMouseEnter={() => setCursorClass('visible')} onMouseLeave={() => setCursorClass('hidden')}>
                         <div className="item-info">
                             <div>
                                 <div className="learn-more"><NavLink className="learn-more" to='/cawfee'>Shop All</NavLink></div>
@@ -203,7 +203,7 @@ const HomePage = () => {
                     {coffeeArr.slice(0, 6).map(obj => {
                         return (
 
-                            <div className="item-coffee" style={{ ...coffeeItemStyle }}>
+                            <div className="item-coffee" style={{ ...coffeeItemStyle }} onMouseEnter={() => setCursorClass('visible')} onMouseLeave={() => setCursorClass('hidden')}>
 
                                 <div className="item-image-wrapper">
                                     <img alt='single coffee' className="item-image" src={obj.img_url}
