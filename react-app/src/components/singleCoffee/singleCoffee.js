@@ -9,6 +9,7 @@ import minus from '../../icons/minus.svg'
 import plus from '../../icons/plus.svg'
 // import brokenImg from '../../icons/broken-img.png'
 import noImg from '../../icons/no_image.svg'
+import add from '../../icons/add.svg'
 import './singleCoffee.css'
 import { loadAllReview } from "../../store/review";
 import { addOneCart, editOneCart, loadAllCart } from "../../store/cart";
@@ -176,6 +177,7 @@ export default function SingleCoffee() {
 
     return (
         <>
+            {added && <img className='added' alt='added item' src={add} />}
             {!coffee.id && <div className='empty-page'>
                 Page Not Found! <NavLink className='ruhroh-page' to='/'>Return back to safe waters.</NavLink>
             </div>}
