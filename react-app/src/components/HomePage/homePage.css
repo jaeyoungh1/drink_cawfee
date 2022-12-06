@@ -2,6 +2,10 @@
     margin-bottom: 870px;
 }
 
+.learn-more {
+    color: black
+}
+
 .homepage-splash>img {
     width: 100%;
     /* margin-left: -10px; */
@@ -83,6 +87,7 @@
 
 .perfect-cup {
     top: 1090px;
+    margin-top: 100px;
     margin-left: 85px;
     font-size: 36px;
 }

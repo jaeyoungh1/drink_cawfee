@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadAllCoffee } from "../../store/coffee";
@@ -7,10 +7,14 @@ import './carousel.css'
 import letsgo from '../../icons/letsgo.svg'
 import Carousel from './Carousel';
 import noImg from '../../icons/no_image.svg'
+import clickDrag from '../../icons/clickDrag.svg'
 
 
 const HomePage = () => {
     const dispatch = useDispatch();
+
+    const [cursor, setCursor] = useState('')
+    const [cursorClass, setCursorClass] = useState('hidden')
 
     useEffect(() => {
         dispatch(loadAllCoffee())
@@ -47,6 +51,19 @@ const HomePage = () => {
         margin: `0px ${setting.itemSideOffsets}px`
     }
 
+    
+    let mouse;
+    useEffect(() => {
+        setCursor(document.getElementById("cursor"));
+        // console.log('cursor', cursor)
+    })
+
+    const onMouseMove = (e) => {
+      setCursorClass('visible')
+    }
+    // document.addEventListener("mousemove", onMouseMove);
+
+
 
     return (
 
@@ -64,8 +81,11 @@ const HomePage = () => {
                 <img src="https://res.cloudinary.com/roastcollective/image/upload/f_auto/v1664460478/web/homepage/desktop-hero-revised.png" />
             </div>
             <div className='carosel'>
-                <Carousel _data={items} {...setting}>
-                    <div className="item" style={{ ...itemStyle }}>
+               
+                <div id='cursor' className={cursorClass}> Click & Drag to View More <img height='20' width='20' src={clickDrag} ></img></div>
+                
+                <Carousel _data={items} {...setting} >
+                    <div className="item" style={{ ...itemStyle }} onMouseEnter={() => setCursorClass('visible')} onMouseLeave={() => setCursorClass('hidden')}>
                         <div className="item-info">
                             <div>
 
@@ -83,7 +103,7 @@ const HomePage = () => {
                         </div>
                     </div>
 
-                    <div className="item" style={{ ...itemStyle }}>
+                    <div className="item" style={{ ...itemStyle }} onMouseEnter={() => setCursorClass('visible')} onMouseLeave={() => setCursorClass('hidden')}>
                         <div className="item-info">
                             <div>
 
@@ -101,7 +121,7 @@ const HomePage = () => {
                         </div>
                     </div>
 
-                    <div className="item" style={{ ...itemStyle }}>
+                    <div className="item" style={{ ...itemStyle }} onMouseEnter={() => setCursorClass('visible')} onMouseLeave={() => setCursorClass('hidden')}>
                         <div className="item-info">
                             <div>
 
@@ -119,7 +139,7 @@ const HomePage = () => {
                         </div>
                     </div>
 
-                    <div className="item" style={{ ...itemStyle }}>
+                    <div className="item" style={{ ...itemStyle }} onMouseEnter={() => setCursorClass('visible')} onMouseLeave={() => setCursorClass('hidden')}>
                         <div className="item-info">
                             <div>
 
@@ -137,7 +157,7 @@ const HomePage = () => {
                         </div>
                     </div>
 
-                    <div className="item" style={{ ...itemStyle }}>
+                    <div className="item" style={{ ...itemStyle }} onMouseEnter={() => setCursorClass('visible')} onMouseLeave={() => setCursorClass('hidden')}>
                         <div className="item-info">
                             <div>
 
@@ -166,11 +186,13 @@ const HomePage = () => {
                 Experience ethically sourced coffees from small roasters in California.
             </div>
             <div className='coffee-carousel'>
+                {/* <div id='cursor' className={cursorClass}> Click & Drag to View More <img height='20' width='20' src={clickDrag} ></img></div> */}
+
                 <Carousel className='carousel' _data={items} {...setting}>
-                    <div className="item-coffee" style={{ ...coffeeItemStyle }}>
+                    <div className="item-coffee" style={{ ...coffeeItemStyle }} onMouseEnter={() => setCursorClass('visible')} onMouseLeave={() => setCursorClass('hidden')}>
                         <div className="item-info">
                             <div>
-                                <div className="learn-more">Shop All</div>
+                                <div className="learn-more"><NavLink className="learn-more" to='/cawfee'>Shop All</NavLink></div>
                             </div>
                         </div>
                         <div id="item-image">
@@ -178,10 +200,10 @@ const HomePage = () => {
                         </div>
                     </div>
 
-                    {coffeeArr.slice(0, 5).map(obj => {
+                    {coffeeArr.slice(0, 6).map(obj => {
                         return (
 
-                            <div className="item-coffee" style={{ ...coffeeItemStyle }}>
+                            <div className="item-coffee" style={{ ...coffeeItemStyle }} onMouseEnter={() => setCursorClass('visible')} onMouseLeave={() => setCursorClass('hidden')}>
 
                                 <div className="item-image-wrapper">
                                     <img alt='single coffee' className="item-image" src={obj.img_url}
