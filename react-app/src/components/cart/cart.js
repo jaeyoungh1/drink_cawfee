@@ -9,6 +9,7 @@ import x from '../../icons/x.svg'
 import plus from '../../icons/plus.svg'
 import minus from '../../icons/minus.svg'
 import cart from '../../icons/cart.svg'
+import add from '../../icons/add.svg'
 
 export default function Cart() {
     const dispatch = useDispatch()
@@ -172,6 +173,7 @@ export default function Cart() {
     return (
         <>
             <div className='profile-button' onClick={() => setShowModal(true)}>
+                
                 <span className='swiper-no-swiping'>
                     <img alt='profile' src={cart} />
                     <span>

@@ -60,8 +60,8 @@
 
 .homepage-try-now:hover {
     transition-duration: 300ms;
-    background: rgb(195, 56, 10);
-    border: 2px solid rgb(195, 56, 10);
+    background: #c3380a;
+    border: 2px solid #c3380a;
     z-index: 5;
 }
 

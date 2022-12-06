@@ -285,3 +285,13 @@
 .change-address:hover {
     color: rgb(102, 102, 102);
 }
+
+.added {
+    position: absolute;
+    top:15px;
+    right: 65px;
+    z-index: 10;
+    filter: invert(15%) sepia(58%) saturate(7485%) hue-rotate(29deg) brightness(101%) contrast(92%);
+    height: 20px;
+    width: 20px;
+}
