@@ -24,7 +24,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[Drink Cawfee](https://drink-cawfee.herokuapp.com/) is a web application inspired by [Drink Trade](https://www.drinktrade.com/).
+Drink Cawfee is a web application inspired by [Drink Trade](https://www.drinktrade.com/).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
